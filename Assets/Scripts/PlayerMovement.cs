@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f;
 
     [Header("Ataque")]
-    public float attackForce = 50f;
+    public float attackForce = 10f;
     public float attackCooldown = 0.8f;
     private bool isAttacking = false;
     private float nextAttackTime = 0f;
