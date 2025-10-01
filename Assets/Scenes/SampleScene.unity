@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7, y: -2.37, z: -10}
+  m_LocalPosition: {x: 0, y: 3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -532,8 +532,8 @@ Transform:
   m_GameObject: {fileID: 1162169058}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.81, y: -1.68, z: 0}
-  m_LocalScale: {x: 7.381719, y: 0.45945, z: 1}
+  m_LocalPosition: {x: 9, y: -2, z: 0}
+  m_LocalScale: {x: 7.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -666,8 +666,8 @@ Transform:
   m_GameObject: {fileID: 1559992215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6223, y: -4.0203, z: 0}
-  m_LocalScale: {x: 41.00955, y: 0.45945, z: 1}
+  m_LocalPosition: {x: 0, y: -5, z: 0}
+  m_LocalScale: {x: 45, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -742,7 +742,7 @@ Transform:
   m_GameObject: {fileID: 1585008738}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7, y: -2.37, z: -10}
+  m_LocalPosition: {x: 0, y: 3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -766,7 +766,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
-  FollowOffset: {x: 0, y: 0, z: -10}
+  FollowOffset: {x: 0, y: 3, z: -10}
 --- !u!1 &2098606618
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,17 +821,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.0346829, y: 0.08762741}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.5, y: 1.97}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.7977092, y: 1.8556569}
+  m_Size: {x: 2, y: 1.5}
   m_EdgeRadius: 0
 --- !u!50 &2098606620
 Rigidbody2D:
@@ -909,7 +909,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -924,8 +924,8 @@ Transform:
   m_GameObject: {fileID: 2098606618}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7, y: -2.37, z: 0}
-  m_LocalScale: {x: 1.4665378, y: 1.4080333, z: 0.48381}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 1.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 946231156}
@@ -943,10 +943,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eb83315bbdf3274d82ae473bed831ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   jumpForce: 30
   fallMultiplier: 12
-  attackForce: 20
+  attackForce: 10
   attackCooldown: 0.8
   attackDuration: 0.4
   attackCurve:
@@ -964,11 +964,11 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: -4.5489125
+      outSlope: -4.5489125
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.043333292
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
