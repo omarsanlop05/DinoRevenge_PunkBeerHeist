@@ -28,9 +28,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private int facingDirection = 1; // 1 = derecha, -1 = izquierda
 
+    private CircleCollider2D attackPoint;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        attackPoint = rb.GetComponent<CircleCollider2D>();
+        attackPoint.enabled = false;
     }
 
     void Update()
@@ -112,6 +116,8 @@ public class PlayerController : MonoBehaviour
             attackTimer = 0f;
             attackDirection = new Vector2(facingDirection, 0).normalized;
 
+            attackPoint.enabled = true;
+
             attackQueued = false;
         }
     }
@@ -133,6 +139,7 @@ public class PlayerController : MonoBehaviour
     void FinAtaque()
     {
         isAttacking = false;
+        attackPoint.enabled = false;
     }
 
     bool IsGrounded()
