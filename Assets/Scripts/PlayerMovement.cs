@@ -1,7 +1,11 @@
 using UnityEngine;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Animator")]
+    public Animator animator; // Asigna esto en el Inspector
+
     [Header("Movimiento")]
     public float moveSpeed = 5f;
     public float jumpForce = 7f;
@@ -48,13 +52,27 @@ public class PlayerController : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x) * facingDirection;
             transform.localScale = scale;
+            animator.SetBool("isRunning", true);
+
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
         }
 
+        //Saltar
         if (Input.GetKeyDown(KeyCode.Space))
+        {
             jumpQueued = true;
+        }
 
+        //Atacar
         if (Input.GetMouseButtonDown(0) && Time.time >= nextAttackTime)
+        {
             attackQueued = true;
+        }
+
+        
     }
 
     void FixedUpdate()

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 0e336153bbbcd64428eda63b5e3efd97
+guid: 6d08387d35aff4740b1e9c25d38b9e23
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5586983479537689044
-    second: Dinopunk_0
+      213: -8525414183595390052
+    second: DinopunkWalking2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dinopunk_0
+      name: DinopunkWalking2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 250
-        height: 250
+        x: 23
+        y: 23
+        width: 104
+        height: 110
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c2e1e20602c0772b0800000000000000
-      internalID: -5586983479537689044
+      spriteID: c9b48b738f4afa980800000000000000
+      internalID: -8525414183595390052
       vertices: []
       indices: 
       edges: []
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Dinopunk_0: -5586983479537689044
+      DinopunkWalking2_0: -8525414183595390052
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
