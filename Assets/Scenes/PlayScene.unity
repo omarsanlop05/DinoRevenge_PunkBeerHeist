@@ -362,7 +362,7 @@ Transform:
   m_GameObject: {fileID: 40510065}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.36, y: 10.36, z: 0}
+  m_LocalPosition: {x: -3.37, y: 17.89, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -640,7 +640,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 24
+  orthographic size: 6.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -665,7 +665,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 16, z: -10}
+  m_LocalPosition: {x: 4, y: 5.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1061,7 +1061,7 @@ Grid:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956500815}
   m_Enabled: 1
-  m_CellSize: {x: 3.2, y: 3.2, z: 0}
+  m_CellSize: {x: 1, y: 1, z: 0}
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
@@ -1360,7 +1360,7 @@ GameObject:
   - component: {fileID: 1559992218}
   - component: {fileID: 1559992217}
   - component: {fileID: 1559992216}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1477,7 +1477,7 @@ Transform:
   m_GameObject: {fileID: 1559992215}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalPosition: {x: 0, y: 2.75, z: 0}
   m_LocalScale: {x: 250.31874, y: 0.5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1609,11 +1609,11 @@ MonoBehaviour:
       Enabled: 1
       Size: {x: 0.0625, y: 0}
     HardLimits:
-      Enabled: 1
+      Enabled: 0
       Size: {x: 0.25, y: 0.25}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 12, z: 0}
+  TargetOffset: {x: 0, y: 1.5, z: 0}
   Damping: {x: 1, y: 1, z: 1}
   Lookahead:
     Enabled: 0
@@ -1645,7 +1645,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 24
+    OrthographicSize: 6.75
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -1672,7 +1672,7 @@ Transform:
   m_GameObject: {fileID: 1986747360}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: 16, z: -10}
+  m_LocalPosition: {x: 4, y: 5.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1691,8 +1691,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BoundingShape2D: {fileID: 149128003}
-  Damping: 0.5
-  SlowingDistance: 5
+  Damping: 0.3
+  SlowingDistance: 3
   OversizeWindow:
     Enabled: 0
     MaxWindowSize: 0
@@ -1800,7 +1800,7 @@ GameObject:
   - component: {fileID: 2098606623}
   - component: {fileID: 2098606624}
   - component: {fileID: 2098606625}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1841,17 +1841,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.050857544, y: -0.040156126}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 8}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.5105247, y: 7.9170365}
+  m_Size: {x: 1, y: 2}
   m_EdgeRadius: 0
 --- !u!50 &2098606620
 Rigidbody2D:
@@ -1963,10 +1963,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 2098606625}
-  moveSpeed: 15
-  jumpForce: 50
+  moveSpeed: 8.5
+  jumpForce: 30
   fallMultiplier: 12
-  attackForce: 15
+  attackForce: 5
   attackCooldown: 0.8
   attackDuration: 0.5
   attackCurve:
@@ -1993,6 +1993,9 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!58 &2098606624
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2027,8 +2030,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.55, y: 0.1}
-  m_Radius: 0.3
+  m_Offset: {x: 1, y: 0.25}
+  m_Radius: 0.5
 --- !u!95 &2098606625
 Animator:
   serializedVersion: 7

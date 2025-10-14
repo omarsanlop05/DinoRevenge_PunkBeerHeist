@@ -29,15 +29,20 @@ public class PlayerController : MonoBehaviour
     private bool jumpQueued = false;
     private bool attackQueued = false;
 
+    public LayerMask groundLayer;
+    public float groundCheckDistance = 0.2f;
+
     private Rigidbody2D rb;
     private int facingDirection = 1; // 1 = derecha, -1 = izquierda
 
     private CircleCollider2D attackPoint;
+    private BoxCollider2D playerCollider;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         attackPoint = rb.GetComponent<CircleCollider2D>();
+        playerCollider = rb.GetComponent<BoxCollider2D>();
         attackPoint.enabled = false;
     }
 
@@ -162,7 +167,35 @@ public class PlayerController : MonoBehaviour
 
     bool IsGrounded()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.1f);
+        if (playerCollider == null) return false;
+
+        Vector2 rayStart = (Vector2)transform.position + Vector2.down * (playerCollider.bounds.extents.y + 0.01f);
+
+        RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, 0.1f); 
+        Debug.DrawRay(rayStart, Vector2.down * 0.1f, Color.red);
+
         return hit.collider != null;
+    }
+
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+
+        if (playerCollider != null)
+        {
+            Vector2 rayStart = (Vector2)transform.position + Vector2.down * (playerCollider.bounds.extents.y - 0.05f);
+            Gizmos.DrawLine(rayStart, rayStart + Vector2.down * groundCheckDistance);
+        }
+        else
+        {
+            // Fallback si playerCollider es null en el editor
+            Collider2D col = GetComponent<Collider2D>();
+            if (col != null)
+            {
+                Vector2 rayStart = (Vector2)transform.position + Vector2.down * (col.bounds.extents.y - 0.05f);
+                Gizmos.DrawLine(rayStart, rayStart + Vector2.down * groundCheckDistance);
+            }
+        }
     }
 }
