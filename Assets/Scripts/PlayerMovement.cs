@@ -48,7 +48,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
+        if (!isAttacking)
+            moveInput = Input.GetAxisRaw("Horizontal");
+        else
+            moveInput = 0;
 
         // Actualizar dirección
         if (moveInput != 0)
@@ -148,6 +151,8 @@ public class PlayerController : MonoBehaviour
     {
         attackTimer += Time.fixedDeltaTime;
 
+        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+
         float t = attackTimer / attackDuration;
         float force = attackCurve.Evaluate(t) * attackForce;
 
@@ -163,6 +168,7 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = false;
         attackPoint.enabled = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     bool IsGrounded()
