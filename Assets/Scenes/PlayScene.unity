@@ -259,17 +259,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.55793524, y: 0}
+  m_Offset: {x: 0, y: -0.45}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3, y: 6.8125}
+    oldSize: {x: 3.0625, y: 6.8125}
     newSize: {x: 0.48, y: 1.09}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.795926, y: 20.625}
+  m_Size: {x: 2, y: 5.9060316}
   m_EdgeRadius: 0
 --- !u!50 &40510067
 Rigidbody2D:
@@ -447,7 +447,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.1, y: 0.25}
+  m_Offset: {x: 1, y: 0.25}
   m_Radius: 0.5
 --- !u!1 &149128002
 GameObject:
@@ -2184,7 +2184,7 @@ MonoBehaviour:
   attackPoint: {fileID: 88161812}
   attackForce: 5
   attackCooldown: 0.8
-  attackDuration: 0.5
+  attackDuration: 0.75
   attackCurve:
     serializedVersion: 2
     m_Curve:
