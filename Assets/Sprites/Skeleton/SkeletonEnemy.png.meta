@@ -103,12 +103,12 @@ TextureImporter:
       name: SkeletonEnemy_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 13
         y: 0
-        width: 225
-        height: 330
+        width: 48
+        height: 109
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 82ea3774d00fc414aacea15c1375c83f
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
