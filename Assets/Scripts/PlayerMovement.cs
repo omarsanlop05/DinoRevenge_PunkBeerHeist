@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     [Header("Gravedad personalizada")]
     public float fallMultiplier = 2.5f;
 
+    [Header("Hitbox de ataque")]
+    public CircleCollider2D attackPoint;
+
     [Header("Ataque")]
     public float attackForce = 10f;
     public float attackCooldown = 0.8f;
@@ -35,13 +38,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private int facingDirection = 1; // 1 = derecha, -1 = izquierda
 
-    private CircleCollider2D attackPoint;
     private BoxCollider2D playerCollider;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        attackPoint = rb.GetComponent<CircleCollider2D>();
         playerCollider = rb.GetComponent<BoxCollider2D>();
         attackPoint.enabled = false;
     }
@@ -72,7 +73,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpQueued = true;
-        }
+         }
 
         //Atacar
         if (Input.GetMouseButtonDown(0) && Time.time >= nextAttackTime)
@@ -94,6 +95,9 @@ public class PlayerController : MonoBehaviour
 
         if (isAttacking)
             MovimientoDeAtaque();
+        Debug.Log("Rotación Z: " + transform.rotation.eulerAngles.z);
+
+
     }
 
     void Movimiento()
@@ -144,6 +148,8 @@ public class PlayerController : MonoBehaviour
 
             attackPoint.enabled = true;
 
+            animator.SetTrigger("Attack");
+
             attackQueued = false;
         }
     }
@@ -151,7 +157,7 @@ public class PlayerController : MonoBehaviour
     {
         attackTimer += Time.fixedDeltaTime;
 
-        rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionY;
 
         float t = attackTimer / attackDuration;
         float force = attackCurve.Evaluate(t) * attackForce;
