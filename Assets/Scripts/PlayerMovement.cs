@@ -143,12 +143,57 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
+    /*
+     bool IsGrounded() { 
+        if (playerCollider == null) return false; 
+        Vector2 rayStart = (Vector2)transform.position + Vector2.down * (playerCollider.bounds.extents.y + 0.01f); 
+        RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, 0.1f); 
+        return hit.collider != null; 
+     }
+     */
+
     bool IsGrounded()
     {
         if (playerCollider == null) return false;
 
-        Vector2 rayStart = (Vector2)transform.position + Vector2.down * (playerCollider.bounds.extents.y + 0.01f);
-        RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, 0.1f);
-        return hit.collider != null;
+        float halfWidth = playerCollider.bounds.extents.x;
+        Vector2 basePos = (Vector2)playerCollider.bounds.center + Vector2.down * (playerCollider.bounds.extents.y + 0.01f);
+
+        Vector2 leftRay = basePos + Vector2.left * (halfWidth);
+        Vector2 centerRay = basePos;
+        Vector2 rightRay = basePos + Vector2.right * (halfWidth);
+
+        RaycastHit2D leftHit = Physics2D.Raycast(leftRay, Vector2.down, groundCheckDistance);
+        RaycastHit2D centerHit = Physics2D.Raycast(centerRay, Vector2.down, groundCheckDistance);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightRay, Vector2.down, groundCheckDistance);
+        return leftHit.collider != null || centerHit.collider != null || rightHit.collider != null;
     }
+
+    void OnDrawGizmos()
+    {
+        if (playerCollider == null) return;
+
+        float halfWidth = playerCollider.bounds.extents.x;
+        Vector2 basePos = playerCollider.bounds.center;
+
+        // Ajustar la posición base (punto inferior del collider)
+        Vector2 bottomCenter = basePos + Vector2.down;
+
+        Vector2 leftRay = bottomCenter + Vector2.left * (halfWidth - 0.05f);
+        Vector2 centerRay = bottomCenter;
+        Vector2 rightRay = bottomCenter + Vector2.right * (halfWidth - 0.05f);
+
+        Gizmos.color = Color.green;
+
+        // Dibuja líneas de rayos
+        Gizmos.DrawLine(leftRay, leftRay + Vector2.down * groundCheckDistance);
+        Gizmos.DrawLine(centerRay, centerRay + Vector2.down * groundCheckDistance);
+        Gizmos.DrawLine(rightRay, rightRay + Vector2.down * groundCheckDistance);
+
+        // Dibuja pequeñas esferas en los extremos
+        Gizmos.DrawSphere(leftRay + Vector2.down * groundCheckDistance, 0.02f);
+        Gizmos.DrawSphere(centerRay + Vector2.down * groundCheckDistance, 0.02f);
+        Gizmos.DrawSphere(rightRay + Vector2.down * groundCheckDistance, 0.02f);
+    }
+
 }
