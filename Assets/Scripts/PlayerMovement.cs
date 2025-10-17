@@ -1,10 +1,9 @@
 using UnityEngine;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Animator")]
-    public Animator animator; // Asigna esto en el Inspector
+    public Animator animator;
 
     [Header("Movimiento")]
     public float moveSpeed = 5f;
@@ -24,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Ataque dinámico")]
     public float attackDuration = 0.2f;
-    public AnimationCurve attackCurve; // Puedes definirla en el Inspector
+    public AnimationCurve attackCurve;
     private float attackTimer = 0f;
     private Vector2 attackDirection;
 
@@ -36,9 +35,11 @@ public class PlayerController : MonoBehaviour
     public float groundCheckDistance = 0.2f;
 
     private Rigidbody2D rb;
-    private int facingDirection = 1; // 1 = derecha, -1 = izquierda
+    private int facingDirection = 1;
 
     private BoxCollider2D playerCollider;
+
+    public bool IsFacingRight => facingDirection == 1;
 
     void Start()
     {
@@ -49,39 +50,27 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (!isAttacking)
-            moveInput = Input.GetAxisRaw("Horizontal");
-        else
-            moveInput = 0;
+        moveInput = isAttacking ? 0 : Input.GetAxisRaw("Horizontal");
 
-        // Actualizar dirección
         if (moveInput != 0)
         {
             facingDirection = (int)Mathf.Sign(moveInput);
-            Vector3 scale = transform.localScale;
-            scale.x = Mathf.Abs(scale.x) * facingDirection;
-            transform.localScale = scale;
-            animator.SetBool("isRunning", true);
+            Vector3 rotation = transform.eulerAngles;
+            rotation.y = (facingDirection == 1) ? 0f : 180f;
+            transform.eulerAngles = rotation;
 
+            animator.SetBool("isRunning", true);
         }
         else
         {
             animator.SetBool("isRunning", false);
         }
 
-        //Saltar
         if (Input.GetKeyDown(KeyCode.Space))
-        {
             jumpQueued = true;
-         }
 
-        //Atacar
         if (Input.GetMouseButtonDown(0) && Time.time >= nextAttackTime)
-        {
             attackQueued = true;
-        }
-
-        
     }
 
     void FixedUpdate()
@@ -95,9 +84,6 @@ public class PlayerController : MonoBehaviour
 
         if (isAttacking)
             MovimientoDeAtaque();
-        Debug.Log("Rotación Z: " + transform.rotation.eulerAngles.z);
-
-
     }
 
     void Movimiento()
@@ -108,33 +94,15 @@ public class PlayerController : MonoBehaviour
     void Saltar()
     {
         if (jumpQueued && IsGrounded())
-        {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
+
         jumpQueued = false;
     }
 
     void AplicarGravedad()
     {
-            // Caída rápida
-            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
-  
+        rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
     }
-
-    /*void Atacar()
-    {
-        if (attackQueued)
-        {
-            isAttacking = true;
-            nextAttackTime = Time.time + attackCooldown;
-
-            Vector2 attackDir = new Vector2(facingDirection, 0);
-            rb.AddForce(attackDir * attackForce, ForceMode2D.Impulse);
-
-            Invoke(nameof(FinAtaque), 0.3f);
-        }
-        attackQueued = false;
-    }*/
 
     void Atacar()
     {
@@ -147,12 +115,12 @@ public class PlayerController : MonoBehaviour
             attackDirection = new Vector2(facingDirection, 0).normalized;
 
             attackPoint.enabled = true;
-
             animator.SetTrigger("Attack");
 
             attackQueued = false;
         }
     }
+
     void MovimientoDeAtaque()
     {
         attackTimer += Time.fixedDeltaTime;
@@ -165,9 +133,7 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(attackDirection.x * force, rb.linearVelocity.y);
 
         if (attackTimer >= attackDuration)
-        {
             FinAtaque();
-        }
     }
 
     void FinAtaque()
@@ -182,32 +148,7 @@ public class PlayerController : MonoBehaviour
         if (playerCollider == null) return false;
 
         Vector2 rayStart = (Vector2)transform.position + Vector2.down * (playerCollider.bounds.extents.y + 0.01f);
-
-        RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, 0.1f); 
-        Debug.DrawRay(rayStart, Vector2.down * 0.1f, Color.red);
-
+        RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, 0.1f);
         return hit.collider != null;
-    }
-
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-
-        if (playerCollider != null)
-        {
-            Vector2 rayStart = (Vector2)transform.position + Vector2.down * (playerCollider.bounds.extents.y - 0.05f);
-            Gizmos.DrawLine(rayStart, rayStart + Vector2.down * groundCheckDistance);
-        }
-        else
-        {
-            // Fallback si playerCollider es null en el editor
-            Collider2D col = GetComponent<Collider2D>();
-            if (col != null)
-            {
-                Vector2 rayStart = (Vector2)transform.position + Vector2.down * (col.bounds.extents.y - 0.05f);
-                Gizmos.DrawLine(rayStart, rayStart + Vector2.down * groundCheckDistance);
-            }
-        }
     }
 }
