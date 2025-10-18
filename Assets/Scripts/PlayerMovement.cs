@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour
     [Header("Gravedad personalizada")]
     public float fallMultiplier = 2.5f;
 
+    [Header("Coyote Time")]
+    public float coyoteTime = 0.2f;
+    private float coyoteTimeCounter = 0f;
+
     [Header("Hitbox de ataque")]
     public CircleCollider2D attackPoint;
 
@@ -77,7 +81,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!isAttacking)
             Movimiento();
-
+        if (IsGrounded())
+            coyoteTimeCounter = coyoteTime;
+        else
+            coyoteTimeCounter = Mathf.Max(coyoteTimeCounter - Time.fixedDeltaTime, 0f);
         Saltar();
         AplicarGravedad();
         Atacar();
@@ -93,8 +100,11 @@ public class PlayerController : MonoBehaviour
 
     void Saltar()
     {
-        if (jumpQueued && IsGrounded())
+        if (jumpQueued && coyoteTimeCounter > 0f)
+        {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            coyoteTimeCounter = 0f; 
+        }
 
         jumpQueued = false;
     }
