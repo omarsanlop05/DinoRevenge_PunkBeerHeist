@@ -103,7 +103,8 @@ public class PlayerController : MonoBehaviour
         if (jumpQueued && coyoteTimeCounter > 0f)
         {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            coyoteTimeCounter = 0f; 
+            coyoteTimeCounter = 0f;
+            animator.SetTrigger("Jump");
         }
 
         jumpQueued = false;
