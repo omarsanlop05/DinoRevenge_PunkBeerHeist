@@ -218,6 +218,7 @@ GameObject:
   - component: {fileID: 40510068}
   - component: {fileID: 40510067}
   - component: {fileID: 40510066}
+  - component: {fileID: 40510070}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -368,6 +369,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &40510070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 40510065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03607550c9cc97a4fb10d9d0fe61390e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vida: 100
 --- !u!1 &88161809
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,6 +427,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179097269012d4b41bf40f9bbe94ac55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  "da\xF1oGolpe": 50
 --- !u!58 &88161812
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5526,9 +5541,14 @@ MonoBehaviour:
   animator: {fileID: 2098606625}
   moveSpeed: 8
   jumpForce: 30
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  groundCheckDistance: 0.2
   fallMultiplier: 12
   coyoteTime: 0.1
   attackPoint: {fileID: 88161812}
+  attackBehaviour: {fileID: 88161811}
   attackForce: 5
   attackCooldown: 0.8
   attackDuration: 0.75
@@ -5556,10 +5576,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  groundCheckDistance: 0.2
 --- !u!95 &2098606625
 Animator:
   serializedVersion: 7

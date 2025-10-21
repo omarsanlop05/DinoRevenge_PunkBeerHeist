@@ -6,37 +6,39 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
 
     [Header("Movimiento")]
-    public float moveSpeed = 5f;
-    public float jumpForce = 7f;
+    public float moveSpeed = 8f;
+    private float moveInput;
+
+    [Header("Salto")]
+    public float jumpForce = 30f;
+    public LayerMask groundLayer;
+    public float groundCheckDistance = 0.2f;
+    private bool jumpQueued = false;
 
     [Header("Gravedad personalizada")]
-    public float fallMultiplier = 2.5f;
+    public float fallMultiplier = 12f;
 
     [Header("Coyote Time")]
-    public float coyoteTime = 0.2f;
+    public float coyoteTime = 0.1f;
     private float coyoteTimeCounter = 0f;
 
     [Header("Hitbox de ataque")]
     public CircleCollider2D attackPoint;
+    public AttackPointBehaviour attackBehaviour;
 
     [Header("Ataque")]
-    public float attackForce = 10f;
+    public float attackForce = 5f;
     public float attackCooldown = 0.8f;
     private bool isAttacking = false;
     private float nextAttackTime = 0f;
 
     [Header("Ataque dinámico")]
-    public float attackDuration = 0.2f;
+    public float attackDuration = 0.75f;
     public AnimationCurve attackCurve;
     private float attackTimer = 0f;
     private Vector2 attackDirection;
 
-    private float moveInput;
-    private bool jumpQueued = false;
     private bool attackQueued = false;
-
-    public LayerMask groundLayer;
-    public float groundCheckDistance = 0.2f;
 
     private Rigidbody2D rb;
     private int facingDirection = 1;
@@ -125,12 +127,21 @@ public class PlayerController : MonoBehaviour
             attackTimer = 0f;
             attackDirection = new Vector2(facingDirection, 0).normalized;
 
-            attackPoint.enabled = true;
             animator.SetTrigger("Attack");
+
+            Invoke(nameof(ActivarHitbox), 0.25f);
 
             attackQueued = false;
         }
     }
+
+    void ActivarHitbox()
+    {
+        if (!isAttacking) return;
+        attackPoint.enabled = true;
+        attackBehaviour.StartAttack();
+    }
+
 
     void MovimientoDeAtaque()
     {
@@ -151,17 +162,9 @@ public class PlayerController : MonoBehaviour
     {
         isAttacking = false;
         attackPoint.enabled = false;
+        attackBehaviour.EndAttack();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
-
-    /*
-     bool IsGrounded() { 
-        if (playerCollider == null) return false; 
-        Vector2 rayStart = (Vector2)transform.position + Vector2.down * (playerCollider.bounds.extents.y + 0.01f); 
-        RaycastHit2D hit = Physics2D.Raycast(rayStart, Vector2.down, 0.1f); 
-        return hit.collider != null; 
-     }
-     */
 
     bool IsGrounded()
     {
