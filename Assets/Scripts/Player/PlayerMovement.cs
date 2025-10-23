@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System;
 public class PlayerController : MonoBehaviour
 {
     [Header("Animator")]
@@ -10,15 +11,20 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
 
     [Header("Salto")]
-    public float jumpForce = 18f; //
+    private bool isJumping = false;
+    public float jumpForce = 18f;
     public LayerMask groundLayer;
     public float groundCheckDistance = 0.2f;
     private bool jumpQueued = false;
 
-    [Header("Gravedad personalizada")]
-    public float fallMultiplier = 14f; //valor previo: 12
-    public float lowJumpMultiplier = 5f;
+    [Header("Control de saltos")]
+    public int maxJumpCount = 1;
+    private int jumpCount = 0;
+    private bool wasGrounded = false; // NUEVO: Para detectar cuando sale del suelo
 
+    [Header("Gravedad personalizada")]
+    public float fallMultiplier = 14f;
+    public float lowJumpMultiplier = 5f;
 
     [Header("Coyote Time")]
     public float coyoteTime = 0.1f;
@@ -83,12 +89,28 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        bool isGrounded = IsGrounded();
+
+        // Resetear contador de saltos cuando toca el suelo
+        if (isGrounded && !wasGrounded)
+        {
+            jumpCount = 0;
+            coyoteTimeCounter = coyoteTime;
+        }
+        else if (isGrounded)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter = Mathf.Max(coyoteTimeCounter - Time.fixedDeltaTime, 0f);
+        }
+
+        wasGrounded = isGrounded;
+
         if (!isAttacking)
             Movimiento();
-        if (IsGrounded())
-            coyoteTimeCounter = coyoteTime;
-        else
-            coyoteTimeCounter = Mathf.Max(coyoteTimeCounter - Time.fixedDeltaTime, 0f);
+
         Saltar();
         AplicarGravedad();
         Atacar();
@@ -104,36 +126,46 @@ public class PlayerController : MonoBehaviour
 
     void Saltar()
     {
-        if (jumpQueued && coyoteTimeCounter > 0f)
+        // Condiciones más estrictas para el salto
+        bool canJump = jumpQueued && !isJumping && jumpCount < maxJumpCount;
+        bool hasGroundOrCoyote = coyoteTimeCounter > 0f || jumpCount < maxJumpCount;
+
+        if (canJump && hasGroundOrCoyote)
         {
+            jumpQueued = false;
+            jumpCount++;
+            isJumping = true;
             StartCoroutine(JumpWithDelay());
-
         }
-
-        jumpQueued = false;
+        else
+        {
+            jumpQueued = false;
+        }
     }
 
     IEnumerator JumpWithDelay()
     {
-        yield return new WaitForSeconds(0.04f); // un pequeño retardo de 80 ms
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        coyoteTimeCounter = -1.0f;
-        animator.SetTrigger("Jump");
-    }
+        yield return new WaitForSeconds(0.04f);
 
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        coyoteTimeCounter = 0f; // CAMBIADO: Resetear a 0 en lugar de -1
+        animator.SetTrigger("Jump");
+
+        yield return new WaitForSeconds(0.1f);
+        isJumping = false;
+    }
 
     void AplicarGravedad()
     {
-        if (rb.linearVelocity.y < 0) // cayendo
+        if (rb.linearVelocity.y < 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
-        else if (rb.linearVelocity.y > 0) // suelta el salto antes
+        else if (rb.linearVelocity.y > 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
     }
-
 
     void Atacar()
     {
@@ -159,7 +191,6 @@ public class PlayerController : MonoBehaviour
         attackPoint.enabled = true;
         attackBehaviour.StartAttack();
     }
-
 
     void MovimientoDeAtaque()
     {
@@ -191,13 +222,15 @@ public class PlayerController : MonoBehaviour
         float halfWidth = playerCollider.bounds.extents.x;
         Vector2 basePos = (Vector2)playerCollider.bounds.center + Vector2.down * (playerCollider.bounds.extents.y + 0.01f);
 
-        Vector2 leftRay = basePos + Vector2.left * (halfWidth);
+        Vector2 leftRay = basePos + Vector2.left * (halfWidth - 0.05f);
         Vector2 centerRay = basePos;
-        Vector2 rightRay = basePos + Vector2.right * (halfWidth);
+        Vector2 rightRay = basePos + Vector2.right * (halfWidth - 0.05f);
 
-        RaycastHit2D leftHit = Physics2D.Raycast(leftRay, Vector2.down, groundCheckDistance);
-        RaycastHit2D centerHit = Physics2D.Raycast(centerRay, Vector2.down, groundCheckDistance);
-        RaycastHit2D rightHit = Physics2D.Raycast(rightRay, Vector2.down, groundCheckDistance);
+        // CRÍTICO: Usar groundLayer para filtrar solo el suelo
+        RaycastHit2D leftHit = Physics2D.Raycast(leftRay, Vector2.down, groundCheckDistance, groundLayer);
+        RaycastHit2D centerHit = Physics2D.Raycast(centerRay, Vector2.down, groundCheckDistance, groundLayer);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightRay, Vector2.down, groundCheckDistance, groundLayer);
+
         return leftHit.collider != null || centerHit.collider != null || rightHit.collider != null;
     }
 
@@ -207,9 +240,7 @@ public class PlayerController : MonoBehaviour
 
         float halfWidth = playerCollider.bounds.extents.x;
         Vector2 basePos = playerCollider.bounds.center;
-
-        // Ajustar la posición base (punto inferior del collider)
-        Vector2 bottomCenter = basePos + Vector2.down;
+        Vector2 bottomCenter = basePos + Vector2.down * playerCollider.bounds.extents.y;
 
         Vector2 leftRay = bottomCenter + Vector2.left * (halfWidth - 0.05f);
         Vector2 centerRay = bottomCenter;
@@ -217,15 +248,12 @@ public class PlayerController : MonoBehaviour
 
         Gizmos.color = Color.green;
 
-        // Dibuja líneas de rayos
         Gizmos.DrawLine(leftRay, leftRay + Vector2.down * groundCheckDistance);
         Gizmos.DrawLine(centerRay, centerRay + Vector2.down * groundCheckDistance);
         Gizmos.DrawLine(rightRay, rightRay + Vector2.down * groundCheckDistance);
 
-        // Dibuja pequeñas esferas en los extremos
         Gizmos.DrawSphere(leftRay + Vector2.down * groundCheckDistance, 0.02f);
         Gizmos.DrawSphere(centerRay + Vector2.down * groundCheckDistance, 0.02f);
         Gizmos.DrawSphere(rightRay + Vector2.down * groundCheckDistance, 0.02f);
     }
-
 }

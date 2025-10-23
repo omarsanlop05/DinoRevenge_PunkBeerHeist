@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 88161810}
   - component: {fileID: 88161812}
   - component: {fileID: 88161811}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: attackHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25205,7 +25205,7 @@ GameObject:
   - component: {fileID: 2098606619}
   - component: {fileID: 2098606623}
   - component: {fileID: 2098606625}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -25375,6 +25375,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   groundCheckDistance: 0.2
+  maxJumpCount: 1
   fallMultiplier: 14
   lowJumpMultiplier: 5
   coyoteTime: 0.1
