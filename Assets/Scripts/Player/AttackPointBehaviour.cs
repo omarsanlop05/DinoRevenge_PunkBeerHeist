@@ -16,6 +16,15 @@ public class AttackPointBehaviour : MonoBehaviour
                 AplicarDaño(other);
             }
         }
+
+        if (attackActive && other.CompareTag("Breakable"))
+        {
+            if (!objetivosEnRango.Contains(other))
+            {
+                objetivosEnRango.Add(other);
+                RomperObjeto(other);
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -47,5 +56,10 @@ public class AttackPointBehaviour : MonoBehaviour
             vida.RecibirDaño(dañoGolpe);
         }
         Debug.Log("Golpeado: " + enemy.name);
+    }
+
+    void RomperObjeto(Collider2D objeto)
+    {
+        Destroy(objeto.gameObject);
     }
 }
