@@ -568,7 +568,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 149128002}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Density: 1
   m_Material: {fileID: 0}
@@ -1872,6 +1872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneCamera: {fileID: 2026947846}
+  previousCamera: {fileID: 1986747362}
 --- !u!61 &709116384
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1916,7 +1917,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3, y: 2}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &709116385
 Transform:
@@ -1927,7 +1928,7 @@ Transform:
   m_GameObject: {fileID: 709116382}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -72.06233, y: -12.025011, z: 0.0024420707}
+  m_LocalPosition: {x: -71.62, y: -12.025011, z: 0.0024420707}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23775,6 +23776,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneCamera: {fileID: 883149481}
+  previousCamera: {fileID: 1986747362}
 --- !u!61 &1359208208
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23989,6 +23991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneCamera: {fileID: 1986747362}
+  previousCamera: {fileID: 883149481}
 --- !u!61 &1438195037
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24420,6 +24423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneCamera: {fileID: 1986747362}
+  previousCamera: {fileID: 2026947846}
 --- !u!61 &1750246272
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -24464,7 +24468,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3, y: 2}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &1750246273
 Transform:
@@ -24822,7 +24826,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Priority:
     Enabled: 1
-    m_Value: 1
+    m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2
   m_StreamingVersion: 20241001
@@ -25366,12 +25370,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2098606625}
   moveSpeed: 8
-  jumpForce: 30
+  jumpForce: 18
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
   groundCheckDistance: 0.2
-  fallMultiplier: 12
+  fallMultiplier: 14
+  lowJumpMultiplier: 5
   coyoteTime: 0.1
   attackPoint: {fileID: 88161812}
   attackBehaviour: {fileID: 88161811}

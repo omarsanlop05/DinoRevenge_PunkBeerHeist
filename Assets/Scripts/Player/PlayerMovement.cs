@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections;
 public class PlayerController : MonoBehaviour
 {
     [Header("Animator")]
@@ -10,13 +10,15 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
 
     [Header("Salto")]
-    public float jumpForce = 30f;
+    public float jumpForce = 18f; //
     public LayerMask groundLayer;
     public float groundCheckDistance = 0.2f;
     private bool jumpQueued = false;
 
     [Header("Gravedad personalizada")]
-    public float fallMultiplier = 12f;
+    public float fallMultiplier = 14f; //valor previo: 12
+    public float lowJumpMultiplier = 5f;
+
 
     [Header("Coyote Time")]
     public float coyoteTime = 0.1f;
@@ -104,19 +106,34 @@ public class PlayerController : MonoBehaviour
     {
         if (jumpQueued && coyoteTimeCounter > 0f)
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            coyoteTimeCounter = -1.0f;
-            animator.SetTrigger("Jump");
+            StartCoroutine(JumpWithDelay());
 
         }
 
         jumpQueued = false;
     }
 
+    IEnumerator JumpWithDelay()
+    {
+        yield return new WaitForSeconds(0.04f); // un pequeño retardo de 80 ms
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        coyoteTimeCounter = -1.0f;
+        animator.SetTrigger("Jump");
+    }
+
+
     void AplicarGravedad()
     {
-        rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        if (rb.linearVelocity.y < 0) // cayendo
+        {
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
+        }
+        else if (rb.linearVelocity.y > 0) // suelta el salto antes
+        {
+            rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
+        }
     }
+
 
     void Atacar()
     {
@@ -130,7 +147,7 @@ public class PlayerController : MonoBehaviour
 
             animator.SetTrigger("Attack");
 
-            Invoke(nameof(ActivarHitbox), 0.25f);
+            Invoke(nameof(ActivarHitbox), 0.35f);
 
             attackQueued = false;
         }
