@@ -43,11 +43,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: CosasFondo
+  - name: Fondo
+    uniqueID: 1212553871
+    locked: 0
+  - name: EasterEggs
+    uniqueID: 2867584165
+    locked: 0
+  - name: Mapa
     uniqueID: 3584203737
+    locked: 0
+  - name: Decoraciones
+    uniqueID: 2725560607
     locked: 0
   - name: CosasInteractuables
     uniqueID: 703698537
+    locked: 0
+  - name: Personaje
+    uniqueID: 436274565
     locked: 0
   - name: UI
     uniqueID: 3426195793
