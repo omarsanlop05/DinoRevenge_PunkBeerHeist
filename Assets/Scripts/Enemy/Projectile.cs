@@ -3,20 +3,23 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float lifetime = 3f;
+    public float damage = 10f;
     public GameObject hitEffect;
 
     void Start()
     {
-        Destroy(gameObject, lifetime);
+        //Destroy(gameObject, lifetime);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D collision)
     {
         // Si toca al jugador
-        if (collision.collider.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             // Aquí podrías hacer daño al jugador
             Debug.Log("Golpeó al jugador");
+            PlayerHealth health = collision.GetComponent<PlayerHealth>();
+            health.RecibirDaño(damage);
         }
 
         // Efecto opcional al impactar
