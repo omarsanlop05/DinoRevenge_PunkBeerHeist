@@ -1,15 +1,26 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Collectibles : MonoBehaviour
 {
-    // Este método se llama automáticamente cuando otro collider entra en contacto
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Verifica si el objeto que colisionó tiene el tag "Player"
         if (other.CompareTag("Player"))
         {
-            // Destruye este objeto (el collectible)
-            Destroy(gameObject);
+            PlayerHealth health = other.GetComponent<PlayerHealth>();
+
+            if (health != null)
+            {
+                if (health.cervezas < health.maxCervezas)
+                {
+                    health.cervezas++;
+                    Debug.Log("ðŸº Cerveza recogida. Cervezas en inventario: " + health.cervezas);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    Debug.Log("ðŸš« Inventario de cervezas lleno. No se recogiÃ³.");
+                }
+            }
         }
     }
 }

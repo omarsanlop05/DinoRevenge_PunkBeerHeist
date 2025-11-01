@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     [Header("Ataque")]
     public float attackForce = 5f;
     public float attackCooldown = 0.8f;
-    private bool isAttacking = false;
+    public bool isAttacking = false;
     private float nextAttackTime = 0f;
 
     [Header("Ataque dinámico")]
@@ -46,7 +46,14 @@ public class PlayerController : MonoBehaviour
     private float attackTimer = 0f;
     private Vector2 attackDirection;
 
+    [Header("Cerveza")]
+    public bool isDrinking = false;
+
+    public bool isHurt = false;
+
     private bool attackQueued = false;
+
+    private PlayerHealth playerHealth;
 
     private Rigidbody2D rb;
     private int facingDirection = 1;
@@ -60,10 +67,21 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         playerCollider = rb.GetComponent<BoxCollider2D>();
         attackPoint.enabled = false;
+
+        playerHealth = GetComponent<PlayerHealth>();
+        if (playerHealth != null)
+            playerHealth.controller = this;
+
+
     }
 
     void Update()
     {
+        if (isDrinking) // Bloquea toda entrada si está tomando cerveza
+            return;
+        
+        if (isHurt)
+            return;
         moveInput = isAttacking ? 0 : Input.GetAxisRaw("Horizontal");
 
         if (moveInput != 0)
@@ -85,10 +103,21 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && Time.time >= nextAttackTime)
             attackQueued = true;
+        
+        if (Input.GetKeyDown(KeyCode.E))
+            playerHealth.TomarCerveza();
+        
+
     }
 
     void FixedUpdate()
     {
+        if (isDrinking) // Bloquea toda lógica física si está tomando cerveza
+            return;
+
+        if (isHurt) 
+            return;
+
         bool isGrounded = IsGrounded();
 
         // Resetear contador de saltos cuando toca el suelo
@@ -123,6 +152,8 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
     }
+
+    
 
     void Saltar()
     {
@@ -214,8 +245,17 @@ public class PlayerController : MonoBehaviour
         attackBehaviour.EndAttack();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
+    public void FinDeTomarCerveza()
+    {
+        isDrinking = false;
+    }
 
-    bool IsGrounded()
+    public void FinHerido()
+    {
+        isHurt = false;
+    }
+
+    public bool IsGrounded()
     {
         if (playerCollider == null) return false;
 
