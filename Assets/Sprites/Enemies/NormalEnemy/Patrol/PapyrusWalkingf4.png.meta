@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: 624ca3ff3288edc4ca2d4929e09923b7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7621024282229429130
+    second: PapyrusWalkingf4_0
+  - first:
+      213: -3724065977123230999
+    second: PapyrusWalkingf4_1
+  - first:
+      213: 1378745689955908421
+    second: PapyrusWalkingf4_2
+  - first:
+      213: 7749264507435606490
+    second: PapyrusWalkingf4_3
+  - first:
+      213: 1678978204609036177
+    second: PapyrusWalkingf4_4
+  - first:
+      213: -5953979372709164299
+    second: PapyrusWalkingf4_5
+  - first:
+      213: 6757256610659820997
+    second: PapyrusWalkingf4_6
+  - first:
+      213: -3881220955511414947
+    second: PapyrusWalkingf4_7
+  - first:
+      213: -6359011709319468301
+    second: PapyrusWalkingf4_8
+  - first:
+      213: 3410868588479048317
+    second: PapyrusWalkingf4_9
+  - first:
+      213: 1448126059245913384
+    second: PapyrusWalkingf4_10
+  - first:
+      213: 2050260902760377322
+    second: PapyrusWalkingf4_11
+  - first:
+      213: 3316676389950312885
+    second: PapyrusWalkingf4_12
+  - first:
+      213: -2056588990367466453
+    second: PapyrusWalkingf4_13
+  - first:
+      213: -1691166178619918085
+    second: PapyrusWalkingf4_14
+  - first:
+      213: -6468047133453928456
+    second: PapyrusWalkingf4_15
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_0
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 89
+        width: 48
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8359eee43153c960800000000000000
+      internalID: 7621024282229429130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_1
+      rect:
+        serializedVersion: 2
+        x: 161
+        y: 92
+        width: 46
+        height: 82
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eaa37989b5715cc0800000000000000
+      internalID: -3724065977123230999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_2
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 91
+        width: 52
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54b3c6d66e9422310800000000000000
+      internalID: 1378745689955908421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_3
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 91
+        width: 48
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad1ed3c130bea8b60800000000000000
+      internalID: 7749264507435606490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_4
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 44
+        width: 25
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19f385f08cdec4710800000000000000
+      internalID: 1678978204609036177
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_5
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 45
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5facaa95e473f5da0800000000000000
+      internalID: -5953979372709164299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_6
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 45
+        width: 27
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c5e98ef51996cd50800000000000000
+      internalID: 6757256610659820997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_7
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 45
+        width: 22
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5f90f3ca12232ac0800000000000000
+      internalID: -3881220955511414947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_8
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 1
+        width: 48
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3faa677ba8040c7a0800000000000000
+      internalID: -6359011709319468301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_9
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 3
+        width: 48
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7ae4dfd8e6d55f20800000000000000
+      internalID: 3410868588479048317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_10
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 3
+        width: 52
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 825c6577af6c81410800000000000000
+      internalID: 1448126059245913384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_11
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 3
+        width: 42
+        height: 84
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeb67e5ad6df37c10800000000000000
+      internalID: 2050260902760377322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 0
+        width: 25
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b1d9e9aa93370e20800000000000000
+      internalID: 3316676389950312885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_13
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 1
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2cfa24a5378573e0800000000000000
+      internalID: -2056588990367466453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_14
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 1
+        width: 27
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf8743b1255c788e0800000000000000
+      internalID: -1691166178619918085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PapyrusWalkingf4_15
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 1
+        width: 22
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f7befbb661ec36a0800000000000000
+      internalID: -6468047133453928456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 044aed71661fd0048b779a17d56d0ec1
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      PapyrusWalkingf4_0: 7621024282229429130
+      PapyrusWalkingf4_1: -3724065977123230999
+      PapyrusWalkingf4_10: 1448126059245913384
+      PapyrusWalkingf4_11: 2050260902760377322
+      PapyrusWalkingf4_12: 3316676389950312885
+      PapyrusWalkingf4_13: -2056588990367466453
+      PapyrusWalkingf4_14: -1691166178619918085
+      PapyrusWalkingf4_15: -6468047133453928456
+      PapyrusWalkingf4_2: 1378745689955908421
+      PapyrusWalkingf4_3: 7749264507435606490
+      PapyrusWalkingf4_4: 1678978204609036177
+      PapyrusWalkingf4_5: -5953979372709164299
+      PapyrusWalkingf4_6: 6757256610659820997
+      PapyrusWalkingf4_7: -3881220955511414947
+      PapyrusWalkingf4_8: -6359011709319468301
+      PapyrusWalkingf4_9: 3410868588479048317
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
