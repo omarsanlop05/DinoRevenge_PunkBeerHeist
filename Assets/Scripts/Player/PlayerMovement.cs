@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerHealth playerHealth;
 
+    private SpriteRenderer spriteRenderer;
+
     private Rigidbody2D rb;
     private BoxCollider2D playerCollider;
 
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour
         playerHealth = GetComponent<PlayerHealth>();
         if (playerHealth != null)
             playerHealth.controller = this;
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
 
     }
@@ -284,8 +287,31 @@ public class PlayerController : MonoBehaviour
     void StartInvulnerability()
     {
         isInvulnerable = true;
-        // Aquí luego podemos poner efecto visual (parpadeo, shader, etc)
+        StartCoroutine(BlinkSprite());
         Invoke(nameof(EndInvulnerability), invulnerabilityDuration);
+    }
+
+    IEnumerator BlinkSprite()
+    {
+        while (isInvulnerable)
+        {
+            if (spriteRenderer != null)
+            {
+                Color c = spriteRenderer.color;
+                c.a = (c.a == 1f) ? 0.5f : 1f;
+                spriteRenderer.color = c;
+            }
+
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        // Restaurar opacidad al final
+        if (spriteRenderer != null)
+        {
+            Color c = spriteRenderer.color;
+            c.a = 1f;
+            spriteRenderer.color = c;
+        }
     }
 
     void EndInvulnerability()

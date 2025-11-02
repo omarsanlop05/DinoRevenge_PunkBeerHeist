@@ -252,7 +252,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Hurt
-  m_Speed: 0.05
+  m_Speed: 0.2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -8292079913475769231}
@@ -777,7 +777,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Beer
-  m_Speed: 0.2
+  m_Speed: 0.125
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2557044791835343184}
