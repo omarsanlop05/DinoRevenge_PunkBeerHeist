@@ -1,6 +1,6 @@
-using UnityEngine;
-using System.Collections;
 using System;
+using System.Collections;
+using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [Header("Animator")]
@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
     public float attackCooldown = 0.8f;
     public bool isAttacking = false;
     private float nextAttackTime = 0f;
+    private bool attackQueued = false;
 
     [Header("Ataque dinámico")]
     public float attackDuration = 0.75f;
@@ -49,17 +50,21 @@ public class PlayerController : MonoBehaviour
     [Header("Cerveza")]
     public bool isDrinking = false;
 
+    [Header("Invulnerabilidad")]
+    public bool isInvulnerable = false;
+    public float invulnerabilityDuration = 1f;
     public bool isHurt = false;
 
-    private bool attackQueued = false;
+    [Header("Knockback")]
+    public float knockbackForceX = 4f;
+    public float knockbackForceY = 8f;
 
     private PlayerHealth playerHealth;
 
     private Rigidbody2D rb;
-    private int facingDirection = 1;
-
     private BoxCollider2D playerCollider;
 
+    private int facingDirection = 1;
     public bool IsFacingRight => facingDirection == 1;
 
     void Start()
@@ -112,8 +117,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (isDrinking) // Bloquea toda lógica física si está tomando cerveza
+        if (isDrinking)
+        {
+            rb.linearVelocity = Vector2.zero;
             return;
+        }
+
 
         if (isHurt) 
             return;
@@ -188,6 +197,9 @@ public class PlayerController : MonoBehaviour
 
     void AplicarGravedad()
     {
+        if (isHurt || isAttacking)
+            return;
+
         if (rb.linearVelocity.y < 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
@@ -245,14 +257,78 @@ public class PlayerController : MonoBehaviour
         attackBehaviour.EndAttack();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
-    public void FinDeTomarCerveza()
+
+    public void SetHurtState(float duration, float hitSource)
     {
-        isDrinking = false;
+        isHurt = true;
+        StartInvulnerability();
+        Knockback(hitSource);
+
+        // Detener movimiento
+        Invoke(nameof(FreezeAfterKnockback), 0.05f);
+
+        // Cancelar saltos pendientes
+        jumpQueued = false;
+        isJumping = false;
+        coyoteTimeCounter = 0;
+
+        Invoke(nameof(ExitHurtState), duration);
     }
 
-    public void FinHerido()
+    void ExitHurtState()
     {
         isHurt = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    void StartInvulnerability()
+    {
+        isInvulnerable = true;
+        // Aquí luego podemos poner efecto visual (parpadeo, shader, etc)
+        Invoke(nameof(EndInvulnerability), invulnerabilityDuration);
+    }
+
+    void EndInvulnerability()
+    {
+        isInvulnerable = false;
+    }
+
+    void Knockback(float hitSourceX)
+    {
+        // Cancelar movimiento actual para evitar bugs con salto
+        rb.linearVelocity = Vector2.zero;
+
+        // Dirección de empuje según lado del impacto
+        int direction = (transform.position.x < hitSourceX) ? -1 : 1;
+
+        // Aplicar knockback
+        rb.AddForce(new Vector2(direction * knockbackForceX, knockbackForceY), ForceMode2D.Impulse);
+
+        // Evitar que ataque mientras es empujado
+        isAttacking = false;
+    }
+
+    void FreezeAfterKnockback()
+    {
+        if (!isHurt) return;
+        rb.linearVelocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    public void drinKingState(float drinkTime)
+    {
+        jumpQueued = false;
+        isJumping = false;
+        rb.linearVelocity = Vector2.zero;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+
+        Invoke(nameof(FinDeTomarCerveza), drinkTime);
+    }
+
+    void FinDeTomarCerveza()
+    {
+        isDrinking = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public bool IsGrounded()

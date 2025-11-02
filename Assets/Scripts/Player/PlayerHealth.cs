@@ -13,15 +13,17 @@ public class PlayerHealth : MonoBehaviour
 
     public PlayerController controller; 
 
-    public void RecibirDaño(float daño)
+    public void RecibirDaño(float daño, float atacanteX)
     {
+        if (controller.isAttacking || controller.isInvulnerable)
+            return;
+
         if (controller.isAttacking != true)
         {
             vidaActual -= daño;
             Debug.Log(name + " recibió " + daño + " de daño. Vida restante: " + vidaActual);
             controller.animator.SetTrigger("Hurt");
-            controller.isHurt = true;
-            controller.Invoke(nameof(controller.FinHerido), 0.25f);
+            controller.SetHurtState(0.25f, atacanteX);
             if (vidaActual <= 0)
                 Morir();
         }
@@ -32,6 +34,12 @@ public class PlayerHealth : MonoBehaviour
         if (cervezas <= 0)
         {
             Debug.Log("🚫 No te quedan cervezas.");
+            return;
+        }
+
+        if (vidaActual >= vidaMaxima)
+        {
+            Debug.Log("🚫 Ya tienes toda la vida, no te puedes curar más");
             return;
         }
 
@@ -60,7 +68,7 @@ public class PlayerHealth : MonoBehaviour
 
         Debug.Log(name + " tomó una cerveza y recuperó 25 puntos de vida. Vida restante: " + vidaActual + ". Cervezas restantes: " + cervezas);
 
-        controller.Invoke(nameof(controller.FinDeTomarCerveza), 0.5f); 
+        controller.drinKingState(0.5f);
 
         if (vidaActual <= 0)
             Morir();

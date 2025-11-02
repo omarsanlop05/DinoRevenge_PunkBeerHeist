@@ -19,7 +19,7 @@ public class Projectile : MonoBehaviour
             // Aquí podrías hacer daño al jugador
             Debug.Log("Golpeó al jugador");
             PlayerHealth health = collision.GetComponent<PlayerHealth>();
-            health.RecibirDaño(damage);
+            health.RecibirDaño(damage, transform.position.x);
         }
 
         // Efecto opcional al impactar
