@@ -1,0 +1,18 @@
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MenuSystem : MonoBehaviour
+{
+    public void Jugar()
+    {
+        Debug.Log("Starting game");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void Salir()
+    {
+        Debug.Log("Exiting");
+        UnityEditor.EditorApplication.isPlaying = false;
+        //Application.Quit();
+    }
+}
