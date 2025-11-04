@@ -79,8 +79,6 @@ public class PlayerController : MonoBehaviour
         if (playerHealth != null)
             playerHealth.controller = this;
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-
     }
 
     void Update()
@@ -302,7 +300,7 @@ public class PlayerController : MonoBehaviour
                 spriteRenderer.color = c;
             }
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.15f);
         }
 
         // Restaurar opacidad al final

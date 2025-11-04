@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-
+﻿using System;
+using System.Collections;
+using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
 
@@ -76,7 +77,14 @@ public class PlayerHealth : MonoBehaviour
 
     void Morir()
     {
+        controller.animator.SetTrigger("Dead");
         Debug.Log(name + " ha muerto");
+        StartCoroutine(EsperarYDestruir(3f)); 
+    }
+
+    IEnumerator EsperarYDestruir(float tiempo)
+    {
+        yield return new WaitForSeconds(tiempo);
         Destroy(gameObject);
     }
 }
