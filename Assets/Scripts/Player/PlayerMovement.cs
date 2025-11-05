@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public bool isJumping = false;
     public float jumpForce = 18f;
     public LayerMask groundLayer;
-    public float groundCheckDistance = 0.2f;
+    public float groundCheckDistance = 0.25f;
     public bool jumpQueued = false;
 
     [Header("Control de saltos")]
@@ -192,7 +192,6 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator JumpWithDelay()
     {
-        yield return new WaitForSeconds(0.04f);
 
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         coyoteTimeCounter = 0f; // CAMBIADO: Resetear a 0 en lugar de -1

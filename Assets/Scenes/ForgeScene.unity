@@ -26649,11 +26649,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 2098606625}
   moveSpeed: 8
+  isJumping: 0
   jumpForce: 18
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  groundCheckDistance: 0.2
+  groundCheckDistance: 0.25
+  jumpQueued: 0
   maxJumpCount: 1
   fallMultiplier: 14
   lowJumpMultiplier: 5
@@ -26692,8 +26694,10 @@ MonoBehaviour:
   isInvulnerable: 0
   invulnerabilityDuration: 1
   isHurt: 0
+  isDead: 0
   knockbackForceX: 8
   knockbackForceY: 8
+  rb: {fileID: 0}
 --- !u!95 &2098606625
 Animator:
   serializedVersion: 7
