@@ -11,11 +11,11 @@ public class PlayerController : MonoBehaviour
     private float moveInput;
 
     [Header("Salto")]
-    private bool isJumping = false;
+    public bool isJumping = false;
     public float jumpForce = 18f;
     public LayerMask groundLayer;
     public float groundCheckDistance = 0.2f;
-    private bool jumpQueued = false;
+    public bool jumpQueued = false;
 
     [Header("Control de saltos")]
     public int maxJumpCount = 1;
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     private SpriteRenderer spriteRenderer;
 
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private BoxCollider2D playerCollider;
 
     private int facingDirection = 1;
@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         
         if (isHurt)
             return;
+
         if (isDead)
             return;
         moveInput = isAttacking ? 0 : Input.GetAxisRaw("Horizontal");

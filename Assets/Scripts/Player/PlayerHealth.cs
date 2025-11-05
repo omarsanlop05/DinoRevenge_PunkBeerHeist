@@ -69,11 +69,11 @@ public class PlayerHealth : MonoBehaviour
 
         Debug.Log(name + " tomó una cerveza y recuperó 25 puntos de vida. Vida restante: " + vidaActual + ". Cervezas restantes: " + cervezas);
 
-        controller.drinKingState(0.5f);
+        controller.drinKingState(1.0f);
 
         if (vidaActual <= 0)
         {
-            controller.isDead = false;
+            
             Morir();
         }
             
@@ -82,6 +82,11 @@ public class PlayerHealth : MonoBehaviour
     void Morir()
     {
         controller.animator.SetTrigger("Dead");
+        controller.isDead = true;
+        controller.jumpQueued = false;
+        controller.isJumping = false;
+        controller.rb.linearVelocity = Vector2.zero;
+        controller.rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         Debug.Log(name + " ha muerto");
         StartCoroutine(EsperarYDestruir(3f)); 
     }
