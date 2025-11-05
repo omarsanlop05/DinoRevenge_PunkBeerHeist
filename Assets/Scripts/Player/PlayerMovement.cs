@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     public bool isInvulnerable = false;
     public float invulnerabilityDuration = 1f;
     public bool isHurt = false;
+    public bool isDead = false;
 
     [Header("Knockback")]
     public float knockbackForceX = 4f;
@@ -87,6 +88,8 @@ public class PlayerController : MonoBehaviour
             return;
         
         if (isHurt)
+            return;
+        if (isDead)
             return;
         moveInput = isAttacking ? 0 : Input.GetAxisRaw("Horizontal");
 
@@ -124,8 +127,10 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-
         if (isHurt) 
+            return;
+
+        if (isDead)
             return;
 
         bool isGrounded = IsGrounded();

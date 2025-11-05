@@ -72,7 +72,11 @@ public class PlayerHealth : MonoBehaviour
         controller.drinKingState(0.5f);
 
         if (vidaActual <= 0)
+        {
+            controller.isDead = false;
             Morir();
+        }
+            
     }
 
     void Morir()
