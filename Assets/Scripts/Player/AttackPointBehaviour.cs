@@ -3,36 +3,33 @@ using UnityEngine;
 
 public class AttackPointBehaviour : MonoBehaviour
 {
-    public float dañoGolpe = 5f;
-    private List<Collider2D> objetivosEnRango = new List<Collider2D>();
+    public float dañoGolpe = 5.0f;
+
+    // Usamos HashSet en lugar de List para evitar duplicados
+    private HashSet<Collider2D> objetivosEnRango = new HashSet<Collider2D>();
     private bool attackActive = false;
+
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (attackActive && other.CompareTag("Enemy"))
+        if (!attackActive) return;
+
+        if (other.CompareTag("Enemy") && objetivosEnRango.Add(other))
         {
-            if (!objetivosEnRango.Contains(other))
-            {
-                objetivosEnRango.Add(other);
-                AplicarDaño(other);
-            }
+            AplicarDaño(other);
         }
 
-        if (attackActive && other.CompareTag("Breakable"))
+        if (other.CompareTag("Breakable") && objetivosEnRango.Add(other))
         {
-            if (!objetivosEnRango.Contains(other))
-            {
-                objetivosEnRango.Add(other);
-                RomperObjeto(other);
-            }
+            RomperObjeto(other);
         }
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Breakable"))
         {
             objetivosEnRango.Remove(other);
-            Debug.Log("Enemigo salió de rango: " + other.name);
+            Debug.Log("Salió de rango: " + other.name);
         }
     }
 
@@ -41,6 +38,7 @@ public class AttackPointBehaviour : MonoBehaviour
         attackActive = true;
         objetivosEnRango.Clear();
     }
+
     public void EndAttack()
     {
         attackActive = false;
@@ -49,7 +47,6 @@ public class AttackPointBehaviour : MonoBehaviour
 
     void AplicarDaño(Collider2D enemy)
     {
-        // Si tus enemigos tienen un script tipo "EnemyHealth" o similar:
         EnemyHealth vida = enemy.GetComponent<EnemyHealth>();
         if (vida != null)
         {

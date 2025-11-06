@@ -90,6 +90,13 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log(name + " ha muerto");
         StartCoroutine(EsperarYDestruir(3f)); 
     }
+    public void MorirInst()
+    {
+        vidaActual = 0;
+        controller.isDead = true;
+        StartCoroutine(EsperarYDestruir(0.1f));
+
+    }
 
     IEnumerator EsperarYDestruir(float tiempo)
     {
