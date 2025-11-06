@@ -1,0 +1,463 @@
+fileFormatVersion: 2
+guid: dc2d2e072cd4751478c6d4ad5e8ae7fb
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5713112761228586801
+    second: editar el letrero pi_0
+  - first:
+      213: -699101523960726629
+    second: editar el letrero pi_1
+  - first:
+      213: -1259428137787938718
+    second: editar el letrero pi_2
+  - first:
+      213: 5662292222104158457
+    second: editar el letrero pi_3
+  - first:
+      213: 3824327994988355109
+    second: editar el letrero pi_4
+  - first:
+      213: 2383308329990629910
+    second: editar el letrero pi_5
+  - first:
+      213: -8825308120914179227
+    second: editar el letrero pi_6
+  - first:
+      213: 6215555208190987812
+    second: editar el letrero pi_7
+  - first:
+      213: 3477208619062004840
+    second: editar el letrero pi_8
+  - first:
+      213: -6227633910895367948
+    second: editar el letrero pi_9
+  - first:
+      213: -4916449670236946108
+    second: editar el letrero pi_10
+  - first:
+      213: -3169850639843713311
+    second: editar el letrero pi_11
+  - first:
+      213: -5930654503896457158
+    second: editar el letrero pi_12
+  - first:
+      213: 169020909376683382
+    second: editar el letrero pi_13
+  - first:
+      213: 1937962570439545
+    second: editar el letrero pi_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: editar el letrero pi_0
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 317
+        width: 656
+        height: 616
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc018398632f6b0b0800000000000000
+      internalID: -5713112761228586801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_3
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 191
+        width: 98
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f0c9f0a6c0849e40800000000000000
+      internalID: 5662292222104158457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_4
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 191
+        width: 108
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52edcdd9c0eb21530800000000000000
+      internalID: 3824327994988355109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_5
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 58
+        width: 100
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61a225f7c46331120800000000000000
+      internalID: 2383308329990629910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_6
+      rect:
+        serializedVersion: 2
+        x: 156
+        y: 58
+        width: 30
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56b4a83c505368580800000000000000
+      internalID: -8825308120914179227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_7
+      rect:
+        serializedVersion: 2
+        x: 202
+        y: 58
+        width: 95
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42e8d0ac786124650800000000000000
+      internalID: 6215555208190987812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_8
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 57
+        width: 110
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86c0e15e0d6814030800000000000000
+      internalID: 3477208619062004840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_9
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 32
+        width: 102
+        height: 145
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f8a7e514fff299a0800000000000000
+      internalID: -6227633910895367948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_10
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 57
+        width: 108
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 441c079c21345cbb0800000000000000
+      internalID: -4916449670236946108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_11
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 58
+        width: 100
+        height: 119
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ee121d33ad6204d0800000000000000
+      internalID: -3169850639843713311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_12
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 56
+        width: 103
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a306ea1962512bda0800000000000000
+      internalID: -5930654503896457158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_13
+      rect:
+        serializedVersion: 2
+        x: 877
+        y: 56
+        width: 100
+        height: 121
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67db20f1f9b785200800000000000000
+      internalID: 169020909376683382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: editar el letrero pi_14
+      rect:
+        serializedVersion: 2
+        x: 959
+        y: 59
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97b59921192e60000800000000000000
+      internalID: 1937962570439545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 84487049c48a4e9478271c63867769f0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      editar el letrero pi_0: -5713112761228586801
+      editar el letrero pi_1: -699101523960726629
+      editar el letrero pi_10: -4916449670236946108
+      editar el letrero pi_11: -3169850639843713311
+      editar el letrero pi_12: -5930654503896457158
+      editar el letrero pi_13: 169020909376683382
+      editar el letrero pi_14: 1937962570439545
+      editar el letrero pi_2: -1259428137787938718
+      editar el letrero pi_3: 5662292222104158457
+      editar el letrero pi_4: 3824327994988355109
+      editar el letrero pi_5: 2383308329990629910
+      editar el letrero pi_6: -8825308120914179227
+      editar el letrero pi_7: 6215555208190987812
+      editar el letrero pi_8: 3477208619062004840
+      editar el letrero pi_9: -6227633910895367948
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

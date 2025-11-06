@@ -17,5 +17,9 @@ public class KillOnFall : MonoBehaviour
                 Debug.LogWarning("KillOnFall: El jugador no tiene componente PlayerHealth.");
             }
         }
+        else
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
