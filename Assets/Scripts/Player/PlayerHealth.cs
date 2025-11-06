@@ -88,8 +88,7 @@ public class PlayerHealth : MonoBehaviour
         controller.rb.linearVelocity = Vector2.zero;
         controller.rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         Debug.Log(name + " ha muerto");
-        StartCoroutine(EsperarYDestruir(3f));
-        GameManager.instance.ShowDeathScreen();
+        StartCoroutine(MostrarPantallaDeMuerte(3f));
     }
     public void MorirInst()
     {
@@ -103,4 +102,22 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(tiempo);
         Destroy(gameObject);
     }
+
+    IEnumerator MostrarPantallaDeMuerte(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ShowDeathScreen();
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ No se encontró el GameManager.");
+        }
+
+        // Destruir el jugador después de mostrar la pantalla
+        Destroy(gameObject);
+    }
+
 }

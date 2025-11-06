@@ -80,7 +80,26 @@ public class PlayerController : MonoBehaviour
         if (playerHealth != null)
             playerHealth.controller = this;
         spriteRenderer = GetComponent<SpriteRenderer>();
+
+        ResetPlayerState();
     }
+
+    public void ResetPlayerState()
+    {
+        isDead = false;
+        isHurt = false;
+        isAttacking = false;
+        isInvulnerable = false;
+        isDrinking = false;
+        isJumping = false;
+        jumpQueued = false;
+        attackQueued = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rb.linearVelocity = Vector2.zero;
+        animator.Rebind(); // Reinicia todas las animaciones al estado base
+        animator.Update(0f);
+    }
+
 
     void Update()
     {

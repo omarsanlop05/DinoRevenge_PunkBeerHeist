@@ -19,6 +19,7 @@ public class MenuSystem : MonoBehaviour
     public void Retry()
     {
         Debug.Log("Re-Starting game");
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
