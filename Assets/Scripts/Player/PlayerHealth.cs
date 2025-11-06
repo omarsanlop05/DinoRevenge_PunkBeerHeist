@@ -93,14 +93,8 @@ public class PlayerHealth : MonoBehaviour
     public void MorirInst()
     {
         vidaActual = 0;
-        controller.isDead = true;
-        StartCoroutine(EsperarYDestruir(0.1f));
-    }
-
-    IEnumerator EsperarYDestruir(float tiempo)
-    {
-        yield return new WaitForSeconds(tiempo);
-        Destroy(gameObject);
+        Morir();
+        StartCoroutine(MostrarPantallaDeMuerte(0.1f));
     }
 
     IEnumerator MostrarPantallaDeMuerte(float delay)
