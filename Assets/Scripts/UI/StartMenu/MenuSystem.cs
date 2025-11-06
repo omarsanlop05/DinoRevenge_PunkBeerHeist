@@ -15,4 +15,10 @@ public class MenuSystem : MonoBehaviour
         UnityEditor.EditorApplication.isPlaying = false;
         //Application.Quit();
     }
+
+    public void Retry()
+    {
+        Debug.Log("Re-Starting game");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }

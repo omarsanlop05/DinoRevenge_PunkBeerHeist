@@ -206,6 +206,9 @@ public class PlayerController : MonoBehaviour
         if (isHurt || isAttacking)
             return;
 
+        if (coyoteTimeCounter > 0f)
+            return;
+
         if (rb.linearVelocity.y < 0)
         {
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;

@@ -88,14 +88,14 @@ public class PlayerHealth : MonoBehaviour
         controller.rb.linearVelocity = Vector2.zero;
         controller.rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         Debug.Log(name + " ha muerto");
-        StartCoroutine(EsperarYDestruir(3f)); 
+        StartCoroutine(EsperarYDestruir(3f));
+        GameManager.instance.ShowDeathScreen();
     }
     public void MorirInst()
     {
         vidaActual = 0;
         controller.isDead = true;
         StartCoroutine(EsperarYDestruir(0.1f));
-
     }
 
     IEnumerator EsperarYDestruir(float tiempo)
