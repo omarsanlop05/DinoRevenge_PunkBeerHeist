@@ -20,6 +20,16 @@ public class AttackPointBehaviour : MonoBehaviour
 
         if (other.CompareTag("Breakable") && objetivosEnRango.Add(other))
         {
+            WallTrigger trigger = other.GetComponent<WallTrigger>();
+            if (trigger != null)
+            {
+                trigger.BreakWall();
+            }
+            else
+            {
+                Debug.LogWarning("No se encontró el componente WallTrigger en " + gameObject.name);
+            }
+
             RomperObjeto(other);
         }
     }

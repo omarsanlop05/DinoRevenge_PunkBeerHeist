@@ -71,6 +71,6 @@ public class RollingSkull_Raycast : MonoBehaviour
         moveDirection.x *= -1;
         rotationDirection *= -1;
         rb.linearVelocity = new Vector2(moveDirection.x * moveSpeed, rb.linearVelocity.y);
-        Debug.Log("Invertido por Raycast");
+        
     }
 }
