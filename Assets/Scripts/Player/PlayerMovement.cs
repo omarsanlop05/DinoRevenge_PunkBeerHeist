@@ -12,22 +12,24 @@ public class PlayerController : MonoBehaviour
 
     [Header("Salto")]
     public bool isJumping = false;
-    public float jumpForce = 18f;
+    public float jumpForce = 12f;
     public LayerMask groundLayer;
-    public float groundCheckDistance = 0.25f;
+    public float groundCheckDistance = 0.3f;
     public bool jumpQueued = false;
+    private float jumpInputBuffer = 0.15f; // Buffer para capturar input temprano
+    private float jumpInputTimer = 0f;
 
     [Header("Control de saltos")]
     public int maxJumpCount = 1;
     private int jumpCount = 0;
-    private bool wasGrounded = false; // NUEVO: Para detectar cuando sale del suelo
+    private bool wasGrounded = false;
 
     [Header("Gravedad personalizada")]
-    public float fallMultiplier = 14f;
-    public float lowJumpMultiplier = 5f;
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
 
     [Header("Coyote Time")]
-    public float coyoteTime = 0.1f;
+    public float coyoteTime = 0.15f;
     private float coyoteTimeCounter = 0f;
 
     [Header("Hitbox de ataque")]
@@ -61,12 +63,9 @@ public class PlayerController : MonoBehaviour
     public float knockbackForceY = 8f;
 
     private PlayerHealth playerHealth;
-
     private SpriteRenderer spriteRenderer;
-
     public Rigidbody2D rb;
     private BoxCollider2D playerCollider;
-
     private int facingDirection = 1;
     public bool IsFacingRight => facingDirection == 1;
 
@@ -94,23 +93,19 @@ public class PlayerController : MonoBehaviour
         isJumping = false;
         jumpQueued = false;
         attackQueued = false;
+        jumpCount = 0;
+        coyoteTimeCounter = 0f;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.linearVelocity = Vector2.zero;
-        animator.Rebind(); // Reinicia todas las animaciones al estado base
+        animator.Rebind();
         animator.Update(0f);
     }
 
-
     void Update()
     {
-        if (isDrinking) // Bloquea toda entrada si está tomando cerveza
-            return;
-        
-        if (isHurt)
+        if (isDrinking || isHurt || isDead)
             return;
 
-        if (isDead)
-            return;
         moveInput = isAttacking ? 0 : Input.GetAxisRaw("Horizontal");
 
         if (moveInput != 0)
@@ -128,15 +123,20 @@ public class PlayerController : MonoBehaviour
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
+        {
             jumpQueued = true;
+            jumpInputTimer = jumpInputBuffer; // Iniciar timer del buffer
+        }
+
+        // Decrementar timer del buffer
+        if (jumpInputTimer > 0f)
+            jumpInputTimer -= Time.deltaTime;
 
         if (Input.GetMouseButtonDown(0) && Time.time >= nextAttackTime)
             attackQueued = true;
-        
+
         if (Input.GetKeyDown(KeyCode.E))
             playerHealth.TomarCerveza();
-        
-
     }
 
     void FixedUpdate()
@@ -147,22 +147,19 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (isHurt) 
-            return;
-
-        if (isDead)
+        if (isHurt || isDead)
             return;
 
         bool isGrounded = IsGrounded();
 
         // Resetear contador de saltos cuando toca el suelo
-        if (isGrounded && !wasGrounded)
+        if (isGrounded)
         {
-            jumpCount = 0;
-            coyoteTimeCounter = coyoteTime;
-        }
-        else if (isGrounded)
-        {
+            if (!wasGrounded)
+            {
+                jumpCount = 0;
+                isJumping = false; // IMPORTANTE: Resetear flag de salto
+            }
             coyoteTimeCounter = coyoteTime;
         }
         else
@@ -188,36 +185,34 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
     }
 
-    
-
     void Saltar()
     {
-        // Condiciones más estrictas para el salto
-        bool canJump = jumpQueued && !isJumping && jumpCount < maxJumpCount;
-        bool hasGroundOrCoyote = coyoteTimeCounter > 0f || jumpCount < maxJumpCount;
+        // Usar el timer en lugar de solo el flag
+        if (jumpInputTimer <= 0f)
+            return;
 
-        if (canJump && hasGroundOrCoyote)
+        // Verificar si puede saltar
+        bool canJumpFromGround = coyoteTimeCounter > 0f && jumpCount == 0;
+        bool canDoubleJump = jumpCount > 0 && jumpCount < maxJumpCount;
+
+        if (canJumpFromGround || canDoubleJump)
         {
-            jumpQueued = false;
+            // Cancelar velocidad vertical anterior para salto consistente
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+
+            // Aplicar fuerza de salto
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
             jumpCount++;
             isJumping = true;
-            StartCoroutine(JumpWithDelay());
-        }
-        else
-        {
+            coyoteTimeCounter = 0f;
+
+            animator.SetTrigger("Jump");
+
+            // Consumir el input inmediatamente
+            jumpInputTimer = 0f;
             jumpQueued = false;
         }
-    }
-
-    IEnumerator JumpWithDelay()
-    {
-
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        coyoteTimeCounter = 0f; // CAMBIADO: Resetear a 0 en lugar de -1
-        animator.SetTrigger("Jump");
-
-        yield return new WaitForSeconds(0.1f);
-        isJumping = false;
     }
 
     void AplicarGravedad()
@@ -225,15 +220,18 @@ public class PlayerController : MonoBehaviour
         if (isHurt || isAttacking)
             return;
 
-        if (coyoteTimeCounter > 0f)
+        // No aplicar gravedad extra si está en el suelo
+        if (IsGrounded() && rb.linearVelocity.y <= 0)
             return;
 
         if (rb.linearVelocity.y < 0)
         {
+            // Cayendo - sensación pesada
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
         else if (rb.linearVelocity.y > 0)
         {
+            // Saltando - gravedad más suave para arco de salto
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
     }
@@ -393,7 +391,6 @@ public class PlayerController : MonoBehaviour
         Vector2 centerRay = basePos;
         Vector2 rightRay = basePos + Vector2.right * (halfWidth - 0.05f);
 
-        // CRÍTICO: Usar groundLayer para filtrar solo el suelo
         RaycastHit2D leftHit = Physics2D.Raycast(leftRay, Vector2.down, groundCheckDistance, groundLayer);
         RaycastHit2D centerHit = Physics2D.Raycast(centerRay, Vector2.down, groundCheckDistance, groundLayer);
         RaycastHit2D rightHit = Physics2D.Raycast(rightRay, Vector2.down, groundCheckDistance, groundLayer);

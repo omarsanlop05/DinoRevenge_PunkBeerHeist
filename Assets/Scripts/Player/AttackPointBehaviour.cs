@@ -13,7 +13,7 @@ public class AttackPointBehaviour : MonoBehaviour
     {
         if (!attackActive) return;
 
-        if (other.CompareTag("Enemy") && objetivosEnRango.Add(other))
+        if ((other.CompareTag("Enemy") || other.CompareTag("Boss")) && objetivosEnRango.Add(other))
         {
             AplicarDaño(other);
         }
@@ -36,7 +36,7 @@ public class AttackPointBehaviour : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy") || other.CompareTag("Breakable"))
+        if (other.CompareTag("Enemy") || other.CompareTag("Breakable") || other.CompareTag("Boss"))
         {
             objetivosEnRango.Remove(other);
             Debug.Log("Salió de rango: " + other.name);
