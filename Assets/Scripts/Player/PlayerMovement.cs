@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movimiento")]
     public float moveSpeed = 8f;
     private float moveInput;
+    private bool isWalking = false;
 
     [Header("Salto")]
     public bool isJumping = false;
@@ -61,6 +62,11 @@ public class PlayerController : MonoBehaviour
     [Header("Knockback")]
     public float knockbackForceX = 4f;
     public float knockbackForceY = 8f;
+
+    [Header("SFX")]
+    public AudioClip jumpSFX;
+    public AudioClip walkSFX;
+    public AudioClip attackSFX;
 
     private PlayerHealth playerHealth;
     private SpriteRenderer spriteRenderer;
@@ -180,9 +186,27 @@ public class PlayerController : MonoBehaviour
             MovimientoDeAtaque();
     }
 
+
     void Movimiento()
     {
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+
+        bool currentlyWalking = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
+
+        if (currentlyWalking && !isWalking && IsGrounded())
+        {
+            // Empezó a caminar
+            SoundManager.instance.loopSource.loop = true;
+            SoundManager.instance.playSound(walkSFX);
+            isWalking = true;
+        }
+        else if ((!currentlyWalking && isWalking) || !IsGrounded())
+        {
+            // Dejó de caminar
+            SoundManager.instance.stopSound(walkSFX);
+            SoundManager.instance.loopSource.loop = false;
+            isWalking = false;
+        }
     }
 
     void Saltar()
@@ -208,6 +232,7 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCounter = 0f;
 
             animator.SetTrigger("Jump");
+            SoundManager.instance.playOnce(jumpSFX);
 
             // Consumir el input inmediatamente
             jumpInputTimer = 0f;
@@ -247,6 +272,7 @@ public class PlayerController : MonoBehaviour
             attackDirection = new Vector2(facingDirection, 0).normalized;
 
             animator.SetTrigger("Attack");
+            SoundManager.instance.playOnce(attackSFX);
 
             Invoke(nameof(ActivarHitbox), 0.35f);
 
