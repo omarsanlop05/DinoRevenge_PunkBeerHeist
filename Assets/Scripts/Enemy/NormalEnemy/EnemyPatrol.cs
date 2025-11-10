@@ -62,6 +62,20 @@ public class EnemyPatrol : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            // Solo cambiar si la colisión es más lateral que vertical
+            Vector2 normal = collision.contacts[0].normal;
+            if (Mathf.Abs(normal.x) > 0.5f)
+            {
+                Flip();
+            }
+        }
+    }
+
+
     void Patrol()
     {
         bool isGroundAhead = Physics2D.OverlapCircle(groundCheck.position, checkRadius, groundLayer);

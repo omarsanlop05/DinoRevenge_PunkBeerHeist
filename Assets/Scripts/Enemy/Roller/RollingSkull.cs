@@ -64,7 +64,18 @@ public class RollingSkull_Raycast : MonoBehaviour
                 Debug.Log("RollingSkull: daño aplicado al jugador.");
             }
         }
+
+        Vector2 contactNormal = collision.contacts[0].normal;
+
+        // Solo invertir si el impacto es frontal (la normal apunta opuesta a la dirección de movimiento)
+        bool golpeFrontal = Vector2.Dot(contactNormal, moveDirection) < 0f;
+
+        if (golpeFrontal)
+        {
+            InvertDirection();
+        }
     }
+
 
     void InvertDirection()
     {
