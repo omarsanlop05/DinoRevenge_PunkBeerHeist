@@ -191,6 +191,7 @@ public class PlayerController : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
+        
         bool currentlyWalking = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
 
         if (currentlyWalking && !isWalking && IsGrounded())
@@ -207,6 +208,7 @@ public class PlayerController : MonoBehaviour
             SoundManager.instance.loopSource.loop = false;
             isWalking = false;
         }
+        
     }
 
     void Saltar()
@@ -275,9 +277,9 @@ public class PlayerController : MonoBehaviour
             SoundManager.instance.playOnce(attackSFX);
 
             Invoke(nameof(ActivarHitbox), 0.35f);
-
-            attackQueued = false;
         }
+
+        attackQueued = false;
     }
 
     void ActivarHitbox()
