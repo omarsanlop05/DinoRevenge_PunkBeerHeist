@@ -11,9 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: b0f2a3a60d5cad343bb31ecd37128da0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ForgeScene.unity
     guid: c36044e63517cd34d8abb78aa0a842b8
+  - enabled: 0
+    path: Assets/Scenes/ForgeScene 1.unity
+    guid: 2f74503d5e26ca64092559fff337fc7c
+  - enabled: 1
+    path: Assets/Scenes/ForgeScene 2.unity
+    guid: 22931792227656a4f8a59c4a6d23fcb9
+  - enabled: 1
+    path: Assets/Scenes/PlayScene.unity
+    guid: 9e08082ca3e50414391bb81b9f271a7d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

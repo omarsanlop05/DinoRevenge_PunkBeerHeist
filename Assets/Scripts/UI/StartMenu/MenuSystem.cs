@@ -6,6 +6,7 @@ public class MenuSystem : MonoBehaviour
     public void Jugar()
     {
         Debug.Log("Starting game");
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
