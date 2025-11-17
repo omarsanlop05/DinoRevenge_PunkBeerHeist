@@ -447,15 +447,17 @@ MonoBehaviour:
   animator: {fileID: 40510071}
   attackHitbox: {fileID: 1755159379}
   velocidadMovimiento: 3
-  distanciaMinima: 8
-  distanciaMaxima: 17.6
-  distanciaAtaqueMelee: 5.38
+  distanciaMinima: 6.96
+  distanciaMaxima: 13.6
+  distanciaAtaqueMelee: 6.75
   cooldownAtaqueMelee: 2
   cooldownAtaqueRango: 3
   probabilidadAtaqueRango: 0.6
   offsetArriba: 1.5
   offsetAbajo: -1.5
   mirandoDerecha: 0
+  mostrarDebugLogs: 1
+  mostrarEstadoConstante: 1
 --- !u!1 &88161809
 GameObject:
   m_ObjectHideFlags: 0

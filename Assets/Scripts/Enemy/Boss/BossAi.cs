@@ -28,6 +28,11 @@ public class BossIA : MonoBehaviour
     [Header("Estado")]
     public bool mirandoDerecha = true;
 
+    [Header("Debug")]
+    public bool mostrarDebugLogs = true;
+    public bool mostrarEstadoConstante = true;
+    private float tiempoUltimoLogEstado = 0f;
+
     // Variables privadas
     private Rigidbody2D rb;
     private float tiempoUltimoAtaqueMelee;
@@ -45,11 +50,22 @@ public class BossIA : MonoBehaviour
 
     void Start()
     {
+        DebugLog("=== BOSS INICIADO ===");
+
         rb = GetComponent<Rigidbody2D>();
 
         if (jugador == null)
         {
-            jugador = GameObject.FindGameObjectWithTag("Player").transform;
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                jugador = playerObj.transform;
+                DebugLog("Jugador encontrado automáticamente");
+            }
+            else
+            {
+                Debug.LogError("NO SE ENCONTRÓ EL JUGADOR!");
+            }
         }
 
         if (attackHitbox == null)
@@ -57,9 +73,34 @@ public class BossIA : MonoBehaviour
             attackHitbox = GetComponentInChildren<BossAttackHitbox>();
         }
 
+        // VERIFICACIONES CRÍTICAS
+        if (hachaPrefab == null)
+        {
+            Debug.LogError("¡HACHA PREFAB NO ASIGNADO EN EL INSPECTOR!");
+        }
+        else
+        {
+            DebugLog($"Hacha Prefab asignado: {hachaPrefab.name}");
+        }
+
+        if (puntoDisparo == null)
+        {
+            Debug.LogError("¡PUNTO DE DISPARO NO ASIGNADO EN EL INSPECTOR!");
+        }
+        else
+        {
+            DebugLog($"Punto de disparo asignado: {puntoDisparo.name} en posición {puntoDisparo.position}");
+        }
+
+        if (animator == null)
+        {
+            Debug.LogError("¡ANIMATOR NO ASIGNADO!");
+        }
+
         estadoActual = EstadoJefe.Persiguiendo;
         tiempoUltimoAtaqueMelee = -cooldownAtaqueMelee;
         tiempoUltimoAtaqueRango = -cooldownAtaqueRango;
+        estaAtacando = false;
     }
 
     void Update()
@@ -68,14 +109,25 @@ public class BossIA : MonoBehaviour
 
         float distanciaAlJugador = Vector2.Distance(transform.position, jugador.position);
 
-        // Voltear sprite según dirección del jugador
-        if (jugador.position.x > transform.position.x && !mirandoDerecha)
+        // Log de estado cada 0.5 segundos
+        if (mostrarEstadoConstante && Time.time - tiempoUltimoLogEstado > 0.5f)
         {
-            Voltear();
+            DebugLog($"📊 ESTADO: {estadoActual} | Atacando: {estaAtacando} | Distancia: {distanciaAlJugador:F2}");
+            tiempoUltimoLogEstado = Time.time;
         }
-        else if (jugador.position.x < transform.position.x && mirandoDerecha)
+
+
+        // Voltear sprite según dirección del jugador (solo si no está atacando)
+        if (!estaAtacando)
         {
-            Voltear();
+            if (jugador.position.x > transform.position.x && !mirandoDerecha)
+            {
+                Voltear();
+            }
+            else if (jugador.position.x < transform.position.x && mirandoDerecha)
+            {
+                Voltear();
+            }
         }
 
         // Máquina de estados
@@ -86,11 +138,13 @@ public class BossIA : MonoBehaviour
                 break;
 
             case EstadoJefe.AtacandoMelee:
-                // El estado cambia desde la animación
+                // Mantener velocidad en 0 durante el ataque
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
                 break;
 
             case EstadoJefe.AtacandoRango:
-                // El estado cambia desde la animación
+                // Mantener velocidad en 0 durante el ataque
+                rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
                 break;
 
             case EstadoJefe.Esperando:
@@ -106,6 +160,7 @@ public class BossIA : MonoBehaviour
         // Si está muy cerca, ataque melee
         if (distancia <= distanciaAtaqueMelee && PuedeAtacarMelee())
         {
+            DebugLog($"Distancia: {distancia:F2} - Iniciando ataque MELEE");
             IniciarAtaqueMelee();
             return;
         }
@@ -113,8 +168,10 @@ public class BossIA : MonoBehaviour
         // Si está a distancia media-larga, considerar ataque a distancia
         if (distancia > distanciaAtaqueMelee && distancia < distanciaMaxima && PuedeAtacarRango())
         {
-            if (Random.value < probabilidadAtaqueRango)
+            float randomValue = Random.value;
+            if (randomValue < probabilidadAtaqueRango)
             {
+                DebugLog($"Distancia: {distancia:F2}, Random: {randomValue:F2} - Iniciando ataque RANGO");
                 IniciarAtaqueRango();
                 return;
             }
@@ -164,70 +221,107 @@ public class BossIA : MonoBehaviour
 
     void IniciarAtaqueMelee()
     {
+        DebugLog(">>> IniciarAtaqueMelee <<<");
         estaAtacando = true;
         estadoActual = EstadoJefe.AtacandoMelee;
         rb.linearVelocity = Vector2.zero;
 
         if (animator != null)
         {
+            animator.SetBool("Caminando", false);
             animator.SetTrigger("AtaqueMelee");
+            DebugLog("Trigger 'AtaqueMelee' activado");
         }
 
         tiempoUltimoAtaqueMelee = Time.time;
+
+        // PROTECCIÓN: Si la animación no llama a FinalizarAtaque, lo forzamos después de 2 segundos
+        StartCoroutine(ProteccionAtaqueMelee());
+    }
+
+    private IEnumerator ProteccionAtaqueMelee()
+    {
+        yield return new WaitForSeconds(2f);
+
+        if (estaAtacando && estadoActual == EstadoJefe.AtacandoMelee)
+        {
+            Debug.LogWarning("[BOSS] ⚠️ PROTECCIÓN ACTIVADA: FinalizarAtaque no fue llamado por la animación!");
+            FinalizarAtaque();
+        }
     }
 
     void IniciarAtaqueRango()
     {
+        DebugLog(">>> IniciarAtaqueRango <<<");
         estaAtacando = true;
         estadoActual = EstadoJefe.AtacandoRango;
         rb.linearVelocity = Vector2.zero;
 
         if (animator != null)
         {
+            animator.SetBool("Caminando", false);
             animator.SetTrigger("AtaqueRango");
+            DebugLog("Trigger 'AtaqueRango' activado");
         }
 
         tiempoUltimoAtaqueRango = Time.time;
+
+        // PROTECCIÓN: Si la animación no llama a FinalizarAtaque, lo forzamos después de 2 segundos
+        StartCoroutine(ProteccionAtaqueRango());
+    }
+
+    private IEnumerator ProteccionAtaqueRango()
+    {
+        yield return new WaitForSeconds(2f);
+
+        if (estaAtacando && estadoActual == EstadoJefe.AtacandoRango)
+        {
+            Debug.LogWarning("[BOSS] ⚠️ PROTECCIÓN ACTIVADA: FinalizarAtaque no fue llamado por la animación!");
+            FinalizarAtaque();
+        }
     }
 
     // ===== LLAMADOS DESDE ANIMATION EVENTS =====
 
-    // Para el ataque melee - activa el sistema de hitbox
     public void StartMeleeAttack()
     {
+        DebugLog("*** StartMeleeAttack llamado desde animación ***");
         if (attackHitbox != null)
         {
             attackHitbox.StartAttack();
         }
     }
 
-    // Activar cada zona de hitbox secuencialmente
-    public void ActivarZona1() // Inicio del golpe (arriba)
+    public void ActivarZona1()
     {
+        DebugLog("Zona 1 activada");
         if (attackHitbox != null)
         {
             attackHitbox.ActivarZona(0);
         }
     }
 
-    public void ActivarZona2() // Medio del golpe
+    public void ActivarZona2()
     {
+        DebugLog("Zona 2 activada");
         if (attackHitbox != null)
         {
             attackHitbox.ActivarZona(1);
         }
     }
 
-    public void ActivarZona3() // Medio-bajo
+    public void ActivarZona3()
     {
+        DebugLog("Zona 3 activada");
         if (attackHitbox != null)
         {
             attackHitbox.ActivarZona(2);
         }
     }
 
-    public void ActivarZona4() // Final del golpe (abajo)
+    public void ActivarZona4()
     {
+        DebugLog("Zona 4 activada");
         if (attackHitbox != null)
         {
             attackHitbox.ActivarZona(3);
@@ -236,48 +330,128 @@ public class BossIA : MonoBehaviour
 
     public void EndMeleeAttack()
     {
+        DebugLog("*** EndMeleeAttack llamado desde animación ***");
         if (attackHitbox != null)
         {
             attackHitbox.EndAttack();
         }
     }
 
-    // Para el ataque de rango
     public void LanzarHacha()
     {
-        if (hachaPrefab == null || puntoDisparo == null) return;
+        DebugLog("========================================");
+        DebugLog("*** LanzarHacha llamado desde animación ***");
+        DebugLog("========================================");
+
+        // VERIFICACIÓN EXHAUSTIVA
+        if (hachaPrefab == null)
+        {
+            Debug.LogError("❌ hachaPrefab es NULL! Asigna el prefab en el Inspector.");
+            return;
+        }
+        else
+        {
+            DebugLog($"✓ hachaPrefab OK: {hachaPrefab.name}");
+        }
+
+        if (puntoDisparo == null)
+        {
+            Debug.LogError("❌ puntoDisparo es NULL! Asigna un Transform en el Inspector.");
+            return;
+        }
+        else
+        {
+            DebugLog($"✓ puntoDisparo OK: {puntoDisparo.name} en {puntoDisparo.position}");
+        }
 
         // Determinar altura aleatoria del proyectil
         int tipoLanzamiento = Random.Range(0, 3);
         Vector3 posicionLanzamiento = puntoDisparo.position;
 
+        string tipoTexto = "";
         switch (tipoLanzamiento)
         {
-            case 0: // Arriba
+            case 0:
                 posicionLanzamiento.y += offsetArriba;
+                tipoTexto = "ARRIBA";
                 break;
-            case 1: // Centro (sin offset)
+            case 1:
+                tipoTexto = "CENTRO";
                 break;
-            case 2: // Abajo
+            case 2:
                 posicionLanzamiento.y += offsetAbajo;
+                tipoTexto = "ABAJO";
                 break;
         }
 
+        DebugLog($"Tipo de lanzamiento: {tipoTexto}");
+        DebugLog($"Posición de lanzamiento: {posicionLanzamiento}");
+        DebugLog($"Mirando derecha: {mirandoDerecha}");
+
+        // INSTANCIAR HACHA
         GameObject hacha = Instantiate(hachaPrefab, posicionLanzamiento, Quaternion.identity);
+
+        if (hacha == null)
+        {
+            Debug.LogError("❌ ERROR CRÍTICO: Instantiate devolvió NULL!");
+            return;
+        }
+        else
+        {
+            DebugLog($"✓ Hacha instanciada exitosamente: {hacha.name}");
+            DebugLog($"  - Posición: {hacha.transform.position}");
+            DebugLog($"  - Activa: {hacha.activeInHierarchy}");
+
+            // Verificar componentes del hacha
+            SpriteRenderer sr = hacha.GetComponent<SpriteRenderer>();
+            if (sr == null)
+            {
+                Debug.LogError("❌ El prefab del hacha NO TIENE SpriteRenderer!");
+            }
+            else
+            {
+                DebugLog($"✓ SpriteRenderer encontrado, sprite: {(sr.sprite != null ? sr.sprite.name : "NULL")}");
+                DebugLog($"  - Enabled: {sr.enabled}");
+                DebugLog($"  - Color: {sr.color}");
+            }
+
+            Rigidbody2D rbHacha = hacha.GetComponent<Rigidbody2D>();
+            if (rbHacha == null)
+            {
+                Debug.LogError("❌ El prefab del hacha NO TIENE Rigidbody2D!");
+            }
+            else
+            {
+                DebugLog($"✓ Rigidbody2D encontrado");
+            }
+        }
+
         ProyectilHacha proyectil = hacha.GetComponent<ProyectilHacha>();
 
-        if (proyectil != null)
+        if (proyectil == null)
         {
+            Debug.LogError("❌ El prefab NO TIENE el script ProyectilHacha!");
+        }
+        else
+        {
+            DebugLog("✓ Script ProyectilHacha encontrado");
             float direccion = mirandoDerecha ? 1f : -1f;
             proyectil.Inicializar(direccion, transform);
+            DebugLog($"✓ Proyectil inicializado con dirección: {direccion}");
         }
+
+        DebugLog("========================================");
     }
 
-    // Al finalizar cualquier ataque
     public void FinalizarAtaque()
     {
+        DebugLog("*** FinalizarAtaque llamado desde animación ***");
+        DebugLog($"Estado antes: {estadoActual}, Atacando: {estaAtacando}");
+
         estaAtacando = false;
         estadoActual = EstadoJefe.Persiguiendo;
+
+        DebugLog($"Estado después: {estadoActual}, Atacando: {estaAtacando}");
     }
 
     void Voltear()
@@ -286,6 +460,15 @@ public class BossIA : MonoBehaviour
         Vector3 escala = transform.localScale;
         escala.x *= -1;
         transform.localScale = escala;
+        DebugLog($"Jefe volteado. Mirando derecha: {mirandoDerecha}");
+    }
+
+    void DebugLog(string mensaje)
+    {
+        if (mostrarDebugLogs)
+        {
+            Debug.Log($"[BOSS {Time.time:F2}s] {mensaje}");
+        }
     }
 
     void OnDrawGizmosSelected()
@@ -299,5 +482,22 @@ public class BossIA : MonoBehaviour
 
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, distanciaMaxima);
+
+        // Visualizar punto de disparo
+        if (puntoDisparo != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawSphere(puntoDisparo.position, 0.3f);
+
+            // Líneas para los offsets
+            Gizmos.color = Color.magenta;
+            Vector3 posArriba = puntoDisparo.position;
+            posArriba.y += offsetArriba;
+            Gizmos.DrawWireSphere(posArriba, 0.2f);
+
+            Vector3 posAbajo = puntoDisparo.position;
+            posAbajo.y += offsetAbajo;
+            Gizmos.DrawWireSphere(posAbajo, 0.2f);
+        }
     }
 }
