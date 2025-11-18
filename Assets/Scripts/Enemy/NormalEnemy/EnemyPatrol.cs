@@ -36,7 +36,7 @@ public class EnemyPatrol : MonoBehaviour
     {
         if (player == null)
         {
-            return;
+            player = GameObject.FindGameObjectWithTag("Player").transform;
         }
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
