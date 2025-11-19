@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public bool isJumping = false;
     public float jumpForce = 12f;
     public LayerMask groundLayer;
-    public float groundCheckDistance = 0.3f;
+    public float groundCheckDistance = 0.45f;
     public bool jumpQueued = false;
     private float jumpInputBuffer = 0.15f; // Buffer para capturar input temprano
     private float jumpInputTimer = 0f;
@@ -224,10 +224,10 @@ public class PlayerController : MonoBehaviour
         if (canJumpFromGround || canDoubleJump)
         {
             // Cancelar velocidad vertical anterior para salto consistente
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
             // Aplicar fuerza de salto
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
             jumpCount++;
             isJumping = true;
@@ -412,8 +412,9 @@ public class PlayerController : MonoBehaviour
     {
         if (playerCollider == null) return false;
 
-        float halfWidth = playerCollider.bounds.extents.x;
-        Vector2 basePos = (Vector2)playerCollider.bounds.center + Vector2.down * (playerCollider.bounds.extents.y + 0.01f);
+        float skin = 0.02f;
+        float halfWidth = playerCollider.bounds.extents.x - skin;
+        Vector2 basePos = (Vector2)playerCollider.bounds.center + Vector2.down * (playerCollider.bounds.extents.y + skin);
 
         Vector2 leftRay = basePos + Vector2.left * (halfWidth - 0.05f);
         Vector2 centerRay = basePos;
