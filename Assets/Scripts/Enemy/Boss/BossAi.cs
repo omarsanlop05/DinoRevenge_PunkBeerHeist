@@ -12,21 +12,23 @@ public class BossIA : MonoBehaviour
 
     [Header("Configuración de Movimiento")]
     public float velocidadMovimiento = 3f;
-    public float distanciaMinima = 2f;
-    public float distanciaMaxima = 8f;
-    public float distanciaAtaqueMelee = 2.5f;
 
-    [Header("Configuración de Ataques")]
+    [Header("Configuración de Rangos (3 Zonas)")]
+    public float distanciaAtaqueMelee = 2.5f;      // ZONA 1: Rango de ataque melee
+    public float distanciaPersecucion = 8f;        // ZONA 2: Rango de persecución (se acerca)
+    public float distanciaTiroHacha = 12f;         // ZONA 3: Lanza hacha si está más lejos
+
+    [Header("Configuración de Cooldowns")]
     public float cooldownAtaqueMelee = 2f;
     public float cooldownAtaqueRango = 3f;
-    public float probabilidadAtaqueRango = 0.6f;
-
-    [Header("Offset de Proyectiles")]
-    public float offsetArriba = 1.5f;
-    public float offsetAbajo = -1.5f;
 
     [Header("Estado")]
     public bool mirandoDerecha = true;
+
+    [Header("Activación")]
+    [Tooltip("Si es true, el jefe comienza desactivado y espera ser activado por trigger")]
+    public bool requiereActivacion = true;
+    private bool jefeActivado = false;
 
     [Header("Debug")]
     public bool mostrarDebugLogs = true;
@@ -101,10 +103,25 @@ public class BossIA : MonoBehaviour
         tiempoUltimoAtaqueMelee = -cooldownAtaqueMelee;
         tiempoUltimoAtaqueRango = -cooldownAtaqueRango;
         estaAtacando = false;
+
+        // Si requiere activación, iniciar desactivado
+        if (requiereActivacion)
+        {
+            jefeActivado = false;
+            DebugLog("⏸️ Jefe en espera. Requiere activación por trigger.");
+        }
+        else
+        {
+            jefeActivado = true;
+            DebugLog("▶️ Jefe activado automáticamente (no requiere trigger).");
+        }
     }
 
     void Update()
     {
+        // Si el jefe no está activado, no hacer nada
+        if (!jefeActivado) return;
+
         if (jugador == null) return;
 
         float distanciaAlJugador = Vector2.Distance(transform.position, jugador.position);
@@ -112,10 +129,10 @@ public class BossIA : MonoBehaviour
         // Log de estado cada 0.5 segundos
         if (mostrarEstadoConstante && Time.time - tiempoUltimoLogEstado > 0.5f)
         {
-            DebugLog($"📊 ESTADO: {estadoActual} | Atacando: {estaAtacando} | Distancia: {distanciaAlJugador:F2}");
+            string zona = GetZonaActual(distanciaAlJugador);
+            DebugLog($"📊 ESTADO: {estadoActual} | Atacando: {estaAtacando} | Distancia: {distanciaAlJugador:F2} | Zona: {zona}");
             tiempoUltimoLogEstado = Time.time;
         }
-
 
         // Voltear sprite según dirección del jugador (solo si no está atacando)
         if (!estaAtacando)
@@ -156,30 +173,22 @@ public class BossIA : MonoBehaviour
     void ActualizarPersecucion(float distancia)
     {
         if (estaAtacando) return;
+        if (!jefeActivado) return; // No perseguir si no está activado
 
-        // Si está muy cerca, ataque melee
+        // ===== ZONA 1: RANGO DE ATAQUE MELEE =====
+        // Si está muy cerca, atacar melee
         if (distancia <= distanciaAtaqueMelee && PuedeAtacarMelee())
         {
-            DebugLog($"Distancia: {distancia:F2} - Iniciando ataque MELEE");
+            DebugLog($"🗡️ ZONA 1 (Melee) - Distancia: {distancia:F2} - ¡ATACANDO MELEE!");
             IniciarAtaqueMelee();
             return;
         }
 
-        // Si está a distancia media-larga, considerar ataque a distancia
-        if (distancia > distanciaAtaqueMelee && distancia < distanciaMaxima && PuedeAtacarRango())
+        // ===== ZONA 2: RANGO DE PERSECUCIÓN =====
+        // Si está a distancia media, perseguir para acercarse
+        if (distancia > distanciaAtaqueMelee && distancia <= distanciaPersecucion)
         {
-            float randomValue = Random.value;
-            if (randomValue < probabilidadAtaqueRango)
-            {
-                DebugLog($"Distancia: {distancia:F2}, Random: {randomValue:F2} - Iniciando ataque RANGO");
-                IniciarAtaqueRango();
-                return;
-            }
-        }
-
-        // Moverse hacia el jugador
-        if (distancia > distanciaMinima)
-        {
+            DebugLog($"🏃 ZONA 2 (Persecución) - Distancia: {distancia:F2} - Persiguiendo al jugador");
             Vector2 direccion = (jugador.position - transform.position).normalized;
             rb.linearVelocity = new Vector2(direccion.x * velocidadMovimiento, rb.linearVelocity.y);
 
@@ -187,15 +196,38 @@ public class BossIA : MonoBehaviour
             {
                 animator.SetBool("Caminando", true);
             }
+            return;
         }
-        else
+
+        // ===== ZONA 3: RANGO DE TIRO =====
+        // Si está muy lejos, lanzar hacha
+        if (distancia > distanciaPersecucion && distancia <= distanciaTiroHacha && PuedeAtacarRango())
         {
-            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+            DebugLog($"🪓 ZONA 3 (Tiro) - Distancia: {distancia:F2} - ¡LANZANDO HACHA!");
+            IniciarAtaqueRango();
+            return;
+        }
+
+        // ===== ZONA 4: MÁS ALLÁ DEL RANGO DE TIRO =====
+        // Si está incluso más lejos que el rango de tiro, perseguir
+        if (distancia > distanciaTiroHacha)
+        {
+            DebugLog($"🚶 ZONA 4 (Muy lejos) - Distancia: {distancia:F2} - Acercándose (fuera de rango de tiro)");
+            Vector2 direccion = (jugador.position - transform.position).normalized;
+            rb.linearVelocity = new Vector2(direccion.x * velocidadMovimiento, rb.linearVelocity.y);
 
             if (animator != null)
             {
-                animator.SetBool("Caminando", false);
+                animator.SetBool("Caminando", true);
             }
+            return;
+        }
+
+        // Por defecto, detener movimiento
+        rb.linearVelocity = new Vector2(0, rb.linearVelocity.y);
+        if (animator != null)
+        {
+            animator.SetBool("Caminando", false);
         }
     }
 
@@ -217,6 +249,18 @@ public class BossIA : MonoBehaviour
     bool PuedeAtacarRango()
     {
         return Time.time >= tiempoUltimoAtaqueRango + cooldownAtaqueRango;
+    }
+
+    string GetZonaActual(float distancia)
+    {
+        if (distancia <= distanciaAtaqueMelee)
+            return "ZONA 1 (Melee)";
+        else if (distancia <= distanciaPersecucion)
+            return "ZONA 2 (Persecución)";
+        else if (distancia <= distanciaTiroHacha)
+            return "ZONA 3 (Tiro)";
+        else
+            return "ZONA 4 (Muy lejos)";
     }
 
     void IniciarAtaqueMelee()
@@ -364,27 +408,9 @@ public class BossIA : MonoBehaviour
             DebugLog($"✓ puntoDisparo OK: {puntoDisparo.name} en {puntoDisparo.position}");
         }
 
-        // Determinar altura aleatoria del proyectil
-        int tipoLanzamiento = Random.Range(0, 3);
+        // Lanzar desde el punto de disparo
         Vector3 posicionLanzamiento = puntoDisparo.position;
 
-        string tipoTexto = "";
-        switch (tipoLanzamiento)
-        {
-            case 0:
-                posicionLanzamiento.y += offsetArriba;
-                tipoTexto = "ARRIBA";
-                break;
-            case 1:
-                tipoTexto = "CENTRO";
-                break;
-            case 2:
-                posicionLanzamiento.y += offsetAbajo;
-                tipoTexto = "ABAJO";
-                break;
-        }
-
-        DebugLog($"Tipo de lanzamiento: {tipoTexto}");
         DebugLog($"Posición de lanzamiento: {posicionLanzamiento}");
         DebugLog($"Mirando derecha: {mirandoDerecha}");
 
@@ -454,6 +480,26 @@ public class BossIA : MonoBehaviour
         DebugLog($"Estado después: {estadoActual}, Atacando: {estaAtacando}");
     }
 
+    // ===== MÉTODO PÚBLICO PARA ACTIVAR AL JEFE =====
+    public void ActivarJefe()
+    {
+        if (jefeActivado)
+        {
+            DebugLog("⚠️ El jefe ya estaba activado");
+            return;
+        }
+
+        jefeActivado = true;
+        DebugLog("🔥 ¡JEFE ACTIVADO! Iniciando combate...");
+
+        // Opcional: Iniciar con una animación especial o rugido
+        if (animator != null)
+        {
+            // Puedes crear un trigger de "Despertar" o "Rugir" si tienes esa animación
+            // animator.SetTrigger("Despertar");
+        }
+    }
+
     void Voltear()
     {
         mirandoDerecha = !mirandoDerecha;
@@ -473,31 +519,23 @@ public class BossIA : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
-        // Visualizar distancias en el editor
+        // ZONA 1: Rango de ataque melee (ROJO)
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, distanciaAtaqueMelee);
 
+        // ZONA 2: Rango de persecución (AMARILLO)
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, distanciaMinima);
+        Gizmos.DrawWireSphere(transform.position, distanciaPersecucion);
 
+        // ZONA 3: Rango de tiro de hacha (VERDE)
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, distanciaMaxima);
+        Gizmos.DrawWireSphere(transform.position, distanciaTiroHacha);
 
         // Visualizar punto de disparo
         if (puntoDisparo != null)
         {
             Gizmos.color = Color.cyan;
             Gizmos.DrawSphere(puntoDisparo.position, 0.3f);
-
-            // Líneas para los offsets
-            Gizmos.color = Color.magenta;
-            Vector3 posArriba = puntoDisparo.position;
-            posArriba.y += offsetArriba;
-            Gizmos.DrawWireSphere(posArriba, 0.2f);
-
-            Vector3 posAbajo = puntoDisparo.position;
-            posAbajo.y += offsetAbajo;
-            Gizmos.DrawWireSphere(posAbajo, 0.2f);
         }
     }
 }
