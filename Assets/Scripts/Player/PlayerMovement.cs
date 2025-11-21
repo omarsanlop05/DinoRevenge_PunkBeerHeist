@@ -164,7 +164,7 @@ public class PlayerController : MonoBehaviour
             if (!wasGrounded)
             {
                 jumpCount = 0;
-                isJumping = false; // IMPORTANTE: Resetear flag de salto
+                isJumping = false;
             }
             coyoteTimeCounter = coyoteTime;
         }
@@ -214,7 +214,9 @@ public class PlayerController : MonoBehaviour
     void Saltar()
     {
         // Usar el timer en lugar de solo el flag
-        if (jumpInputTimer <= 0f)
+        bool hasJumpInput = jumpInputTimer > 0f || jumpQueued;
+
+        if (!hasJumpInput)
             return;
 
         // Verificar si puede saltar
@@ -224,10 +226,10 @@ public class PlayerController : MonoBehaviour
         if (canJumpFromGround || canDoubleJump)
         {
             // Cancelar velocidad vertical anterior para salto consistente
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
 
             // Aplicar fuerza de salto
-            //rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
             jumpCount++;
             isJumping = true;
@@ -239,7 +241,7 @@ public class PlayerController : MonoBehaviour
             // Consumir el input inmediatamente
             jumpInputTimer = 0f;
             jumpQueued = false;
-        }
+        }else Debug.Log("Error, no se pudo saltar");
     }
 
     void AplicarGravedad()
