@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: 543249cd02b38604c8b5a23a604bbf7a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2201819047586876253
+    second: AirDashing_0
+  - first:
+      213: 5057372767357014763
+    second: AirDashing_1
+  - first:
+      213: -9221448121899678059
+    second: AirDashing_2
+  - first:
+      213: -2315331188633830995
+    second: AirDashing_3
+  - first:
+      213: 1178182687700816966
+    second: AirDashing_4
+  - first:
+      213: 2062683562271850983
+    second: AirDashing_5
+  - first:
+      213: -2539396504524173639
+    second: AirDashing_6
+  - first:
+      213: 3370713962462026731
+    second: AirDashing_7
+  - first:
+      213: 7330608428684096611
+    second: AirDashing_8
+  - first:
+      213: -5423486764867623220
+    second: AirDashing_9
+  - first:
+      213: -5332055483661977815
+    second: AirDashing_10
+  - first:
+      213: 8600058259208447179
+    second: AirDashing_11
+  - first:
+      213: -7942914074098244645
+    second: AirDashing_12
+  - first:
+      213: -6469526614782939450
+    second: AirDashing_13
+  - first:
+      213: -313464247047273185
+    second: AirDashing_14
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: AirDashing_0
+      rect:
+        serializedVersion: 2
+        x: 52
+        y: 485
+        width: 610
+        height: 432
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a435e0fd319171e0800000000000000
+      internalID: -2201819047586876253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_1
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 382
+        width: 49
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be29c0f9cb56f2640800000000000000
+      internalID: 5057372767357014763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_2
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 384
+        width: 51
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5960a7b5ac5d60080800000000000000
+      internalID: -9221448121899678059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_3
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 384
+        width: 59
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da9f8141d8a4edfd0800000000000000
+      internalID: -2315331188633830995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_4
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 384
+        width: 46
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6441ce489eeb95010800000000000000
+      internalID: 1178182687700816966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_5
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 385
+        width: 17
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e1404575cf10ac10800000000000000
+      internalID: 2062683562271850983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_6
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 385
+        width: 51
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bec7fb555042ccd0800000000000000
+      internalID: -2539396504524173639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_7
+      rect:
+        serializedVersion: 2
+        x: 383
+        y: 384
+        width: 50
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: beb9ff37d7e27ce20800000000000000
+      internalID: 3370713962462026731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_8
+      rect:
+        serializedVersion: 2
+        x: 442
+        y: 395
+        width: 47
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3643333d68d8bb560800000000000000
+      internalID: 7330608428684096611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_9
+      rect:
+        serializedVersion: 2
+        x: 497
+        y: 382
+        width: 53
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc66800b587ebb4b0800000000000000
+      internalID: -5423486764867623220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_10
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 383
+        width: 19
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92777adb9cbb006b0800000000000000
+      internalID: -5332055483661977815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_11
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 382
+        width: 54
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc4a8c3fb6b895770800000000000000
+      internalID: 8600058259208447179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_12
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 384
+        width: 16
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd36ce3abb915c190800000000000000
+      internalID: -7942914074098244645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_13
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 385
+        width: 51
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ce6de422df9736a0800000000000000
+      internalID: -6469526614782939450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: AirDashing_14
+      rect:
+        serializedVersion: 2
+        x: 727
+        y: 384
+        width: 49
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1546f89de956abf0800000000000000
+      internalID: -313464247047273185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      AirDashing_0: -2201819047586876253
+      AirDashing_1: 5057372767357014763
+      AirDashing_10: -5332055483661977815
+      AirDashing_11: 8600058259208447179
+      AirDashing_12: -7942914074098244645
+      AirDashing_13: -6469526614782939450
+      AirDashing_14: -313464247047273185
+      AirDashing_2: -9221448121899678059
+      AirDashing_3: -2315331188633830995
+      AirDashing_4: 1178182687700816966
+      AirDashing_5: 2062683562271850983
+      AirDashing_6: -2539396504524173639
+      AirDashing_7: 3370713962462026731
+      AirDashing_8: 7330608428684096611
+      AirDashing_9: -5423486764867623220
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
