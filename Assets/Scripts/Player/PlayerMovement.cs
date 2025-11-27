@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public float groundCheckDistance = 0.45f;
     public bool jumpQueued = false;
-    private float jumpInputBuffer = 0.15f; // Buffer para capturar input temprano
+    private float jumpInputBuffer = 0.15f;
     private float jumpInputTimer = 0f;
 
     [Header("Control de saltos")]
@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
         jumpQueued = false;
         attackQueued = false;
         jumpCount = 0;
+        jumpInputTimer = 0f;
         coyoteTimeCounter = 0f;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         rb.linearVelocity = Vector2.zero;
@@ -109,10 +110,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (isDrinking || isHurt || isDead)
+        // BLOQUEO TOTAL durante estados especiales
+        if (isDrinking || isHurt || isDead || isAttacking)
+        {
+            // Limpiar inputs pendientes para evitar estados raros
+            jumpQueued = false;
+            jumpInputTimer = 0f;
+            attackQueued = false;
             return;
+        }
 
-        moveInput = isAttacking ? 0 : Input.GetAxisRaw("Horizontal");
+        moveInput = Input.GetAxisRaw("Horizontal");
 
         if (moveInput != 0)
         {
@@ -131,10 +139,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             jumpQueued = true;
-            jumpInputTimer = jumpInputBuffer; // Iniciar timer del buffer
+            jumpInputTimer = jumpInputBuffer;
         }
 
-        // Decrementar timer del buffer
         if (jumpInputTimer > 0f)
             jumpInputTimer -= Time.deltaTime;
 
@@ -165,6 +172,9 @@ public class PlayerController : MonoBehaviour
             {
                 jumpCount = 0;
                 isJumping = false;
+                // LIMPIEZA CRÍTICA: Resetear buffers al tocar suelo
+                jumpQueued = false;
+                jumpInputTimer = 0f;
             }
             coyoteTimeCounter = coyoteTime;
         }
@@ -178,57 +188,60 @@ public class PlayerController : MonoBehaviour
         if (!isAttacking)
             Movimiento();
 
-        Saltar();
-        AplicarGravedad();
+        // ORDEN CRÍTICO: Atacar primero para bloquear salto si se activa ataque
         Atacar();
+
+        // Solo saltar si NO está atacando
+        if (!isAttacking)
+            Saltar();
+
+        AplicarGravedad();
 
         if (isAttacking)
             MovimientoDeAtaque();
     }
 
-
     void Movimiento()
     {
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
-        
         bool currentlyWalking = Mathf.Abs(rb.linearVelocity.x) > 0.1f;
 
         if (currentlyWalking && !isWalking && IsGrounded())
         {
-            // Empezó a caminar
             SoundManager.instance.loopSource.loop = true;
             SoundManager.instance.playSound(walkSFX);
             isWalking = true;
         }
         else if ((!currentlyWalking && isWalking) || !IsGrounded())
         {
-            // Dejó de caminar
             SoundManager.instance.stopSound(walkSFX);
             SoundManager.instance.loopSource.loop = false;
             isWalking = false;
         }
-        
     }
 
     void Saltar()
     {
-        // Usar el timer en lugar de solo el flag
+        // CRÍTICO: No saltar durante ataque
+        if (isAttacking)
+        {
+            jumpQueued = false;
+            jumpInputTimer = 0f;
+            return;
+        }
+
         bool hasJumpInput = jumpInputTimer > 0f || jumpQueued;
 
         if (!hasJumpInput)
             return;
 
-        // Verificar si puede saltar
         bool canJumpFromGround = coyoteTimeCounter > 0f && jumpCount == 0;
         bool canDoubleJump = jumpCount > 0 && jumpCount < maxJumpCount;
 
         if (canJumpFromGround || canDoubleJump)
         {
-            // Cancelar velocidad vertical anterior para salto consistente
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-
-            // Aplicar fuerza de salto
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
             jumpCount++;
@@ -238,10 +251,9 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("Jump");
             SoundManager.instance.playOnce(jumpSFX);
 
-            // Consumir el input inmediatamente
             jumpInputTimer = 0f;
             jumpQueued = false;
-        }else Debug.Log("Error, no se pudo saltar");
+        }
     }
 
     void AplicarGravedad()
@@ -249,18 +261,15 @@ public class PlayerController : MonoBehaviour
         if (isHurt || isAttacking)
             return;
 
-        // No aplicar gravedad extra si está en el suelo
         if (IsGrounded() && rb.linearVelocity.y <= 0)
             return;
 
         if (rb.linearVelocity.y < 0)
         {
-            // Cayendo - sensación pesada
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime;
         }
         else if (rb.linearVelocity.y > 0)
         {
-            // Saltando - gravedad más suave para arco de salto
             rb.linearVelocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
     }
@@ -274,6 +283,10 @@ public class PlayerController : MonoBehaviour
 
             attackTimer = 0f;
             attackDirection = new Vector2(facingDirection, 0).normalized;
+
+            // LIMPIEZA: Cancelar cualquier input de salto pendiente
+            jumpQueued = false;
+            jumpInputTimer = 0f;
 
             animator.SetTrigger("Attack");
             SoundManager.instance.playOnce(attackSFX);
@@ -320,11 +333,11 @@ public class PlayerController : MonoBehaviour
         StartInvulnerability();
         Knockback(hitSource);
 
-        // Detener movimiento
         Invoke(nameof(FreezeAfterKnockback), 0.05f);
 
-        // Cancelar saltos pendientes
+        // Cancelar todos los inputs pendientes
         jumpQueued = false;
+        jumpInputTimer = 0f;
         isJumping = false;
         coyoteTimeCounter = 0;
 
@@ -358,7 +371,6 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.15f);
         }
 
-        // Restaurar opacidad al final
         if (spriteRenderer != null)
         {
             Color c = spriteRenderer.color;
@@ -374,16 +386,12 @@ public class PlayerController : MonoBehaviour
 
     void Knockback(float hitSourceX)
     {
-        // Cancelar movimiento actual para evitar bugs con salto
         rb.linearVelocity = Vector2.zero;
 
-        // Dirección de empuje según lado del impacto
         int direction = (transform.position.x < hitSourceX) ? -1 : 1;
 
-        // Aplicar knockback
         rb.AddForce(new Vector2(direction * knockbackForceX, knockbackForceY), ForceMode2D.Impulse);
 
-        // Evitar que ataque mientras es empujado
         isAttacking = false;
     }
 
@@ -396,7 +404,9 @@ public class PlayerController : MonoBehaviour
 
     public void drinKingState(float drinkTime)
     {
+        // Cancelar todos los inputs
         jumpQueued = false;
+        jumpInputTimer = 0f;
         isJumping = false;
         rb.linearVelocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
