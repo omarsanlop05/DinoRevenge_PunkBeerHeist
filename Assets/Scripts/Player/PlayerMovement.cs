@@ -165,14 +165,24 @@ public class PlayerController : MonoBehaviour
 
         bool isGrounded = IsGrounded();
 
+        // CORRECCIÓN: Detectar colisión con techo
+        bool hitCeiling = IsHittingCeiling();
+        if (hitCeiling && isJumping && rb.linearVelocity.y > 0)
+        {
+            // Forzar que la velocidad Y sea 0 al chocar con techo
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+            isJumping = false;
+        }
+
         // Resetear contador de saltos cuando toca el suelo
         if (isGrounded)
         {
-            if (!wasGrounded)
+            // CORRECCIÓN CRÍTICA: Resetear SIEMPRE que esté en el suelo, no solo en transición
+            // Esto previene que quede "trabado" si se hunde ligeramente en el terreno
+            if (jumpCount > 0 || isJumping)
             {
                 jumpCount = 0;
                 isJumping = false;
-                // LIMPIEZA CRÍTICA: Resetear buffers al tocar suelo
                 jumpQueued = false;
                 jumpInputTimer = 0f;
             }
@@ -181,6 +191,13 @@ public class PlayerController : MonoBehaviour
         else
         {
             coyoteTimeCounter = Mathf.Max(coyoteTimeCounter - Time.fixedDeltaTime, 0f);
+
+            // CORRECCIÓN CRÍTICA: Si está cayendo (velocidad negativa O cero) y tiene isJumping activo,
+            // significa que terminó la fase de subida del salto (por techo o por gravedad)
+            if (isJumping && rb.linearVelocity.y <= 0.1f)
+            {
+                isJumping = false;
+            }
         }
 
         wasGrounded = isGrounded;
@@ -199,6 +216,54 @@ public class PlayerController : MonoBehaviour
 
         if (isAttacking)
             MovimientoDeAtaque();
+    }
+
+    void Saltar()
+    {
+        // CRÍTICO: No saltar durante ataque
+        if (isAttacking)
+        {
+            jumpQueued = false;
+            jumpInputTimer = 0f;
+            return;
+        }
+
+        bool hasJumpInput = jumpInputTimer > 0f || jumpQueued;
+
+        if (!hasJumpInput)
+            return;
+
+        bool canJumpFromGround = coyoteTimeCounter > 0f && jumpCount == 0;
+        bool canDoubleJump = jumpCount > 0 && jumpCount < maxJumpCount;
+
+        // DEBUG TEMPORAL - Quitar después de probar
+        if (hasJumpInput && !canJumpFromGround && !canDoubleJump)
+        {
+            Debug.Log($"NO PUEDE SALTAR - isGrounded: {IsGrounded()}, jumpCount: {jumpCount}, isJumping: {isJumping}, coyoteTime: {coyoteTimeCounter}, velocityY: {rb.linearVelocity.y}");
+            // CRÍTICO: Limpiar inputs si no puede saltar para evitar consumirlos después
+            jumpInputTimer = 0f;
+            jumpQueued = false;
+            return;
+        }
+
+        if (canJumpFromGround || canDoubleJump)
+        {
+            // CORRECCIÓN CRÍTICA: Limpiar buffer ANTES de ejecutar el salto
+            // Esto previene que un segundo input rápido se procese en el siguiente frame
+            jumpInputTimer = 0f;
+            jumpQueued = false;
+
+            // CORRECCIÓN: Resetear velocidad Y antes de aplicar fuerza
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+            jumpCount++;
+            isJumping = true;
+            coyoteTimeCounter = 0f;
+
+            animator.SetTrigger("Jump");
+            SoundManager.instance.playOnce(jumpSFX);
+        }
     }
 
     void Movimiento()
@@ -221,40 +286,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Saltar()
-    {
-        // CRÍTICO: No saltar durante ataque
-        if (isAttacking)
-        {
-            jumpQueued = false;
-            jumpInputTimer = 0f;
-            return;
-        }
-
-        bool hasJumpInput = jumpInputTimer > 0f || jumpQueued;
-
-        if (!hasJumpInput)
-            return;
-
-        bool canJumpFromGround = coyoteTimeCounter > 0f && jumpCount == 0;
-        bool canDoubleJump = jumpCount > 0 && jumpCount < maxJumpCount;
-
-        if (canJumpFromGround || canDoubleJump)
-        {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-            jumpCount++;
-            isJumping = true;
-            coyoteTimeCounter = 0f;
-
-            animator.SetTrigger("Jump");
-            SoundManager.instance.playOnce(jumpSFX);
-
-            jumpInputTimer = 0f;
-            jumpQueued = false;
-        }
-    }
+    
 
     void AplicarGravedad()
     {
@@ -289,6 +321,7 @@ public class PlayerController : MonoBehaviour
             jumpInputTimer = 0f;
 
             animator.SetTrigger("Attack");
+            StartInvulnerability();
             SoundManager.instance.playOnce(attackSFX);
 
             Invoke(nameof(ActivarHitbox), 0.35f);
@@ -324,6 +357,7 @@ public class PlayerController : MonoBehaviour
         isAttacking = false;
         attackPoint.enabled = false;
         attackBehaviour.EndAttack();
+        EndInvulnerability();
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
@@ -438,6 +472,28 @@ public class PlayerController : MonoBehaviour
 
         return leftHit.collider != null || centerHit.collider != null || rightHit.collider != null;
     }
+
+    bool IsHittingCeiling()
+    {
+        if (playerCollider == null) return false;
+
+        float skin = 0.02f;
+        float halfWidth = playerCollider.bounds.extents.x - skin;
+        float ceilingCheckDistance = 0.1f;
+
+        Vector2 topPos = (Vector2)playerCollider.bounds.center + Vector2.up * (playerCollider.bounds.extents.y + skin);
+
+        Vector2 leftRay = topPos + Vector2.left * (halfWidth - 0.05f);
+        Vector2 centerRay = topPos;
+        Vector2 rightRay = topPos + Vector2.right * (halfWidth - 0.05f);
+
+        RaycastHit2D leftHit = Physics2D.Raycast(leftRay, Vector2.up, ceilingCheckDistance, groundLayer);
+        RaycastHit2D centerHit = Physics2D.Raycast(centerRay, Vector2.up, ceilingCheckDistance, groundLayer);
+        RaycastHit2D rightHit = Physics2D.Raycast(rightRay, Vector2.up, ceilingCheckDistance, groundLayer);
+
+        return leftHit.collider != null || centerHit.collider != null || rightHit.collider != null;
+    }
+    
 
     void OnDrawGizmos()
     {

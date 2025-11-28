@@ -48,7 +48,7 @@ public class EnemyHealth : MonoBehaviour
                 hitbox.enabled = false;
             }
 
-            StartCoroutine(MostrarPantallaDeVictoria(2f));
+            StartCoroutine(MostrarPantallaDeVictoria(3f));
         }
         else
         {

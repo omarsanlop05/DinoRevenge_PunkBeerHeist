@@ -116,8 +116,12 @@ public class BatEnemy : MonoBehaviour
         // Actualizar animaciones si hay animator
         if (animator != null)
         {
-            animator.SetBool("IsChasing", currentState == BatState.Chasing);
-            animator.SetFloat("Speed", rb.linearVelocity.magnitude);
+            // Verificar si los parámetros existen antes de establecerlos
+            if (HasParameter(animator, "IsChasing"))
+                animator.SetBool("IsChasing", currentState == BatState.Chasing);
+
+            if (HasParameter(animator, "Speed"))
+                animator.SetFloat("Speed", rb.linearVelocity.magnitude);
         }
     }
 
@@ -423,5 +427,16 @@ public class BatEnemy : MonoBehaviour
                 }
             }
         }
+    }
+
+    // Método auxiliar para verificar si un parámetro existe
+    bool HasParameter(Animator animator, string paramName)
+    {
+        foreach (AnimatorControllerParameter param in animator.parameters)
+        {
+            if (param.name == paramName)
+                return true;
+        }
+        return false;
     }
 }
