@@ -6,12 +6,12 @@ public class PlayerController : MonoBehaviour
     [Header("Animator")]
     public Animator animator;
 
-    [Header("Movimiento")]
+    [Header("Movement")]
     public float moveSpeed = 8f;
     private float moveInput;
     private bool isWalking = false;
 
-    [Header("Salto")]
+    [Header("Jump")]
     public bool isJumping = false;
     public float jumpForce = 12f;
     public LayerMask groundLayer;
@@ -20,12 +20,12 @@ public class PlayerController : MonoBehaviour
     private float jumpInputBuffer = 0.15f;
     private float jumpInputTimer = 0f;
 
-    [Header("Control de saltos")]
+    [Header("Jump Control")]
     public int maxJumpCount = 1;
     private int jumpCount = 0;
     private bool wasGrounded = false;
 
-    [Header("Gravedad personalizada")]
+    [Header("Custom Gravity")]
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
@@ -33,27 +33,27 @@ public class PlayerController : MonoBehaviour
     public float coyoteTime = 0.15f;
     private float coyoteTimeCounter = 0f;
 
-    [Header("Hitbox de ataque")]
+    [Header("Attack Hitbox")]
     public CircleCollider2D attackPoint;
     public AttackPointBehaviour attackBehaviour;
 
-    [Header("Ataque")]
+    [Header("Attack")]
     public float attackForce = 5f;
     public float attackCooldown = 0.8f;
     public bool isAttacking = false;
     private float nextAttackTime = 0f;
     private bool attackQueued = false;
 
-    [Header("Ataque dinámico")]
+    [Header("Dynamic Attack")]
     public float attackDuration = 0.75f;
     public AnimationCurve attackCurve;
     private float attackTimer = 0f;
     private Vector2 attackDirection;
 
-    [Header("Cerveza")]
+    [Header("Beer")]
     public bool isDrinking = false;
 
-    [Header("Invulnerabilidad")]
+    [Header("Invulnerability")]
     public bool isInvulnerable = false;
     public float invulnerabilityDuration = 1f;
     public bool isHurt = false;
@@ -110,10 +110,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // BLOQUEO TOTAL durante estados especiales
+        // Block on special states
         if (isDrinking || isHurt || isDead || isAttacking)
         {
-            // Limpiar inputs pendientes para evitar estados raros
+            // Clear other inputs
             jumpQueued = false;
             jumpInputTimer = 0f;
             attackQueued = false;
@@ -165,20 +165,19 @@ public class PlayerController : MonoBehaviour
 
         bool isGrounded = IsGrounded();
 
-        // CORRECCIÓN: Detectar colisión con techo
+        // Detect roof colition
         bool hitCeiling = IsHittingCeiling();
         if (hitCeiling && isJumping && rb.linearVelocity.y > 0)
         {
-            // Forzar que la velocidad Y sea 0 al chocar con techo
+            // Force y velocity to 0 when coliding with roof
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             isJumping = false;
         }
 
-        // Resetear contador de saltos cuando toca el suelo
+        // Reset jump counter when touching floor
         if (isGrounded)
         {
-            // CORRECCIÓN CRÍTICA: Resetear SIEMPRE que esté en el suelo, no solo en transición
-            // Esto previene que quede "trabado" si se hunde ligeramente en el terreno
+            //Reset on ground
             if (jumpCount > 0 || isJumping)
             {
                 jumpCount = 0;
@@ -192,8 +191,7 @@ public class PlayerController : MonoBehaviour
         {
             coyoteTimeCounter = Mathf.Max(coyoteTimeCounter - Time.fixedDeltaTime, 0f);
 
-            // CORRECCIÓN CRÍTICA: Si está cayendo (velocidad negativa O cero) y tiene isJumping activo,
-            // significa que terminó la fase de subida del salto (por techo o por gravedad)
+            //Falling velocity
             if (isJumping && rb.linearVelocity.y <= 0.1f)
             {
                 isJumping = false;
@@ -203,24 +201,23 @@ public class PlayerController : MonoBehaviour
         wasGrounded = isGrounded;
 
         if (!isAttacking)
-            Movimiento();
+            Movement();
 
-        // ORDEN CRÍTICO: Atacar primero para bloquear salto si se activa ataque
-        Atacar();
+        Attack();
 
-        // Solo saltar si NO está atacando
+        // Jump if is not attacking
         if (!isAttacking)
-            Saltar();
+            Jump();
 
-        AplicarGravedad();
+        ApplyGravity();
 
         if (isAttacking)
-            MovimientoDeAtaque();
+            AttackMovement();
     }
 
-    void Saltar()
+    void Jump()
     {
-        // CRÍTICO: No saltar durante ataque
+        // Can´t jump when attacking
         if (isAttacking)
         {
             jumpQueued = false;
@@ -233,14 +230,15 @@ public class PlayerController : MonoBehaviour
         if (!hasJumpInput)
             return;
 
-        bool canJumpFromGround = coyoteTimeCounter > 0f && jumpCount == 0;
+        bool isCurrentlyGrounded = IsGrounded();
+
+        bool canJumpFromGround = isCurrentlyGrounded && jumpCount == 0;
         bool canDoubleJump = jumpCount > 0 && jumpCount < maxJumpCount;
 
-        // DEBUG TEMPORAL - Quitar después de probar
+        // Temporal debug
         if (hasJumpInput && !canJumpFromGround && !canDoubleJump)
         {
-            Debug.Log($"NO PUEDE SALTAR - isGrounded: {IsGrounded()}, jumpCount: {jumpCount}, isJumping: {isJumping}, coyoteTime: {coyoteTimeCounter}, velocityY: {rb.linearVelocity.y}");
-            // CRÍTICO: Limpiar inputs si no puede saltar para evitar consumirlos después
+            Debug.Log($"Cant Jump - isGrounded: {IsGrounded()}, jumpCount: {jumpCount}, isJumping: {isJumping}, coyoteTime: {coyoteTimeCounter}, velocityY: {rb.linearVelocity.y}");
             jumpInputTimer = 0f;
             jumpQueued = false;
             return;
@@ -248,12 +246,11 @@ public class PlayerController : MonoBehaviour
 
         if (canJumpFromGround || canDoubleJump)
         {
-            // CORRECCIÓN CRÍTICA: Limpiar buffer ANTES de ejecutar el salto
-            // Esto previene que un segundo input rápido se procese en el siguiente frame
+            //Clear buffer before jump
             jumpInputTimer = 0f;
             jumpQueued = false;
 
-            // CORRECCIÓN: Resetear velocidad Y antes de aplicar fuerza
+            // Reset speed before jump
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
@@ -266,7 +263,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Movimiento()
+    void Movement()
     {
         rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
 
@@ -288,7 +285,7 @@ public class PlayerController : MonoBehaviour
 
     
 
-    void AplicarGravedad()
+    void ApplyGravity()
     {
         if (isHurt || isAttacking)
             return;
@@ -306,7 +303,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Atacar()
+    void Attack()
     {
         if (attackQueued)
         {
@@ -316,7 +313,7 @@ public class PlayerController : MonoBehaviour
             attackTimer = 0f;
             attackDirection = new Vector2(facingDirection, 0).normalized;
 
-            // LIMPIEZA: Cancelar cualquier input de salto pendiente
+            // Cancel queued jumps
             jumpQueued = false;
             jumpInputTimer = 0f;
 
@@ -324,20 +321,20 @@ public class PlayerController : MonoBehaviour
             StartInvulnerability();
             SoundManager.instance.playOnce(attackSFX);
 
-            Invoke(nameof(ActivarHitbox), 0.35f);
+            Invoke(nameof(Activatehitbox), 0.35f);
         }
 
         attackQueued = false;
     }
 
-    void ActivarHitbox()
+    void Activatehitbox()
     {
         if (!isAttacking) return;
         attackPoint.enabled = true;
         attackBehaviour.StartAttack();
     }
 
-    void MovimientoDeAtaque()
+    void AttackMovement()
     {
         attackTimer += Time.fixedDeltaTime;
 
@@ -349,10 +346,10 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = new Vector2(attackDirection.x * force, rb.linearVelocity.y);
 
         if (attackTimer >= attackDuration)
-            FinAtaque();
+            CloseAttack();
     }
 
-    void FinAtaque()
+    void CloseAttack()
     {
         isAttacking = false;
         attackPoint.enabled = false;
@@ -369,7 +366,7 @@ public class PlayerController : MonoBehaviour
 
         Invoke(nameof(FreezeAfterKnockback), 0.05f);
 
-        // Cancelar todos los inputs pendientes
+        // Cancel queued imputs
         jumpQueued = false;
         jumpInputTimer = 0f;
         isJumping = false;
@@ -438,17 +435,17 @@ public class PlayerController : MonoBehaviour
 
     public void drinKingState(float drinkTime)
     {
-        // Cancelar todos los inputs
+        // Cancel inputs
         jumpQueued = false;
         jumpInputTimer = 0f;
         isJumping = false;
         rb.linearVelocity = Vector2.zero;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
 
-        Invoke(nameof(FinDeTomarCerveza), drinkTime);
+        Invoke(nameof(EndBeerDrinking), drinkTime);
     }
 
-    void FinDeTomarCerveza()
+    void EndBeerDrinking()
     {
         isDrinking = false;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
