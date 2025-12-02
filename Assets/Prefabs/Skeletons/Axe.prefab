@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocidad: 12
   velocidadRotacion: 360
-  danio: 15
+  danio: 25
   tiempoDeVida: 8
 --- !u!50 &4980318602738848097
 Rigidbody2D:

@@ -359,6 +359,24 @@ public class BatEnemy : MonoBehaviour
         }
     }
 
+    void OnTriggerStay2D(Collider2D collision)
+    {
+        // Alternativa si usas triggers en lugar de colliders
+        if (collision.CompareTag("Player"))
+        {
+            if (Time.time >= lastAttackTime + attackCooldown)
+            {
+                PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.RecibirDaño(contactDamage, transform.position.x);
+                    lastAttackTime = Time.time;
+                    DebugLog($"¡Golpeó al jugador! Daño: {contactDamage}");
+                }
+            }
+        }
+    }
+
     void DebugLog(string message)
     {
         if (showDebugLogs)

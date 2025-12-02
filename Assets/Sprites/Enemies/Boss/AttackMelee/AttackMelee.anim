@@ -22,13 +22,13 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: -6440779314966781630, guid: df8a302868d051a43bdae767fa03e131, type: 3}
-    - time: 0.016666668
-      value: {fileID: 4189399510254925607, guid: d3ed0befdd415584289e3a318fc67c39, type: 3}
     - time: 0.033333335
-      value: {fileID: -5001731244518076904, guid: 90d210a0ff20719439adfe3198bad2f2, type: 3}
-    - time: 0.05
-      value: {fileID: -1510697040240711840, guid: b387ba2c76def9942805972024bea409, type: 3}
+      value: {fileID: 4189399510254925607, guid: d3ed0befdd415584289e3a318fc67c39, type: 3}
     - time: 0.06666667
+      value: {fileID: -5001731244518076904, guid: 90d210a0ff20719439adfe3198bad2f2, type: 3}
+    - time: 0.083333336
+      value: {fileID: -1510697040240711840, guid: b387ba2c76def9942805972024bea409, type: 3}
+    - time: 0.1
       value: {fileID: -5525705944586447302, guid: dde00f775f05c4c40a84285169166de5, type: 3}
     attribute: m_Sprite
     path: 
@@ -62,7 +62,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.1
+    m_StopTime: 0.13333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -89,35 +89,35 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.016666668
+  - time: 0.033333335
     functionName: ActivarZona1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.033333335
+  - time: 0.06666667
     functionName: ActivarZona2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.05
+  - time: 0.083333336
     functionName: ActivarZona3
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.06666667
+  - time: 0.1
     functionName: ActivarZona4
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.1
+  - time: 0.13333334
     functionName: EndMeleeAttack
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -522,6 +522,7 @@ public class BossIA : MonoBehaviour
         // ZONA 1: Rango de ataque melee (ROJO)
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, distanciaAtaqueMelee);
+        Gizmos.DrawWireSphere(transform.position, distanciaAtaqueMelee);
 
         // ZONA 2: Rango de persecución (AMARILLO)
         Gizmos.color = Color.yellow;
