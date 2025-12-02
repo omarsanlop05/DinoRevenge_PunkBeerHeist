@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public float lowJumpMultiplier = 2f;
 
     [Header("Coyote Time")]
-    public float coyoteTime = 0.15f;
+    public float coyoteTime = 0.1f;
     private float coyoteTimeCounter = 0f;
 
     [Header("Attack Hitbox")]
@@ -178,7 +178,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             //Reset on ground
-            if (jumpCount > 0 || isJumping)
+            if ((jumpCount > 0 || isJumping))
             {
                 jumpCount = 0;
                 isJumping = false;
@@ -230,9 +230,7 @@ public class PlayerController : MonoBehaviour
         if (!hasJumpInput)
             return;
 
-        bool isCurrentlyGrounded = IsGrounded();
-
-        bool canJumpFromGround = isCurrentlyGrounded && jumpCount == 0;
+        bool canJumpFromGround = coyoteTimeCounter > 0f && jumpCount == 0;
         bool canDoubleJump = jumpCount > 0 && jumpCount < maxJumpCount;
 
         // Temporal debug
@@ -243,10 +241,15 @@ public class PlayerController : MonoBehaviour
             jumpQueued = false;
             return;
         }
+        else
+        {
+            Debug.Log($"Jump Successful- isGrounded: {IsGrounded()}, jumpCount: {jumpCount}, isJumping: {isJumping}, coyoteTime: {coyoteTimeCounter}, velocityY: {rb.linearVelocity.y}");
+        }
 
         if (canJumpFromGround || canDoubleJump)
         {
             //Clear buffer before jump
+            jumpCount++;
             jumpInputTimer = 0f;
             jumpQueued = false;
 
@@ -254,7 +257,6 @@ public class PlayerController : MonoBehaviour
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-            jumpCount++;
             isJumping = true;
             coyoteTimeCounter = 0f;
 
