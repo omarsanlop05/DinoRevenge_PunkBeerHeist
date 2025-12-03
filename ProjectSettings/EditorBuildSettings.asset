@@ -18,9 +18,12 @@ EditorBuildSettings:
     path: Assets/Scenes/ForgeScene 1.unity
     guid: 2f74503d5e26ca64092559fff337fc7c
   - enabled: 1
+    path: Assets/Scenes/ForgeScene 3.unity
+    guid: f846252d99f92f64a92089819e8d3351
+  - enabled: 1
     path: Assets/Scenes/ForgeScene 2.unity
     guid: 22931792227656a4f8a59c4a6d23fcb9
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PlayScene.unity
     guid: 9e08082ca3e50414391bb81b9f271a7d
   m_configObjects:
