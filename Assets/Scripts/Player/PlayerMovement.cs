@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public int maxJumpCount = 1;
     private int jumpCount = 0;
     private bool wasGrounded = false;
+    private float lastJumpTime = -999f; // NUEVO: Previene saltos múltiples
+    private float minTimeBetweenJumps = 0.2f; // NUEVO: Tiempo mínimo entre saltos
 
     [Header("Custom Gravity")]
     public float fallMultiplier = 2.5f;
@@ -152,6 +154,62 @@ public class PlayerController : MonoBehaviour
             playerHealth.TomarCerveza();
     }
 
+    void Jump()
+    {
+        // No puede saltar cuando está atacando
+        if (isAttacking)
+        {
+            jumpQueued = false;
+            jumpInputTimer = 0f;
+            return;
+        }
+
+        bool hasJumpInput = jumpInputTimer > 0f || jumpQueued;
+
+        if (!hasJumpInput)
+            return;
+
+        // NUEVO: Verificar tiempo mínimo entre saltos
+        if (Time.time - lastJumpTime < minTimeBetweenJumps)
+        {
+            jumpInputTimer = 0f;
+            jumpQueued = false;
+            return;
+        }
+
+        // CORREGIDO: Coyote time solo si no has saltado aún
+        bool isGrounded = IsGrounded();
+        bool canJumpWithCoyote = coyoteTimeCounter > 0f && jumpCount == 0 && !isJumping;
+        bool canJumpFromGround = isGrounded && jumpCount == 0 && !isJumping;
+
+        // Solo permitir salto si está en el suelo O tiene coyote time disponible
+        // IMPORTANTE: jumpCount debe ser 0 en ambos casos
+        if (!canJumpFromGround && !canJumpWithCoyote)
+        {
+            jumpInputTimer = 0f;
+            jumpQueued = false;
+            return;
+        }
+
+        // Ejecutar salto
+        jumpCount = 1; // Marcamos que ya usamos nuestro salto
+        jumpInputTimer = 0f;
+        jumpQueued = false;
+        lastJumpTime = Time.time; // Registrar tiempo del salto
+        coyoteTimeCounter = 0f; // CRÍTICO: Consumir el coyote time inmediatamente
+
+        // Reset velocidad Y antes de saltar
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+        isJumping = true;
+
+        animator.SetTrigger("Jump");
+        SoundManager.instance.playOnce(jumpSFX);
+    }
+
+    // === MÉTODO FixedUpdate() - SECCIÓN DE SALTO CORREGIDA ===
+
     void FixedUpdate()
     {
         if (isDrinking)
@@ -165,20 +223,20 @@ public class PlayerController : MonoBehaviour
 
         bool isGrounded = IsGrounded();
 
-        // Detect roof colition
+        // Detectar colisión con techo
         bool hitCeiling = IsHittingCeiling();
         if (hitCeiling && isJumping && rb.linearVelocity.y > 0)
         {
-            // Force y velocity to 0 when coliding with roof
+            // Forzar velocidad Y a 0 cuando colisiona con techo
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
             isJumping = false;
         }
 
-        // Reset jump counter when touching floor
+        // Reset contador de saltos cuando toca el suelo
         if (isGrounded)
         {
-            //Reset on ground
-            if ((jumpCount > 0 || isJumping))
+            // MODIFICADO: Reset más estricto
+            if (jumpCount > 0 || isJumping)
             {
                 jumpCount = 0;
                 isJumping = false;
@@ -191,7 +249,7 @@ public class PlayerController : MonoBehaviour
         {
             coyoteTimeCounter = Mathf.Max(coyoteTimeCounter - Time.fixedDeltaTime, 0f);
 
-            //Falling velocity
+            // Marcar que dejó de saltar cuando empieza a caer
             if (isJumping && rb.linearVelocity.y <= 0.1f)
             {
                 isJumping = false;
@@ -205,7 +263,7 @@ public class PlayerController : MonoBehaviour
 
         Attack();
 
-        // Jump if is not attacking
+        // Saltar solo si no está atacando
         if (!isAttacking)
             Jump();
 
@@ -215,55 +273,6 @@ public class PlayerController : MonoBehaviour
             AttackMovement();
     }
 
-    void Jump()
-    {
-        // Can´t jump when attacking
-        if (isAttacking)
-        {
-            jumpQueued = false;
-            jumpInputTimer = 0f;
-            return;
-        }
-
-        bool hasJumpInput = jumpInputTimer > 0f || jumpQueued;
-
-        if (!hasJumpInput)
-            return;
-
-        bool canJumpFromGround = coyoteTimeCounter > 0f && jumpCount == 0;
-        bool canDoubleJump = jumpCount > 0 && jumpCount < maxJumpCount;
-
-        // Temporal debug
-        if (hasJumpInput && !canJumpFromGround && !canDoubleJump)
-        {
-            Debug.Log($"Cant Jump - isGrounded: {IsGrounded()}, jumpCount: {jumpCount}, isJumping: {isJumping}, coyoteTime: {coyoteTimeCounter}, velocityY: {rb.linearVelocity.y}");
-            jumpInputTimer = 0f;
-            jumpQueued = false;
-            return;
-        }
-        else
-        {
-            Debug.Log($"Jump Successful- isGrounded: {IsGrounded()}, jumpCount: {jumpCount}, isJumping: {isJumping}, coyoteTime: {coyoteTimeCounter}, velocityY: {rb.linearVelocity.y}");
-        }
-
-        if (canJumpFromGround || canDoubleJump)
-        {
-            //Clear buffer before jump
-            jumpCount++;
-            jumpInputTimer = 0f;
-            jumpQueued = false;
-
-            // Reset speed before jump
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-            isJumping = true;
-            coyoteTimeCounter = 0f;
-
-            animator.SetTrigger("Jump");
-            SoundManager.instance.playOnce(jumpSFX);
-        }
-    }
 
     void Movement()
     {

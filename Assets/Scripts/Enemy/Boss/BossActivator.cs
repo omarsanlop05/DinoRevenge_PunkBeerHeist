@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class BossActivator : MonoBehaviour
 {
@@ -9,12 +11,26 @@ public class BossActivator : MonoBehaviour
     [Tooltip("Tiempo antes de destruir el trigger después de activar")]
     public float tiempoAntesDeDestruir = 0.5f;
 
+    [Header("Música del Boss")]
+    [Tooltip("Clip de audio para la música del boss")]
+    public AudioClip musicaBoss;
+
+    [Tooltip("¿Reproducir música en loop?")]
+    private bool musicaEnLoop = true;
+
+    [Header("Objeto Adicional")]
+    [Tooltip("Objeto adicional que se activará con el boss (opcional)")]
+    public GameObject objetoAdicional;
+
     [Header("Efectos Opcionales")]
     [Tooltip("Sonido al activar (opcional)")]
     public AudioClip sonidoActivacion;
 
     [Tooltip("Partículas al activar (opcional)")]
     public GameObject particulasActivacion;
+
+    [Tooltip("Duración del destello (segundos)")]
+    public float duracionDestello = 0.5f;
 
     private bool yaActivado = false;
 
@@ -23,7 +39,7 @@ public class BossActivator : MonoBehaviour
         // Verificar que el jefe esté asignado
         if (jefe == null)
         {
-            Debug.LogError("¡No se asignó el jefe en el BossTriggerActivator!");
+            Debug.LogError("¡No se asignó el jefe en el BossActivator!");
             return;
         }
 
@@ -31,7 +47,7 @@ public class BossActivator : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (col == null)
         {
-            Debug.LogError("¡BossTriggerActivator necesita un Collider2D!");
+            Debug.LogError("¡BossActivator necesita un Collider2D!");
         }
         else if (!col.isTrigger)
         {
@@ -57,9 +73,9 @@ public class BossActivator : MonoBehaviour
     {
         yaActivado = true;
 
+        // Activar el jefe
         if (jefe != null)
         {
-            // Activar el jefe
             jefe.SetActive(true);
             Debug.Log($"[TRIGGER] ✓ Jefe '{jefe.name}' activado!");
 
@@ -72,10 +88,50 @@ public class BossActivator : MonoBehaviour
             }
         }
 
-        // Reproducir sonido si está asignado
+        // Activar objeto adicional
+        if (objetoAdicional != null)
+        {
+            objetoAdicional.SetActive(true);
+            Debug.Log($"[TRIGGER] ✓ Objeto adicional '{objetoAdicional.name}' activado!");
+        }
+
+        // Reproducir música del boss con SoundManager
+        if (musicaBoss != null && SoundManager.instance != null)
+        {
+            if (musicaEnLoop)
+            {
+                // Usar loopSource para música continua
+                SoundManager.instance.gameMusicSource.loop = true;
+                SoundManager.instance.playMusic(musicaBoss);
+                Debug.Log($"[TRIGGER] ♪ Música del boss reproducida en loop");
+            }
+            else
+            {
+                // Usar sfxSource para un solo disparo
+                SoundManager.instance.playOnce(musicaBoss);
+                Debug.Log($"[TRIGGER] ♪ Música del boss reproducida");
+            }
+        }
+        else if (musicaBoss == null)
+        {
+            Debug.LogWarning("[TRIGGER] No se asignó música del boss");
+        }
+        else if (SoundManager.instance == null)
+        {
+            Debug.LogWarning("[TRIGGER] No se encontró SoundManager en la escena");
+        }
+
+        // Reproducir sonido de activación si está asignado
         if (sonidoActivacion != null)
         {
-            AudioSource.PlayClipAtPoint(sonidoActivacion, transform.position);
+            if (SoundManager.instance != null)
+            {
+                SoundManager.instance.playOnce(sonidoActivacion);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(sonidoActivacion, transform.position);
+            }
             Debug.Log($"[TRIGGER] ♪ Sonido de activación reproducido");
         }
 
@@ -86,10 +142,13 @@ public class BossActivator : MonoBehaviour
             Debug.Log($"[TRIGGER] ✨ Partículas de activación creadas");
         }
 
+
         // Destruir el trigger después de un tiempo
         Destroy(gameObject, tiempoAntesDeDestruir);
         Debug.Log($"[TRIGGER] Trigger programado para destruirse en {tiempoAntesDeDestruir}s");
     }
+
+   
 
     // Visualizar el trigger en el editor
     void OnDrawGizmos()
@@ -97,8 +156,7 @@ public class BossActivator : MonoBehaviour
         Collider2D col = GetComponent<Collider2D>();
         if (col != null)
         {
-            Gizmos.color = new Color(1f, 0f, 0f, 0.3f); // Rojo semitransparente
-
+            Gizmos.color = new Color(1f, 0f, 0f, 0.3f);
             if (col is BoxCollider2D box)
             {
                 Gizmos.matrix = transform.localToWorldMatrix;
@@ -120,5 +178,15 @@ public class BossActivator : MonoBehaviour
             Gizmos.DrawLine(transform.position, jefe.transform.position);
             Gizmos.DrawWireSphere(jefe.transform.position, 1f);
         }
+
+        // Dibujar línea hacia el objeto adicional
+        if (objetoAdicional != null)
+        {
+            Gizmos.color = Color.cyan;
+            Gizmos.DrawLine(transform.position, objetoAdicional.transform.position);
+            Gizmos.DrawWireCube(objetoAdicional.transform.position, Vector3.one * 0.5f);
+        }
+
+        
     }
 }

@@ -7,6 +7,7 @@ public class SoundManager : MonoBehaviour
     [Header("Audio Sources")]
     public AudioSource loopSource;     // Para sonidos en loop (caminar)
     public AudioSource sfxSource;      // Para efectos de un solo uso (salto, ataque)
+    public AudioSource gameMusicSource;
 
     private void Awake()
     {
@@ -26,6 +27,8 @@ public class SoundManager : MonoBehaviour
             loopSource = gameObject.AddComponent<AudioSource>();
         if (sfxSource == null)
             sfxSource = gameObject.AddComponent<AudioSource>();
+        if (gameMusicSource == null)
+            gameMusicSource = gameObject.AddComponent<AudioSource>();
     }
 
     public void playSound(AudioClip clip)
@@ -46,5 +49,15 @@ public class SoundManager : MonoBehaviour
     {
         if (clip == null) return;
         sfxSource.PlayOneShot(clip);
+    }
+
+    public void playMusic(AudioClip clip)
+    {
+        if (clip == null) return;
+        gameMusicSource.Stop();
+
+        gameMusicSource.clip = clip;
+        if (!gameMusicSource.isPlaying)
+            gameMusicSource.Play();
     }
 }

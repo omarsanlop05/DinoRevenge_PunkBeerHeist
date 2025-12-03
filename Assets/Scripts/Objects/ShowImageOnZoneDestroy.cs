@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class ShowImageOnZoneDestroy : MonoBehaviour
 {
-    public string controlName; // Nombre del control que esta zona debe mostrar (ej: "ASD", "Space", "E")
+    public GameObject controlPoint; // Nombre del control que esta zona debe mostrar (ej: "ASD", "Space", "E")
     public GameObject player;  // Referencia al jugador
     public GameObject vinculo; // Objeto que debe existir para mantener la zona activa
 
-    private Transform controlPoint;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -14,16 +13,12 @@ public class ShowImageOnZoneDestroy : MonoBehaviour
 
         if (other.gameObject == player)
         {
-            controlPoint = player.transform.Find(controlName);
+
             if (controlPoint != null)
             {
-                Debug.Log("Activando: " + controlName);
                 controlPoint.gameObject.SetActive(true);
             }
-            else
-            {
-                Debug.Log("No se encontró el hijo: " + controlName);
-            }
+            
         }
     }
 
@@ -45,4 +40,6 @@ public class ShowImageOnZoneDestroy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
 }
