@@ -13,8 +13,8 @@ public class MenuSystem : MonoBehaviour
     public void Salir()
     {
         Debug.Log("Exiting");
-        UnityEditor.EditorApplication.isPlaying = false;
-        //Application.Quit();
+        //UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
     }
 
     public void Retry()
