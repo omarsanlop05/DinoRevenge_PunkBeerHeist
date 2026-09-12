@@ -1,0 +1,95 @@
+79e7982 - Omar A - Thu Dec 4 08:22:49 2025 -0600 - Prepared for build
+aca0b4e - Omar A - Wed Dec 3 11:39:25 2025 -0600 - Music
+18c894c - Joe Soto - Tue Dec 2 19:30:34 2025 -0600 - Boss adjustments
+08f055b - Joe Soto - Tue Dec 2 16:39:58 2025 -0600 - Controles, valores en jefe, valores en algunos enemigos, cambios en el mapa, una nueva cerveza, mas decoración
+90aac36 - Omar A - Tue Dec 2 15:32:44 2025 -0600 - Final adjustments
+a6d52ee - Joe Soto - Mon Dec 1 22:05:35 2025 -0600 - PLANTS
+cffd8c6 - Omar A - Mon Dec 1 18:57:16 2025 -0600 - Double jump fixed
+17d61e9 - Joe Soto - Thu Nov 27 19:18:40 2025 -0600 - Cambios clase cons
+f211524 - Joe Soto - Thu Nov 27 15:34:48 2025 -0600 - ART ATTACK
+d243f94 - Joe Soto - Wed Nov 26 23:45:17 2025 -0600 - Added death animation to boss
+058ee4f - Joe Soto - Wed Nov 26 21:54:53 2025 -0600 - Boss modified, added flyingDude, corrected Jump
+425027e - Joe Soto - Wed Nov 26 19:11:56 2025 -0600 - Boss modified
+245597e - Omar A - Tue Nov 25 18:52:56 2025 -0600 - level detailed more
+81ea9d5 - Omar A - Tue Nov 25 15:12:33 2025 -0600 - Level adjustment well done
+1984829 - Omar A - Tue Nov 25 14:09:30 2025 -0600 - Revert "Reapply "Level adjustments""
+2678a3f - Omar A - Tue Nov 25 14:08:20 2025 -0600 - Reapply "Level adjustments"
+51f31c2 - Omar A - Tue Nov 25 14:05:52 2025 -0600 - Revert "Level adjustments"
+1e797ee - Omar A - Tue Nov 25 13:52:43 2025 -0600 - Level adjustments
+8e2d3e0 - Omar A - Fri Nov 21 15:06:23 2025 -0600 - Level upgraded
+d289f0e - Omar A - Tue Nov 18 18:56:04 2025 -0600 - level design check
+c7bfffa - Joe Soto - Tue Nov 18 18:55:14 2025 -0600 - Jefe casi ahí va
+ba0fa49 - Omar A - Mon Nov 17 21:02:55 2025 -0600 - Level completed
+027a5dd - Joe Soto - Mon Nov 17 15:31:51 2025 -0600 - Functional boss
+fe05caa - Jose Pablo Soto - Fri Nov 14 08:25:48 2025 -0600 - no sé a qué le estoy moviendo, pero a veces se mueve el jefe
+cb68717 - Jose Pablo Soto - Fri Nov 14 08:03:34 2025 -0600 - Started BossTest
+f39c795 - Omar A - Thu Nov 13 18:55:37 2025 -0600 - Level separations and progress
+73deea9 - Omar A - Thu Nov 13 17:20:05 2025 -0600 - .
+38e9d32 - Omar A - Thu Nov 13 16:00:09 2025 -0600 - map rooms fixed
+c7f7ccb - Omar A - Thu Nov 13 15:32:54 2025 -0600 - few level fixes
+2110b29 - Omar A - Tue Nov 11 18:55:06 2025 -0600 - fixes
+f7054f3 - Omar A - Tue Nov 11 17:50:12 2025 -0600 - Menu revisions
+34b44d6 - Omar A - Tue Nov 11 15:59:31 2025 -0600 - Level and bug fix
+fe545ff - Omar A - Sun Nov 9 21:45:50 2025 -0600 - sfx started
+64e116a - Omar A - Sun Nov 9 20:47:01 2025 -0600 - Enemies fixed
+65b6511 - Omar A - Sat Nov 8 12:50:22 2025 -0600 - Jump fixed & victory screen
+da3bc39 - Jose Pablo Soto - Fri Nov 7 12:53:41 2025 -0600 - Muchas mejoras de mapa
+f60b38e - Jose Pablo Soto - Fri Nov 7 11:53:25 2025 -0600 - More changes to the map
+7c91171 - Omar A - Thu Nov 6 15:31:17 2025 -0600 - Death fixed
+ac7c119 - Omar A - Thu Nov 6 15:26:02 2025 -0600 - death fixed 1
+d4de06e - Omar A - Thu Nov 6 14:03:26 2025 -0600 - death ui
+46bcdf9 - Jose Pablo Soto - Thu Nov 6 13:01:20 2025 -0600 - Otro enemigo, más decoración, nuevo mapa, etc 2
+4b53ab8 - Jose Pablo Soto - Wed Nov 5 21:12:15 2025 -0600 - Otro enemigo, más decoración, nuevo mapa, etc
+1ffe539 - Jose Pablo Soto - Tue Nov 4 19:59:02 2025 -0600 - Comence correcion de salto
+5f1353b - Jose Pablo Soto - Tue Nov 4 19:25:54 2025 -0600 - Killed movementh when dead
+5d7a878 - Jose Pablo Soto - Tue Nov 4 19:09:52 2025 -0600 - Killed movementh when dead
+edceee4 - Jose Pablo Soto - Tue Nov 4 12:43:41 2025 -0600 - Added dead animation
+4042f75 - Omar A - Sun Nov 2 21:28:59 2025 -0600 - Start menu
+a3dc186 - Jose Pablo Soto - Sat Nov 1 22:36:58 2025 -0600 - UUI añadida, se mejoraron tiempos de animación de ciertas cosas, Jefe con animaci+on inicial
+290d81c - Jose Pablo Soto - Sat Nov 1 21:30:40 2025 -0600 - Sprite que parpadea y cerveza dura más tiempo
+51b333a - Omar A - Sat Nov 1 19:52:01 2025 -0600 - Hurt and healing fixed
+1ba682f - Jose Pablo Soto - Sat Nov 1 15:04:11 2025 -0600 - Esqueleto, vida, cervezas, herido
+1be4d0a - Jose Pablo Soto - Sat Nov 1 13:43:51 2025 -0600 - Animaci+on corregida
+a51cfcf - Jose Pablo Soto - Sat Nov 1 13:37:16 2025 -0600 - Papyrus ya tiene animaciones y código de patrulla}
+0b55080 - Omar A - Fri Oct 31 20:02:13 2025 -0600 - Player health system
+f271b58 - Omar A - Fri Oct 31 12:53:14 2025 -0600 - Enemy AI started
+2823d74 - Omar A - Tue Oct 28 14:10:29 2025 -0600 - Enemy sprite
+8efca11 - Jose Pablo Soto - Thu Oct 23 10:49:01 2025 -0600 - Salto2
+1455851 - Jose Pablo Soto - Thu Oct 23 10:27:47 2025 -0600 - Congelamiento y salto
+bdf39f7 - Omar A - Thu Oct 23 09:43:57 2025 -0600 - Final prototype adjustemnts
+8ff176e - Jose Pablo Soto - Thu Oct 23 08:24:28 2025 -0600 - Cerveza Sprite
+8f2073d - Omar A - Wed Oct 22 21:45:04 2025 -0600 - Doors
+59b5c85 - Omar A - Wed Oct 22 17:35:24 2025 -0600 - cameras adjustments
+5cdad30 - Jose Pablo Soto - Wed Oct 22 16:46:34 2025 -0600 - easter egg
+8e934b9 - Jose Pablo Soto - Tue Oct 21 18:53:40 2025 -0600 - Clase21_10_25
+685ebd2 - Jose Pablo Soto - Tue Oct 21 17:29:46 2025 -0600 - Added Jumping animation
+5157593 - Omar A - Tue Oct 21 16:14:26 2025 -0600 - Level detailed
+3cefe99 - Omar A - Tue Oct 21 14:48:52 2025 -0600 - Scenario extended
+33715fd - Omar A - Tue Oct 21 09:36:57 2025 -0600 - Combat System started
+ba6e088 - Jose Pablo Soto - Tue Oct 21 07:52:46 2025 -0600 - Added Jumping animation
+5529d91 - Omar A - Mon Oct 20 18:30:44 2025 -0600 - Map change
+87e224a - Jose Pablo Soto - Sat Oct 18 10:53:30 2025 -0600 - Coyote time and camera bounds
+d1bd835 - Omar A - Sat Oct 18 10:25:55 2025 -0600 - Camera and tile palette fix
+4543e3d - Omar A - Fri Oct 17 17:09:51 2025 -0600 - Tile palette configured
+e581a87 - Omar A - Fri Oct 17 14:52:42 2025 -0600 - Attack and camera fix
+37044a3 - Jose Pablo Soto - Thu Oct 16 18:57:03 2025 -0600 - Clases updated tile map, attack, animation, camera
+05d43c8 - Jose Pablo Soto - Thu Oct 16 14:17:50 2025 -0600 - Updated attack duration (Still testing)
+26a0b75 - Jose Pablo Soto - Thu Oct 16 14:09:42 2025 -0600 - Updated some sprites
+b7afbf5 - Jose Pablo Soto - Thu Oct 16 12:13:42 2025 -0600 - Added attack animation and fixed rotation
+0a3c83e - Omar A - Wed Oct 15 11:02:01 2025 -0600 - Attack fixed
+8f92253 - Jose Pablo Soto - Tue Oct 14 19:15:43 2025 -0600 - Cambios clase 14_10_25
+445f9bb - Omar A - Tue Oct 14 15:34:16 2025 -0600 - Units standard complete and jump fixed
+d9ae1ae - Jose Pablo Soto - Sat Oct 11 22:02:02 2025 -0600 - Dinosauriso pasado a 32x32 píxeles, usando 4ppu y grid de 8
+b52b4eb - Omar A - Thu Oct 9 18:53:32 2025 -0600 - Size adjustments #1
+b2e29f9 - Jose Pablo Soto - Wed Oct 8 14:05:32 2025 -0600 - Added more sprites
+8aec1fd - Jose Pablo Soto - Wed Oct 8 08:37:22 2025 -0600 - Animator and sprites implemented
+bd20346 - Omar A - Wed Oct 1 13:57:12 2025 -0600 - Player and metrics adjusted
+d27dd21 - Omar A - Tue Sep 30 18:59:26 2025 -0600 - Movement adjustments
+b054302 - Jose Pablo Soto - Tue Sep 30 18:31:25 2025 -0600 - Updated friction factor
+e81342a - Omar A - Tue Sep 30 18:27:05 2025 -0600 - Character adjustments
+d8d2b7a - Omar A - Sun Sep 28 17:51:48 2025 -0600 - Camera and attack adjustments
+8b4c381 - Jose Pablo Soto - Thu Sep 25 19:04:42 2025 -0600 - Updated Character movement
+668e8bd - Omar A - Tue Sep 23 18:17:47 2025 -0600 - Error fix: missing .meta?
+b67102c - Jose Pablo Soto - Tue Sep 23 18:04:09 2025 -0600 - Sprites iniciales
+aa30ccd - Omar A - Tue Sep 23 12:55:45 2025 -0600 - First file
+c488e80 - Omar A - Tue Sep 23 12:51:08 2025 -0600 - Initial commit for setup
