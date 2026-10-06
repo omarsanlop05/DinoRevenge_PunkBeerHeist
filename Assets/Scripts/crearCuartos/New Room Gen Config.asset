@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b12516f287865574b9b1f19a04d62801, type: 3}
+  m_Name: New Room Gen Config
+  m_EditorClassIdentifier: 
+  width: 37
+  height: 21
+  wallThickness: 2
+  floorThickness: 2
+  ceilingThickness: 2
+  doorHeight: 4
+  solidTile: {fileID: 11400000, guid: 25c7bb5385bc8614dbff711828d7c05d, type: 2}
+  platformTile: {fileID: 11400000, guid: 25c7bb5385bc8614dbff711828d7c05d, type: 2}
+  playerHeight: 2
+  maxJumpHeight: 4
+  maxJumpDistance: 4
+  minPlatforms: 3
+  maxPlatforms: 7
+  platformLength: {x: 3, y: 6}
+  placementAttempts: 60
+  enemyPrefabs: []
+  enemyCount: {x: 2, y: 4}
+  safeZoneFromEntry: 8

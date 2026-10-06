@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: b12516f287865574b9b1f19a04d62801
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - solidTile: {fileID: 11400000, guid: 25c7bb5385bc8614dbff711828d7c05d, type: 2}
+  - platformTile: {fileID: 11400000, guid: 25c7bb5385bc8614dbff711828d7c05d, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
