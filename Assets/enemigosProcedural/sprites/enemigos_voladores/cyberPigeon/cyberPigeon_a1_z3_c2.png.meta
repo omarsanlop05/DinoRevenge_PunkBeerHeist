@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 6420d806ef87c93739ed7528ce15fbd4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -91636476190928026
+    second: cyberPigeon_a1_z3_c2_0
+  - first:
+      213: 8860098677844850566
+    second: cyberPigeon_a1_z3_c2_1
+  - first:
+      213: -4356348256429670783
+    second: cyberPigeon_a1_z3_c2_2
+  - first:
+      213: -8298325443224445369
+    second: cyberPigeon_a1_z3_c2_3
+  - first:
+      213: 4741230900665832049
+    second: cyberPigeon_a1_z3_c2_4
+  - first:
+      213: -2335722259749954466
+    second: cyberPigeon_a1_z3_c2_5
+  - first:
+      213: 147890304886404500
+    second: cyberPigeon_a1_z3_c2_6
+  - first:
+      213: -1419718121833746381
+    second: cyberPigeon_a1_z3_c2_7
+  - first:
+      213: -7906264506353043265
+    second: cyberPigeon_a1_z3_c2_8
+  - first:
+      213: 5321620825942134542
+    second: cyberPigeon_a1_z3_c2_9
+  - first:
+      213: 2776199679892631456
+    second: cyberPigeon_a1_z3_c2_10
+  - first:
+      213: -6007878127924603106
+    second: cyberPigeon_a1_z3_c2_11
+  - first:
+      213: -4797963041748625158
+    second: cyberPigeon_a1_z3_c2_12
+  - first:
+      213: 4291382508171572626
+    second: cyberPigeon_a1_z3_c2_13
+  - first:
+      213: -5229766593588851032
+    second: cyberPigeon_a1_z3_c2_14
+  - first:
+      213: -8007236162544798613
+    second: cyberPigeon_a1_z3_c2_15
+  - first:
+      213: 2489417084592543071
+    second: cyberPigeon_a1_z3_c2_16
+  - first:
+      213: 8882365572239462419
+    second: cyberPigeon_a1_z3_c2_17
+  - first:
+      213: -7935045234363860436
+    second: cyberPigeon_a1_z3_c2_18
+  - first:
+      213: -7193319156226359857
+    second: cyberPigeon_a1_z3_c2_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 2
+        width: 43
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 663db244c117abef0800000000000000
+      internalID: -91636476190928026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 2
+        width: 43
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 687b9dffdc465fa70800000000000000
+      internalID: 8860098677844850566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 3
+        width: 43
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18efd9977542b83c0800000000000000
+      internalID: -4356348256429670783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 4
+        width: 40
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74e550ec9fc66dc80800000000000000
+      internalID: -8298325443224445369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_4
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 4
+        width: 39
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 172da40526c3cc140800000000000000
+      internalID: 4741230900665832049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 3
+        width: 42
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5c91addaf8d59fd0800000000000000
+      internalID: -2335722259749954466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_6
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 4
+        width: 40
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4957a70e2796d0200800000000000000
+      internalID: 147890304886404500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_7
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 5
+        width: 47
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3303ae2e3e52c4ce0800000000000000
+      internalID: -1419718121833746381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_8
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 4
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb83c86125e474290800000000000000
+      internalID: -7906264506353043265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_9
+      rect:
+        serializedVersion: 2
+        x: 582
+        y: 4
+        width: 46
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0f0a9f22f13ad940800000000000000
+      internalID: 5321620825942134542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_10
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 4
+        width: 42
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0afad8166ea078620800000000000000
+      internalID: 2776199679892631456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_11
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 3
+        width: 43
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e17173b7caabf9ca0800000000000000
+      internalID: -6007878127924603106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_12
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 5
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af8de13c8063a6db0800000000000000
+      internalID: -4797963041748625158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_13
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 4
+        width: 46
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29534ea87ad0e8b30800000000000000
+      internalID: 4291382508171572626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_14
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 5
+        width: 44
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ae8eeaddf22c67b0800000000000000
+      internalID: -5229766593588851032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_15
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 5
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b64fad2622590e090800000000000000
+      internalID: -8007236162544798613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_16
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 6
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f555de026af2c8220800000000000000
+      internalID: 2489417084592543071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_17
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 7
+        width: 46
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3101e7a5d60844b70800000000000000
+      internalID: 8882365572239462419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_18
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 7
+        width: 44
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2af519a66e01e190800000000000000
+      internalID: -7935045234363860436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cyberPigeon_a1_z3_c2_19
+      rect:
+        serializedVersion: 2
+        x: 1223
+        y: 7
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcd7d19d6523c2c90800000000000000
+      internalID: -7193319156226359857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      cyberPigeon_a1_z3_c2_0: -91636476190928026
+      cyberPigeon_a1_z3_c2_1: 8860098677844850566
+      cyberPigeon_a1_z3_c2_10: 2776199679892631456
+      cyberPigeon_a1_z3_c2_11: -6007878127924603106
+      cyberPigeon_a1_z3_c2_12: -4797963041748625158
+      cyberPigeon_a1_z3_c2_13: 4291382508171572626
+      cyberPigeon_a1_z3_c2_14: -5229766593588851032
+      cyberPigeon_a1_z3_c2_15: -8007236162544798613
+      cyberPigeon_a1_z3_c2_16: 2489417084592543071
+      cyberPigeon_a1_z3_c2_17: 8882365572239462419
+      cyberPigeon_a1_z3_c2_18: -7935045234363860436
+      cyberPigeon_a1_z3_c2_19: -7193319156226359857
+      cyberPigeon_a1_z3_c2_2: -4356348256429670783
+      cyberPigeon_a1_z3_c2_3: -8298325443224445369
+      cyberPigeon_a1_z3_c2_4: 4741230900665832049
+      cyberPigeon_a1_z3_c2_5: -2335722259749954466
+      cyberPigeon_a1_z3_c2_6: 147890304886404500
+      cyberPigeon_a1_z3_c2_7: -1419718121833746381
+      cyberPigeon_a1_z3_c2_8: -7906264506353043265
+      cyberPigeon_a1_z3_c2_9: 5321620825942134542
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

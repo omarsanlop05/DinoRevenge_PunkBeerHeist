@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: a05dca959e281b8cca3e0084cbb029c2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6321576239925719403
+    second: ogreBouncer_a2_z2_c3_0
+  - first:
+      213: 8604221107501000289
+    second: ogreBouncer_a2_z2_c3_1
+  - first:
+      213: -2150918619539921999
+    second: ogreBouncer_a2_z2_c3_2
+  - first:
+      213: -2372948767178166648
+    second: ogreBouncer_a2_z2_c3_3
+  - first:
+      213: 1632558698634568363
+    second: ogreBouncer_a2_z2_c3_4
+  - first:
+      213: -3720692797485191929
+    second: ogreBouncer_a2_z2_c3_5
+  - first:
+      213: -6069143256712762293
+    second: ogreBouncer_a2_z2_c3_6
+  - first:
+      213: -8893298066638247423
+    second: ogreBouncer_a2_z2_c3_7
+  - first:
+      213: -5417233305196019576
+    second: ogreBouncer_a2_z2_c3_8
+  - first:
+      213: 2413482864703088251
+    second: ogreBouncer_a2_z2_c3_9
+  - first:
+      213: 8376905421278519742
+    second: ogreBouncer_a2_z2_c3_10
+  - first:
+      213: 4544533128177517776
+    second: ogreBouncer_a2_z2_c3_11
+  - first:
+      213: -9015416864211652852
+    second: ogreBouncer_a2_z2_c3_12
+  - first:
+      213: -8552856694845111096
+    second: ogreBouncer_a2_z2_c3_13
+  - first:
+      213: -6505411649394117911
+    second: ogreBouncer_a2_z2_c3_14
+  - first:
+      213: 8242011549306919917
+    second: ogreBouncer_a2_z2_c3_15
+  - first:
+      213: -7487089432495968739
+    second: ogreBouncer_a2_z2_c3_16
+  - first:
+      213: -6120645014104531214
+    second: ogreBouncer_a2_z2_c3_17
+  - first:
+      213: -5499574434446882985
+    second: ogreBouncer_a2_z2_c3_18
+  - first:
+      213: -7391641986827351739
+    second: ogreBouncer_a2_z2_c3_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 0
+        width: 33
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b617259d810cab750800000000000000
+      internalID: 6321576239925719403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 166e3899285586770800000000000000
+      internalID: 8604221107501000289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_2
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 0
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b3ac8d59e66622e0800000000000000
+      internalID: -2150918619539921999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_3
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 0
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88ee42e2ba7911fd0800000000000000
+      internalID: -2372948767178166648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_4
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba2661b9c7308a610800000000000000
+      internalID: 1632558698634568363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_5
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 0
+        width: 33
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70d6a8f1d917d5cc0800000000000000
+      internalID: -3720692797485191929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_6
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 0
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4cadac1d5216cba0800000000000000
+      internalID: -6069143256712762293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10aeb50f688a49480800000000000000
+      internalID: -8893298066638247423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_8
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 0
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 880406ab20f12d4b0800000000000000
+      internalID: -5417233305196019576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_9
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 0
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b76ae16d0e96e7120800000000000000
+      internalID: 2413482864703088251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_10
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 0
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb1a950191fb04470800000000000000
+      internalID: 8376905421278519742
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_11
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 0
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d404075dcc611f30800000000000000
+      internalID: 4544533128177517776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_12
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 0
+        width: 37
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0f2992b02ec2e280800000000000000
+      internalID: -9015416864211652852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_13
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 0
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c48fe8a6262e4980800000000000000
+      internalID: -8552856694845111096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_14
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 0
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e2fc20729228b5a0800000000000000
+      internalID: -6505411649394117911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_15
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 0
+        width: 34
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deb1b1706d1816270800000000000000
+      internalID: 8242011549306919917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_16
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 0
+        width: 35
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1e2f7654d3881890800000000000000
+      internalID: -7487089432495968739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_17
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 0
+        width: 34
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fe980ac9c91f0ba0800000000000000
+      internalID: -6120645014104531214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_18
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 0
+        width: 34
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75749fa90369da3b0800000000000000
+      internalID: -5499574434446882985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogreBouncer_a2_z2_c3_19
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 0
+        width: 38
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5490b4c86cc9b6990800000000000000
+      internalID: -7391641986827351739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ogreBouncer_a2_z2_c3_0: 6321576239925719403
+      ogreBouncer_a2_z2_c3_1: 8604221107501000289
+      ogreBouncer_a2_z2_c3_10: 8376905421278519742
+      ogreBouncer_a2_z2_c3_11: 4544533128177517776
+      ogreBouncer_a2_z2_c3_12: -9015416864211652852
+      ogreBouncer_a2_z2_c3_13: -8552856694845111096
+      ogreBouncer_a2_z2_c3_14: -6505411649394117911
+      ogreBouncer_a2_z2_c3_15: 8242011549306919917
+      ogreBouncer_a2_z2_c3_16: -7487089432495968739
+      ogreBouncer_a2_z2_c3_17: -6120645014104531214
+      ogreBouncer_a2_z2_c3_18: -5499574434446882985
+      ogreBouncer_a2_z2_c3_19: -7391641986827351739
+      ogreBouncer_a2_z2_c3_2: -2150918619539921999
+      ogreBouncer_a2_z2_c3_3: -2372948767178166648
+      ogreBouncer_a2_z2_c3_4: 1632558698634568363
+      ogreBouncer_a2_z2_c3_5: -3720692797485191929
+      ogreBouncer_a2_z2_c3_6: -6069143256712762293
+      ogreBouncer_a2_z2_c3_7: -8893298066638247423
+      ogreBouncer_a2_z2_c3_8: -5417233305196019576
+      ogreBouncer_a2_z2_c3_9: 2413482864703088251
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: a44886dd4197030a9bd6dbeeb6560556
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7711550650271212037
+    second: bartender_a3_z3_c2_0
+  - first:
+      213: -2504293556147449897
+    second: bartender_a3_z3_c2_1
+  - first:
+      213: 4696805131766775357
+    second: bartender_a3_z3_c2_2
+  - first:
+      213: -8083886507382929620
+    second: bartender_a3_z3_c2_3
+  - first:
+      213: -9012154198969465722
+    second: bartender_a3_z3_c2_4
+  - first:
+      213: 5933708850095970427
+    second: bartender_a3_z3_c2_5
+  - first:
+      213: -1983793707712067246
+    second: bartender_a3_z3_c2_6
+  - first:
+      213: 8601155244434363711
+    second: bartender_a3_z3_c2_7
+  - first:
+      213: 660352122843821101
+    second: bartender_a3_z3_c2_8
+  - first:
+      213: -8956341709613379337
+    second: bartender_a3_z3_c2_9
+  - first:
+      213: -9067255589762229562
+    second: bartender_a3_z3_c2_10
+  - first:
+      213: -3575147149677968935
+    second: bartender_a3_z3_c2_11
+  - first:
+      213: 2567042635131926219
+    second: bartender_a3_z3_c2_12
+  - first:
+      213: 5679422360827375796
+    second: bartender_a3_z3_c2_13
+  - first:
+      213: 1181019144768805210
+    second: bartender_a3_z3_c2_14
+  - first:
+      213: -5782473775700858350
+    second: bartender_a3_z3_c2_15
+  - first:
+      213: 2660210497188006044
+    second: bartender_a3_z3_c2_16
+  - first:
+      213: -4523242896185407049
+    second: bartender_a3_z3_c2_17
+  - first:
+      213: -1918915232861347545
+    second: bartender_a3_z3_c2_18
+  - first:
+      213: -2989069191458146341
+    second: bartender_a3_z3_c2_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 0
+        width: 33
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfdd6278a811bf490800000000000000
+      internalID: -7711550650271212037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7df088c6746fe3dd0800000000000000
+      internalID: -2504293556147449897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_2
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 0
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3eb032f1676e2140800000000000000
+      internalID: 4696805131766775357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_3
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 0
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c270ed24d0440df80800000000000000
+      internalID: -8083886507382929620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_4
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
+        width: 33
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 684416521856ee280800000000000000
+      internalID: -9012154198969465722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_5
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 0
+        width: 33
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b78df82d2c4c85250800000000000000
+      internalID: 5933708850095970427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_6
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 0
+        width: 38
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 259ca2822262874e0800000000000000
+      internalID: -1983793707712067246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_7
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 0
+        width: 43
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f359f7abf117d5770800000000000000
+      internalID: 8601155244434363711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_8
+      rect:
+        serializedVersion: 2
+        x: 525
+        y: 0
+        width: 34
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d24f7ccc1ca0a2900800000000000000
+      internalID: 660352122843821101
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_9
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 0
+        width: 34
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f0da77faaea4b380800000000000000
+      internalID: -8956341709613379337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_10
+      rect:
+        serializedVersion: 2
+        x: 652
+        y: 0
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ca1c8cd413aa2280800000000000000
+      internalID: -9067255589762229562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_11
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 0
+        width: 33
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d1c1bbfb96826ec0800000000000000
+      internalID: -3575147149677968935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_12
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 0
+        width: 37
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc632560da7ff9320800000000000000
+      internalID: 2567042635131926219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_13
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 0
+        width: 36
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b0b68adb8c51de40800000000000000
+      internalID: 5679422360827375796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_14
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 0
+        width: 35
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5951e4a7a2d36010800000000000000
+      internalID: 1181019144768805210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_15
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 0
+        width: 35
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21aa654ecb680cfa0800000000000000
+      internalID: -5782473775700858350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_16
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 0
+        width: 34
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9808a05a57fae420800000000000000
+      internalID: 2660210497188006044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_17
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 0
+        width: 34
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b94f041d863a31c0800000000000000
+      internalID: -4523242896185407049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_18
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 0
+        width: 33
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 721a63733c4ae55e0800000000000000
+      internalID: -1918915232861347545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bartender_a3_z3_c2_19
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 0
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd7b21a3861b486d0800000000000000
+      internalID: -2989069191458146341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      bartender_a3_z3_c2_0: -7711550650271212037
+      bartender_a3_z3_c2_1: -2504293556147449897
+      bartender_a3_z3_c2_10: -9067255589762229562
+      bartender_a3_z3_c2_11: -3575147149677968935
+      bartender_a3_z3_c2_12: 2567042635131926219
+      bartender_a3_z3_c2_13: 5679422360827375796
+      bartender_a3_z3_c2_14: 1181019144768805210
+      bartender_a3_z3_c2_15: -5782473775700858350
+      bartender_a3_z3_c2_16: 2660210497188006044
+      bartender_a3_z3_c2_17: -4523242896185407049
+      bartender_a3_z3_c2_18: -1918915232861347545
+      bartender_a3_z3_c2_19: -2989069191458146341
+      bartender_a3_z3_c2_2: 4696805131766775357
+      bartender_a3_z3_c2_3: -8083886507382929620
+      bartender_a3_z3_c2_4: -9012154198969465722
+      bartender_a3_z3_c2_5: 5933708850095970427
+      bartender_a3_z3_c2_6: -1983793707712067246
+      bartender_a3_z3_c2_7: 8601155244434363711
+      bartender_a3_z3_c2_8: 660352122843821101
+      bartender_a3_z3_c2_9: -8956341709613379337
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

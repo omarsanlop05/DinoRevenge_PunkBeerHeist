@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 9ad03118576043c5fb4bec6fd2938974
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7235196397471471698
+    second: rataPiro_a1_z3_c3_0
+  - first:
+      213: -7604211989600611657
+    second: rataPiro_a1_z3_c3_1
+  - first:
+      213: 3148412466826261159
+    second: rataPiro_a1_z3_c3_2
+  - first:
+      213: 5992494662457745943
+    second: rataPiro_a1_z3_c3_3
+  - first:
+      213: -268850373974770877
+    second: rataPiro_a1_z3_c3_4
+  - first:
+      213: -3234422703132515346
+    second: rataPiro_a1_z3_c3_5
+  - first:
+      213: 8341442318605585077
+    second: rataPiro_a1_z3_c3_6
+  - first:
+      213: 8064410147899021271
+    second: rataPiro_a1_z3_c3_7
+  - first:
+      213: 7406899408887376154
+    second: rataPiro_a1_z3_c3_8
+  - first:
+      213: 2677928127439619328
+    second: rataPiro_a1_z3_c3_9
+  - first:
+      213: 1612290599287223363
+    second: rataPiro_a1_z3_c3_10
+  - first:
+      213: 2674256594717967229
+    second: rataPiro_a1_z3_c3_11
+  - first:
+      213: 5942958178035420688
+    second: rataPiro_a1_z3_c3_12
+  - first:
+      213: 9014036734977115669
+    second: rataPiro_a1_z3_c3_13
+  - first:
+      213: -808029860906895406
+    second: rataPiro_a1_z3_c3_14
+  - first:
+      213: 8782099868871281528
+    second: rataPiro_a1_z3_c3_15
+  - first:
+      213: -9038749530071289965
+    second: rataPiro_a1_z3_c3_16
+  - first:
+      213: 3829484448082479071
+    second: rataPiro_a1_z3_c3_17
+  - first:
+      213: 5534492499412570161
+    second: rataPiro_a1_z3_c3_18
+  - first:
+      213: -2087977206977990636
+    second: rataPiro_a1_z3_c3_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 0
+        width: 37
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea7e680d53b679b90800000000000000
+      internalID: -7235196397471471698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 39
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b2d61bfb79687690800000000000000
+      internalID: -7604211989600611657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 0
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a23793257861bb20800000000000000
+      internalID: 3148412466826261159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 0
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 712e73a552e992350800000000000000
+      internalID: 5992494662457745943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_4
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 0
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34bb081620ad44cf0800000000000000
+      internalID: -268850373974770877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 0
+        width: 39
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee3e35e20b50d13d0800000000000000
+      internalID: -3234422703132515346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_6
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 0
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ba85ea0891c2c370800000000000000
+      internalID: 8341442318605585077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 45
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d7939c6d4a8aef60800000000000000
+      internalID: 8064410147899021271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_8
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 0
+        width: 37
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1968c9d4c79ac660800000000000000
+      internalID: 7406899408887376154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_9
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 0
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 005c0129179e92520800000000000000
+      internalID: 2677928127439619328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_10
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 0
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 344773df1c1006610800000000000000
+      internalID: 1612290599287223363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_11
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 0
+        width: 39
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d73096e343edc1520800000000000000
+      internalID: 2674256594717967229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_12
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 0
+        width: 39
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01ecdccc9f0a97250800000000000000
+      internalID: 5942958178035420688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_13
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 0
+        width: 40
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51602ace6aa481d70800000000000000
+      internalID: 9014036734977115669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_14
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d77cb46f1d49c4f0800000000000000
+      internalID: -808029860906895406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_15
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 0
+        width: 36
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87bc31a1d4940e970800000000000000
+      internalID: 8782099868871281528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_16
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 0
+        width: 36
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39f2f561139ef8280800000000000000
+      internalID: -9038749530071289965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_17
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 0
+        width: 40
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd7c6d8e0df052530800000000000000
+      internalID: 3829484448082479071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_18
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 130dc8fea977ecc40800000000000000
+      internalID: 5534492499412570161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataPiro_a1_z3_c3_19
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 0
+        width: 41
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 410f6f6fac30603e0800000000000000
+      internalID: -2087977206977990636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      rataPiro_a1_z3_c3_0: -7235196397471471698
+      rataPiro_a1_z3_c3_1: -7604211989600611657
+      rataPiro_a1_z3_c3_10: 1612290599287223363
+      rataPiro_a1_z3_c3_11: 2674256594717967229
+      rataPiro_a1_z3_c3_12: 5942958178035420688
+      rataPiro_a1_z3_c3_13: 9014036734977115669
+      rataPiro_a1_z3_c3_14: -808029860906895406
+      rataPiro_a1_z3_c3_15: 8782099868871281528
+      rataPiro_a1_z3_c3_16: -9038749530071289965
+      rataPiro_a1_z3_c3_17: 3829484448082479071
+      rataPiro_a1_z3_c3_18: 5534492499412570161
+      rataPiro_a1_z3_c3_19: -2087977206977990636
+      rataPiro_a1_z3_c3_2: 3148412466826261159
+      rataPiro_a1_z3_c3_3: 5992494662457745943
+      rataPiro_a1_z3_c3_4: -268850373974770877
+      rataPiro_a1_z3_c3_5: -3234422703132515346
+      rataPiro_a1_z3_c3_6: 8341442318605585077
+      rataPiro_a1_z3_c3_7: 8064410147899021271
+      rataPiro_a1_z3_c3_8: 7406899408887376154
+      rataPiro_a1_z3_c3_9: 2677928127439619328
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

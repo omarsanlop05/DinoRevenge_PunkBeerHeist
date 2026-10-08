@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: dd6ff65f8d336344b890e00ffe07c4af
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3523445606597989607
+    second: skaterSkeleton_a1_z1_c2_0
+  - first:
+      213: -2940776881590067146
+    second: skaterSkeleton_a1_z1_c2_1
+  - first:
+      213: -4977796873629203549
+    second: skaterSkeleton_a1_z1_c2_2
+  - first:
+      213: -3368026547111507556
+    second: skaterSkeleton_a1_z1_c2_3
+  - first:
+      213: 6402240604636694154
+    second: skaterSkeleton_a1_z1_c2_4
+  - first:
+      213: -6420822238262725444
+    second: skaterSkeleton_a1_z1_c2_5
+  - first:
+      213: -8754913907630711916
+    second: skaterSkeleton_a1_z1_c2_6
+  - first:
+      213: 3899649009108911199
+    second: skaterSkeleton_a1_z1_c2_7
+  - first:
+      213: 3560796087133518367
+    second: skaterSkeleton_a1_z1_c2_8
+  - first:
+      213: -2107633202963706912
+    second: skaterSkeleton_a1_z1_c2_9
+  - first:
+      213: 2429830118628171618
+    second: skaterSkeleton_a1_z1_c2_10
+  - first:
+      213: 5692114962232337435
+    second: skaterSkeleton_a1_z1_c2_11
+  - first:
+      213: 2986752610078457807
+    second: skaterSkeleton_a1_z1_c2_12
+  - first:
+      213: -2051576921990956792
+    second: skaterSkeleton_a1_z1_c2_13
+  - first:
+      213: 8298227448136630963
+    second: skaterSkeleton_a1_z1_c2_14
+  - first:
+      213: 4030438105881382398
+    second: skaterSkeleton_a1_z1_c2_15
+  - first:
+      213: 7890935480072005699
+    second: skaterSkeleton_a1_z1_c2_16
+  - first:
+      213: 2863882856804700770
+    second: skaterSkeleton_a1_z1_c2_17
+  - first:
+      213: 9002873487272261848
+    second: skaterSkeleton_a1_z1_c2_18
+  - first:
+      213: 7275844701529049221
+    second: skaterSkeleton_a1_z1_c2_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 0
+        width: 36
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91be05983e43a1fc0800000000000000
+      internalID: -3523445606597989607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 630a421d1034037d0800000000000000
+      internalID: -2940776881590067146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 0
+        width: 36
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a3084fed105beab0800000000000000
+      internalID: -4977796873629203549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 0
+        width: 36
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c99455133bd5241d0800000000000000
+      internalID: -3368026547111507556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_4
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 0
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a86c3fdc8e359d850800000000000000
+      internalID: 6402240604636694154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 0
+        width: 38
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb4fb6a7138a4e6a0800000000000000
+      internalID: -6420822238262725444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_6
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 0
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49b5b80cf2c408680800000000000000
+      internalID: -8754913907630711916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5404a0dc165e1630800000000000000
+      internalID: 3899649009108911199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_8
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 0
+        width: 36
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1ab133ec2d7a6130800000000000000
+      internalID: 3560796087133518367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_9
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 0
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0eb8784c4ce20c2e0800000000000000
+      internalID: -2107633202963706912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_10
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 0
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26f906d7e9d78b120800000000000000
+      internalID: 2429830118628171618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_11
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 0
+        width: 38
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b146b8866647efe40800000000000000
+      internalID: 5692114962232337435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_12
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcf72b3aca3137920800000000000000
+      internalID: 2986752610078457807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_13
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 809f65fb8a55783e0800000000000000
+      internalID: -2051576921990956792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_14
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 0
+        width: 36
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b2849fe5e9392370800000000000000
+      internalID: 8298227448136630963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_15
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 0
+        width: 36
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efd02466a1efee730800000000000000
+      internalID: 4030438105881382398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_16
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 0
+        width: 36
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 348e73bd20c328d60800000000000000
+      internalID: 7890935480072005699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_17
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 262dc26e84e8eb720800000000000000
+      internalID: 2863882856804700770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_18
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 0
+        width: 36
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d835a6ccb1a0fc70800000000000000
+      internalID: 9002873487272261848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: skaterSkeleton_a1_z1_c2_19
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 0
+        width: 40
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5880c8bf43ef8f460800000000000000
+      internalID: 7275844701529049221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      skaterSkeleton_a1_z1_c2_0: -3523445606597989607
+      skaterSkeleton_a1_z1_c2_1: -2940776881590067146
+      skaterSkeleton_a1_z1_c2_10: 2429830118628171618
+      skaterSkeleton_a1_z1_c2_11: 5692114962232337435
+      skaterSkeleton_a1_z1_c2_12: 2986752610078457807
+      skaterSkeleton_a1_z1_c2_13: -2051576921990956792
+      skaterSkeleton_a1_z1_c2_14: 8298227448136630963
+      skaterSkeleton_a1_z1_c2_15: 4030438105881382398
+      skaterSkeleton_a1_z1_c2_16: 7890935480072005699
+      skaterSkeleton_a1_z1_c2_17: 2863882856804700770
+      skaterSkeleton_a1_z1_c2_18: 9002873487272261848
+      skaterSkeleton_a1_z1_c2_19: 7275844701529049221
+      skaterSkeleton_a1_z1_c2_2: -4977796873629203549
+      skaterSkeleton_a1_z1_c2_3: -3368026547111507556
+      skaterSkeleton_a1_z1_c2_4: 6402240604636694154
+      skaterSkeleton_a1_z1_c2_5: -6420822238262725444
+      skaterSkeleton_a1_z1_c2_6: -8754913907630711916
+      skaterSkeleton_a1_z1_c2_7: 3899649009108911199
+      skaterSkeleton_a1_z1_c2_8: 3560796087133518367
+      skaterSkeleton_a1_z1_c2_9: -2107633202963706912
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

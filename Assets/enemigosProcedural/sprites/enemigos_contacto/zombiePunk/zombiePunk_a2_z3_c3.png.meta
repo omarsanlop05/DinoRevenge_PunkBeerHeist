@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: d505a42c3dc5c75cd80b73088906dbb4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4331195300612228211
+    second: zombiePunk_a2_z3_c3_0
+  - first:
+      213: 7471695315375538033
+    second: zombiePunk_a2_z3_c3_1
+  - first:
+      213: 5474469431076044696
+    second: zombiePunk_a2_z3_c3_2
+  - first:
+      213: 2139545339852094243
+    second: zombiePunk_a2_z3_c3_3
+  - first:
+      213: -2458406634204342842
+    second: zombiePunk_a2_z3_c3_4
+  - first:
+      213: 7676448336531510225
+    second: zombiePunk_a2_z3_c3_5
+  - first:
+      213: -6472752081922233128
+    second: zombiePunk_a2_z3_c3_6
+  - first:
+      213: -1011613994262916865
+    second: zombiePunk_a2_z3_c3_7
+  - first:
+      213: 3869747399702576690
+    second: zombiePunk_a2_z3_c3_8
+  - first:
+      213: -536178496637696826
+    second: zombiePunk_a2_z3_c3_9
+  - first:
+      213: -2890218852349903089
+    second: zombiePunk_a2_z3_c3_10
+  - first:
+      213: 8592151620662203689
+    second: zombiePunk_a2_z3_c3_11
+  - first:
+      213: 6629025191139318994
+    second: zombiePunk_a2_z3_c3_12
+  - first:
+      213: 817376919195953403
+    second: zombiePunk_a2_z3_c3_13
+  - first:
+      213: -8467422972598930371
+    second: zombiePunk_a2_z3_c3_14
+  - first:
+      213: 4667645733132534208
+    second: zombiePunk_a2_z3_c3_15
+  - first:
+      213: -6523214041612100336
+    second: zombiePunk_a2_z3_c3_16
+  - first:
+      213: 6894666705934365866
+    second: zombiePunk_a2_z3_c3_17
+  - first:
+      213: -5868483359648668675
+    second: zombiePunk_a2_z3_c3_18
+  - first:
+      213: 6430673687624812468
+    second: zombiePunk_a2_z3_c3_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37445d1ad2f7b1c30800000000000000
+      internalID: 4331195300612228211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_1
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 0
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17fb8e67d4bc0b760800000000000000
+      internalID: 7471695315375538033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 0
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89fb50d41f839fb40800000000000000
+      internalID: 5474469431076044696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_3
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 0
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32bf9ba962131bd10800000000000000
+      internalID: 2139545339852094243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_4
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 0
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c559cef03cf1edd0800000000000000
+      internalID: -2458406634204342842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_5
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 0
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d3599b2719388a60800000000000000
+      internalID: 7676448336531510225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_6
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 0
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dceadd864a2c26a0800000000000000
+      internalID: -6472752081922233128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 39
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff015269e6606f1f0800000000000000
+      internalID: -1011613994262916865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_8
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 0
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23e73c9d1ca14b530800000000000000
+      internalID: 3869747399702576690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_9
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 0
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c405b38f7c1f88f0800000000000000
+      internalID: -536178496637696826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_10
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 0
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0ffb8e4441e3e7d0800000000000000
+      internalID: -2890218852349903089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_11
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 0
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9251ed530647d3770800000000000000
+      internalID: 8592151620662203689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_12
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 0
+        width: 39
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dc99fc0a470ffb50800000000000000
+      internalID: 6629025191139318994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_13
+      rect:
+        serializedVersion: 2
+        x: 845
+        y: 0
+        width: 34
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf827443af7e75b00800000000000000
+      internalID: 817376919195953403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_14
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 0
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3432433babad7a80800000000000000
+      internalID: -8467422972598930371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_15
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 0
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c18bb4601fc6c040800000000000000
+      internalID: 4667645733132534208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_16
+      rect:
+        serializedVersion: 2
+        x: 1039
+        y: 0
+        width: 32
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01ddedff363e875a0800000000000000
+      internalID: -6523214041612100336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_17
+      rect:
+        serializedVersion: 2
+        x: 1103
+        y: 0
+        width: 32
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa43eebe6d6ceaf50800000000000000
+      internalID: 6894666705934365866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_18
+      rect:
+        serializedVersion: 2
+        x: 1167
+        y: 0
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df3a9d91a75fe8ea0800000000000000
+      internalID: -5868483359648668675
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: zombiePunk_a2_z3_c3_19
+      rect:
+        serializedVersion: 2
+        x: 1231
+        y: 0
+        width: 38
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b70451d5a75e3950800000000000000
+      internalID: 6430673687624812468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      zombiePunk_a2_z3_c3_0: 4331195300612228211
+      zombiePunk_a2_z3_c3_1: 7471695315375538033
+      zombiePunk_a2_z3_c3_10: -2890218852349903089
+      zombiePunk_a2_z3_c3_11: 8592151620662203689
+      zombiePunk_a2_z3_c3_12: 6629025191139318994
+      zombiePunk_a2_z3_c3_13: 817376919195953403
+      zombiePunk_a2_z3_c3_14: -8467422972598930371
+      zombiePunk_a2_z3_c3_15: 4667645733132534208
+      zombiePunk_a2_z3_c3_16: -6523214041612100336
+      zombiePunk_a2_z3_c3_17: 6894666705934365866
+      zombiePunk_a2_z3_c3_18: -5868483359648668675
+      zombiePunk_a2_z3_c3_19: 6430673687624812468
+      zombiePunk_a2_z3_c3_2: 5474469431076044696
+      zombiePunk_a2_z3_c3_3: 2139545339852094243
+      zombiePunk_a2_z3_c3_4: -2458406634204342842
+      zombiePunk_a2_z3_c3_5: 7676448336531510225
+      zombiePunk_a2_z3_c3_6: -6472752081922233128
+      zombiePunk_a2_z3_c3_7: -1011613994262916865
+      zombiePunk_a2_z3_c3_8: 3869747399702576690
+      zombiePunk_a2_z3_c3_9: -536178496637696826
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 08322db8ccada48898cc360583fb1bda
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3853110892313653384
+    second: hinchaChivas_a3_z2_c3_0
+  - first:
+      213: 2796480355530748588
+    second: hinchaChivas_a3_z2_c3_1
+  - first:
+      213: 6086702529929421589
+    second: hinchaChivas_a3_z2_c3_2
+  - first:
+      213: 5072196503981032077
+    second: hinchaChivas_a3_z2_c3_3
+  - first:
+      213: -5244356835602576532
+    second: hinchaChivas_a3_z2_c3_4
+  - first:
+      213: 4327259000727120990
+    second: hinchaChivas_a3_z2_c3_5
+  - first:
+      213: -7308964211537423305
+    second: hinchaChivas_a3_z2_c3_6
+  - first:
+      213: 9080097270194216204
+    second: hinchaChivas_a3_z2_c3_7
+  - first:
+      213: -2268465775313816248
+    second: hinchaChivas_a3_z2_c3_8
+  - first:
+      213: 3939196388624786807
+    second: hinchaChivas_a3_z2_c3_9
+  - first:
+      213: 3855208655059971144
+    second: hinchaChivas_a3_z2_c3_10
+  - first:
+      213: -2512433167306861643
+    second: hinchaChivas_a3_z2_c3_11
+  - first:
+      213: -5712937928581625351
+    second: hinchaChivas_a3_z2_c3_12
+  - first:
+      213: 4157628509870244556
+    second: hinchaChivas_a3_z2_c3_13
+  - first:
+      213: -7060421498660027486
+    second: hinchaChivas_a3_z2_c3_14
+  - first:
+      213: -5547725365766638031
+    second: hinchaChivas_a3_z2_c3_15
+  - first:
+      213: -6267348622854096526
+    second: hinchaChivas_a3_z2_c3_16
+  - first:
+      213: -8862343959454655161
+    second: hinchaChivas_a3_z2_c3_17
+  - first:
+      213: 2508162199578704063
+    second: hinchaChivas_a3_z2_c3_18
+  - first:
+      213: 8897641464693575286
+    second: hinchaChivas_a3_z2_c3_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 0
+        width: 34
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87fc47fde00078ac0800000000000000
+      internalID: -3853110892313653384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 34
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca2b4c421181fc620800000000000000
+      internalID: 2796480355530748588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_2
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 0
+        width: 34
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5132ae5c3bf487450800000000000000
+      internalID: 6086702529929421589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_3
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 0
+        width: 34
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8284c2c8df046640800000000000000
+      internalID: 5072196503981032077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_4
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
+        width: 34
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6b448a6e3d4837b0800000000000000
+      internalID: -5244356835602576532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_5
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 0
+        width: 34
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5ca37562238d0c30800000000000000
+      internalID: 4327259000727120990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_6
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 0
+        width: 34
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 734d44f26c7519a90800000000000000
+      internalID: -7308964211537423305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_7
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 0
+        width: 40
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0d9bebdb5cf20e70800000000000000
+      internalID: 9080097270194216204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_8
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 0
+        width: 45
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 845f94d656ac480e0800000000000000
+      internalID: -2268465775313816248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_9
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 0
+        width: 45
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7756b74ae36daa630800000000000000
+      internalID: 3939196388624786807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_10
+      rect:
+        serializedVersion: 2
+        x: 649
+        y: 0
+        width: 39
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84c6cd398d3708530800000000000000
+      internalID: 3855208655059971144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_11
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 0
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b3d3c4885b022dd0800000000000000
+      internalID: -2512433167306861643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_12
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 0
+        width: 39
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f9490fe83197b0b0800000000000000
+      internalID: -5712937928581625351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_13
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 0
+        width: 36
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc24ad60a1dd2b930800000000000000
+      internalID: 4157628509870244556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_14
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 0
+        width: 36
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a386dffd08540e90800000000000000
+      internalID: -7060421498660027486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_15
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 0
+        width: 35
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1363e064c258203b0800000000000000
+      internalID: -5547725365766638031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_16
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 0
+        width: 34
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2797f3322a7e509a0800000000000000
+      internalID: -6267348622854096526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_17
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 0
+        width: 34
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74d5063af11a20580800000000000000
+      internalID: -8862343959454655161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_18
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 0
+        width: 34
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb873f05b38cec220800000000000000
+      internalID: 2508162199578704063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hinchaChivas_a3_z2_c3_19
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 0
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67ec8d935c5ca7b70800000000000000
+      internalID: 8897641464693575286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      hinchaChivas_a3_z2_c3_0: -3853110892313653384
+      hinchaChivas_a3_z2_c3_1: 2796480355530748588
+      hinchaChivas_a3_z2_c3_10: 3855208655059971144
+      hinchaChivas_a3_z2_c3_11: -2512433167306861643
+      hinchaChivas_a3_z2_c3_12: -5712937928581625351
+      hinchaChivas_a3_z2_c3_13: 4157628509870244556
+      hinchaChivas_a3_z2_c3_14: -7060421498660027486
+      hinchaChivas_a3_z2_c3_15: -5547725365766638031
+      hinchaChivas_a3_z2_c3_16: -6267348622854096526
+      hinchaChivas_a3_z2_c3_17: -8862343959454655161
+      hinchaChivas_a3_z2_c3_18: 2508162199578704063
+      hinchaChivas_a3_z2_c3_19: 8897641464693575286
+      hinchaChivas_a3_z2_c3_2: 6086702529929421589
+      hinchaChivas_a3_z2_c3_3: 5072196503981032077
+      hinchaChivas_a3_z2_c3_4: -5244356835602576532
+      hinchaChivas_a3_z2_c3_5: 4327259000727120990
+      hinchaChivas_a3_z2_c3_6: -7308964211537423305
+      hinchaChivas_a3_z2_c3_7: 9080097270194216204
+      hinchaChivas_a3_z2_c3_8: -2268465775313816248
+      hinchaChivas_a3_z2_c3_9: 3939196388624786807
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

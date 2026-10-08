@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: f959e9597896f6b63b0d8924927a792e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6389328443305686085
+    second: calacaGlam_a2_z2_c2_0
+  - first:
+      213: 6286005971312165911
+    second: calacaGlam_a2_z2_c2_1
+  - first:
+      213: 1734352151615430968
+    second: calacaGlam_a2_z2_c2_2
+  - first:
+      213: -9064008925511662430
+    second: calacaGlam_a2_z2_c2_3
+  - first:
+      213: -7157370021909673820
+    second: calacaGlam_a2_z2_c2_4
+  - first:
+      213: -6931101486918095373
+    second: calacaGlam_a2_z2_c2_5
+  - first:
+      213: 13048539856251995
+    second: calacaGlam_a2_z2_c2_6
+  - first:
+      213: 4302453720411354567
+    second: calacaGlam_a2_z2_c2_7
+  - first:
+      213: 5150472864391903269
+    second: calacaGlam_a2_z2_c2_8
+  - first:
+      213: -9057363164788872994
+    second: calacaGlam_a2_z2_c2_9
+  - first:
+      213: -3575682561250974531
+    second: calacaGlam_a2_z2_c2_10
+  - first:
+      213: -8687162689964663482
+    second: calacaGlam_a2_z2_c2_11
+  - first:
+      213: 2683448249533548779
+    second: calacaGlam_a2_z2_c2_12
+  - first:
+      213: 3457067960537428880
+    second: calacaGlam_a2_z2_c2_13
+  - first:
+      213: -8441461619093400590
+    second: calacaGlam_a2_z2_c2_14
+  - first:
+      213: -3607994961206252983
+    second: calacaGlam_a2_z2_c2_15
+  - first:
+      213: 1429076901621463732
+    second: calacaGlam_a2_z2_c2_16
+  - first:
+      213: 5290957881087707750
+    second: calacaGlam_a2_z2_c2_17
+  - first:
+      213: 6472220069111133817
+    second: calacaGlam_a2_z2_c2_18
+  - first:
+      213: 7471819326101895571
+    second: calacaGlam_a2_z2_c2_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_0
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 0
+        width: 32
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 544f888fd547ba850800000000000000
+      internalID: 6389328443305686085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 0
+        width: 32
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 714cb0050216c3750800000000000000
+      internalID: 6286005971312165911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_2
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 0
+        width: 32
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 831e878c718a11810800000000000000
+      internalID: 1734352151615430968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_3
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 0
+        width: 32
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a448e9c7eb263280800000000000000
+      internalID: -9064008925511662430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_4
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 0
+        width: 32
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a84b0ee2e9ebac90800000000000000
+      internalID: -7157370021909673820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_5
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 0
+        width: 32
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fda0129be7cfcf90800000000000000
+      internalID: -6931101486918095373
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_6
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 0
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5c28fee39b5e2000800000000000000
+      internalID: 13048539856251995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_7
+      rect:
+        serializedVersion: 2
+        x: 461
+        y: 0
+        width: 41
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c53da30dd265bb30800000000000000
+      internalID: 4302453720411354567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_8
+      rect:
+        serializedVersion: 2
+        x: 526
+        y: 0
+        width: 33
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5283e5328c72a7740800000000000000
+      internalID: 5150472864391903269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_9
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 0
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed82d098038cd4280800000000000000
+      internalID: -9057363164788872994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_10
+      rect:
+        serializedVersion: 2
+        x: 654
+        y: 0
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db4a313c7af906ec0800000000000000
+      internalID: -3575682561250974531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_11
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 0
+        width: 32
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64d11ae5f8ff07780800000000000000
+      internalID: -8687162689964663482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_12
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 0
+        width: 37
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be8479627f58d3520800000000000000
+      internalID: 2683448249533548779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_13
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 0
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 093b7386ef8f9ff20800000000000000
+      internalID: 3457067960537428880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_14
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 0
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f318d8d167e9da80800000000000000
+      internalID: -8441461619093400590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_15
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 0
+        width: 34
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94ae6e1e2b3ddedc0800000000000000
+      internalID: -3607994961206252983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_16
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 0
+        width: 35
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bafcd5ded915d310800000000000000
+      internalID: 1429076901621463732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_17
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 0
+        width: 34
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66a49cff8224d6940800000000000000
+      internalID: 5290957881087707750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_18
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 0
+        width: 34
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 976f58f8cd1f1d950800000000000000
+      internalID: 6472220069111133817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: calacaGlam_a2_z2_c2_19
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 0
+        width: 38
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 399b336f61c31b760800000000000000
+      internalID: 7471819326101895571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      calacaGlam_a2_z2_c2_0: 6389328443305686085
+      calacaGlam_a2_z2_c2_1: 6286005971312165911
+      calacaGlam_a2_z2_c2_10: -3575682561250974531
+      calacaGlam_a2_z2_c2_11: -8687162689964663482
+      calacaGlam_a2_z2_c2_12: 2683448249533548779
+      calacaGlam_a2_z2_c2_13: 3457067960537428880
+      calacaGlam_a2_z2_c2_14: -8441461619093400590
+      calacaGlam_a2_z2_c2_15: -3607994961206252983
+      calacaGlam_a2_z2_c2_16: 1429076901621463732
+      calacaGlam_a2_z2_c2_17: 5290957881087707750
+      calacaGlam_a2_z2_c2_18: 6472220069111133817
+      calacaGlam_a2_z2_c2_19: 7471819326101895571
+      calacaGlam_a2_z2_c2_2: 1734352151615430968
+      calacaGlam_a2_z2_c2_3: -9064008925511662430
+      calacaGlam_a2_z2_c2_4: -7157370021909673820
+      calacaGlam_a2_z2_c2_5: -6931101486918095373
+      calacaGlam_a2_z2_c2_6: 13048539856251995
+      calacaGlam_a2_z2_c2_7: 4302453720411354567
+      calacaGlam_a2_z2_c2_8: 5150472864391903269
+      calacaGlam_a2_z2_c2_9: -9057363164788872994
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

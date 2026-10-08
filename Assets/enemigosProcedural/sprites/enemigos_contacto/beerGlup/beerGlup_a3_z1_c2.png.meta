@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 591d37f731b3613c9a1425478517a0fc
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5885454670059883277
+    second: beerGlup_a3_z1_c2_0
+  - first:
+      213: -8316894684832119017
+    second: beerGlup_a3_z1_c2_1
+  - first:
+      213: -180810780448523775
+    second: beerGlup_a3_z1_c2_2
+  - first:
+      213: -7851166385773586539
+    second: beerGlup_a3_z1_c2_3
+  - first:
+      213: 5393981998770213036
+    second: beerGlup_a3_z1_c2_4
+  - first:
+      213: -1966447469599865143
+    second: beerGlup_a3_z1_c2_5
+  - first:
+      213: 3486668011359323685
+    second: beerGlup_a3_z1_c2_6
+  - first:
+      213: -3315852109723933579
+    second: beerGlup_a3_z1_c2_7
+  - first:
+      213: -4847639115336915488
+    second: beerGlup_a3_z1_c2_8
+  - first:
+      213: 6603217078676420276
+    second: beerGlup_a3_z1_c2_9
+  - first:
+      213: 8829682722748759407
+    second: beerGlup_a3_z1_c2_10
+  - first:
+      213: 1503574813913031774
+    second: beerGlup_a3_z1_c2_11
+  - first:
+      213: 5327238325920431576
+    second: beerGlup_a3_z1_c2_12
+  - first:
+      213: -3740874447037951646
+    second: beerGlup_a3_z1_c2_13
+  - first:
+      213: -2335107378427870839
+    second: beerGlup_a3_z1_c2_14
+  - first:
+      213: 6491408910575929698
+    second: beerGlup_a3_z1_c2_15
+  - first:
+      213: 2537683217298764774
+    second: beerGlup_a3_z1_c2_16
+  - first:
+      213: 3340901915143137429
+    second: beerGlup_a3_z1_c2_17
+  - first:
+      213: 7030996312666941461
+    second: beerGlup_a3_z1_c2_18
+  - first:
+      213: 6553050689556631818
+    second: beerGlup_a3_z1_c2_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 0
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0b459607d55da150800000000000000
+      internalID: 5885454670059883277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_1
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 0
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7174f345954749c80800000000000000
+      internalID: -8316894684832119017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 0
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10afdcb9d81ad7df0800000000000000
+      internalID: -180810780448523775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_3
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 0
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5975a77f4cd0b0390800000000000000
+      internalID: -7851166385773586539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_4
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 0
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca0dc81ac064bda40800000000000000
+      internalID: 5393981998770213036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_5
+      rect:
+        serializedVersion: 2
+        x: 333
+        y: 0
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c6c801f176c5b4e0800000000000000
+      internalID: -1966447469599865143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_6
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 0
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5264aca4512236030800000000000000
+      internalID: 3486668011359323685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 39
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 574ec28031abbf1d0800000000000000
+      internalID: -3315852109723933579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_8
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 0
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e5ed0398e9b9bcb0800000000000000
+      internalID: -4847639115336915488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_9
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 0
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6fc4d92f653ab50800000000000000
+      internalID: 6603217078676420276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_10
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 0
+        width: 38
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6df7d897a5598a70800000000000000
+      internalID: 8829682722748759407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_11
+      rect:
+        serializedVersion: 2
+        x: 717
+        y: 0
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e54a284b355cdd410800000000000000
+      internalID: 1503574813913031774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_12
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 0
+        width: 38
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dd755258072ee940800000000000000
+      internalID: 5327238325920431576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_13
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 0
+        width: 36
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26197faa28eb51cc0800000000000000
+      internalID: -3740874447037951646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_14
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 0
+        width: 35
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 981c9641638089fd0800000000000000
+      internalID: -2335107378427870839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_15
+      rect:
+        serializedVersion: 2
+        x: 972
+        y: 0
+        width: 35
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2690faed20e161a50800000000000000
+      internalID: 6491408910575929698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_16
+      rect:
+        serializedVersion: 2
+        x: 1037
+        y: 0
+        width: 34
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e3309fd079a73320800000000000000
+      internalID: 2537683217298764774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_17
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 0
+        width: 34
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 598678947944d5e20800000000000000
+      internalID: 3340901915143137429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_18
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 0
+        width: 34
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 518289105ed139160800000000000000
+      internalID: 7030996312666941461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: beerGlup_a3_z1_c2_19
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 0
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a01d622f1ec11fa50800000000000000
+      internalID: 6553050689556631818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      beerGlup_a3_z1_c2_0: 5885454670059883277
+      beerGlup_a3_z1_c2_1: -8316894684832119017
+      beerGlup_a3_z1_c2_10: 8829682722748759407
+      beerGlup_a3_z1_c2_11: 1503574813913031774
+      beerGlup_a3_z1_c2_12: 5327238325920431576
+      beerGlup_a3_z1_c2_13: -3740874447037951646
+      beerGlup_a3_z1_c2_14: -2335107378427870839
+      beerGlup_a3_z1_c2_15: 6491408910575929698
+      beerGlup_a3_z1_c2_16: 2537683217298764774
+      beerGlup_a3_z1_c2_17: 3340901915143137429
+      beerGlup_a3_z1_c2_18: 7030996312666941461
+      beerGlup_a3_z1_c2_19: 6553050689556631818
+      beerGlup_a3_z1_c2_2: -180810780448523775
+      beerGlup_a3_z1_c2_3: -7851166385773586539
+      beerGlup_a3_z1_c2_4: 5393981998770213036
+      beerGlup_a3_z1_c2_5: -1966447469599865143
+      beerGlup_a3_z1_c2_6: 3486668011359323685
+      beerGlup_a3_z1_c2_7: -3315852109723933579
+      beerGlup_a3_z1_c2_8: -4847639115336915488
+      beerGlup_a3_z1_c2_9: 6603217078676420276
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

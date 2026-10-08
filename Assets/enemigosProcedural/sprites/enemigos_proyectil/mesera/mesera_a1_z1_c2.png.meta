@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: dd26fbe0fcd59d4068e0a6fe0badc78f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3063624023048501925
+    second: mesera_a1_z1_c2_0
+  - first:
+      213: 5465558154168217084
+    second: mesera_a1_z1_c2_1
+  - first:
+      213: -2318107410538883507
+    second: mesera_a1_z1_c2_2
+  - first:
+      213: 4068572414743541470
+    second: mesera_a1_z1_c2_3
+  - first:
+      213: 6119654394733753546
+    second: mesera_a1_z1_c2_4
+  - first:
+      213: -5599244764419349321
+    second: mesera_a1_z1_c2_5
+  - first:
+      213: 9101305215725900456
+    second: mesera_a1_z1_c2_6
+  - first:
+      213: 5783407082934852524
+    second: mesera_a1_z1_c2_7
+  - first:
+      213: 3031498183845418728
+    second: mesera_a1_z1_c2_8
+  - first:
+      213: 8437540007669743618
+    second: mesera_a1_z1_c2_9
+  - first:
+      213: 6436234438996053589
+    second: mesera_a1_z1_c2_10
+  - first:
+      213: -9041567297904533426
+    second: mesera_a1_z1_c2_11
+  - first:
+      213: -8812372969286896155
+    second: mesera_a1_z1_c2_12
+  - first:
+      213: -7393356390102874855
+    second: mesera_a1_z1_c2_13
+  - first:
+      213: 1083305539421469570
+    second: mesera_a1_z1_c2_14
+  - first:
+      213: 4058737282070538176
+    second: mesera_a1_z1_c2_15
+  - first:
+      213: 8670645366960966856
+    second: mesera_a1_z1_c2_16
+  - first:
+      213: -8119406771431050490
+    second: mesera_a1_z1_c2_17
+  - first:
+      213: 4678044730012634053
+    second: mesera_a1_z1_c2_18
+  - first:
+      213: -3023850942625283633
+    second: mesera_a1_z1_c2_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 0
+        width: 36
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aab82331dd248a20800000000000000
+      internalID: 3063624023048501925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfdaf66fe2099db40800000000000000
+      internalID: 5465558154168217084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 0
+        width: 36
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4611ab879d64dfd0800000000000000
+      internalID: -2318107410538883507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 0
+        width: 36
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed6fdb31e09767830800000000000000
+      internalID: 4068572414743541470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_4
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 0
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4734aaf316de450800000000000000
+      internalID: 6119654394733753546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 0
+        width: 38
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b4a1568d8c7b42b0800000000000000
+      internalID: -5599244764419349321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_6
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 0
+        width: 39
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a290c77fd45e4e70800000000000000
+      internalID: 9101305215725900456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 44
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cab5fc1a91ac24050800000000000000
+      internalID: 5783407082934852524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_8
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 0
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e61951698b021a20800000000000000
+      internalID: 3031498183845418728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_9
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 0
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2004d47dee9281570800000000000000
+      internalID: 8437540007669743618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_10
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 0
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55ece732f19125950800000000000000
+      internalID: 6436234438996053589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_11
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 0
+        width: 38
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e40ac936276e58280800000000000000
+      internalID: -9041567297904533426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_12
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e57661797924b580800000000000000
+      internalID: -8812372969286896155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_13
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 915cd0ee885856990800000000000000
+      internalID: -7393356390102874855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_14
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 0
+        width: 36
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28bfd6406aca80f00800000000000000
+      internalID: 1083305539421469570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_15
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 0
+        width: 36
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c7e27ecd08835830800000000000000
+      internalID: 4058737282070538176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_16
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 0
+        width: 36
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cc481fa502545870800000000000000
+      internalID: 8670645366960966856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_17
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60373f15f82125f80800000000000000
+      internalID: -8119406771431050490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_18
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 0
+        width: 36
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cb8ac785e0cbe040800000000000000
+      internalID: 4678044730012634053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mesera_a1_z1_c2_19
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 0
+        width: 40
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc10717b69f1906d0800000000000000
+      internalID: -3023850942625283633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      mesera_a1_z1_c2_0: 3063624023048501925
+      mesera_a1_z1_c2_1: 5465558154168217084
+      mesera_a1_z1_c2_10: 6436234438996053589
+      mesera_a1_z1_c2_11: -9041567297904533426
+      mesera_a1_z1_c2_12: -8812372969286896155
+      mesera_a1_z1_c2_13: -7393356390102874855
+      mesera_a1_z1_c2_14: 1083305539421469570
+      mesera_a1_z1_c2_15: 4058737282070538176
+      mesera_a1_z1_c2_16: 8670645366960966856
+      mesera_a1_z1_c2_17: -8119406771431050490
+      mesera_a1_z1_c2_18: 4678044730012634053
+      mesera_a1_z1_c2_19: -3023850942625283633
+      mesera_a1_z1_c2_2: -2318107410538883507
+      mesera_a1_z1_c2_3: 4068572414743541470
+      mesera_a1_z1_c2_4: 6119654394733753546
+      mesera_a1_z1_c2_5: -5599244764419349321
+      mesera_a1_z1_c2_6: 9101305215725900456
+      mesera_a1_z1_c2_7: 5783407082934852524
+      mesera_a1_z1_c2_8: 3031498183845418728
+      mesera_a1_z1_c2_9: 8437540007669743618
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

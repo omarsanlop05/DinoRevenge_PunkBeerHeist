@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 46b7f77b37615ae9d89fe1052ebd89ba
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 130312215876950067
+    second: rataRockera_a1_z1_c1_0
+  - first:
+      213: 3547262392820884138
+    second: rataRockera_a1_z1_c1_1
+  - first:
+      213: -6292458697492249188
+    second: rataRockera_a1_z1_c1_2
+  - first:
+      213: -7127726987379484720
+    second: rataRockera_a1_z1_c1_3
+  - first:
+      213: 352686141959880601
+    second: rataRockera_a1_z1_c1_4
+  - first:
+      213: 1033297427160167655
+    second: rataRockera_a1_z1_c1_5
+  - first:
+      213: -1720312792715770642
+    second: rataRockera_a1_z1_c1_6
+  - first:
+      213: -564801867442167194
+    second: rataRockera_a1_z1_c1_7
+  - first:
+      213: -6374036095754880324
+    second: rataRockera_a1_z1_c1_8
+  - first:
+      213: 612578460807848772
+    second: rataRockera_a1_z1_c1_9
+  - first:
+      213: 2231937689891234125
+    second: rataRockera_a1_z1_c1_10
+  - first:
+      213: 6702672247074421503
+    second: rataRockera_a1_z1_c1_11
+  - first:
+      213: 6966532269456187672
+    second: rataRockera_a1_z1_c1_12
+  - first:
+      213: -8486227850954455365
+    second: rataRockera_a1_z1_c1_13
+  - first:
+      213: -8645773289399159836
+    second: rataRockera_a1_z1_c1_14
+  - first:
+      213: -5889843019037241233
+    second: rataRockera_a1_z1_c1_15
+  - first:
+      213: -7361321842312210523
+    second: rataRockera_a1_z1_c1_16
+  - first:
+      213: 7514031027994867476
+    second: rataRockera_a1_z1_c1_17
+  - first:
+      213: -6337166450563113769
+    second: rataRockera_a1_z1_c1_18
+  - first:
+      213: 3958785684817633433
+    second: rataRockera_a1_z1_c1_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 0
+        width: 36
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3385d391546fec100800000000000000
+      internalID: 130312215876950067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 0
+        width: 39
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa2e0312a586a3130800000000000000
+      internalID: 3547262392820884138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 0
+        width: 38
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c95482c4722bca8a0800000000000000
+      internalID: -6292458697492249188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 0
+        width: 38
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d7d74db11a351d90800000000000000
+      internalID: -7127726987379484720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_4
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 0
+        width: 37
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99fb8b07d2ef4e400800000000000000
+      internalID: 352686141959880601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 0
+        width: 38
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e4f43d0982075e00800000000000000
+      internalID: 1033297427160167655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_6
+      rect:
+        serializedVersion: 2
+        x: 395
+        y: 0
+        width: 37
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee4cd9f21a83028e0800000000000000
+      internalID: -1720312792715770642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 44
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 662e1aaa1bb6928f0800000000000000
+      internalID: -564801867442167194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_8
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 0
+        width: 37
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cba330721ffda87a0800000000000000
+      internalID: -6374036095754880324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_9
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 0
+        width: 37
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 443e1815dd0508800800000000000000
+      internalID: 612578460807848772
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_10
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d41e5cee08f69fe10800000000000000
+      internalID: 2231937689891234125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_11
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 0
+        width: 39
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffa7dbc75eca40d50800000000000000
+      internalID: 6702672247074421503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_12
+      rect:
+        serializedVersion: 2
+        x: 779
+        y: 0
+        width: 38
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8116b3550381ea060800000000000000
+      internalID: 6966532269456187672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_13
+      rect:
+        serializedVersion: 2
+        x: 841
+        y: 0
+        width: 40
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb645d44bbcda3a80800000000000000
+      internalID: -8486227850954455365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_14
+      rect:
+        serializedVersion: 2
+        x: 907
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e37dc4200b040880800000000000000
+      internalID: -8645773289399159836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_15
+      rect:
+        serializedVersion: 2
+        x: 971
+        y: 0
+        width: 36
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f60987bdaf2134ea0800000000000000
+      internalID: -5889843019037241233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_16
+      rect:
+        serializedVersion: 2
+        x: 1035
+        y: 0
+        width: 36
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a718af49c457d990800000000000000
+      internalID: -7361321842312210523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_17
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 0
+        width: 40
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 417b5eea863374860800000000000000
+      internalID: 7514031027994867476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_18
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dc99af50bcdd08a0800000000000000
+      internalID: -6337166450563113769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rataRockera_a1_z1_c1_19
+      rect:
+        serializedVersion: 2
+        x: 1227
+        y: 0
+        width: 40
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 990e4751b9e60f630800000000000000
+      internalID: 3958785684817633433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      rataRockera_a1_z1_c1_0: 130312215876950067
+      rataRockera_a1_z1_c1_1: 3547262392820884138
+      rataRockera_a1_z1_c1_10: 2231937689891234125
+      rataRockera_a1_z1_c1_11: 6702672247074421503
+      rataRockera_a1_z1_c1_12: 6966532269456187672
+      rataRockera_a1_z1_c1_13: -8486227850954455365
+      rataRockera_a1_z1_c1_14: -8645773289399159836
+      rataRockera_a1_z1_c1_15: -5889843019037241233
+      rataRockera_a1_z1_c1_16: -7361321842312210523
+      rataRockera_a1_z1_c1_17: 7514031027994867476
+      rataRockera_a1_z1_c1_18: -6337166450563113769
+      rataRockera_a1_z1_c1_19: 3958785684817633433
+      rataRockera_a1_z1_c1_2: -6292458697492249188
+      rataRockera_a1_z1_c1_3: -7127726987379484720
+      rataRockera_a1_z1_c1_4: 352686141959880601
+      rataRockera_a1_z1_c1_5: 1033297427160167655
+      rataRockera_a1_z1_c1_6: -1720312792715770642
+      rataRockera_a1_z1_c1_7: -564801867442167194
+      rataRockera_a1_z1_c1_8: -6374036095754880324
+      rataRockera_a1_z1_c1_9: 612578460807848772
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

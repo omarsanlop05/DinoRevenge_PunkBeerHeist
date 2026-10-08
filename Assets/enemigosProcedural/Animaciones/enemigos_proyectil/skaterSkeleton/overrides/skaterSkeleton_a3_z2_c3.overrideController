@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: skaterSkeleton_a3_z2_c3
+  m_Controller: {fileID: 9100000, guid: 8a7016d8c81715fd580e8de64228df5c, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 197c0da4b92591ceda70a22f4c53675d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d7075b9a56a45668a80756b331d4c37a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9c678f471b11242ae9bae31f352b0836, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 619b7489ccfd00c8b9debb6114900d35, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c9f4e20e9d3442d318299067d4a9388e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 016a46251fe638b2893b909bf062097b, type: 2}

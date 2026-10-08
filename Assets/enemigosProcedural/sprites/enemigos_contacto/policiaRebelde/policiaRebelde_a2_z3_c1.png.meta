@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 7610f46509c652e9da51d05989adc8c2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1147787688519610803
+    second: policiaRebelde_a2_z3_c1_0
+  - first:
+      213: 9141380650570459707
+    second: policiaRebelde_a2_z3_c1_1
+  - first:
+      213: -4346042617949445667
+    second: policiaRebelde_a2_z3_c1_2
+  - first:
+      213: -8024197383118446168
+    second: policiaRebelde_a2_z3_c1_3
+  - first:
+      213: 6584982526739996368
+    second: policiaRebelde_a2_z3_c1_4
+  - first:
+      213: 1628243782672897881
+    second: policiaRebelde_a2_z3_c1_5
+  - first:
+      213: -1362540536561989790
+    second: policiaRebelde_a2_z3_c1_6
+  - first:
+      213: 6206217052561748603
+    second: policiaRebelde_a2_z3_c1_7
+  - first:
+      213: -28368435274510346
+    second: policiaRebelde_a2_z3_c1_8
+  - first:
+      213: 925411466032691285
+    second: policiaRebelde_a2_z3_c1_9
+  - first:
+      213: -7980168731469341348
+    second: policiaRebelde_a2_z3_c1_10
+  - first:
+      213: -7104924879170224589
+    second: policiaRebelde_a2_z3_c1_11
+  - first:
+      213: 1299294750524425731
+    second: policiaRebelde_a2_z3_c1_12
+  - first:
+      213: -8670252469015524067
+    second: policiaRebelde_a2_z3_c1_13
+  - first:
+      213: 5270953726229526577
+    second: policiaRebelde_a2_z3_c1_14
+  - first:
+      213: 9126204789322939158
+    second: policiaRebelde_a2_z3_c1_15
+  - first:
+      213: 3391920585784488372
+    second: policiaRebelde_a2_z3_c1_16
+  - first:
+      213: -3461086545352781053
+    second: policiaRebelde_a2_z3_c1_17
+  - first:
+      213: -5180948014246654993
+    second: policiaRebelde_a2_z3_c1_18
+  - first:
+      213: 3229313731907391087
+    second: policiaRebelde_a2_z3_c1_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_0
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 0
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b137cb42d2cdef00800000000000000
+      internalID: 1147787688519610803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 0
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3aa1e1c445bcde70800000000000000
+      internalID: 9141380650570459707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_2
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 0
+        width: 33
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd12a6ae341cfa3c0800000000000000
+      internalID: -4346042617949445667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_3
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 0
+        width: 33
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a12b9b7ef254a090800000000000000
+      internalID: -8024197383118446168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_4
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dedd7628be826b50800000000000000
+      internalID: 6584982526739996368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_5
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 0
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 957d4f1f71fa89610800000000000000
+      internalID: 1628243782672897881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_6
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 0
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 267072ed998471de0800000000000000
+      internalID: -1362540536561989790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_7
+      rect:
+        serializedVersion: 2
+        x: 457
+        y: 0
+        width: 38
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b723ae00789e02650800000000000000
+      internalID: 6206217052561748603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_8
+      rect:
+        serializedVersion: 2
+        x: 516
+        y: 0
+        width: 43
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ff01a4fe073b9ff0800000000000000
+      internalID: -28368435274510346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_9
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 0
+        width: 43
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 558b3f743d8b7dc00800000000000000
+      internalID: 925411466032691285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_10
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 0
+        width: 37
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5d1719c1deb04190800000000000000
+      internalID: -7980168731469341348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_11
+      rect:
+        serializedVersion: 2
+        x: 718
+        y: 0
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33e3935477c366d90800000000000000
+      internalID: -7104924879170224589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_12
+      rect:
+        serializedVersion: 2
+        x: 780
+        y: 0
+        width: 38
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 306c98f01b5080210800000000000000
+      internalID: 1299294750524425731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_13
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 0
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1d406ff0531da780800000000000000
+      internalID: -8670252469015524067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_14
+      rect:
+        serializedVersion: 2
+        x: 908
+        y: 0
+        width: 35
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 138be6fbc70362940800000000000000
+      internalID: 5270953726229526577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_15
+      rect:
+        serializedVersion: 2
+        x: 973
+        y: 0
+        width: 34
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61bff0737eac6ae70800000000000000
+      internalID: 9126204789322939158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_16
+      rect:
+        serializedVersion: 2
+        x: 1036
+        y: 0
+        width: 35
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b1f4063dc5821f20800000000000000
+      internalID: 3391920585784488372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_17
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 0
+        width: 34
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3031d57ef10c7ffc0800000000000000
+      internalID: -3461086545352781053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_18
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 0
+        width: 34
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: feb001b1b339918b0800000000000000
+      internalID: -5180948014246654993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: policiaRebelde_a2_z3_c1_19
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 0
+        width: 39
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6e81a2cab3d0dc20800000000000000
+      internalID: 3229313731907391087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      policiaRebelde_a2_z3_c1_0: 1147787688519610803
+      policiaRebelde_a2_z3_c1_1: 9141380650570459707
+      policiaRebelde_a2_z3_c1_10: -7980168731469341348
+      policiaRebelde_a2_z3_c1_11: -7104924879170224589
+      policiaRebelde_a2_z3_c1_12: 1299294750524425731
+      policiaRebelde_a2_z3_c1_13: -8670252469015524067
+      policiaRebelde_a2_z3_c1_14: 5270953726229526577
+      policiaRebelde_a2_z3_c1_15: 9126204789322939158
+      policiaRebelde_a2_z3_c1_16: 3391920585784488372
+      policiaRebelde_a2_z3_c1_17: -3461086545352781053
+      policiaRebelde_a2_z3_c1_18: -5180948014246654993
+      policiaRebelde_a2_z3_c1_19: 3229313731907391087
+      policiaRebelde_a2_z3_c1_2: -4346042617949445667
+      policiaRebelde_a2_z3_c1_3: -8024197383118446168
+      policiaRebelde_a2_z3_c1_4: 6584982526739996368
+      policiaRebelde_a2_z3_c1_5: 1628243782672897881
+      policiaRebelde_a2_z3_c1_6: -1362540536561989790
+      policiaRebelde_a2_z3_c1_7: 6206217052561748603
+      policiaRebelde_a2_z3_c1_8: -28368435274510346
+      policiaRebelde_a2_z3_c1_9: 925411466032691285
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

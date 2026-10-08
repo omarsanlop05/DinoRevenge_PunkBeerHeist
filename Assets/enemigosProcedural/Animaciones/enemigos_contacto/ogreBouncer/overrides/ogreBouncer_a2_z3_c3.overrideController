@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ogreBouncer_a2_z3_c3
+  m_Controller: {fileID: 9100000, guid: 85a6757e26467c370b8209a1fceb435f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 68d991ca438f5226888ef9136db6d5f4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7dac50c734badb8608493952096034bc, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: fd6cc0e28c5d4756081e579a0c282e6d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 851a1a49c66775c32b745f1718200922, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 13d72715cedf837e2abdb08d7adb2b75, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c230aaa76ba94385d9bbaa2d453d735a, type: 2}

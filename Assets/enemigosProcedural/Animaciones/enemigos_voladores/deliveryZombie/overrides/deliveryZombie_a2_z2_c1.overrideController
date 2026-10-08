@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: deliveryZombie_a2_z2_c1
+  m_Controller: {fileID: 9100000, guid: 219d87e86e530902eb3f4478d14cc95e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: ab58e028f4b1cbcb6986a90cb0ff1785, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9ec1d73081325b170bea67bd6378ae9f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b8f498c1995bf009d80f1011cb86c79e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: b828185dfddb8167aa85212ecbfa997e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 263c2593d8f90bcea9364c7fe71681d4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: bdfe8cefdaea765528f5fcc60c4159ae, type: 2}

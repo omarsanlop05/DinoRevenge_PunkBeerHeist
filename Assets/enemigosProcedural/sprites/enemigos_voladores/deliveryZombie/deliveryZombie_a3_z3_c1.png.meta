@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 3691009cff073db829244b5c676774e1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6511061150760612622
+    second: deliveryZombie_a3_z3_c1_0
+  - first:
+      213: 4042373486286921846
+    second: deliveryZombie_a3_z3_c1_1
+  - first:
+      213: 6061352629256224532
+    second: deliveryZombie_a3_z3_c1_2
+  - first:
+      213: 1255380404594407039
+    second: deliveryZombie_a3_z3_c1_3
+  - first:
+      213: -2337197871483462636
+    second: deliveryZombie_a3_z3_c1_4
+  - first:
+      213: -8166301400348838273
+    second: deliveryZombie_a3_z3_c1_5
+  - first:
+      213: -1048756875002879259
+    second: deliveryZombie_a3_z3_c1_6
+  - first:
+      213: -6737889015107083480
+    second: deliveryZombie_a3_z3_c1_7
+  - first:
+      213: -8480268101560527341
+    second: deliveryZombie_a3_z3_c1_8
+  - first:
+      213: 1655376514891690674
+    second: deliveryZombie_a3_z3_c1_9
+  - first:
+      213: 2451370975191519257
+    second: deliveryZombie_a3_z3_c1_10
+  - first:
+      213: 5284874633953549503
+    second: deliveryZombie_a3_z3_c1_11
+  - first:
+      213: -3481098380271413706
+    second: deliveryZombie_a3_z3_c1_12
+  - first:
+      213: -3052817979707823890
+    second: deliveryZombie_a3_z3_c1_13
+  - first:
+      213: 1583533494808582953
+    second: deliveryZombie_a3_z3_c1_14
+  - first:
+      213: 7590313723926363345
+    second: deliveryZombie_a3_z3_c1_15
+  - first:
+      213: 2935491507840862046
+    second: deliveryZombie_a3_z3_c1_16
+  - first:
+      213: 2901531966037144769
+    second: deliveryZombie_a3_z3_c1_17
+  - first:
+      213: -4583270123926643613
+    second: deliveryZombie_a3_z3_c1_18
+  - first:
+      213: -796395645688432039
+    second: deliveryZombie_a3_z3_c1_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 3
+        width: 33
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e03bee99e9feb5a50800000000000000
+      internalID: 6511061150760612622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 3
+        width: 34
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 670e693b445691830800000000000000
+      internalID: 4042373486286921846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 4
+        width: 33
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41f72351a104e1450800000000000000
+      internalID: 6061352629256224532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_3
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 5
+        width: 33
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f76f5d1a3d10c6110800000000000000
+      internalID: 1255380404594407039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_4
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 5
+        width: 33
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41cdd6c3bea909fd0800000000000000
+      internalID: -2337197871483462636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_5
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 4
+        width: 34
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f76be6fa4287bae80800000000000000
+      internalID: -8166301400348838273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_6
+      rect:
+        serializedVersion: 2
+        x: 399
+        y: 5
+        width: 36
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e264b1cd211271f0800000000000000
+      internalID: -1048756875002879259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_7
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 5
+        width: 48
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 823298eb3a53e72a0800000000000000
+      internalID: -6737889015107083480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_8
+      rect:
+        serializedVersion: 2
+        x: 514
+        y: 5
+        width: 49
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 316986e8719005a80800000000000000
+      internalID: -8480268101560527341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_9
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 5
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b2b4a37b2419f610800000000000000
+      internalID: 1655376514891690674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_10
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 4
+        width: 32
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9105efcf9e4050220800000000000000
+      internalID: 2451370975191519257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_11
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 3
+        width: 34
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbc1647aa75a75940800000000000000
+      internalID: 5284874633953549503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_12
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 5
+        width: 41
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6361cbf7777a0bfc0800000000000000
+      internalID: -3481098380271413706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_13
+      rect:
+        serializedVersion: 2
+        x: 839
+        y: 4
+        width: 43
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee8e693d83632a5d0800000000000000
+      internalID: -3052817979707823890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_14
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 5
+        width: 42
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92b9ff7d257d9f510800000000000000
+      internalID: 1583533494808582953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_15
+      rect:
+        serializedVersion: 2
+        x: 968
+        y: 5
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dc3760ed16365960800000000000000
+      internalID: 7590313723926363345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_16
+      rect:
+        serializedVersion: 2
+        x: 1033
+        y: 6
+        width: 41
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e57c70639f5fcb820800000000000000
+      internalID: 2935491507840862046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_17
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 7
+        width: 41
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c4b51c33ff444820800000000000000
+      internalID: 2901531966037144769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_18
+      rect:
+        serializedVersion: 2
+        x: 1162
+        y: 7
+        width: 40
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36c11b10b14f460c0800000000000000
+      internalID: -4583270123926643613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: deliveryZombie_a3_z3_c1_19
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 7
+        width: 41
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95ab2163162a2f4f0800000000000000
+      internalID: -796395645688432039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      deliveryZombie_a3_z3_c1_0: 6511061150760612622
+      deliveryZombie_a3_z3_c1_1: 4042373486286921846
+      deliveryZombie_a3_z3_c1_10: 2451370975191519257
+      deliveryZombie_a3_z3_c1_11: 5284874633953549503
+      deliveryZombie_a3_z3_c1_12: -3481098380271413706
+      deliveryZombie_a3_z3_c1_13: -3052817979707823890
+      deliveryZombie_a3_z3_c1_14: 1583533494808582953
+      deliveryZombie_a3_z3_c1_15: 7590313723926363345
+      deliveryZombie_a3_z3_c1_16: 2935491507840862046
+      deliveryZombie_a3_z3_c1_17: 2901531966037144769
+      deliveryZombie_a3_z3_c1_18: -4583270123926643613
+      deliveryZombie_a3_z3_c1_19: -796395645688432039
+      deliveryZombie_a3_z3_c1_2: 6061352629256224532
+      deliveryZombie_a3_z3_c1_3: 1255380404594407039
+      deliveryZombie_a3_z3_c1_4: -2337197871483462636
+      deliveryZombie_a3_z3_c1_5: -8166301400348838273
+      deliveryZombie_a3_z3_c1_6: -1048756875002879259
+      deliveryZombie_a3_z3_c1_7: -6737889015107083480
+      deliveryZombie_a3_z3_c1_8: -8480268101560527341
+      deliveryZombie_a3_z3_c1_9: 1655376514891690674
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

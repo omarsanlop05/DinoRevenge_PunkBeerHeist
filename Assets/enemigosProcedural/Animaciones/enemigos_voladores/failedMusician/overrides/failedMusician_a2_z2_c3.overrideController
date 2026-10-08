@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: failedMusician_a2_z2_c3
+  m_Controller: {fileID: 9100000, guid: 9a0f731f93220979a84d9d65c209a100, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 9b2e2e8a52d6bff66ba3456138c4dd32, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0d452eb218c622f2fb94e12d0393a6e0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3e0fe732ce6576b9b9289f90cf1f187a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 666eb5ebab4a1d3d894a4bf5667b3b6d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1db4e2e151c2112fc90d4bb0e8146523, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1a9e3d57d76122495bbf4bc7b19d4673, type: 2}

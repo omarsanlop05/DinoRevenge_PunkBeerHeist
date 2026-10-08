@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: rataPiro_a2_z1_c3
+  m_Controller: {fileID: 9100000, guid: 6b07cae31fee5b553bebd5029cc38834, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 8270270ba015cd941acf412edae49479, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ee075a45681a0cb3293cfe0706fe01bf, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 992fece03d4e59be49f88760466225f7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0d37df31b9e3940c3a5b533098f48deb, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: bea5fa7e947a5330f8c7033b70ef7de3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a04f038796ed295afa8ad0d20a08ac4c, type: 2}

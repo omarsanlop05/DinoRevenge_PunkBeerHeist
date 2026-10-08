@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: mesera_a3_z3_c2
+  m_Controller: {fileID: 9100000, guid: 417eb57f05dac1b3fbde9d013dcaea9b, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c63d23536a432dc628332dcba378cd46, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: df0d5c00893b48e72ad11a11c38058ce, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: fdb6281390ca9f3988b6ece6739ba84d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fc57860c98c3f8383aa48f27efcca0a5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a3efd2c5dc96a93518d538ea8aa33ac2, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c148870cf6ac2eea2ac9541eb1689b5b, type: 2}

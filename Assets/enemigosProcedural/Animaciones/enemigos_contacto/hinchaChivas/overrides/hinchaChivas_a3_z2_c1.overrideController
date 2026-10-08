@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: hinchaChivas_a3_z2_c1
+  m_Controller: {fileID: 9100000, guid: 11c5e3c09e0ffdb7eab322a9bc7adf15, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f3b043327c858b73fb22f074b904fd7a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 987fbca67108e5583a6f93b062a853bf, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ae506e04d09db44c58aceabc9cc7655c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 75d9e5a82afd0f7c39e0f78b6612e56d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0111b069dbd8c207fa78f465c205d4df, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: d4b286ab0b0bb305095c75ee4931227b, type: 2}

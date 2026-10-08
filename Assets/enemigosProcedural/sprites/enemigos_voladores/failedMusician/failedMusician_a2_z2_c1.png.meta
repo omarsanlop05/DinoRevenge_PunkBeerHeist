@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 12bad27c654af4be5a71e8844d0a982a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6396083315796215042
+    second: failedMusician_a2_z2_c1_0
+  - first:
+      213: 8556311892453523221
+    second: failedMusician_a2_z2_c1_1
+  - first:
+      213: -2155901255052089486
+    second: failedMusician_a2_z2_c1_2
+  - first:
+      213: -7336786844740499978
+    second: failedMusician_a2_z2_c1_3
+  - first:
+      213: -7507041012846268138
+    second: failedMusician_a2_z2_c1_4
+  - first:
+      213: 8040593282760671921
+    second: failedMusician_a2_z2_c1_5
+  - first:
+      213: 6835465524881147966
+    second: failedMusician_a2_z2_c1_6
+  - first:
+      213: 8660453879532653124
+    second: failedMusician_a2_z2_c1_7
+  - first:
+      213: 4214885419927664723
+    second: failedMusician_a2_z2_c1_8
+  - first:
+      213: 1778657360381563361
+    second: failedMusician_a2_z2_c1_9
+  - first:
+      213: -2267029031094781776
+    second: failedMusician_a2_z2_c1_10
+  - first:
+      213: 1890725428699443492
+    second: failedMusician_a2_z2_c1_11
+  - first:
+      213: -7824440978560164061
+    second: failedMusician_a2_z2_c1_12
+  - first:
+      213: 776865234764858019
+    second: failedMusician_a2_z2_c1_13
+  - first:
+      213: -1585189158714725313
+    second: failedMusician_a2_z2_c1_14
+  - first:
+      213: -812030482192309363
+    second: failedMusician_a2_z2_c1_15
+  - first:
+      213: -8129202584757568066
+    second: failedMusician_a2_z2_c1_16
+  - first:
+      213: -1223073776966795424
+    second: failedMusician_a2_z2_c1_17
+  - first:
+      213: -1942357270470916286
+    second: failedMusician_a2_z2_c1_18
+  - first:
+      213: -6143425072208297220
+    second: failedMusician_a2_z2_c1_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 4
+        width: 28
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efaf928bc1c8c37a0800000000000000
+      internalID: -6396083315796215042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 4
+        width: 28
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51f742935502eb670800000000000000
+      internalID: 8556311892453523221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 5
+        width: 28
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2772dc12b33b412e0800000000000000
+      internalID: -2155901255052089486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 6
+        width: 28
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f5cb769c3f7e2a90800000000000000
+      internalID: -7336786844740499978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 6
+        width: 28
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 611720b09f1a1d790800000000000000
+      internalID: -7507041012846268138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 5
+        width: 28
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b287526dfce59f60800000000000000
+      internalID: 8040593282760671921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_6
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 5
+        width: 36
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3848f4dda37cde50800000000000000
+      internalID: 6835465524881147966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_7
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 6
+        width: 45
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44a823b1bec103870800000000000000
+      internalID: 8660453879532653124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_8
+      rect:
+        serializedVersion: 2
+        x: 524
+        y: 7
+        width: 35
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 358f2cf35f74e7a30800000000000000
+      internalID: 4214885419927664723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_9
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 6
+        width: 47
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e15dae027f0fa810800000000000000
+      internalID: 1778657360381563361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_10
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 6
+        width: 48
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b8f8128b15e980e0800000000000000
+      internalID: -2267029031094781776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_11
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 6
+        width: 30
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 421bd6982c43d3a10800000000000000
+      internalID: 1890725428699443492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_12
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 7
+        width: 42
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32f59eab2600a6390800000000000000
+      internalID: -7824440978560164061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_13
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 6
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a28284a0daf7ca00800000000000000
+      internalID: 776865234764858019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_14
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 6
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3c220ddbd6400ae0800000000000000
+      internalID: -1585189158714725313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_15
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 7
+        width: 41
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d83632a24961bb4f0800000000000000
+      internalID: -812030482192309363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_16
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 8
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebd765cc1554f2f80800000000000000
+      internalID: -8129202584757568066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_17
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 9
+        width: 41
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06f7cc541e4c60fe0800000000000000
+      internalID: -1223073776966795424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_18
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 9
+        width: 41
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2470fa28a5c5b05e0800000000000000
+      internalID: -1942357270470916286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: failedMusician_a2_z2_c1_19
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 8
+        width: 41
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf2cbc2327b2ebaa0800000000000000
+      internalID: -6143425072208297220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      failedMusician_a2_z2_c1_0: -6396083315796215042
+      failedMusician_a2_z2_c1_1: 8556311892453523221
+      failedMusician_a2_z2_c1_10: -2267029031094781776
+      failedMusician_a2_z2_c1_11: 1890725428699443492
+      failedMusician_a2_z2_c1_12: -7824440978560164061
+      failedMusician_a2_z2_c1_13: 776865234764858019
+      failedMusician_a2_z2_c1_14: -1585189158714725313
+      failedMusician_a2_z2_c1_15: -812030482192309363
+      failedMusician_a2_z2_c1_16: -8129202584757568066
+      failedMusician_a2_z2_c1_17: -1223073776966795424
+      failedMusician_a2_z2_c1_18: -1942357270470916286
+      failedMusician_a2_z2_c1_19: -6143425072208297220
+      failedMusician_a2_z2_c1_2: -2155901255052089486
+      failedMusician_a2_z2_c1_3: -7336786844740499978
+      failedMusician_a2_z2_c1_4: -7507041012846268138
+      failedMusician_a2_z2_c1_5: 8040593282760671921
+      failedMusician_a2_z2_c1_6: 6835465524881147966
+      failedMusician_a2_z2_c1_7: 8660453879532653124
+      failedMusician_a2_z2_c1_8: 4214885419927664723
+      failedMusician_a2_z2_c1_9: 1778657360381563361
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

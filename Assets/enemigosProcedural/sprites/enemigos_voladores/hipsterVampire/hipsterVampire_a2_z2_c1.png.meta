@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 4aa70314dd8bda4cdadcf8d9a04bdfb4
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3391441268886036116
+    second: hipsterVampire_a2_z2_c1_0
+  - first:
+      213: -8088197587607443930
+    second: hipsterVampire_a2_z2_c1_1
+  - first:
+      213: -8466324455363971937
+    second: hipsterVampire_a2_z2_c1_2
+  - first:
+      213: 7214451816206597763
+    second: hipsterVampire_a2_z2_c1_3
+  - first:
+      213: 693587923012125426
+    second: hipsterVampire_a2_z2_c1_4
+  - first:
+      213: -4625591107815433208
+    second: hipsterVampire_a2_z2_c1_5
+  - first:
+      213: 6068117476593104781
+    second: hipsterVampire_a2_z2_c1_6
+  - first:
+      213: 3834667800765848303
+    second: hipsterVampire_a2_z2_c1_7
+  - first:
+      213: -7913184382347553384
+    second: hipsterVampire_a2_z2_c1_8
+  - first:
+      213: 8201504524403371200
+    second: hipsterVampire_a2_z2_c1_9
+  - first:
+      213: 3370448043624347835
+    second: hipsterVampire_a2_z2_c1_10
+  - first:
+      213: -1950237886726341146
+    second: hipsterVampire_a2_z2_c1_11
+  - first:
+      213: -4700365388495799508
+    second: hipsterVampire_a2_z2_c1_12
+  - first:
+      213: -5172496253596210812
+    second: hipsterVampire_a2_z2_c1_13
+  - first:
+      213: -7630016094543923811
+    second: hipsterVampire_a2_z2_c1_14
+  - first:
+      213: -3820566108585921238
+    second: hipsterVampire_a2_z2_c1_15
+  - first:
+      213: -7816832451553115185
+    second: hipsterVampire_a2_z2_c1_16
+  - first:
+      213: 5815814294635359855
+    second: hipsterVampire_a2_z2_c1_17
+  - first:
+      213: 3360484040186500007
+    second: hipsterVampire_a2_z2_c1_18
+  - first:
+      213: 516752121604747689
+    second: hipsterVampire_a2_z2_c1_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_0
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 4
+        width: 27
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49e5d8c8dd1d01f20800000000000000
+      internalID: 3391441268886036116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_1
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 4
+        width: 27
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 626ac7da523f0cf80800000000000000
+      internalID: -8088197587607443930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_2
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 5
+        width: 27
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f94f3dca3c2918a80800000000000000
+      internalID: -8466324455363971937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_3
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 6
+        width: 27
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38e7a2af3b1ee1460800000000000000
+      internalID: 7214451816206597763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_4
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 6
+        width: 27
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f283ab8a8e10a900800000000000000
+      internalID: 693587923012125426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_5
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 5
+        width: 27
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80c947615699ecfb0800000000000000
+      internalID: -4625591107815433208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_6
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 6
+        width: 32
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d87fba7d1b8463450800000000000000
+      internalID: 6068117476593104781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_7
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 6
+        width: 47
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fead6404c0a773530800000000000000
+      internalID: 3834667800765848303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_8
+      rect:
+        serializedVersion: 2
+        x: 515
+        y: 6
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8955108eab8be2290800000000000000
+      internalID: -7913184382347553384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_9
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 6
+        width: 48
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cc62d859e891d170800000000000000
+      internalID: 8201504524403371200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_10
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 5
+        width: 30
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb8b32663ac36ce20800000000000000
+      internalID: 3370448043624347835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_11
+      rect:
+        serializedVersion: 2
+        x: 721
+        y: 4
+        width: 27
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6edfa2e89fc5fe4e0800000000000000
+      internalID: -1950237886726341146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_12
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 7
+        width: 42
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2bba203592f4ceb0800000000000000
+      internalID: -4700365388495799508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_13
+      rect:
+        serializedVersion: 2
+        x: 840
+        y: 6
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 489eb5aff0a9738b0800000000000000
+      internalID: -5172496253596210812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_14
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 6
+        width: 42
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d95323e99ccbc1690800000000000000
+      internalID: -7630016094543923811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_15
+      rect:
+        serializedVersion: 2
+        x: 969
+        y: 6
+        width: 41
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a25f6d0dd5f9afac0800000000000000
+      internalID: -3820566108585921238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_16
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 7
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc34e68fc48058390800000000000000
+      internalID: -7816832451553115185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_17
+      rect:
+        serializedVersion: 2
+        x: 1097
+        y: 8
+        width: 41
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6e2167994ce5b050800000000000000
+      internalID: 5815814294635359855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_18
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 8
+        width: 41
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a39fa01e66d2ae20800000000000000
+      internalID: 3360484040186500007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hipsterVampire_a2_z2_c1_19
+      rect:
+        serializedVersion: 2
+        x: 1225
+        y: 8
+        width: 41
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a13e25115fdb2700800000000000000
+      internalID: 516752121604747689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      hipsterVampire_a2_z2_c1_0: 3391441268886036116
+      hipsterVampire_a2_z2_c1_1: -8088197587607443930
+      hipsterVampire_a2_z2_c1_10: 3370448043624347835
+      hipsterVampire_a2_z2_c1_11: -1950237886726341146
+      hipsterVampire_a2_z2_c1_12: -4700365388495799508
+      hipsterVampire_a2_z2_c1_13: -5172496253596210812
+      hipsterVampire_a2_z2_c1_14: -7630016094543923811
+      hipsterVampire_a2_z2_c1_15: -3820566108585921238
+      hipsterVampire_a2_z2_c1_16: -7816832451553115185
+      hipsterVampire_a2_z2_c1_17: 5815814294635359855
+      hipsterVampire_a2_z2_c1_18: 3360484040186500007
+      hipsterVampire_a2_z2_c1_19: 516752121604747689
+      hipsterVampire_a2_z2_c1_2: -8466324455363971937
+      hipsterVampire_a2_z2_c1_3: 7214451816206597763
+      hipsterVampire_a2_z2_c1_4: 693587923012125426
+      hipsterVampire_a2_z2_c1_5: -4625591107815433208
+      hipsterVampire_a2_z2_c1_6: 6068117476593104781
+      hipsterVampire_a2_z2_c1_7: 3834667800765848303
+      hipsterVampire_a2_z2_c1_8: -7913184382347553384
+      hipsterVampire_a2_z2_c1_9: 8201504524403371200
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

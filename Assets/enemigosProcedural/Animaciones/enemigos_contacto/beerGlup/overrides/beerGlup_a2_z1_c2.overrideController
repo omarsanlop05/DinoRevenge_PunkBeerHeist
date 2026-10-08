@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: beerGlup_a2_z1_c2
+  m_Controller: {fileID: 9100000, guid: cc6827b2b3ba37a9f82c6d1cfd942947, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 2f7847d7491fcef428a44cb5b901acf3, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e8e9aa1727dda617ea67950fa177b14e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1e1549571f7ad32bd9abb0f19593182c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1e241e33fab695c0097b49effb570cac, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8468b0da52e8018bc888aa4e47778be8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6c6ee8a57747c116c8293cc466e59c38, type: 2}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: cyberPigeon_a2_z1_c2
+  m_Controller: {fileID: 9100000, guid: e3b857897338582c5823431c69c214fd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: fd8b0a4c75bcfb3a592f8beedf20da8b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 90dc8218e4e38d676bd8cbb20fa7eb2b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: ab9644884ae1a1d74971447c5d83c12c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8a31b8b7731e6f57d98d310385e3c9d5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b4a6000da9b081a7da83760c9ef7b656, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ae839a803bda0d4e39ece6aed8b8711a, type: 2}

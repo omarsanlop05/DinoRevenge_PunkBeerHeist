@@ -1,0 +1,520 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36fdbe76f9406b51288ce3643c02ebf6, type: 3}
+  m_Name: CatalogoEnemigos
+  m_EditorClassIdentifier: 
+  tipos:
+  - nombre: contacto
+    prefabBase: {fileID: 5182840701954027594, guid: c3e8f3b13ab050250b80de8b587989c2, type: 3}
+    personajes:
+    - nombre: beerGlup
+      variaciones:
+      - {fileID: 22100000, guid: 468bacda5610bf490b65f72d047c03f8, type: 2}
+      - {fileID: 22100000, guid: d6a4f41751508d5b48a55990a30dd4c3, type: 2}
+      - {fileID: 22100000, guid: 2c739518aeb315549a88230e2357f1f1, type: 2}
+      - {fileID: 22100000, guid: 42670f753ae276030bf939a84b69cea0, type: 2}
+      - {fileID: 22100000, guid: 228beb010f50122fe9ddf2147bdca8a7, type: 2}
+      - {fileID: 22100000, guid: 1bd270d7afb6aea5c989af134511b1c2, type: 2}
+      - {fileID: 22100000, guid: 62ca4a34d7912d35887613d1c34026c9, type: 2}
+      - {fileID: 22100000, guid: 7fdaaf46eb893e834ac97ffc3356a1a6, type: 2}
+      - {fileID: 22100000, guid: a27d9526058e1e48493462e70cce4ee6, type: 2}
+      - {fileID: 22100000, guid: a97fa70df805ea3498c07db690ce83b4, type: 2}
+      - {fileID: 22100000, guid: f3d2fbbb068b0f8eabd953b1065dfe1d, type: 2}
+      - {fileID: 22100000, guid: b6d6d63c92bc4be92bf232feab198f1f, type: 2}
+      - {fileID: 22100000, guid: f76232d36615377c3ac30ef157649d03, type: 2}
+      - {fileID: 22100000, guid: 26e0bf7768cfe0f7e8715be3d62c220a, type: 2}
+      - {fileID: 22100000, guid: 12bb792d8d7591a7cb8b514923fce006, type: 2}
+      - {fileID: 22100000, guid: 47e47a3173bc01da48bacd372dbfcf14, type: 2}
+      - {fileID: 22100000, guid: fcb84c10923e18a538abfb1222a1481a, type: 2}
+      - {fileID: 22100000, guid: 177d46a3c0392b0dba6f38aeb1c9fb0f, type: 2}
+      - {fileID: 22100000, guid: fed1c38a2c8c81289a6ca622f378fa41, type: 2}
+      - {fileID: 22100000, guid: a39cb7b6ecb850c3d930e0af2c6d596f, type: 2}
+      - {fileID: 22100000, guid: 3a664d2cea43eecc9a8065e2f00c1edb, type: 2}
+      - {fileID: 22100000, guid: 703c25f876628d34d938440fccac3d73, type: 2}
+      - {fileID: 22100000, guid: 8d8316595181ddd29b3e2334e27865d5, type: 2}
+      - {fileID: 22100000, guid: 112eb08d1d4e24a65aeac2aa45733d58, type: 2}
+      - {fileID: 22100000, guid: 35a3b304ba93452a0961e43aa65e301f, type: 2}
+      - {fileID: 22100000, guid: e29bf393899bcaed5b7b216a3d31fe60, type: 2}
+      - {fileID: 22100000, guid: f1e04083ec7e124fc9f7601781655158, type: 2}
+      spriteInicial: {fileID: 3772771776389110647, guid: 917de4b61345615a9b1c6f947738d4a1, type: 3}
+      proyectil: {fileID: 0}
+    - nombre: hinchaChivas
+      variaciones:
+      - {fileID: 22100000, guid: f247d9f8e3c7f2e609f3f07cc01ee93a, type: 2}
+      - {fileID: 22100000, guid: fa38e763e3b9fcc14bcbe8182bb19c5a, type: 2}
+      - {fileID: 22100000, guid: 1b6e45d6e5ea87256b71d0fd81388211, type: 2}
+      - {fileID: 22100000, guid: f9d0244a20a2a4a2e9478bb06d407606, type: 2}
+      - {fileID: 22100000, guid: 1a07793dec319361a911992b38ca8217, type: 2}
+      - {fileID: 22100000, guid: 733fcb91d273d5e07a313eddaebd8543, type: 2}
+      - {fileID: 22100000, guid: 8311ac7af697807d68e8b163216c594e, type: 2}
+      - {fileID: 22100000, guid: f74d28a068d671cec9632cd4744aa609, type: 2}
+      - {fileID: 22100000, guid: 3d4dfcbba9e75dc74935bc52f45ae291, type: 2}
+      - {fileID: 22100000, guid: 194c3d68f0486ab80a477cf4454c9ebd, type: 2}
+      - {fileID: 22100000, guid: 0f78bfcd6a43cefe6889250a4a337532, type: 2}
+      - {fileID: 22100000, guid: 5a9c13cda64d23aa6a631f27f602f16d, type: 2}
+      - {fileID: 22100000, guid: 7588a2974d72b91f299bab37c1b1c855, type: 2}
+      - {fileID: 22100000, guid: 563506a9f814a41fc9a5ee1b83e321f9, type: 2}
+      - {fileID: 22100000, guid: ab19b8fb52ce44cb38da495b36aa84ee, type: 2}
+      - {fileID: 22100000, guid: 49d9226914f6e1572adf3d75a8fdb376, type: 2}
+      - {fileID: 22100000, guid: f980d76873a1487e2ab0f6f1f4065056, type: 2}
+      - {fileID: 22100000, guid: fe17febd53b1a67e1ada29c6b64eb866, type: 2}
+      - {fileID: 22100000, guid: a035ea5585cba48d7be4d208fea302e4, type: 2}
+      - {fileID: 22100000, guid: e753883ee979e5a5aa4d071ba514c4eb, type: 2}
+      - {fileID: 22100000, guid: f44b041f8f433fd3faa8c784882f685d, type: 2}
+      - {fileID: 22100000, guid: a003be97e3db257f9a18fd049c16bd7c, type: 2}
+      - {fileID: 22100000, guid: 7ba0099c15556cf748fe7e628cd28a75, type: 2}
+      - {fileID: 22100000, guid: 18a824c3b8ca96f1583fa470a6d3a0f4, type: 2}
+      - {fileID: 22100000, guid: 0b9abd32cde9143e38417a3f70c96e63, type: 2}
+      - {fileID: 22100000, guid: 46f568b0c45cbbbc4bb3a9ba90ff6f31, type: 2}
+      - {fileID: 22100000, guid: be5d3a2d43663f7e88df3dcd86f06745, type: 2}
+      spriteInicial: {fileID: 5550182871426404997, guid: de67e6e16c2411fc98b8cee6b3bcadf7, type: 3}
+      proyectil: {fileID: 0}
+    - nombre: ogreBouncer
+      variaciones:
+      - {fileID: 22100000, guid: ae1a82d7667962b1ab97472b11629c83, type: 2}
+      - {fileID: 22100000, guid: b574da25c6ce33571afb28f7c893dbfd, type: 2}
+      - {fileID: 22100000, guid: 22f5534f7d6403d828931919b4987506, type: 2}
+      - {fileID: 22100000, guid: db7844518e47d42aca7ed6d3069386f9, type: 2}
+      - {fileID: 22100000, guid: ce987d9894d40f620ba6ca1a5aa3aee3, type: 2}
+      - {fileID: 22100000, guid: 382518679f45a34ae870c81b52d8745d, type: 2}
+      - {fileID: 22100000, guid: f0b13800b37f138ca88a5cffd376d8dc, type: 2}
+      - {fileID: 22100000, guid: 61bb01e240468b4e4b40c72a03985d02, type: 2}
+      - {fileID: 22100000, guid: 85936266b1b34c389996a81df635958c, type: 2}
+      - {fileID: 22100000, guid: cdd8858b771a90a16a12dbd9dc3f61e4, type: 2}
+      - {fileID: 22100000, guid: 03cb9a92c9154f90f8d41aed1f10de0a, type: 2}
+      - {fileID: 22100000, guid: 4de8538e1c0199599a92b73b5fff3613, type: 2}
+      - {fileID: 22100000, guid: e4ec401b5e462d5caac35083c7fd3163, type: 2}
+      - {fileID: 22100000, guid: 708d34ab4937e9a8ca7b3a29a47f9f6e, type: 2}
+      - {fileID: 22100000, guid: d4e4aeb65db3eeb0297b483bae93a7bc, type: 2}
+      - {fileID: 22100000, guid: 226c2017c10919b0ca5693583eb9cab9, type: 2}
+      - {fileID: 22100000, guid: 5fac095eb156efe889ee76d9cd12504d, type: 2}
+      - {fileID: 22100000, guid: a6438c250d7fa4a3b8f4e73eb62f043d, type: 2}
+      - {fileID: 22100000, guid: d4db9afcb93390ee7ba0d7ec50e9dca3, type: 2}
+      - {fileID: 22100000, guid: 36196c68c40d04a7eb773ef99c6bf837, type: 2}
+      - {fileID: 22100000, guid: 8e819c8ac09e2c432ae67528600fbb9d, type: 2}
+      - {fileID: 22100000, guid: 4c7b02f10cd9dafa6bbe78165abad06c, type: 2}
+      - {fileID: 22100000, guid: 02da4c6f90a26e289908bf30b88476dc, type: 2}
+      - {fileID: 22100000, guid: fbc555d0cd3f3b4149a9491bb82301af, type: 2}
+      - {fileID: 22100000, guid: 6420d9b3fac1620fea9c085eb9fbd3d4, type: 2}
+      - {fileID: 22100000, guid: 09b46b559471a4e0c97910b946c09454, type: 2}
+      - {fileID: 22100000, guid: 8c60e9774c24bce719f6b78eb5afc7d9, type: 2}
+      spriteInicial: {fileID: 1357252504881640617, guid: 109bc2f995e1eef759fe9da5a4fb0c6e, type: 3}
+      proyectil: {fileID: 0}
+    - nombre: policiaRebelde
+      variaciones:
+      - {fileID: 22100000, guid: 737c708bc77cbe4ecb472a0b4b2ed739, type: 2}
+      - {fileID: 22100000, guid: 47bd004e00783de779406543954847b9, type: 2}
+      - {fileID: 22100000, guid: 3382123f7c14e1e98bb4d1d4ddc7a126, type: 2}
+      - {fileID: 22100000, guid: a1c6247e45e6e0bb7b544fda7254f33a, type: 2}
+      - {fileID: 22100000, guid: 9d44a4126926ba9afb4edab2a23cfa28, type: 2}
+      - {fileID: 22100000, guid: 97ae4a08e10a3c1c7adc18ba74380cc3, type: 2}
+      - {fileID: 22100000, guid: 37c0a5d879a9db31d8914e94bbfcaa87, type: 2}
+      - {fileID: 22100000, guid: e15c4e806eeb139ea97cb3fd5e5e7139, type: 2}
+      - {fileID: 22100000, guid: 3e2f6ace29070386dbaba030104157dc, type: 2}
+      - {fileID: 22100000, guid: da719d08bc9464d77a64e73efabb5e70, type: 2}
+      - {fileID: 22100000, guid: 82f4fc6b3573c8763984c8c859096331, type: 2}
+      - {fileID: 22100000, guid: 7f38e2c9f34870824b8020b2bf6d1916, type: 2}
+      - {fileID: 22100000, guid: ffb3c83f86f379e1b9ea7ae7fb3d1af4, type: 2}
+      - {fileID: 22100000, guid: ede4f486d8f0c4b5aa9fe3f3c0aa95cd, type: 2}
+      - {fileID: 22100000, guid: 49bc7a3bfe698154bb278c884b264222, type: 2}
+      - {fileID: 22100000, guid: 5c9ce6e4f1123f3d5a6bdb35b924f5ac, type: 2}
+      - {fileID: 22100000, guid: 6522e31a6cdbf5459a8db4280723ca27, type: 2}
+      - {fileID: 22100000, guid: 6ddee93b17d6eea9487e115cf8bc9a99, type: 2}
+      - {fileID: 22100000, guid: e68cc151327ff18e2a678310664497c6, type: 2}
+      - {fileID: 22100000, guid: 8d28cfeebf837303e99cd0b36efb78f1, type: 2}
+      - {fileID: 22100000, guid: 6f35f2b4bdd0faa609f8ccf1be804a16, type: 2}
+      - {fileID: 22100000, guid: e8adf02cdb113ec0e9b1901e9916b5b7, type: 2}
+      - {fileID: 22100000, guid: 7fad5cf0dd2b2f97e94362a314a02607, type: 2}
+      - {fileID: 22100000, guid: 86464923cc1853a388829771b862c32c, type: 2}
+      - {fileID: 22100000, guid: 36e0440db2249535391c522176ca9fb5, type: 2}
+      - {fileID: 22100000, guid: a720f5be03c5927019dfd33046be13cd, type: 2}
+      - {fileID: 22100000, guid: 6508e48e14f99d1b1a9c1007f86477ac, type: 2}
+      spriteInicial: {fileID: 3786174746388884601, guid: f3d242559f96ebf68baa9f6b08f77c0a, type: 3}
+      proyectil: {fileID: 0}
+    - nombre: zombiePunk
+      variaciones:
+      - {fileID: 22100000, guid: b42e554ed0f26a872988c3ca55433468, type: 2}
+      - {fileID: 22100000, guid: e46b6f36eb90c585c956c3b7a31950e7, type: 2}
+      - {fileID: 22100000, guid: 37bc935f3f2a4302f9d14ec24efe60dc, type: 2}
+      - {fileID: 22100000, guid: d2030bab690f6d64990ce7494e06d4f7, type: 2}
+      - {fileID: 22100000, guid: ceee800c22b33ea579a9e447919b66e8, type: 2}
+      - {fileID: 22100000, guid: 5a3a85926337c291eb0f8dd31cd12cbb, type: 2}
+      - {fileID: 22100000, guid: c298277098eb02055b972bd0c54805da, type: 2}
+      - {fileID: 22100000, guid: b0a8db37055866d5f92f7ec10a014632, type: 2}
+      - {fileID: 22100000, guid: f43d5bb5355688aee9851ac4a61e9208, type: 2}
+      - {fileID: 22100000, guid: 8fb6a4eeb74c094029e711da2059e4cb, type: 2}
+      - {fileID: 22100000, guid: fbc0de0e7b017ab82849839cf3dddea9, type: 2}
+      - {fileID: 22100000, guid: 600823b01dbe009f1bac6028afcb9edf, type: 2}
+      - {fileID: 22100000, guid: 665d4ebb337a16c949a46668917ef4d7, type: 2}
+      - {fileID: 22100000, guid: 88821cc15b491757c971121cec1181a0, type: 2}
+      - {fileID: 22100000, guid: 1863ecb42a184cea0a92a0be96a06b07, type: 2}
+      - {fileID: 22100000, guid: c8a380144a1440f16b9630a204e70dde, type: 2}
+      - {fileID: 22100000, guid: 8ea24ff2a75603909b67ccb04ea723a0, type: 2}
+      - {fileID: 22100000, guid: 66ea0149115e9fce4b8f4e552333e387, type: 2}
+      - {fileID: 22100000, guid: 5df806ef1d53ceb9abccd8ec654c844a, type: 2}
+      - {fileID: 22100000, guid: 945b19ec4f42d73dfacbf7a9723c8da0, type: 2}
+      - {fileID: 22100000, guid: 54eee729a429a7c85a7b2aa95cbf2aae, type: 2}
+      - {fileID: 22100000, guid: b99e514b4d7aed2dd9123cb17caf7795, type: 2}
+      - {fileID: 22100000, guid: 0fb991f30c6afe5a19fe6186a817f79f, type: 2}
+      - {fileID: 22100000, guid: 5a678900730576511849f0f96cc55737, type: 2}
+      - {fileID: 22100000, guid: 01d56e2cccf9f51bdace9c4586e2e353, type: 2}
+      - {fileID: 22100000, guid: 6e3b0933e64e4817c8d9cbe546774ce7, type: 2}
+      - {fileID: 22100000, guid: a35f09b239f8755b2aabd9f20dd28d39, type: 2}
+      spriteInicial: {fileID: 8147477645608648074, guid: ffe20b90e6e1c935f9c75a9695cb3c4a, type: 3}
+      proyectil: {fileID: 0}
+  - nombre: proyectil
+    prefabBase: {fileID: 1994698892759229586, guid: e71829990452a74b6b9b0096ff83a61c, type: 3}
+    personajes:
+    - nombre: bartender
+      variaciones:
+      - {fileID: 22100000, guid: c57d21322457980f394fbbf06df6d867, type: 2}
+      - {fileID: 22100000, guid: d588d5444a06f14b7afacd5f8dc04a06, type: 2}
+      - {fileID: 22100000, guid: 841d64fff7de751d4b939540be575608, type: 2}
+      - {fileID: 22100000, guid: 41cc1cdd5e73d4f35bc15ae8389c3873, type: 2}
+      - {fileID: 22100000, guid: 72b03fb21df6bdfd7b1fa51af2095ecb, type: 2}
+      - {fileID: 22100000, guid: 18c7f342ae17c74449a3c34a1e837ceb, type: 2}
+      - {fileID: 22100000, guid: 85ad91a2b08a7f3199bda60f498c64b3, type: 2}
+      - {fileID: 22100000, guid: 20edc4090f27a0824bcc8544f368d2e8, type: 2}
+      - {fileID: 22100000, guid: ab3a972af386e929fac8282b8b964923, type: 2}
+      - {fileID: 22100000, guid: e8043a2ce81807b61bf43dbaf3b0392e, type: 2}
+      - {fileID: 22100000, guid: 29f277a708c3845b19e0c4d7cd65da07, type: 2}
+      - {fileID: 22100000, guid: e20b1c8e2756f37fe895e1dde8d2ea8c, type: 2}
+      - {fileID: 22100000, guid: 5765c0c8dc13ceac6bf1805757e75171, type: 2}
+      - {fileID: 22100000, guid: 5eb1dbff0191e859ba571cbc159a74a1, type: 2}
+      - {fileID: 22100000, guid: 06a3fbfa67c3a31eab41b53796670fcf, type: 2}
+      - {fileID: 22100000, guid: ab11ffedc825843a6a63c3b221c5204d, type: 2}
+      - {fileID: 22100000, guid: 0acd949c9ea54baa5a271a6b42fc0357, type: 2}
+      - {fileID: 22100000, guid: 56583482bbe38348a8b6d46a7c87a852, type: 2}
+      - {fileID: 22100000, guid: a8930849d7f82a263af562d3e31f7832, type: 2}
+      - {fileID: 22100000, guid: 026b60747299eb27fbc5c0490899444b, type: 2}
+      - {fileID: 22100000, guid: 1ed3af3a99461d2959d0d7b4401d9789, type: 2}
+      - {fileID: 22100000, guid: ee7c282c1e99ac7249cd35dcc14d8769, type: 2}
+      - {fileID: 22100000, guid: 688ea413e42dfaf3ebde64ba6a120ed3, type: 2}
+      - {fileID: 22100000, guid: 6bce19290760c01c198ddd7a51d69ca2, type: 2}
+      - {fileID: 22100000, guid: ef2197d3b012bc4428610019b97ddf32, type: 2}
+      - {fileID: 22100000, guid: 61149d334c2967c1eb9b0f54410ad373, type: 2}
+      - {fileID: 22100000, guid: daad87e9d9d6ed5f39319d43f20eb19f, type: 2}
+      spriteInicial: {fileID: -4658312355544871387, guid: 353526c1bc50ce397bb6c27e73551e85, type: 3}
+      proyectil: {fileID: 1494072249705136653, guid: 2aaf66b44729a09acb9e456d73471c6b, type: 3}
+    - nombre: calacaGlam
+      variaciones:
+      - {fileID: 22100000, guid: cc2ec9662c04ea7e8aa8e75c75a12678, type: 2}
+      - {fileID: 22100000, guid: e499f5e54d957cd999bfc079e9f1c855, type: 2}
+      - {fileID: 22100000, guid: b082c0bad741dd5939ab4d254cf78a31, type: 2}
+      - {fileID: 22100000, guid: 5a6cf2c6f3d9a619aa60c83acaace471, type: 2}
+      - {fileID: 22100000, guid: 55de3db569120f44f8d2c30a7366d131, type: 2}
+      - {fileID: 22100000, guid: 066ed1a1ac0a9395088cf35880813c8e, type: 2}
+      - {fileID: 22100000, guid: 59ae08d509c465dc6952342a2ab5e613, type: 2}
+      - {fileID: 22100000, guid: 14dc34e725a6d8ef4a3821fda4d4fd52, type: 2}
+      - {fileID: 22100000, guid: 2a0524ced14184f809641c8d53e7e00d, type: 2}
+      - {fileID: 22100000, guid: ef6b2cc6f19d4325eb00048ad48dd60d, type: 2}
+      - {fileID: 22100000, guid: a8fa79636268c5f8b9b996768d68dafa, type: 2}
+      - {fileID: 22100000, guid: c0acac98e1a480308a1d5f2c23a55755, type: 2}
+      - {fileID: 22100000, guid: 104d2918b8bc34bdeb8ad745328ac7d9, type: 2}
+      - {fileID: 22100000, guid: 519150a0e7fa7e8a3b61433332ee5501, type: 2}
+      - {fileID: 22100000, guid: 29b1d16f1095fc70594c5e4755dcd896, type: 2}
+      - {fileID: 22100000, guid: add7ebf1fbb50eded957130aa6b25751, type: 2}
+      - {fileID: 22100000, guid: a9b8cd2fe9107d68295a413f4fa35df6, type: 2}
+      - {fileID: 22100000, guid: 11c5139ce0a4bb09dbec91d9f6fbce7f, type: 2}
+      - {fileID: 22100000, guid: d6541f8b5a031d6558c6a183d77582c7, type: 2}
+      - {fileID: 22100000, guid: 178c03f551816d5158687a90a76417ac, type: 2}
+      - {fileID: 22100000, guid: 29b06b23556844b4b8dcb0e52bc3a685, type: 2}
+      - {fileID: 22100000, guid: 06c16772e6a9e2f98a5aabeb24e30e16, type: 2}
+      - {fileID: 22100000, guid: 4787b73a87717b440a87457b7878d2de, type: 2}
+      - {fileID: 22100000, guid: 32bae2cdae988c30ca06adc5f4ead69c, type: 2}
+      - {fileID: 22100000, guid: c831526d75c373eaf8dc3fd5eb140d72, type: 2}
+      - {fileID: 22100000, guid: cc08867aac17dc52891a99181adebccb, type: 2}
+      - {fileID: 22100000, guid: 9b5b04836c49800ee835e1196c6fa54d, type: 2}
+      spriteInicial: {fileID: 1873734937563277924, guid: 057494c1047128e7cba45d6a5d50fa3b, type: 3}
+      proyectil: {fileID: 3933004506641830786, guid: edd13180f12175707a32470d4020af95, type: 3}
+    - nombre: mesera
+      variaciones:
+      - {fileID: 22100000, guid: 650275035753d37d0a02ad2776ee1561, type: 2}
+      - {fileID: 22100000, guid: 2ab299cb529227ec8964d28d66ac79bb, type: 2}
+      - {fileID: 22100000, guid: 4ff7c271c5d3a83bd89f089a6dd43e59, type: 2}
+      - {fileID: 22100000, guid: 653ebe8cc554298048b409ef1ed8b32f, type: 2}
+      - {fileID: 22100000, guid: 079af2c91648b3c79af45c6b801d372d, type: 2}
+      - {fileID: 22100000, guid: a5424dbf49c63b942a401eea39531313, type: 2}
+      - {fileID: 22100000, guid: 12554b90ad7f2974a85b5455252e7ee5, type: 2}
+      - {fileID: 22100000, guid: af223a9962def9dea83d3ffb0a96c0c1, type: 2}
+      - {fileID: 22100000, guid: 584a1803959c7081cbf79c06943517eb, type: 2}
+      - {fileID: 22100000, guid: f2fc5d2b4772efe7ab03b25fe75df6e4, type: 2}
+      - {fileID: 22100000, guid: d2b18aa2b91b33f6fb6f23fb560d0cbd, type: 2}
+      - {fileID: 22100000, guid: 50b4b75e3ed21550b94d985726310a29, type: 2}
+      - {fileID: 22100000, guid: df787a85eed04d04c888877f883b89a0, type: 2}
+      - {fileID: 22100000, guid: 45f588dff14695edfb4cc4bdc2d059fb, type: 2}
+      - {fileID: 22100000, guid: 948ce0b2e8f3411478c29cf122194ad6, type: 2}
+      - {fileID: 22100000, guid: 24d0142b6c117002aad50399c0cde8ab, type: 2}
+      - {fileID: 22100000, guid: 09810774161cb0ea6b75a9adef9b8e52, type: 2}
+      - {fileID: 22100000, guid: a63a5d67137da6a4485bdb5a9f42f864, type: 2}
+      - {fileID: 22100000, guid: 33c3c9f102c10310c9a816f4a49b6ff0, type: 2}
+      - {fileID: 22100000, guid: 5fdc7b6fa04e9c14fad80ee2f99fd610, type: 2}
+      - {fileID: 22100000, guid: a6a65b05bd988264bb4609800dba566e, type: 2}
+      - {fileID: 22100000, guid: abd312e55824bbdb89dd1b96ad19ffc4, type: 2}
+      - {fileID: 22100000, guid: 8706fe9ee52ea7bd5920fc22a8ae9af9, type: 2}
+      - {fileID: 22100000, guid: 97c1050a4a3aa4c3b98d5371b447b0a1, type: 2}
+      - {fileID: 22100000, guid: 45bdf7a7a7f9f9f949e60310be16d37c, type: 2}
+      - {fileID: 22100000, guid: ee3cfe8cd9f410e45bcecef5eec9393e, type: 2}
+      - {fileID: 22100000, guid: 3805c8b142ed9aca58a99f80b3495e62, type: 2}
+      spriteInicial: {fileID: -2217475562304672649, guid: c343a9d970728e6c392ea57e9e3c8160, type: 3}
+      proyectil: {fileID: 1785842261069868045, guid: 74d6a2baca5d5177ba217d372c7f7ff9, type: 3}
+    - nombre: rataPiro
+      variaciones:
+      - {fileID: 22100000, guid: 15db16889a068fde2949cbdc635de3ff, type: 2}
+      - {fileID: 22100000, guid: 5af2a3a749a17e2da92cc954820fee8d, type: 2}
+      - {fileID: 22100000, guid: 74ea4af8ed8678469bd777f6dc64ac0d, type: 2}
+      - {fileID: 22100000, guid: 7773c08c04cf796cb83e0e36450fbf33, type: 2}
+      - {fileID: 22100000, guid: 651c3107cb4a28a329ffdfa8ce9c53bd, type: 2}
+      - {fileID: 22100000, guid: 4779525f08ce6c2a18d53711d3181cac, type: 2}
+      - {fileID: 22100000, guid: f220c15cb7ad08ca1b2bd9b6ea454d80, type: 2}
+      - {fileID: 22100000, guid: 127f09997e195b6529d4fe17873d4275, type: 2}
+      - {fileID: 22100000, guid: 967b0b41a308b2ba9a00823db185e13b, type: 2}
+      - {fileID: 22100000, guid: 5971742e646ce4b859aba8e7009f30f7, type: 2}
+      - {fileID: 22100000, guid: 74893931d9745bf1e8e410fe6406743b, type: 2}
+      - {fileID: 22100000, guid: 082b5bdb370067516948d1e9cff6bd86, type: 2}
+      - {fileID: 22100000, guid: 0f92f468ce71739379f266da73d8baf5, type: 2}
+      - {fileID: 22100000, guid: ab19a9399db2b4712a30946b94a921ec, type: 2}
+      - {fileID: 22100000, guid: 4db7d1872eb2a0a2a9c8fa6ed7bd2cad, type: 2}
+      - {fileID: 22100000, guid: 30c384cf9c1b8772a9a5efbb59a3b928, type: 2}
+      - {fileID: 22100000, guid: b926132a91adb7521927a517c72494ef, type: 2}
+      - {fileID: 22100000, guid: 49da2937d156386c188d2b13b5d055fb, type: 2}
+      - {fileID: 22100000, guid: 5268f5f492c0fa1eb9cdf79a396e96ef, type: 2}
+      - {fileID: 22100000, guid: 927dd68f5a2cd94ca8239aefd184ec4b, type: 2}
+      - {fileID: 22100000, guid: 658e0643a8c0fdb4281aadccda217e3b, type: 2}
+      - {fileID: 22100000, guid: 7f41166a6411a02f499d91e89035c2fa, type: 2}
+      - {fileID: 22100000, guid: 96ab0ea83bbdbc191858a8a8ee96d8dc, type: 2}
+      - {fileID: 22100000, guid: 3404126cf6cecdaa6905a40d451d2353, type: 2}
+      - {fileID: 22100000, guid: 7a7a4bafdeb92c1bf9c31eb4ea73d73c, type: 2}
+      - {fileID: 22100000, guid: 6c9148b13848892b7bc505c65a3941e5, type: 2}
+      - {fileID: 22100000, guid: 5ee2efcfe82368a8e8d0234a935744a3, type: 2}
+      spriteInicial: {fileID: 2058382900017426230, guid: fb276e9fcb9b48a6aa51a16d8bec6d8d, type: 3}
+      proyectil: {fileID: 3425335163991543658, guid: 92d2aec42d45c11b099f9ebe4c548c60, type: 3}
+    - nombre: rataRockera
+      variaciones:
+      - {fileID: 22100000, guid: a21383cb791b0c49aac575c67209d433, type: 2}
+      - {fileID: 22100000, guid: c44e65627802e50829a2502a75ad2a20, type: 2}
+      - {fileID: 22100000, guid: 3e8d0dedbcb27b588882b4a37a759ce0, type: 2}
+      - {fileID: 22100000, guid: f0082fff93f5ee3b6952515173b39bc5, type: 2}
+      - {fileID: 22100000, guid: a8c3a4b1ac19bc9fbaf20c0fc9c45d55, type: 2}
+      - {fileID: 22100000, guid: ddb446a0c18db343e8e5a61906d35d93, type: 2}
+      - {fileID: 22100000, guid: 203fb321de7f305159fc8fb53837b5c5, type: 2}
+      - {fileID: 22100000, guid: 8764d3521f57c5dd7b6239d4e5369700, type: 2}
+      - {fileID: 22100000, guid: cebcf48de0209fd84bfc8c8d15ab63ca, type: 2}
+      - {fileID: 22100000, guid: 9ec5669656e7bd76899ec2547a6636a6, type: 2}
+      - {fileID: 22100000, guid: 9a461d0112f0983cf8f4f7ab9c32d1e0, type: 2}
+      - {fileID: 22100000, guid: 17edff8fee93a390d9f40e4e62d75f30, type: 2}
+      - {fileID: 22100000, guid: af1f6b9a4e287340e9600aef142b2a1b, type: 2}
+      - {fileID: 22100000, guid: 9ca2c6299aca3abc49c51219db4bf026, type: 2}
+      - {fileID: 22100000, guid: 69627b093f9529702a0f6a2c2db1490e, type: 2}
+      - {fileID: 22100000, guid: 10e934febc65ce9b48c702a96107177f, type: 2}
+      - {fileID: 22100000, guid: d68d49ae7857837d69a410a1b3cae3df, type: 2}
+      - {fileID: 22100000, guid: c6e4ab19f21e85079b62bf765ca6fd1e, type: 2}
+      - {fileID: 22100000, guid: 19779eedd948e29dea0f038dd61a7bfc, type: 2}
+      - {fileID: 22100000, guid: 728a01728b8a8e455925a2c9c7f184f0, type: 2}
+      - {fileID: 22100000, guid: f5c291d9b6458b3d0a203dbee4fb1969, type: 2}
+      - {fileID: 22100000, guid: 847e7560a3ca835f2a0b0ab279fba92c, type: 2}
+      - {fileID: 22100000, guid: 50a69f70dd0b64d57b41e8a33cc621fe, type: 2}
+      - {fileID: 22100000, guid: 769751547d0bd9ba8a54d5a1716508b0, type: 2}
+      - {fileID: 22100000, guid: aa6ca7edaef41104e9beda5bce0b2d5b, type: 2}
+      - {fileID: 22100000, guid: 611742372818d0475b2926f611aa733f, type: 2}
+      - {fileID: 22100000, guid: 2cc2830a7c8b30293a63ad6082986728, type: 2}
+      spriteInicial: {fileID: 130312215876950067, guid: 46b7f77b37615ae9d89fe1052ebd89ba, type: 3}
+      proyectil: {fileID: 4991111242803893710, guid: 78441a4dedccfdd858f48fe8cd768295, type: 3}
+    - nombre: skaterSkeleton
+      variaciones:
+      - {fileID: 22100000, guid: c1ed17c75680c893cb27db6a632b1a82, type: 2}
+      - {fileID: 22100000, guid: 894f49678534d91dca4218b52d60cc06, type: 2}
+      - {fileID: 22100000, guid: 3be23bd34669c86fb9005ec396d6497f, type: 2}
+      - {fileID: 22100000, guid: b1b44880b8a3bb91499f5575718826ec, type: 2}
+      - {fileID: 22100000, guid: e4c64b978e39279f49ebad83a74d7d49, type: 2}
+      - {fileID: 22100000, guid: c79099d5c5845edc994fb0e3b3df9588, type: 2}
+      - {fileID: 22100000, guid: b8ca325e165df54e3a2247726e7296d8, type: 2}
+      - {fileID: 22100000, guid: a67162effc2c0dfb382b17a713544f05, type: 2}
+      - {fileID: 22100000, guid: 43fee50fa69fe2e39a3b9869d4de8a86, type: 2}
+      - {fileID: 22100000, guid: e9384c752247ab40cb33da55407fc6ab, type: 2}
+      - {fileID: 22100000, guid: e29a9066154ad505ca0ac28257ac464e, type: 2}
+      - {fileID: 22100000, guid: 24fa1df7207b78d59b43672aa72d4758, type: 2}
+      - {fileID: 22100000, guid: 6891d68b669a8989482bd63ae270f161, type: 2}
+      - {fileID: 22100000, guid: 5200652843d3e5675927aedacfe32c3f, type: 2}
+      - {fileID: 22100000, guid: 2692ed1cd2248a832bce08317a3fde22, type: 2}
+      - {fileID: 22100000, guid: 5a74ed693c0fa2d48bb168ae64751b4b, type: 2}
+      - {fileID: 22100000, guid: 3d4ea351ff97f4df8b14d99d76a74bcd, type: 2}
+      - {fileID: 22100000, guid: 39337f8e98e59bd9da30ef0812badbcc, type: 2}
+      - {fileID: 22100000, guid: 45c0ba304cf816e988fc1103c9f7830c, type: 2}
+      - {fileID: 22100000, guid: be082ca43fcc0d43f96340171a0e58bd, type: 2}
+      - {fileID: 22100000, guid: 406485b17e1db2318bd7ebeb960a4a79, type: 2}
+      - {fileID: 22100000, guid: 1dd7e2acfbe160bcba80d39f8261b570, type: 2}
+      - {fileID: 22100000, guid: ab338b5832f7807f1b594f3a2cb4d758, type: 2}
+      - {fileID: 22100000, guid: aedf9e578598f8b32a2f5f8c2588645d, type: 2}
+      - {fileID: 22100000, guid: 753b3a9439a82e1d2a322e376fc6fdc7, type: 2}
+      - {fileID: 22100000, guid: 1848f95a2c300f8548b6876462736694, type: 2}
+      - {fileID: 22100000, guid: 6eb5ab1c6bd0d4bb49dee9e321e64816, type: 2}
+      spriteInicial: {fileID: -5816168617903344508, guid: dcae53644a87d0a7fb1ad50b91787eee, type: 3}
+      proyectil: {fileID: 3843724939804975599, guid: bd5303ec2d73db74fbc4bfdda9fbe6fa, type: 3}
+  - nombre: volador
+    prefabBase: {fileID: 9031651609828160005, guid: d6fc240a2121ac739a11e593205e492e, type: 3}
+    personajes:
+    - nombre: brewerGhost
+      variaciones:
+      - {fileID: 22100000, guid: c62f19125914392d986ad0064d601b19, type: 2}
+      - {fileID: 22100000, guid: 3452e46c329b06c82ad395de4ec56f63, type: 2}
+      - {fileID: 22100000, guid: 3ea89ecf82d6998dd945e56961cfa590, type: 2}
+      - {fileID: 22100000, guid: 2a6434df4b345851e956605d4bfde9d5, type: 2}
+      - {fileID: 22100000, guid: a126399de65874b159c2588a77735c82, type: 2}
+      - {fileID: 22100000, guid: 53c9637992782b23e9ecc9467a745137, type: 2}
+      - {fileID: 22100000, guid: 11dffccdf2f9bfefe81a268569f8b3a3, type: 2}
+      - {fileID: 22100000, guid: 058850099843a53e382a9e6b5e9b33c5, type: 2}
+      - {fileID: 22100000, guid: 6d6161414889f5959ae683d9f436e75f, type: 2}
+      - {fileID: 22100000, guid: b4966615ebf9847a8acdf2ec3106e9b5, type: 2}
+      - {fileID: 22100000, guid: 2d74d19ca16692ba5b8bc8d3af10bcd8, type: 2}
+      - {fileID: 22100000, guid: c6f6e17ce1e0ab8f1b4f171b9ae2c202, type: 2}
+      - {fileID: 22100000, guid: a7c404d21c2c8c082aeb54fd01daec22, type: 2}
+      - {fileID: 22100000, guid: 60ef03e2abb9b4d63bd227ab42957f80, type: 2}
+      - {fileID: 22100000, guid: 21ae17fa27f240f26b9c5aa2c8525c64, type: 2}
+      - {fileID: 22100000, guid: 38b0713b6263f830caf8309a59502857, type: 2}
+      - {fileID: 22100000, guid: da4668f4994f59b8b8c2ead6478805a8, type: 2}
+      - {fileID: 22100000, guid: 6e04793e4dc3e5b45b7127edf4f14b0c, type: 2}
+      - {fileID: 22100000, guid: cb0d39f4715a888148e5d26e8fd0e69e, type: 2}
+      - {fileID: 22100000, guid: 82b5bebed63466c99b1afc674888443c, type: 2}
+      - {fileID: 22100000, guid: e65171fc63ecafcca886a71394b5bcbe, type: 2}
+      - {fileID: 22100000, guid: b5eaa4633035b9d1e9457dd70a70f833, type: 2}
+      - {fileID: 22100000, guid: f78d201455c23f2c3ae577c214fa4312, type: 2}
+      - {fileID: 22100000, guid: 38a039543f722a115bf3ded2482324fc, type: 2}
+      - {fileID: 22100000, guid: 9aa968299cdb9e618be748d353329dc6, type: 2}
+      - {fileID: 22100000, guid: 59d0b65539a736976bbe1658bb757e1c, type: 2}
+      - {fileID: 22100000, guid: de1e7dc92bf703aed86f399ea1ca608b, type: 2}
+      spriteInicial: {fileID: -1123825064400146266, guid: 22921bc600e2621faa115bef9f50fda8, type: 3}
+      proyectil: {fileID: 0}
+    - nombre: cyberPigeon
+      variaciones:
+      - {fileID: 22100000, guid: 396b3c4ded694aca5bb96715458ec54c, type: 2}
+      - {fileID: 22100000, guid: 1bdc922c97404c6dc9290ecda9445e96, type: 2}
+      - {fileID: 22100000, guid: 1a72a69f35e9538ec83a13d5354f1fa1, type: 2}
+      - {fileID: 22100000, guid: c6417bb354e1d58479701311f63d7dc8, type: 2}
+      - {fileID: 22100000, guid: 615fd29131a3a7daba6f4adb41b443e8, type: 2}
+      - {fileID: 22100000, guid: 4351363e58980e8beaff910051b88220, type: 2}
+      - {fileID: 22100000, guid: 172843a966a3f2a439cdf3c5f5a357fa, type: 2}
+      - {fileID: 22100000, guid: 255487582fa15d1bbbbecd03997e327d, type: 2}
+      - {fileID: 22100000, guid: 429ef11ddfff8f7fcb1bb5887409a2d1, type: 2}
+      - {fileID: 22100000, guid: 4d63b9ebc929e4c4cb6fa5f9bc3bc963, type: 2}
+      - {fileID: 22100000, guid: 93ee179dd8613863c80a246d6cec69ad, type: 2}
+      - {fileID: 22100000, guid: 5c9f77fc806b51019b39cd85e1e04526, type: 2}
+      - {fileID: 22100000, guid: c0a2412603b473aea812721cb9838316, type: 2}
+      - {fileID: 22100000, guid: 8c0327fd3c881e4cbae85d5e73e5a60a, type: 2}
+      - {fileID: 22100000, guid: 24768e7e06e2e27e9997b5ee1c3a72bc, type: 2}
+      - {fileID: 22100000, guid: 3a6e57a427ff9ced68aadd750150a1c5, type: 2}
+      - {fileID: 22100000, guid: ac1e8ba9c078af011891d4327b461703, type: 2}
+      - {fileID: 22100000, guid: 039a93e7dc07098778b859a03a26e294, type: 2}
+      - {fileID: 22100000, guid: 6e5a61974a3d63468bbd54f4c1b6e50a, type: 2}
+      - {fileID: 22100000, guid: 7618555131141b5058bf24f1e466e8ca, type: 2}
+      - {fileID: 22100000, guid: a3ffdf7939cc40a888a91d4a59470745, type: 2}
+      - {fileID: 22100000, guid: 12d40400150a4372191b5ad8398b4baf, type: 2}
+      - {fileID: 22100000, guid: 089eb3dcde2a0adbd870cb073bc13fa5, type: 2}
+      - {fileID: 22100000, guid: 25f39b2cf9b1bea39a97bbf9dd173d58, type: 2}
+      - {fileID: 22100000, guid: dbcbb745decec73c78ae6fbeeec7a16d, type: 2}
+      - {fileID: 22100000, guid: b0e1ebd1ec3c6b3fface22005b185348, type: 2}
+      - {fileID: 22100000, guid: ad150facedee575efa7cc0136395ec63, type: 2}
+      spriteInicial: {fileID: -6016692737672112374, guid: 7ea5a3ddcf45ee1ba8fed7dc8f0c6f02, type: 3}
+      proyectil: {fileID: 0}
+    - nombre: deliveryZombie
+      variaciones:
+      - {fileID: 22100000, guid: a2bed639eec76e9f9b09d6a83aa2111c, type: 2}
+      - {fileID: 22100000, guid: 82a4f40715f0332bf86b54a0137bd92d, type: 2}
+      - {fileID: 22100000, guid: 165a9d6602b1d8bd3ba127acca7291b5, type: 2}
+      - {fileID: 22100000, guid: bca3a0215380d7746a165a9012d398bb, type: 2}
+      - {fileID: 22100000, guid: 7e99a43b733287501981783af7dbe068, type: 2}
+      - {fileID: 22100000, guid: c80e5ac5c64aac5588c6c4140b0cd0f0, type: 2}
+      - {fileID: 22100000, guid: 6e1486b76ac0bbf82b3d8e745c3f5350, type: 2}
+      - {fileID: 22100000, guid: 964d7bf2620d07dc9a7427299fa91623, type: 2}
+      - {fileID: 22100000, guid: a9fc919b0cb0e7c299974128855a756c, type: 2}
+      - {fileID: 22100000, guid: c927f58c93e92f673b57b3c36952ae8d, type: 2}
+      - {fileID: 22100000, guid: 204003ceaa05ec243887d1afbe7d688b, type: 2}
+      - {fileID: 22100000, guid: 379b96765a893ee25813e63cf6676980, type: 2}
+      - {fileID: 22100000, guid: fa3aa99034519dfcfb36879b9bc713dc, type: 2}
+      - {fileID: 22100000, guid: edbbfd7c03ddb15239d6ba52b21554e1, type: 2}
+      - {fileID: 22100000, guid: 1d61a32a8925d6407b2b3fa8a8481cf6, type: 2}
+      - {fileID: 22100000, guid: 1708f3a5b6aa21fa3bb091badbccf6b4, type: 2}
+      - {fileID: 22100000, guid: d960bbad205e4e6c8b902fbe1a9c43bb, type: 2}
+      - {fileID: 22100000, guid: 9fec6ada35c8b12d880a2aafb47214c1, type: 2}
+      - {fileID: 22100000, guid: f57b59bb881f7f7c085db44c990b24aa, type: 2}
+      - {fileID: 22100000, guid: 0d21ae710566301b49c7245fb8cb3a9b, type: 2}
+      - {fileID: 22100000, guid: 522814311c8a7f209bd89d54d873aa55, type: 2}
+      - {fileID: 22100000, guid: d4d96b9dddad6155c8dcfe4341e9c95a, type: 2}
+      - {fileID: 22100000, guid: ec2605b9260d4459eb512ce4b3e52719, type: 2}
+      - {fileID: 22100000, guid: bb9f8c397be189691a1fe18a06fff595, type: 2}
+      - {fileID: 22100000, guid: 530588b2d4420e2f7945e91994a17f34, type: 2}
+      - {fileID: 22100000, guid: d17ff36df080a1c77beb4a33ea49d346, type: 2}
+      - {fileID: 22100000, guid: f372061d5efdbab29a10fa01ec59c18e, type: 2}
+      spriteInicial: {fileID: 1527922363904004499, guid: 1db15279728f80ec690a4bf2ccd46d4e, type: 3}
+      proyectil: {fileID: 0}
+    - nombre: failedMusician
+      variaciones:
+      - {fileID: 22100000, guid: b5073499d01c3f57b9d1525ba89b1eee, type: 2}
+      - {fileID: 22100000, guid: 821b53b72c0977fee8eab1d52caaf908, type: 2}
+      - {fileID: 22100000, guid: 5f28da7daac3fe59db3384880912694e, type: 2}
+      - {fileID: 22100000, guid: c7974d19aa060adb3b8d788ccdb46f87, type: 2}
+      - {fileID: 22100000, guid: b04002ea030349023acccc33a3934126, type: 2}
+      - {fileID: 22100000, guid: 58ee2dd55f959e1b18f941f66bc05417, type: 2}
+      - {fileID: 22100000, guid: 2d81a4c08e5dc253c93c2d21b01b610c, type: 2}
+      - {fileID: 22100000, guid: 4f0766cdfb18a74699d4a25f3fd35acd, type: 2}
+      - {fileID: 22100000, guid: f28977c8b72261e19816273d7e2713a8, type: 2}
+      - {fileID: 22100000, guid: 225adee7a36a20e65903a40b93a82b91, type: 2}
+      - {fileID: 22100000, guid: daea1f307b352c61a8d76e12ae4cfb17, type: 2}
+      - {fileID: 22100000, guid: 7243f147fee469ee896900577613e03c, type: 2}
+      - {fileID: 22100000, guid: 03e27f5c49f6f74cea731a9ebd0fbf3f, type: 2}
+      - {fileID: 22100000, guid: 6a12cbb60608c84d29f81b8bc2f1ddb7, type: 2}
+      - {fileID: 22100000, guid: c4598c255b8811c0295b0563fb128539, type: 2}
+      - {fileID: 22100000, guid: b751d8b7a57d24e50883db52f87024e9, type: 2}
+      - {fileID: 22100000, guid: 5fa9347189cde4b52af45ba66dd7cfc1, type: 2}
+      - {fileID: 22100000, guid: 7e8d3dc185d5c6636a5a5e70406fc23b, type: 2}
+      - {fileID: 22100000, guid: 098db5425b64ac325a8165fbad29e71c, type: 2}
+      - {fileID: 22100000, guid: 5550e2e1aaf0628058671e7a7b04a1f3, type: 2}
+      - {fileID: 22100000, guid: f7a2a5c13296220a2b3a3a02f0471e7f, type: 2}
+      - {fileID: 22100000, guid: 2ea7c6d10b2d608268bcbcbcfcc7a165, type: 2}
+      - {fileID: 22100000, guid: 365babdb00ccb4ce8b97238cd53bb7dc, type: 2}
+      - {fileID: 22100000, guid: 1a0d766bdb86bc247b050068abfeee73, type: 2}
+      - {fileID: 22100000, guid: 98941e571c0bc38dfad206c28747c691, type: 2}
+      - {fileID: 22100000, guid: 008b6da7f3dd33d07a6a06f028758f38, type: 2}
+      - {fileID: 22100000, guid: dffcba2cebdc5dceca9ae0db54ad0103, type: 2}
+      spriteInicial: {fileID: -6996118608116241920, guid: 303a9c8d28ce13da780e23f307c0394e, type: 3}
+      proyectil: {fileID: 0}
+    - nombre: hipsterVampire
+      variaciones:
+      - {fileID: 22100000, guid: 926fe7ed9183d5eea8fafe44a6eb0898, type: 2}
+      - {fileID: 22100000, guid: 60f880faef1aeeb088a15165f0de2f5f, type: 2}
+      - {fileID: 22100000, guid: 1f91b8fb116b69cb88e7417593ed04b2, type: 2}
+      - {fileID: 22100000, guid: 2dc7d40fa439efacbb007c8907088924, type: 2}
+      - {fileID: 22100000, guid: e6925acb22dcb3d78862e3b6e8c38077, type: 2}
+      - {fileID: 22100000, guid: e85d65a401aa220a3b61b452a7b44fb3, type: 2}
+      - {fileID: 22100000, guid: e27ca624a9291007095bdfb7eff9f16b, type: 2}
+      - {fileID: 22100000, guid: aeee318c2e7ffc2b2968f92036af51a6, type: 2}
+      - {fileID: 22100000, guid: f0721ffb6442346e382d67ee447157a5, type: 2}
+      - {fileID: 22100000, guid: a67a97f19fcaeb24f979eb1bd2ca6971, type: 2}
+      - {fileID: 22100000, guid: 366aac2024132af3a973f7b7e9253a90, type: 2}
+      - {fileID: 22100000, guid: 255907affeeb8e2a78c67731089525ab, type: 2}
+      - {fileID: 22100000, guid: 610b2d287caba81da87fc89b8cacb46d, type: 2}
+      - {fileID: 22100000, guid: f4b575fb7aa8826e9a464104bc06256a, type: 2}
+      - {fileID: 22100000, guid: cf861ba7ea38a6979a15ffa8e6fe5e47, type: 2}
+      - {fileID: 22100000, guid: 3481b8e3e3e4fa327b5afb022b152674, type: 2}
+      - {fileID: 22100000, guid: cd23b4a0a978fc8f293b064df2d8b1d8, type: 2}
+      - {fileID: 22100000, guid: f1e923289af407ac494861ac4a78501f, type: 2}
+      - {fileID: 22100000, guid: 64741ce523340fef39114aa45594a1b7, type: 2}
+      - {fileID: 22100000, guid: 3618e11bf14e499409a288bf4cf1a178, type: 2}
+      - {fileID: 22100000, guid: aa90e381c372ac4edbe3d62e77656dbd, type: 2}
+      - {fileID: 22100000, guid: 1597ec293a618e524a23132f2a90cfc4, type: 2}
+      - {fileID: 22100000, guid: 0d8f532f413845a438e62f385b4518d3, type: 2}
+      - {fileID: 22100000, guid: 0e3ab73585adcb27dbfdd43c9496e24c, type: 2}
+      - {fileID: 22100000, guid: 00a709a93a352a8fbb62b0f17b617d8d, type: 2}
+      - {fileID: 22100000, guid: 56ad2c68abcd8699182a936d7bb80e5f, type: 2}
+      - {fileID: 22100000, guid: 3ef2e2234eb262093b01cbf616131202, type: 2}
+      spriteInicial: {fileID: 8306505736035754604, guid: f56986d92fdd1275da16bcd1942e51b1, type: 3}
+      proyectil: {fileID: 0}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: rataRockera_a2_z1_c1
+  m_Controller: {fileID: 9100000, guid: a9d62a969fa399dc496849d7f1aa105a, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 95df54a74249e3c0cba939b6407f421b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3c2eba5bd6b6bb70192171d8ccdea1d5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: afd0c966104be455792dd4180705d14b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 9f910e6f31e9847aead32141a76f1952, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 18386eee91f3ea144a19a5f5c88a7468, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c834c2bd134e5a18c8db42fa7f25d4c7, type: 2}

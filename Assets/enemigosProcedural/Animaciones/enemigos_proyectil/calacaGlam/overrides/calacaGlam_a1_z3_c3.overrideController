@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: calacaGlam_a1_z3_c3
+  m_Controller: {fileID: 9100000, guid: 41b9ee1898b904a11be804e23d4a5dd1, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a8c31a5acb440199f919f1b09f37b658, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0ed532c63f60bdede847b09c4e1aaee7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0953aebdf92a2cd449e7a296d3cd5b18, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 21724700c17f19e78877d936f56c79e9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: f2259a64e5f9ac737a5adce0340da4f8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 190df9049453a8929b991457275f6aa6, type: 2}

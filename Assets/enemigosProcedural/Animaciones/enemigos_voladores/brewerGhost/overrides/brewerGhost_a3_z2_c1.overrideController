@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: brewerGhost_a3_z2_c1
+  m_Controller: {fileID: 9100000, guid: e7e00d5be6754d7238ce48c8f29aa68f, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: dc32a60b20db6bcd38e2151f91ee9f4d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 646fae6288a702a888278e463c7b5484, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5901c8f7d2ed03585b3c3bc079748e14, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a8580982b5d623cc4a1b32fb2fa1af93, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 64aa72e5058187549bf3f951a5a85021, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f74cc3569e82c9508b29975efac99601, type: 2}

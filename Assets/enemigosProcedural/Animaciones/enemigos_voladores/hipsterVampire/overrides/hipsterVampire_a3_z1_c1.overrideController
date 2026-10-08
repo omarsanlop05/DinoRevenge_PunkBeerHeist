@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: hipsterVampire_a3_z1_c1
+  m_Controller: {fileID: 9100000, guid: bbe801871ff7ef5459477a1e4c08a554, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 2536d1d78dcd458208398e2222bfad8a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 56a9d7a6fa33c1c4d8f78a8b9c545c18, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 8613ce29288c84a0abd5f5e1533cbb7a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: de6e1d2308dbdc12fbfca078af27eda9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5ae372c9272aa22688597bc097fdfac1, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2d8c9919203b022e2b7af92b37977c5b, type: 2}

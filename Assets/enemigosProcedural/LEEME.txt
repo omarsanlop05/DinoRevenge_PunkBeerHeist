@@ -1,0 +1,168 @@
+=====================================================================
+  ENEMIGOS PROCEDURALES - cómo usarlo
+=====================================================================
+
+Todo vive en Assets/enemigosProcedural/. NO renombren ni muevan esta carpeta
+(los menús de editor usan esas rutas; el juego en sí funciona igual, pero
+regenerar animaciones/catálogo dejaría de funcionar).
+
+Requisitos: Unity 6 (hecho en 6000.0.53f1) con el paquete "2D Sprite"
+(com.unity.2d.sprite, viene con la plantilla 2D). Sin él, el script de
+editor GenerarAnimaciones.cs no compila.
+Se hizo con URP 2D (plantilla "Universal 2D"). Si su proyecto NO usa URP,
+el prefab proyectilObjetoBase tendrá el material vacío: en su SpriteRenderer
+pongan Material = Sprites-Default. La escena de prueba también usa la luz 2D
+de URP (Global Light 2D); sin URP, quítenla.
+
+
+---------------------------------------------------------------------
+1. QUÉ HAY
+---------------------------------------------------------------------
+16 enemigos en 3 tipos. Cada enemigo tiene 27 variaciones visuales:
+casco (1-3) x zapatos (1-3) x aura (1-3).
+
+  "contacto"  : beerGlup, hinchaChivas, ogreBouncer, policiaRebelde, zombiePunk
+  "proyectil" : bartender, calacaGlam, mesera, rataPiro, rataRockera, skaterSkeleton
+  "volador"   : brewerGhost, cyberPigeon, deliveryZombie, failedMusician, hipsterVampire
+
+Proyectil que lanza cada enemigo de tipo "proyectil":
+  bartender -> martini          calacaGlam  -> murcielago     mesera         -> tarroCerveza
+  rataPiro  -> cohete           rataRockera -> molotov        skaterSkeleton -> lataAerosol
+
+Carpetas:
+  Animaciones/CatalogoEnemigos.asset   <- el catálogo que usa la fábrica
+  Animaciones/<grupo>/<enemigo>/       <- clips, controller base y 27 overrides
+  prefabsBase/                         <- prefabs base (aquí va SU comportamiento)
+  prefabsProyectiles/                  <- un prefab por proyectil
+  Scripts/Enemigos/                    <- FabricaEnemigos, CatalogoEnemigos, demos
+  Scenes/enemigosPruebas.unity         <- escena de prueba (darle Play)
+  Editor/                              <- menús de Herramientas (solo editor)
+
+
+---------------------------------------------------------------------
+2. PREPARAR LA ESCENA
+---------------------------------------------------------------------
+1) Creen un GameObject vacío (ej. "FabricaEnemigos").
+2) Agréguenle el componente FabricaEnemigos.
+3) Arrastren Animaciones/CatalogoEnemigos.asset a su campo "Catalogo".
+
+(La escena Scenes/enemigosPruebas.unity ya lo tiene hecho, como ejemplo.)
+
+
+---------------------------------------------------------------------
+3. CREAR ENEMIGOS DESDE OTRO SCRIPT
+---------------------------------------------------------------------
+    using UnityEngine;
+
+    public class MiSpawner : MonoBehaviour
+    {
+        public FabricaEnemigos fabrica;   // arrastrar el objeto de la escena
+
+        void Start()
+        {
+            // Enemigo al azar entre voladores y de contacto,
+            // con casco 1, zapatos 2, aura 3, en la posición (2, 0):
+            GameObject e = fabrica.Crear(new[] { "volador", "contacto" },
+                                         1, 2, 3, new Vector3(2, 0, 0));
+        }
+    }
+
+Firma:
+    GameObject Crear(string[] tipos, int casco, int zapatos, int aura,
+                     Vector3 posicion = default, Transform padre = null)
+
+  - tipos    : uno o varios de "contacto", "proyectil", "volador"
+               (no importan mayúsculas). Se elige un enemigo al azar entre
+               TODOS los de esos tipos, todos con la misma probabilidad.
+  - casco, zapatos, aura : de 1 a 3.
+  - posicion, padre      : opcionales.
+  - Regresa el GameObject ya instanciado en la escena, con SpriteRenderer
+    y Animator listos, llamado p. ej. "zombiePunk_a3_z2_c1".
+  - Regresa null (y avisa en la Consola) si un valor no está entre 1 y 3,
+    si no existe ningún tipo pedido, o si no hay catálogo asignado.
+
+
+---------------------------------------------------------------------
+4. ENEMIGOS DE PROYECTIL: OBTENER SU PROYECTIL
+---------------------------------------------------------------------
+Hay una versión con "out" que además regresa el PREFAB del proyectil
+(NO lo instancia; ustedes lo instancian cada vez que el enemigo dispare):
+
+    GameObject e = fabrica.Crear(new[] { "proyectil", "contacto" }, 1, 2, 3,
+                                 out GameObject prefabProyectil,
+                                 new Vector3(2, 0, 0));
+
+    // prefabProyectil es null si salió un enemigo que no es de proyectil.
+    // Cuando dispare:
+    if (prefabProyectil != null)
+        Instantiate(prefabProyectil, e.transform.position, Quaternion.identity);
+
+Lo normal es pasárselo al script de comportamiento del enemigo, p. ej.:
+    e.GetComponent<MiComportamiento>().proyectilPrefab = prefabProyectil;
+
+
+---------------------------------------------------------------------
+5. ANIMACIONES: QUÉ PARÁMETROS TIENE EL ANIMATOR
+---------------------------------------------------------------------
+Enemigos (estados idle, correr, ataque):
+    animator.SetBool("corriendo", true);    // idle -> correr
+    animator.SetBool("corriendo", false);   // correr -> idle
+    animator.SetTrigger("atacar");          // ataque una vez y vuelve a idle
+
+Proyectiles (estados vuelo, impacto):
+    animator.SetTrigger("impactar");        // vuelo -> impacto (no hace loop)
+
+Ejemplo:
+    var animator = GetComponent<Animator>();
+    animator.SetTrigger("atacar");
+
+
+---------------------------------------------------------------------
+6. PONER SU PROPIO COMPORTAMIENTO
+---------------------------------------------------------------------
+La fábrica instancia el prefab base del tipo y le pone el sprite y el
+Animator de la variación. Así que el comportamiento va en los prefabs base:
+
+  prefabsBase/contactoBase.prefab     -> enemigos de contacto
+  prefabsBase/proyectilBase.prefab    -> enemigos de proyectil
+  prefabsBase/voladorBase.prefab      -> enemigos voladores
+  prefabsBase/proyectilObjetoBase.prefab -> TODOS los proyectiles
+       (los de prefabsProyectiles/ son Prefab Variants de este,
+        así que lo que le pongan lo heredan los 6)
+
+Ahí agreguen su script, Rigidbody2D, Collider2D, tags, layers, etc.
+Ahorita tienen scripts de prueba que solo enseñan las animaciones;
+quítenlos cuando pongan el suyo:
+  - ComportamientoDemo  (en contactoBase, proyectilBase, voladorBase)
+  - ProyectilDemo       (en proyectilObjetoBase)
+PruebaFabrica.cs solo se usa en la escena de prueba.
+
+Datos útiles:
+  - Sprites de 64x64 px a 100 Pixels Per Unit = 0.64 unidades.
+    El personaje ocupa menos que eso; un CapsuleCollider2D de ~(0.3, 0.5)
+    es buen punto de partida.
+  - El pivote está al CENTRO del sprite (no en los pies).
+  - Los voladores no deberían tener gravedad (Gravity Scale = 0).
+
+
+---------------------------------------------------------------------
+7. SI ALGO CHOCA AL IMPORTAR
+---------------------------------------------------------------------
+Las clases no están en un namespace. Si su proyecto ya tiene una clase con
+el mismo nombre (FabricaEnemigos, CatalogoEnemigos, ComportamientoDemo,
+ProyectilDemo, PruebaFabrica, GenerarAnimaciones, PrepararDemo) habrá un
+error de compilación: renombren una de las dos.
+
+
+---------------------------------------------------------------------
+8. MENÚS DE EDITOR (Herramientas en la barra de arriba)
+---------------------------------------------------------------------
+Normalmente NO hace falta usarlos; todo ya viene generado.
+  - Generar animaciones            : rehace clips/controllers/overrides
+                                     desde sprites/ (si cambian los sprites)
+  - Actualizar catálogo de enemigos: rehace CatalogoEnemigos.asset y los
+                                     prefabs de proyectiles (conserva los
+                                     prefabs base asignados)
+  - Preparar demo de enemigos      : pone los scripts de demo y arma la
+                                     escena de prueba (OJO: vuelve a poner
+                                     ComportamientoDemo en los prefabs base)

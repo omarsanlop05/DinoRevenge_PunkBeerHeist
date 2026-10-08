@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: bd454c7b89007bef0a79de637bd0c37b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2821448368193937425
+    second: brewerGhost_a1_z2_c3_0
+  - first:
+      213: -8302061809055530842
+    second: brewerGhost_a1_z2_c3_1
+  - first:
+      213: 3299728876657935015
+    second: brewerGhost_a1_z2_c3_2
+  - first:
+      213: 1588012196675522528
+    second: brewerGhost_a1_z2_c3_3
+  - first:
+      213: -2129611390701484339
+    second: brewerGhost_a1_z2_c3_4
+  - first:
+      213: -2222203193733394199
+    second: brewerGhost_a1_z2_c3_5
+  - first:
+      213: -4454128386684503802
+    second: brewerGhost_a1_z2_c3_6
+  - first:
+      213: 8782765068220859564
+    second: brewerGhost_a1_z2_c3_7
+  - first:
+      213: -1432403656498307552
+    second: brewerGhost_a1_z2_c3_8
+  - first:
+      213: -3564112896890359778
+    second: brewerGhost_a1_z2_c3_9
+  - first:
+      213: 641285175196306929
+    second: brewerGhost_a1_z2_c3_10
+  - first:
+      213: -392461077592596828
+    second: brewerGhost_a1_z2_c3_11
+  - first:
+      213: 6820130486507375494
+    second: brewerGhost_a1_z2_c3_12
+  - first:
+      213: 564664465022276481
+    second: brewerGhost_a1_z2_c3_13
+  - first:
+      213: 1351430324774876161
+    second: brewerGhost_a1_z2_c3_14
+  - first:
+      213: -233013141940211046
+    second: brewerGhost_a1_z2_c3_15
+  - first:
+      213: -7886059487508695349
+    second: brewerGhost_a1_z2_c3_16
+  - first:
+      213: -1597006712872355711
+    second: brewerGhost_a1_z2_c3_17
+  - first:
+      213: -1408485543135812793
+    second: brewerGhost_a1_z2_c3_18
+  - first:
+      213: 1856944422473571260
+    second: brewerGhost_a1_z2_c3_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 4
+        width: 35
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1102e4a975cc72720800000000000000
+      internalID: 2821448368193937425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_1
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 4
+        width: 38
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a088e755c629cc80800000000000000
+      internalID: -8302061809055530842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_2
+      rect:
+        serializedVersion: 2
+        x: 139
+        y: 5
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a28b4c3eedfacd20800000000000000
+      internalID: 3299728876657935015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_3
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 6
+        width: 35
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ef05d1eda0c90610800000000000000
+      internalID: 1588012196675522528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_4
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 6
+        width: 35
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc6cc9b29b91272e0800000000000000
+      internalID: -2129611390701484339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_5
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 5
+        width: 38
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e058c218f52921e0800000000000000
+      internalID: -2222203193733394199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_6
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 6
+        width: 37
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 609bfafc4d1cf22c0800000000000000
+      internalID: -4454128386684503802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_7
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 7
+        width: 49
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca48305eb46a2e970800000000000000
+      internalID: 8782765068220859564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_8
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 6
+        width: 49
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02e927fa6741f1ce0800000000000000
+      internalID: -1432403656498307552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_9
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 6
+        width: 49
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e103679243ab98ec0800000000000000
+      internalID: -3564112896890359778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_10
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 6
+        width: 35
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fdcc4b187d46e800800000000000000
+      internalID: 641285175196306929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_11
+      rect:
+        serializedVersion: 2
+        x: 713
+        y: 4
+        width: 38
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae1de1bab2bd8af0800000000000000
+      internalID: -392461077592596828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_12
+      rect:
+        serializedVersion: 2
+        x: 775
+        y: 7
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68b851afa88f5ae50800000000000000
+      internalID: 6820130486507375494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_13
+      rect:
+        serializedVersion: 2
+        x: 837
+        y: 6
+        width: 45
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18350f6d65716d700800000000000000
+      internalID: 564664465022276481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_14
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 6
+        width: 43
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 104b5ee58be31c210800000000000000
+      internalID: 1351430324774876161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_15
+      rect:
+        serializedVersion: 2
+        x: 967
+        y: 7
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a92f7ae28cb24ccf0800000000000000
+      internalID: -233013141940211046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_16
+      rect:
+        serializedVersion: 2
+        x: 1031
+        y: 8
+        width: 43
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc6f171ada61f8290800000000000000
+      internalID: -7886059487508695349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_17
+      rect:
+        serializedVersion: 2
+        x: 1093
+        y: 9
+        width: 45
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 188345f1bda46d9e0800000000000000
+      internalID: -1597006712872355711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_18
+      rect:
+        serializedVersion: 2
+        x: 1159
+        y: 9
+        width: 43
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 743ed1a6cdd047ce0800000000000000
+      internalID: -1408485543135812793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brewerGhost_a1_z2_c3_19
+      rect:
+        serializedVersion: 2
+        x: 1223
+        y: 8
+        width: 43
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbb1e2d1d1135c910800000000000000
+      internalID: 1856944422473571260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      brewerGhost_a1_z2_c3_0: 2821448368193937425
+      brewerGhost_a1_z2_c3_1: -8302061809055530842
+      brewerGhost_a1_z2_c3_10: 641285175196306929
+      brewerGhost_a1_z2_c3_11: -392461077592596828
+      brewerGhost_a1_z2_c3_12: 6820130486507375494
+      brewerGhost_a1_z2_c3_13: 564664465022276481
+      brewerGhost_a1_z2_c3_14: 1351430324774876161
+      brewerGhost_a1_z2_c3_15: -233013141940211046
+      brewerGhost_a1_z2_c3_16: -7886059487508695349
+      brewerGhost_a1_z2_c3_17: -1597006712872355711
+      brewerGhost_a1_z2_c3_18: -1408485543135812793
+      brewerGhost_a1_z2_c3_19: 1856944422473571260
+      brewerGhost_a1_z2_c3_2: 3299728876657935015
+      brewerGhost_a1_z2_c3_3: 1588012196675522528
+      brewerGhost_a1_z2_c3_4: -2129611390701484339
+      brewerGhost_a1_z2_c3_5: -2222203193733394199
+      brewerGhost_a1_z2_c3_6: -4454128386684503802
+      brewerGhost_a1_z2_c3_7: 8782765068220859564
+      brewerGhost_a1_z2_c3_8: -1432403656498307552
+      brewerGhost_a1_z2_c3_9: -3564112896890359778
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: policiaRebelde_a1_z3_c2
+  m_Controller: {fileID: 9100000, guid: 9953d1a95ea0b79c49c03d53d7111477, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 2c4c962124e8558348a8494fbaf234a7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5ab6b68beb61b74a1a95c05c5a0c6ed7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 838fa4a6c5cd3ccb393cafef980c883d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f0d6c51a02262bc41a547a0cbf7d10b3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 724e01743fd8349b9af87efe26d97c2f, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f8db7d141f33bc2679dd10ee45ca9548, type: 2}

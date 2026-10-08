@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: bartender_a2_z1_c3
+  m_Controller: {fileID: 9100000, guid: d2817f015607f82babeadefd8242ca49, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: e47604ba6c315b17ca3206bbb05227ea, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c9f10be8e048d06599f9181fc1c20b86, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1015b8a6d3d847b98ab21269c358d272, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 88749ca28baaacd4e88385fcc65620af, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: cc21c8408f2272881a7da5fd2e64c0ae, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2268ad38e69f547a485f032f5df1b1b0, type: 2}
