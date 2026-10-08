@@ -59,6 +59,43 @@ public class RoomGenerator : MonoBehaviour
             prev = Generate(i, testSeed + i, prev);
     }
 
+    [ContextMenu("Limpiar Tilemaps")]
+    public void ClearAll()
+    {
+        // 1. Limpiar los tiles de los Tilemaps
+        if (groundTilemap != null)
+        {
+            groundTilemap.ClearAllTiles();
+        }
+
+        if (platformTilemap != null)
+        {
+            platformTilemap.ClearAllTiles();
+        }
+
+        // 2. Destruir todos los GameObjects de los cuartos generados (cámaras, triggers, enemigos)
+        if (roomsParent != null)
+        {
+            // Se itera en reversa para evitar problemas al eliminar elementos de la jerarquía
+            for (int i = roomsParent.childCount - 1; i >= 0; i--)
+            {
+                Transform child = roomsParent.GetChild(i);
+
+                // Usa DestroyImmediate si se ejecuta desde el Editor (fuera de Play Mode), o Destroy si está en Play Mode
+                if (Application.isPlaying)
+                {
+                    Destroy(child.gameObject);
+                }
+                else
+                {
+                    DestroyImmediate(child.gameObject);
+                }
+            }
+        }
+
+        Debug.Log("[RoomGenerator] Se han limpiado los Tilemaps y destruido los objetos de cuartos anteriores.");
+    }
+
     // previous = cuarto anterior (null para el primero). El origen se calcula solo para que las puertas
     // coincidan en altura, aunque un cuarto termine arriba y el siguiente empiece abajo.
     public RoomData Generate(int index, int seed, RoomData previous)
@@ -82,7 +119,7 @@ public class RoomGenerator : MonoBehaviour
 
         PaintShell(c, origin, entryRow, exitRow);
         List<Surface> walkable = BuildLayout(c, origin, rng, entryRow, exitRow);
-        SpawnEnemies(c, origin, walkable, rng, data.root);
+        //SpawnEnemies(c, origin, walkable, rng, data.root);
         data.cam = CreateCamera(c, origin, data.root, previous == null);
         data.entryTrigger = CreateEntryTrigger(c, origin, data, previous);
         return data;
