@@ -249,7 +249,7 @@ public class RoomGenerator : MonoBehaviour
     // Reintenta varias veces construir una cadena de plataformas de "from" a "to". null si no lo logra.
     private static List<Surface> TryChain(RoomGenConfig c, Random rng, Surface from, Surface to, List<Surface> obstacles)
     {
-        for (int attempt = 0; attempt < 30; attempt++)
+        for (int attempt = 0; attempt < c.placementAttempts; attempt++)
         {
             var chain = new List<Surface>();
             var temp = new List<Surface>(obstacles);
@@ -269,12 +269,12 @@ public class RoomGenerator : MonoBehaviour
         int maxStep = Mathf.Max(2, c.maxJumpHeight);
         Surface cur = from;
 
-        for (int step = 0; step < 16; step++)
+        for (int step = 0; step < c.maxPlatforms; step++)
         {
             if (IsLinked(c, cur, to)) return true;
 
             bool placed = false;
-            for (int attempt = 0; attempt < 30 && !placed; attempt++)
+            for (int attempt = 0; attempt < c.placementAttempts && !placed; attempt++)
             {
                 int len = rng.Next(c.platformLength.x, c.platformLength.y + 1);
 
@@ -331,8 +331,8 @@ public class RoomGenerator : MonoBehaviour
     {
         foreach (var p in obstacles)
         {
-            bool xOverlap = s.xMin <= p.xMax + 1 && s.xMax >= p.xMin - 1;
-            if (xOverlap && Mathf.Abs(s.y - p.y) <= c.playerHeight) return true;
+            bool xOverlap = s.xMin <= p.xMax + 2 && s.xMax >= p.xMin - 2;
+            if (xOverlap && Mathf.Abs(s.y - p.y) <= c.playerHeight + 1) return true;
         }
         return false;
     }
