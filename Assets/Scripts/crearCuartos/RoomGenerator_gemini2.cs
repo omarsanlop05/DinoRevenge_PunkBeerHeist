@@ -93,7 +93,7 @@ public class RoomGenerator_gemini2 : MonoBehaviour
         }
     }
 
-    // ---------- Layout con Filtros de Jugabilidad ----------
+    // ---------- Layout con Filtros de Jugabilidad (SOLO CAMINO CRÍTICO) ----------
 
     private void BuildLayoutWithFilters(RoomGenConfig c, Vector3Int origin, Random rng, int entryRow, int exitRow)
     {
@@ -121,18 +121,29 @@ public class RoomGenerator_gemini2 : MonoBehaviour
         int midLen = rng.Next(c.platformLength.x, c.platformLength.y + 1);
         var midPlatform = new Surface { xMin = midX - midLen / 2, xMax = midX + midLen / 2, y = targetY };
 
-        // FILTRO 1 & 5: Validar que el nodo elevado cumpla las alturas y espacio
+        // Validar que el nodo elevado cumpla las alturas y espacio
         if (ValidatePlatform(c, midPlatform, obstacles))
         {
-            // Intentar conectar Entrada -> Plataforma Central -> Salida
+            // 1. Intentar conectar Entrada -> Plataforma Central
             List<Surface> path1 = TryChain(c, rng, entryPad, midPlatform, obstacles);
-            List<Surface> path2 = TryChain(c, rng, midPlatform, exitPad, obstacles);
 
-            if (path1 != null && path2 != null)
+            if (path1 != null)
             {
-                AddAll(path1, c, origin, platMap, walkable, obstacles);
-                AddAll(new List<Surface> { midPlatform }, c, origin, platMap, walkable, obstacles);
-                AddAll(path2, c, origin, platMap, walkable, obstacles);
+                // CORRECCIÓN DE COLISIONES: Agregar path1 y midPlatform a una lista temporal de obstáculos 
+                // ANTES de calcular el path2 para que no se encimen.
+                var updatedObstacles = new List<Surface>(obstacles);
+                updatedObstacles.AddRange(path1);
+                updatedObstacles.Add(midPlatform);
+
+                // 2. Intentar conectar Plataforma Central -> Salida conociendo las plataformas del path1
+                List<Surface> path2 = TryChain(c, rng, midPlatform, exitPad, updatedObstacles);
+
+                if (path2 != null)
+                {
+                    AddAll(path1, c, origin, platMap, walkable, obstacles);
+                    //AddAll(new List<Surface> { midPlatform }, c, origin, platMap, walkable, obstacles);
+                    AddAll(path2, c, origin, platMap, walkable, obstacles);
+                }
             }
         }
 
@@ -161,17 +172,21 @@ public class RoomGenerator_gemini2 : MonoBehaviour
             if (!ValidatePlatform(c, candidate, obstacles)) continue; // Filtro de solapamiento y espacio de cabeza
             if (!IsUsefulPlatform(c, candidate, walkable)) continue;  // Filtro de utilidad (no huérfana)
 
-            AddAll(new List<Surface> { candidate }, c, origin, platMap, walkable, obstacles);
+            /* Estas si funcionan con normalidad */
+            //AddAll(new List<Surface> { candidate }, c, origin, platMap, walkable, obstacles);
             placed++;
         }
     }
 
     // ---------- FILTROS DE VALIDACIÓN ----------
 
-    // Valida espacio libre para el jugador y colisión con otras plataformas
+    // Valida espacio libre para el jugador, colisión y límites de la sala
     private static bool ValidatePlatform(RoomGenConfig c, Surface candidate, List<Surface> obstacles)
     {
-        // 1. Limite vertical mínimo sobre el suelo (Filtro 1)
+        // CORRECCIÓN LÍMITES: Verificar que no se salga de las paredes del cuarto
+        if (candidate.xMin < c.wallThickness + 1 || candidate.xMax > c.width - c.wallThickness - 2) return false;
+
+        // 1. Limite vertical mínimo sobre el suelo
         if (candidate.y < c.floorThickness + c.maxJumpHeight - 1) return false;
 
         // 2. Limite vertical máximo respecto al techo
