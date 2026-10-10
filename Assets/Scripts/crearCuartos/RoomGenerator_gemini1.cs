@@ -4,12 +4,11 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = System.Random;
 
-public class RoomGenerator : MonoBehaviour
+public class RoomGenerator_gemini1 : MonoBehaviour
 {
     [Header("Referencias")]
     [SerializeField] private RoomGenConfig config;
     [SerializeField] private Tilemap groundTilemap;
-    [Tooltip("Opcional. Si lo dejas vacío, las plataformas se pintan en el Tilemap de suelo")]
     [SerializeField] private Tilemap platformTilemap;
     [SerializeField] private CinemachineCamera roomCameraPrefab;
     [SerializeField] private Transform roomsParent;
@@ -41,42 +40,21 @@ public class RoomGenerator : MonoBehaviour
     [ContextMenu("Limpiar Tilemaps")]
     public void ClearAll()
     {
-        // 1. Limpiar los tiles de los Tilemaps
-        if (groundTilemap != null)
-        {
-            groundTilemap.ClearAllTiles();
-        }
+        if (groundTilemap != null) groundTilemap.ClearAllTiles();
+        if (platformTilemap != null) platformTilemap.ClearAllTiles();
 
-        if (platformTilemap != null)
-        {
-            platformTilemap.ClearAllTiles();
-        }
-
-        // 2. Destruir todos los GameObjects de los cuartos generados (cámaras, triggers, enemigos)
         if (roomsParent != null)
         {
-            // Se itera en reversa para evitar problemas al eliminar elementos de la jerarquía
             for (int i = roomsParent.childCount - 1; i >= 0; i--)
             {
                 Transform child = roomsParent.GetChild(i);
-
-                // Usa DestroyImmediate si se ejecuta desde el Editor (fuera de Play Mode), o Destroy si está en Play Mode
-                if (Application.isPlaying)
-                {
-                    Destroy(child.gameObject);
-                }
-                else
-                {
-                    DestroyImmediate(child.gameObject);
-                }
+                if (Application.isPlaying) Destroy(child.gameObject);
+                else DestroyImmediate(child.gameObject);
             }
         }
-
-        Debug.Log("[RoomGenerator] Se han limpiado los Tilemaps y destruido los objetos de cuartos anteriores.");
+        Debug.Log("[RoomGenerator] Se han limpiado los Tilemaps y destruido los objetos.");
     }
 
-    // previous = cuarto anterior (null para el primero). El origen se calcula solo para que las puertas
-    // coincidan en altura, aunque un cuarto termine arriba y el siguiente empiece abajo.
     public RoomData Generate(int index, int seed, RoomData previous)
     {
         var c = config;
@@ -84,11 +62,6 @@ public class RoomGenerator : MonoBehaviour
 
         int entryRow = previous == null ? c.floorThickness : PickDoorRow(c, rng);
         int exitRow = PickDoorRow(c, rng);
-
-        if (entryRow == exitRow && entryRow <= c.floorThickness + 2)
-        {
-            exitRow = c.doorRows[rng.Next(1, c.doorRows.Length)];
-        }
 
         Vector3Int origin = previous == null ? startOrigin : previous.NextOrigin(entryRow);
 
@@ -101,17 +74,14 @@ public class RoomGenerator : MonoBehaviour
         rootGO.transform.SetParent(roomsParent, false);
         data.root = rootGO.transform;
 
-        // Level layout
-        //PaintShell(c, origin, entryRow, exitRow);
+        // 1. Dibujar cascarón orgánico usando Autómata Celular
         PaintOrganicShell(c, origin, entryRow, exitRow, rng);
-        
-        // Enemies
-        List<Surface> walkable = BuildLayout(c, origin, rng, entryRow, exitRow);
-        //SpawnEnemies(c, origin, walkable, rng, data.root);
 
-        // Camera
-        data.cam = CreateCamera(c, origin, data.root, previous == null);
-        data.entryTrigger = CreateEntryTrigger(c, origin, data, previous);
+        // 2. Generar las plataformas mediante el Agente Caminante
+        List<Surface> walkable = BuildLayout(c, origin, rng, entryRow, exitRow);
+
+        // data.cam = CreateCamera(c, origin, data.root, previous == null);
+        // data.entryTrigger = CreateEntryTrigger(c, origin, data, previous);
 
         return data;
     }
@@ -122,47 +92,27 @@ public class RoomGenerator : MonoBehaviour
         return Mathf.Clamp(row, c.floorThickness, c.height - c.ceilingThickness - c.doorHeight);
     }
 
-    // ---------- Cascarón ----------
-
-    private void PaintShell(RoomGenConfig c, Vector3Int origin, int entryRow, int exitRow)
-    {
-        for (int x = 0; x < c.width; x++)
-        {
-            for (int y = 0; y < c.height; y++)
-            {
-                bool left = x < c.wallThickness;
-                bool right = x >= c.width - c.wallThickness;
-                bool inSideWall = left || right;
-                bool shell = inSideWall || y < c.floorThickness || y >= c.height - c.ceilingThickness;
-
-                int doorRow = left ? entryRow : exitRow;
-                bool door = inSideWall && y >= doorRow && y < doorRow + c.doorHeight;
-
-                if (shell && !door)
-                    groundTilemap.SetTile(origin + new Vector3Int(x, y, 0), c.solidTile);
-            }
-        }
-    }
+    // ---------- Cascarón Orgánico (Autómata Celular) ----------
 
     private void PaintOrganicShell(RoomGenConfig c, Vector3Int origin, int entryRow, int exitRow, Random rng)
     {
         int[,] grid = new int[c.width, c.height];
 
-        // Paso A: Inicializar matriz con ruido en la franja del cascarón
+        // Rellenar bordes con ruido
         for (int x = 0; x < c.width; x++)
         {
             for (int y = 0; y < c.height; y++)
             {
-                // Borde exterior absoluto (Límite infranqueable de la sala)
+                // Zona exterior estricta (Muro indestructible exterior)
                 if (x == 0 || x == c.width - 1 || y == 0 || y == c.height - 1)
                 {
                     grid[x, y] = 1;
                     continue;
                 }
 
-                // Zona donde operará el autómata celular (muros, techo y suelo)
+                // Zona de los bordes del cascarón (Paredes, Techo, Suelo)
                 bool isShellZone = x < c.wallThickness + 2 || x >= c.width - c.wallThickness - 2 ||
-                                y < c.floorThickness + 1 || y >= c.height - c.ceilingThickness - 1;
+                                   y < c.floorThickness + 1 || y >= c.height - c.ceilingThickness - 1;
 
                 if (isShellZone)
                 {
@@ -170,10 +120,10 @@ public class RoomGenerator : MonoBehaviour
                 }
                 else
                 {
-                    grid[x, y] = 0; // Centro libre para las plataformas y el gameplay
+                    grid[x, y] = 0; // Interior totalmente despejado para el gameplay
                 }
 
-                // Mantenemos una capa base sólida en la parte inferior y superior
+                // Asegurar grosor mínimo de suelo y techo
                 if (y < c.floorThickness - 1 || y >= c.height - (c.ceilingThickness - 1))
                 {
                     grid[x, y] = 1;
@@ -181,7 +131,7 @@ public class RoomGenerator : MonoBehaviour
             }
         }
 
-        // Paso B: Aplicar reglas del Autómata Celular (Suavizado)
+        // Suavizado por Autómata Celular en la zona del cascarón
         for (int it = 0; it < cellularAutomataIterations; it++)
         {
             int[,] temp = (int[,])grid.Clone();
@@ -189,7 +139,7 @@ public class RoomGenerator : MonoBehaviour
             {
                 for (int y = 1; y < c.height - 1; y++)
                 {
-                    // Salta el área de juego principal para no bloquear pasos
+                    // No tocar la zona central para no obstruir
                     if (x > c.wallThickness + 2 && x < c.width - c.wallThickness - 3 &&
                         y > c.floorThickness + 1 && y < c.height - c.ceilingThickness - 2) continue;
 
@@ -201,7 +151,7 @@ public class RoomGenerator : MonoBehaviour
             grid = temp;
         }
 
-        // Paso C: Despejar marcos de las puertas
+        // Abrir puertas (Espacio aéreo forzado para el paso del jugador)
         for (int y = entryRow; y < entryRow + c.doorHeight; y++)
         {
             for (int x = 0; x <= c.wallThickness + 1; x++) grid[x, y] = 0;
@@ -211,7 +161,7 @@ public class RoomGenerator : MonoBehaviour
             for (int x = c.width - c.wallThickness - 2; x < c.width; x++) grid[x, y] = 0;
         }
 
-        // Paso D: Renderizar en el Tilemap
+        // Renderizar los tiles sólidos
         for (int x = 0; x < c.width; x++)
         {
             for (int y = 0; y < c.height; y++)
@@ -224,7 +174,6 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    // Método auxiliar de Autómata Celular (Vecindario de Moore)
     private int GetNeighbors(int[,] grid, int x, int y, int width, int height)
     {
         int count = 0;
@@ -240,7 +189,7 @@ public class RoomGenerator : MonoBehaviour
         return count;
     }
 
-    // ---------- Plataformas ----------
+    // ---------- Plataformas (Agente Excavador) ----------
 
     private List<Surface> BuildLayout(RoomGenConfig c, Vector3Int origin, Random rng, int entryRow, int exitRow)
     {
@@ -249,11 +198,10 @@ public class RoomGenerator : MonoBehaviour
         var entryPad = new Surface { xMin = c.wallThickness, xMax = c.wallThickness + c.ledgeLength - 1, y = entryRow - 1 };
         var exitPad = new Surface { xMin = c.width - c.wallThickness - c.ledgeLength, xMax = c.width - c.wallThickness - 1, y = exitRow - 1 };
 
-        var walkable = new List<Surface> { floor };   // donde se puede caminar (spawns y alcanzabilidad)
-        var obstacles = new List<Surface>();          // lo que ocupa espacio (para dejar holgura al jugador)
+        var walkable = new List<Surface> { floor };
+        var obstacles = new List<Surface>();
         Tilemap platMap = platformTilemap != null ? platformTilemap : groundTilemap;
 
-        // Salientes sólidos para puertas altas
         if (entryRow > c.floorThickness)
         {
             PaintSurface(groundTilemap, c.solidTile, origin, entryPad);
@@ -265,34 +213,26 @@ public class RoomGenerator : MonoBehaviour
             walkable.Add(exitPad); obstacles.Add(exitPad);
         }
 
-        // Camino obligatorio de puerta a puerta cuando alguna es alta
+        // Generar la cadena principal mediante Agente
         if (entryRow > c.floorThickness || exitRow > c.floorThickness)
         {
             List<Surface> main = TryChain(c, rng, entryPad, exitPad, obstacles);
-            if (main == null)
-            {
-                Debug.LogWarning($"[RoomGenerator] No se pudo crear camino entre puertas. Revisa maxJumpHeight/maxJumpDistance.");
-            }
-            else
+            if (main != null)
             {
                 AddAll(main, c, origin, platMap, walkable, obstacles);
 
-                // Si todo el camino quedó lejos del suelo, agrega una escalera de regreso para no atrapar al jugador
                 Surface lowest = entryPad.y <= exitPad.y ? entryPad : exitPad;
                 foreach (var s in main) if (s.y < lowest.y) lowest = s;
 
                 if (lowest.y - floorTop > c.maxJumpHeight - 1)
                 {
                     List<Surface> back = TryChain(c, rng, lowest, floor, obstacles);
-                    if (back == null)
-                        Debug.LogWarning("[RoomGenerator] No se pudo crear camino de regreso al suelo.");
-                    else
-                        AddAll(back, c, origin, platMap, walkable, obstacles);
+                    if (back != null) AddAll(back, c, origin, platMap, walkable, obstacles);
                 }
             }
         }
 
-        // Plataformas extra opcionales
+        // Plataformas extra
         int extra = rng.Next(c.minPlatforms, c.maxPlatforms + 1);
         int yMin = floorTop + c.playerHeight + 1;
         int yMax = c.height - c.ceilingThickness - 1 - c.playerHeight;
@@ -316,8 +256,7 @@ public class RoomGenerator : MonoBehaviour
         return walkable;
     }
 
-    private void AddAll(List<Surface> list, RoomGenConfig c, Vector3Int origin, Tilemap map,
-                        List<Surface> walkable, List<Surface> obstacles)
+    private void AddAll(List<Surface> list, RoomGenConfig c, Vector3Int origin, Tilemap map, List<Surface> walkable, List<Surface> obstacles)
     {
         foreach (var s in list)
         {
@@ -333,7 +272,6 @@ public class RoomGenerator : MonoBehaviour
             map.SetTile(origin + new Vector3Int(x, s.y, 0), tile);
     }
 
-    // Reintenta varias veces construir una cadena de plataformas de "from" a "to". null si no lo logra.
     private static List<Surface> TryChain(RoomGenConfig c, Random rng, Surface from, Surface to, List<Surface> obstacles)
     {
         for (int attempt = 0; attempt < c.placementAttempts; attempt++)
@@ -345,9 +283,7 @@ public class RoomGenerator : MonoBehaviour
         return null;
     }
 
-    // Camino aleatorio: cada paso es un salto posible en ambos sentidos (subir y regresar), con sesgo hacia el destino.
-    private static bool BuildChain(RoomGenConfig c, Random rng, Surface from, Surface to,
-                                   List<Surface> obstacles, List<Surface> chain)
+    private static bool BuildChain(RoomGenConfig c, Random rng, Surface from, Surface to, List<Surface> obstacles, List<Surface> chain)
     {
         int floorTop = c.floorThickness - 1;
         int yMin = floorTop + c.playerHeight + 1;
@@ -365,14 +301,14 @@ public class RoomGenerator : MonoBehaviour
             {
                 int len = rng.Next(c.platformLength.x, c.platformLength.y + 1);
 
-                float pRight = to.xMin >= cur.xMax ? 0.75f : (to.xMax <= cur.xMin ? 0.25f : 0.5f);
+                float pRight = to.xMin >= cur.xMax ? 0.8f : (to.xMax <= cur.xMin ? 0.2f : 0.5f);
                 bool goRight = rng.NextDouble() < pRight;
                 int xMin = goRight
                     ? rng.Next(cur.xMax - 1, cur.xMax + span + 2)
                     : rng.Next(cur.xMin - len - span, cur.xMin - len + 2);
 
                 int toward = to.y > cur.y ? 1 : (to.y < cur.y ? -1 : 0);
-                int mag = rng.Next(1, maxStep);   // 1 .. maxJumpHeight-1
+                int mag = rng.Next(1, maxStep);
                 int dir = toward == 0 ? (rng.Next(2) == 0 ? 1 : -1) : (rng.NextDouble() < 0.8 ? toward : -toward);
 
                 var s = new Surface { xMin = xMin, xMax = xMin + len - 1, y = cur.y + dir * mag };
@@ -391,7 +327,6 @@ public class RoomGenerator : MonoBehaviour
         return IsLinked(c, cur, to);
     }
 
-    // Dos superficies están enlazadas si se puede saltar de una a otra (con 1 tile de margen) en cualquier sentido.
     private static bool IsLinked(RoomGenConfig c, Surface a, Surface b)
     {
         if (Mathf.Abs(a.y - b.y) > c.maxJumpHeight - 1) return false;
@@ -399,7 +334,6 @@ public class RoomGenerator : MonoBehaviour
         return gap <= c.maxJumpDistance - 1;
     }
 
-    // Para plataformas extra: basta con poder llegar subiendo desde alguna superficie existente.
     private static bool IsReachable(RoomGenConfig c, Surface s, List<Surface> others)
     {
         foreach (var o in others)
@@ -413,7 +347,6 @@ public class RoomGenerator : MonoBehaviour
         return false;
     }
 
-    // Evita plataformas pegadas en vertical que no dejen espacio para el jugador.
     private static bool Overlaps(RoomGenConfig c, Surface s, List<Surface> obstacles)
     {
         foreach (var p in obstacles)
@@ -422,68 +355,5 @@ public class RoomGenerator : MonoBehaviour
             if (xOverlap && Mathf.Abs(s.y - p.y) <= c.playerHeight + 1) return true;
         }
         return false;
-    }
-
-    // ---------- Enemigos ----------
-
-    private void SpawnEnemies(RoomGenConfig c, Vector3Int origin, List<Surface> surfaces, Random rng, Transform parent)
-    {
-        if (c.enemyPrefabs == null || c.enemyPrefabs.Length == 0) return;
-
-        int count = rng.Next(c.enemyCount.x, c.enemyCount.y + 1);
-        var used = new HashSet<Vector2Int>();
-
-        for (int tries = 0; tries < count * 10 && used.Count < count; tries++)
-        {
-            Surface s = surfaces[rng.Next(surfaces.Count)];
-            int x = rng.Next(s.xMin, s.xMax + 1);
-            if (x - c.wallThickness < c.safeZoneFromEntry) continue;
-
-            var cell = new Vector2Int(x, s.y + 1);
-            if (!used.Add(cell)) continue;
-
-            Vector3 world = groundTilemap.GetCellCenterWorld(origin + new Vector3Int(cell.x, cell.y, 0));
-            GameObject prefab = c.enemyPrefabs[rng.Next(c.enemyPrefabs.Length)];
-            Instantiate(prefab, world, Quaternion.identity, parent);
-        }
-    }
-
-    // ---------- Cámara y trigger ----------
-
-    private CinemachineCamera CreateCamera(RoomGenConfig c, Vector3Int origin, Transform parent, bool isFirst)
-    {
-        Vector3 cell = groundTilemap.layoutGrid.cellSize;
-        Vector3 corner = groundTilemap.CellToWorld(origin);
-        Vector3 center = corner + new Vector3(c.width * cell.x * 0.5f, c.height * cell.y * 0.5f, -10f);
-
-        CinemachineCamera cam = Instantiate(roomCameraPrefab, center, Quaternion.identity, parent);
-        cam.name = $"RoomCam_{parent.name}";
-        cam.Priority = isFirst ? 10 : 0;
-        return cam;
-    }
-
-    private RoomEntryTrigger CreateEntryTrigger(RoomGenConfig c, Vector3Int origin, RoomData data, RoomData previous)
-    {
-        Vector3 cell = groundTilemap.layoutGrid.cellSize;
-        Vector3 corner = groundTilemap.CellToWorld(origin);
-
-        var go = new GameObject($"EntryTrigger_{data.index}");
-        go.transform.SetParent(data.root, false);
-        go.transform.position = corner + new Vector3((c.wallThickness + 0.5f) * cell.x, c.height * cell.y * 0.5f, 0f);
-
-        var box = go.AddComponent<BoxCollider2D>();
-        box.isTrigger = true;
-        box.size = new Vector2(cell.x, c.height * cell.y);
-
-        if (previous != null)
-        {
-            var changer = go.AddComponent<CameraChanger>();
-            changer.zoneCamera = data.cam;
-            changer.previousCamera = previous.cam;
-        }
-
-        var trigger = go.AddComponent<RoomEntryTrigger>();
-        trigger.roomIndex = data.index;
-        return trigger;
     }
 }
