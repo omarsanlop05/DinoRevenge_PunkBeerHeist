@@ -12,21 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b12516f287865574b9b1f19a04d62801, type: 3}
   m_Name: New Room Gen Config
   m_EditorClassIdentifier: 
-  width: 37
-  height: 21
+  width: 38
+  height: 24
   wallThickness: 2
   floorThickness: 2
   ceilingThickness: 2
   doorHeight: 4
+  doorRows: 02000000080000000d000000
+  ledgeLength: 4
   solidTile: {fileID: 11400000, guid: 25c7bb5385bc8614dbff711828d7c05d, type: 2}
   platformTile: {fileID: 11400000, guid: 25c7bb5385bc8614dbff711828d7c05d, type: 2}
   playerHeight: 2
-  maxJumpHeight: 4
-  maxJumpDistance: 4
+  maxJumpHeight: 3
+  maxJumpDistance: 5
   minPlatforms: 3
-  maxPlatforms: 7
+  maxPlatforms: 8
   platformLength: {x: 3, y: 6}
-  placementAttempts: 60
+  placementAttempts: 32
   enemyPrefabs: []
   enemyCount: {x: 2, y: 4}
   safeZoneFromEntry: 8

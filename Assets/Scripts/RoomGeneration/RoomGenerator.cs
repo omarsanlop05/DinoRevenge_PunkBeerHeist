@@ -35,7 +35,10 @@ public class RoomGenerator : MonoBehaviour
     {
         RoomData prev = null;
         for (int i = 0; i < 3; i++)
+        {
             prev = Generate(i, testSeed + i, prev);
+            Debug.Log("Creando cuarto " + i);
+        }
     }
 
     [ContextMenu("Limpiar Tilemaps")]
@@ -249,7 +252,7 @@ public class RoomGenerator : MonoBehaviour
         var entryPad = new Surface { xMin = c.wallThickness, xMax = c.wallThickness + c.ledgeLength - 1, y = entryRow - 1 };
         var exitPad = new Surface { xMin = c.width - c.wallThickness - c.ledgeLength, xMax = c.width - c.wallThickness - 1, y = exitRow - 1 };
 
-        var walkable = new List<Surface> { floor };   // donde se puede caminar (spawns y alcanzabilidad)
+        var walkable = new List<Surface>();   // donde se puede caminar (spawns y alcanzabilidad)
         var obstacles = new List<Surface>();          // lo que ocupa espacio (para dejar holgura al jugador)
         Tilemap platMap = platformTilemap != null ? platformTilemap : groundTilemap;
 
@@ -265,33 +268,69 @@ public class RoomGenerator : MonoBehaviour
             walkable.Add(exitPad); obstacles.Add(exitPad);
         }
 
-        // Camino obligatorio de puerta a puerta cuando alguna es alta
-        if (entryRow > c.floorThickness || exitRow > c.floorThickness)
+        double randomRoll = rng.NextDouble();
+        int wallX;
+
+        if (randomRoll > 0.50f) 
         {
-            List<Surface> main = TryChain(c, rng, entryPad, exitPad, obstacles);
-            if (main == null)
-            {
-                Debug.LogWarning($"[RoomGenerator] No se pudo crear camino entre puertas. Revisa maxJumpHeight/maxJumpDistance.");
-            }
-            else
-            {
-                AddAll(main, c, origin, platMap, walkable, obstacles);
+            wallX = (int)(c.width * randomRoll);;
+        }else{
+            wallX = c.width/2;
+        }
 
-                // Si todo el camino quedó lejos del suelo, agrega una escalera de regreso para no atrapar al jugador
-                Surface lowest = entryPad.y <= exitPad.y ? entryPad : exitPad;
-                foreach (var s in main) if (s.y < lowest.y) lowest = s;
+        int wallHeight = c.maxJumpHeight + 2; 
+        int wallWidth = 3;
 
-                if (lowest.y - floorTop > c.maxJumpHeight - 1)
-                {
-                    List<Surface> back = TryChain(c, rng, lowest, floor, obstacles);
-                    if (back == null)
-                        Debug.LogWarning("[RoomGenerator] No se pudo crear camino de regreso al suelo.");
-                    else
-                        AddAll(back, c, origin, platMap, walkable, obstacles);
-                }
+        // 1. Pintamos la pared en el Tilemap
+        for (int x = wallX; x < wallX + wallWidth; x++)
+        {
+            for (int y = floorTop; y <= floorTop + wallHeight; y++)
+            {
+                groundTilemap.SetTile(origin + new Vector3Int(x, y, 0), c.solidTile);
             }
         }
 
+        // 2. La registramos como obstáculo para que TryChain la rodee
+        var centerWall = new Surface { xMin = wallX, xMax = wallX + wallWidth - 1, y = floorTop + wallHeight };
+        
+        // La añadimos a obstáculos para que no genere plataformas dentro de ella
+        obstacles.Add(new Surface { xMin = wallX, xMax = wallX + wallWidth - 1, y = floorTop + wallHeight });
+        
+        // Opcional: añadir la cima de la pared como "caminable"
+        walkable.Add(centerWall); 
+        
+
+        // Camino obligatorio de puerta a puerta cuando alguna es alta
+        if (entryRow > c.floorThickness || exitRow > c.floorThickness)
+        {
+            List<Surface> main = new List<Surface>();
+            var firstHalf = TryChain(c,rng,entryPad, centerWall, obstacles);
+            if (firstHalf == null) 
+            {
+                Debug.LogWarning("[RoomGenerator] Falla: Entrada -> Pared Central");
+            }
+            else 
+            {
+                main.AddRange(firstHalf);
+            }
+
+            var secondHalf = TryChain(c, rng, centerWall, exitPad, obstacles);
+            if (secondHalf == null) 
+            {
+                Debug.LogWarning("[RoomGenerator] Falla: Pared Central -> Salida");
+            }
+            else 
+            {
+                main.AddRange(secondHalf);
+            }
+
+            if (main.Count > 0)
+            {
+                AddAll(main, c, origin, platMap, walkable, obstacles);
+            }
+        }
+
+/*
         // Plataformas extra opcionales
         int extra = rng.Next(c.minPlatforms, c.maxPlatforms + 1);
         int yMin = floorTop + c.playerHeight + 1;
@@ -312,7 +351,7 @@ public class RoomGenerator : MonoBehaviour
             AddAll(new List<Surface> { s }, c, origin, platMap, walkable, obstacles);
             placed++;
         }
-
+*/
         return walkable;
     }
 
@@ -350,10 +389,8 @@ public class RoomGenerator : MonoBehaviour
                                    List<Surface> obstacles, List<Surface> chain)
     {
         int floorTop = c.floorThickness - 1;
-        int yMin = floorTop + c.playerHeight + 1;
+        int yMin = floorTop + c.maxJumpHeight;
         int yMax = c.height - c.ceilingThickness - 1 - c.playerHeight;
-        int span = c.maxJumpDistance - 1;
-        int maxStep = Mathf.Max(2, c.maxJumpHeight);
         Surface cur = from;
 
         for (int step = 0; step < c.maxPlatforms; step++)
@@ -368,14 +405,28 @@ public class RoomGenerator : MonoBehaviour
                 float pRight = to.xMin >= cur.xMax ? 0.75f : (to.xMax <= cur.xMin ? 0.25f : 0.5f);
                 bool goRight = rng.NextDouble() < pRight;
                 int xMin = goRight
-                    ? rng.Next(cur.xMax - 1, cur.xMax + span + 2)
-                    : rng.Next(cur.xMin - len - span, cur.xMin - len + 2);
+                    ? rng.Next(cur.xMax + c.minJumpDistance, cur.xMax + c.maxJumpDistance + 1)
+                    : rng.Next(cur.xMin - c.maxJumpDistance -len + 1, cur.xMin - c.minJumpDistance - len + 2);
 
                 int toward = to.y > cur.y ? 1 : (to.y < cur.y ? -1 : 0);
-                int mag = rng.Next(1, maxStep);   // 1 .. maxJumpHeight-1
-                int dir = toward == 0 ? (rng.Next(2) == 0 ? 1 : -1) : (rng.NextDouble() < 0.8 ? toward : -toward);
+                int dy = 0;
+                
+                if (toward > 0) 
+                {
+                    dy = (rng.Next(2) == 0) ? c.maxJumpHeight : c.maxJumpHeight - 1;
+                } 
+                else if (toward < 0) 
+                {
+                    dy = -c.maxJumpHeight;
+                } 
+                else 
+                {
+                    // Si están a la misma altura, escoge uno de los tres al azar
+                    int[] allowedY = { c.maxJumpHeight, c.maxJumpHeight - 1, -c.maxJumpHeight };
+                    dy = allowedY[rng.Next(allowedY.Length)];
+                }
 
-                var s = new Surface { xMin = xMin, xMax = xMin + len - 1, y = cur.y + dir * mag };
+                var s = new Surface { xMin = xMin, xMax = xMin + len - 1, y = cur.y + dy};
 
                 if (s.xMin < c.wallThickness + 1 || s.xMax > c.width - c.wallThickness - 2) continue;
                 if (s.y < yMin || s.y > yMax) continue;
@@ -394,9 +445,9 @@ public class RoomGenerator : MonoBehaviour
     // Dos superficies están enlazadas si se puede saltar de una a otra (con 1 tile de margen) en cualquier sentido.
     private static bool IsLinked(RoomGenConfig c, Surface a, Surface b)
     {
-        if (Mathf.Abs(a.y - b.y) > c.maxJumpHeight - 1) return false;
+        if (Mathf.Abs(a.y - b.y) > c.maxJumpHeight) return false;
         int gap = Mathf.Max(0, Mathf.Max(a.xMin, b.xMin) - Mathf.Min(a.xMax, b.xMax) - 1);
-        return gap <= c.maxJumpDistance - 1;
+        return gap >= c.minJumpDistance && gap <= c.maxJumpDistance;
     }
 
     // Para plataformas extra: basta con poder llegar subiendo desde alguna superficie existente.
@@ -418,8 +469,8 @@ public class RoomGenerator : MonoBehaviour
     {
         foreach (var p in obstacles)
         {
-            bool xOverlap = s.xMin <= p.xMax + 2 && s.xMax >= p.xMin - 2;
-            if (xOverlap && Mathf.Abs(s.y - p.y) <= c.playerHeight + 1) return true;
+            bool xOverlap = s.xMin <= p.xMax && s.xMax >= p.xMin;
+            if (xOverlap && Mathf.Abs(s.y - p.y) <= c.playerHeight + c.maxJumpHeight) return true;
         }
         return false;
     }

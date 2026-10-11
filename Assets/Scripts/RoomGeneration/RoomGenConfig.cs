@@ -5,8 +5,8 @@ using UnityEngine.Tilemaps;
 public class RoomGenConfig : ScriptableObject
 {
     [Header("Tamaño del cuarto (en tiles)")]
-    public int width = 37;
-    public int height = 21;
+    public int width = 38;
+    public int height = 24;
 
     [Header("Cascarón del cuarto (en tiles)")]
     public int wallThickness = 2;
@@ -29,14 +29,15 @@ public class RoomGenConfig : ScriptableObject
     [Header("Movimiento del jugador (en tiles) - AJUSTAR")]
     public int playerHeight = 2;
     [Tooltip("Mínimo recomendado: playerHeight + 2, si no las plataformas sobre el suelo no son alcanzables")]
-    public int maxJumpHeight = 4;
-    public int maxJumpDistance = 4;
+    public int maxJumpHeight = 3;
+    public int maxJumpDistance = 5;
+    public int minJumpDistance = 3;
 
     [Header("Plataformas extra (además del camino obligatorio)")]
     public int minPlatforms = 2;
-    public int maxPlatforms = 5;
+    public int maxPlatforms = 8;
     public Vector2Int platformLength = new Vector2Int(3, 6);
-    public int placementAttempts = 60;
+    public int placementAttempts = 32;
 
     [Header("Enemigos")]
     public GameObject[] enemyPrefabs;
