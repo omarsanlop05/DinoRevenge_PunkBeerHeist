@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = System.Random;
@@ -248,111 +250,228 @@ public class RoomGenerator : MonoBehaviour
     private List<Surface> BuildLayout(RoomGenConfig c, Vector3Int origin, Random rng, int entryRow, int exitRow)
     {
         int floorTop = c.floorThickness - 1;
-        var floor = new Surface { xMin = c.wallThickness, xMax = c.width - c.wallThickness - 1, y = floorTop };
         var entryPad = new Surface { xMin = c.wallThickness, xMax = c.wallThickness + c.ledgeLength - 1, y = entryRow - 1 };
         var exitPad = new Surface { xMin = c.width - c.wallThickness - c.ledgeLength, xMax = c.width - c.wallThickness - 1, y = exitRow - 1 };
 
-        var walkable = new List<Surface>();   // donde se puede caminar (spawns y alcanzabilidad)
-        var obstacles = new List<Surface>();          // lo que ocupa espacio (para dejar holgura al jugador)
+        var walkable = new List<Surface>();
+        var obstacles = new List<Surface>();
+        var solids = new List<Surface>(); 
         Tilemap platMap = platformTilemap != null ? platformTilemap : groundTilemap;
 
-        // Salientes sólidos para puertas altas
-        if (entryRow > c.floorThickness)
-        {
-            PaintSurface(groundTilemap, c.solidTile, origin, entryPad);
-            walkable.Add(entryPad); obstacles.Add(entryPad);
-        }
-        if (exitRow > c.floorThickness)
-        {
-            PaintSurface(groundTilemap, c.solidTile, origin, exitPad);
-            walkable.Add(exitPad); obstacles.Add(exitPad);
-        }
+        if (entryRow > c.floorThickness) { PaintSurface(groundTilemap, c.solidTile, origin, entryPad); walkable.Add(entryPad); obstacles.Add(entryPad); solids.Add(entryPad); }
+        if (exitRow > c.floorThickness) { PaintSurface(groundTilemap, c.solidTile, origin, exitPad); walkable.Add(exitPad); obstacles.Add(exitPad); solids.Add(exitPad); }
 
-        double randomRoll = rng.NextDouble();
-        int wallX;
+        // REGLA 4: Ya solamente puede haber 1 o 2 pilares
+        int numPillars = rng.Next(1, 3);
+        int startX = c.wallThickness + c.ledgeLength + 2;
+        int endX = c.width - c.wallThickness - c.ledgeLength - 2;
+        int stepX = (endX - startX) / numPillars;
 
-        if (randomRoll > 0.50f) 
-        {
-            wallX = (int)(c.width * randomRoll);;
-        }else{
-            wallX = c.width/2;
-        }
-
-        int wallHeight = c.maxJumpHeight + 2; 
-        int wallWidth = 3;
-
-        // 1. Pintamos la pared en el Tilemap
-        for (int x = wallX; x < wallX + wallWidth; x++)
-        {
-            for (int y = floorTop; y <= floorTop + wallHeight; y++)
-            {
-                groundTilemap.SetTile(origin + new Vector3Int(x, y, 0), c.solidTile);
-            }
-        }
-
-        // 2. La registramos como obstáculo para que TryChain la rodee
-        var centerWall = new Surface { xMin = wallX, xMax = wallX + wallWidth - 1, y = floorTop + wallHeight };
+        List<Surface> pillars = new List<Surface>();
+        List<Surface> floors = new List<Surface>();
         
-        // La añadimos a obstáculos para que no genere plataformas dentro de ella
-        obstacles.Add(new Surface { xMin = wallX, xMax = wallX + wallWidth - 1, y = floorTop + wallHeight });
+        int currentLeft = c.wallThickness;
         
-        // Opcional: añadir la cima de la pared como "caminable"
-        walkable.Add(centerWall); 
-        
+        // BUCLE METROIDVANIA: El primer suelo garantiza poder saltar de regreso a la puerta si te caes.
+        int currentFloorY = entryPad.y - c.maxJumpHeight;
+        if (currentFloorY < floorTop) currentFloorY = floorTop;
 
-        // Camino obligatorio de puerta a puerta cuando alguna es alta
-        if (entryRow > c.floorThickness || exitRow > c.floorThickness)
+        for (int i = 0; i < numPillars; i++)
         {
-            List<Surface> main = new List<Surface>();
-            var firstHalf = TryChain(c,rng,entryPad, centerWall, obstacles);
-            if (firstHalf == null) 
-            {
-                Debug.LogWarning("[RoomGenerator] Falla: Entrada -> Pared Central");
-            }
-            else 
-            {
-                main.AddRange(firstHalf);
-            }
+            // REGLA 2: Altura del pilar = suelo izquierdo + maxJumpHeight + (1 o más)
+            int extraHeight = rng.Next(1, 4); 
+            int pHeightY = currentFloorY + c.maxJumpHeight + extraHeight;
 
-            var secondHalf = TryChain(c, rng, centerWall, exitPad, obstacles);
-            if (secondHalf == null) 
-            {
-                Debug.LogWarning("[RoomGenerator] Falla: Pared Central -> Salida");
-            }
-            else 
-            {
-                main.AddRange(secondHalf);
-            }
+            int pWidth = rng.Next(3, 6); // REGLA 3 (Extra): Pilares y plataformas entre 3 y 5 de ancho
+            
+            int minX = startX + (i * stepX) + c.maxJumpDistance + 2;
+            int maxX = startX + ((i + 1) * stepX) - pWidth - c.maxJumpDistance;
+            if (maxX < minX) maxX = minX;
 
-            if (main.Count > 0)
-            {
-                AddAll(main, c, origin, platMap, walkable, obstacles);
-            }
+            int pX = rng.Next(minX, maxX + 1);
+            var pSurface = new Surface { xMin = pX, xMax = pX + pWidth - 1, y = pHeightY };
+            pillars.Add(pSurface);
+
+            // Suelo a la Izquierda del pilar
+            var fLeft = new Surface { xMin = currentLeft, xMax = pX - 1, y = currentFloorY };
+            floors.Add(fLeft);
+
+            // REGLA 3: Suelo a la Derecha = Punta del pilar - maxJumpHeight (Para saltar de regreso si te caes)
+            currentFloorY = pHeightY - c.maxJumpHeight;
+            currentLeft = pX + pWidth;
         }
 
-/*
-        // Plataformas extra opcionales
-        int extra = rng.Next(c.minPlatforms, c.maxPlatforms + 1);
-        int yMin = floorTop + c.playerHeight + 1;
-        int yMax = c.height - c.ceilingThickness - 1 - c.playerHeight;
+        // Suelo Final
+        var fLast = new Surface { xMin = currentLeft, xMax = c.width - c.wallThickness - 1, y = currentFloorY };
+        floors.Add(fLast);
 
-        for (int i = 0, placed = 0; i < c.placementAttempts && placed < extra; i++)
+        // Renderizar Suelos
+        foreach (var f in floors)
         {
-            int len = rng.Next(c.platformLength.x, c.platformLength.y + 1);
-            int xLo = c.wallThickness + 1;
-            int xHi = c.width - c.wallThickness - 1 - len;
-            if (xHi < xLo || yMax < yMin) break;
+            for (int x = f.xMin; x <= f.xMax; x++)
+            {
+                int highestY = f.y;
+                if (x >= exitPad.xMin && highestY > exitPad.y) highestY = exitPad.y;
 
-            var s = new Surface { xMin = rng.Next(xLo, xHi + 1), y = rng.Next(yMin, yMax + 1) };
-            s.xMax = s.xMin + len - 1;
-
-            if (Overlaps(c, s, obstacles) || !IsReachable(c, s, walkable)) continue;
-
-            AddAll(new List<Surface> { s }, c, origin, platMap, walkable, obstacles);
-            placed++;
+                for (int y = 0; y <= highestY; y++)
+                    groundTilemap.SetTile(origin + new Vector3Int(x, y, 0), c.solidTile);
+            }
+            walkable.Add(f);
+            solids.Add(f);
         }
-*/
+
+        // Renderizar Pilares
+        foreach (var p in pillars)
+        {
+            for (int x = p.xMin; x <= p.xMax; x++)
+            {
+                for (int y = 0; y <= p.y; y++)
+                    groundTilemap.SetTile(origin + new Vector3Int(x, y, 0), c.solidTile);
+            }
+            walkable.Add(p);
+            obstacles.Add(p); // Se agrega a obstáculos para que las plataformas nunca choquen con los pilares
+            solids.Add(p);
+        }
+
+        // REGLA 1: SIEMPRE haya un camino de la entrada a la salida pasando por los pilares
+        List<Surface> checkpoints = new List<Surface>();
+        checkpoints.Add(entryPad);
+        checkpoints.AddRange(pillars);
+        checkpoints.Add(exitPad);
+
+        List<Surface> main = new List<Surface>();
+
+        for (int i = 0; i < checkpoints.Count - 1; i++)
+        {
+            var path = TryChain(c, rng, checkpoints[i], checkpoints[i + 1], obstacles, solids);
+            if (path != null) main.AddRange(path);
+        }
+
+        if (main.Count > 0) AddAll(main, c, origin, platMap, walkable, obstacles);
+
         return walkable;
+    }
+
+    private static List<Surface> TryChain(RoomGenConfig c, Random rng, Surface from, Surface to, List<Surface> obstacles, List<Surface> solids)
+    {
+        for (int attempt = 0; attempt < 50; attempt++)
+        {
+            var chain = new List<Surface>();
+            var temp = new List<Surface>(obstacles);
+            if (BuildChain(c, rng, from, to, temp, chain, solids)) return chain;
+        }
+        return null;
+    }
+
+    private static bool BuildChain(RoomGenConfig c, Random rng, Surface from, Surface to,
+                                   List<Surface> obstacles, List<Surface> chain, List<Surface> solids)
+    {
+        Surface cur = from;
+        int yMax = c.height - c.ceilingThickness - 1 - c.playerHeight; // Límite del techo para no salirse de la cámara
+
+        // AUMENTO VITAL: Permitir hasta 30 saltos para cruzar abismos largos (ignorando c.maxPlatforms limitantes)
+        for (int step = 0; step < 30; step++)
+        {
+            if (IsLinked(c, cur, to)) return true;
+
+            bool placed = false;
+            for (int attempt = 0; attempt < c.placementAttempts && !placed; attempt++)
+            {
+                int len = rng.Next(3, 6); // Plataformas entre 3 y 5
+                int gapX = rng.Next(c.minJumpDistance, c.maxJumpDistance + 1); 
+                
+                // Probabilidad de Zig-Zag: Mayormente hacia adelante, pero permite retrocesos (80/20)
+                float pRight = to.xMin >= cur.xMax ? 0.8f : (to.xMax <= cur.xMin ? 0.2f : 0.5f);
+                bool goRight = rng.NextDouble() < pRight;
+                
+                int xMin = goRight ? cur.xMax + gapX : cur.xMin - gapX - len;
+
+                // Lógica Inteligente de Y: Permitir saltos planos (0) si el objetivo está lejos.
+                // Esto evita chocar con el techo o el suelo al viajar distancias largas.
+                List<int> yOptions = new List<int>();
+                int diffY = to.y - cur.y;
+                bool farX = (to.xMin - cur.xMax > c.maxJumpDistance) || (cur.xMin - to.xMax > c.maxJumpDistance);
+                
+                if (farX) yOptions.Add(0); // Si está lejos, siempre es válido ir recto
+                
+                if (diffY > 0) {
+                    yOptions.Add(c.maxJumpHeight);
+                    yOptions.Add(c.maxJumpHeight - 1);
+                }
+                else if (diffY < 0) {
+                    yOptions.Add(-c.maxJumpHeight);
+                    yOptions.Add(-(c.maxJumpHeight - 1));
+                }
+                else if (!farX) {
+                    yOptions.Add(0); // Si está a la misma altura y cerca
+                }
+
+                int dy = yOptions[rng.Next(yOptions.Count)];
+                var s = new Surface { xMin = xMin, xMax = xMin + len - 1, y = cur.y + dy};
+
+                // Descartar si choca con las paredes o el TECHO
+                if (s.xMin < c.wallThickness + 1 || s.xMax > c.width - c.wallThickness - 2) continue;
+                if (s.y > yMax) continue;
+
+                // REGLA: No puede haber plataformas a menos de playerHeight + 1 del suelo sólido
+                int localSolidY = GetSolidYAt(s.xMin, s.xMax, solids, c.floorThickness - 1);
+                if (s.y < localSolidY + c.playerHeight + 1) continue;
+
+                if (Overlaps(c, s, obstacles)) continue;
+
+                chain.Add(s);
+                obstacles.Add(s);
+                cur = s;
+                placed = true;
+            }
+            if (!placed) return false; // Si después de intentar no puede poner ni una, aborta este intento
+        }
+        return IsLinked(c, cur, to);
+    }
+
+    private static int GetSolidYAt(int xMin, int xMax, List<Surface> solids, int floorTop)
+    {
+        int highestY = floorTop;
+        foreach(var solid in solids) {
+            if (xMin <= solid.xMax && xMax >= solid.xMin) {
+                if (solid.y > highestY) highestY = solid.y;
+            }
+        }
+        return highestY;
+    }
+
+    private static bool IsLinked(RoomGenConfig c, Surface a, Surface b)
+    {
+        if (Mathf.Abs(a.y - b.y) > c.maxJumpHeight) return false;
+        
+        bool xOverlap = a.xMin <= b.xMax && a.xMax >= b.xMin;
+        if (xOverlap) return true; // Para validar conectividad, el overlap está permitido.
+
+        int gap = Mathf.Max(0, Mathf.Max(a.xMin, b.xMin) - Mathf.Min(a.xMax, b.xMax) - 1);
+        return gap >= c.minJumpDistance && gap <= c.maxJumpDistance;
+    }
+
+    private static bool Overlaps(RoomGenConfig c, Surface s, List<Surface> obstacles)
+    {
+        foreach (var p in obstacles)
+        {
+            bool xOverlap = s.xMin <= p.xMax && s.xMax >= p.xMin;
+            
+            if (xOverlap)
+            {
+                // REGLA DE ZIG-ZAG PERFECTO: 
+                // Se permite empalmar en X SOLO si están separados por más de maxJumpHeight.
+                // Así actúan como "pisos" de un edificio sin ahogar al jugador.
+                if (Mathf.Abs(s.y - p.y) <= c.maxJumpHeight + 1) return true;
+            }
+            else
+            {
+                // Mantiene el espaciado correcto si rozan horizontalmente (gap menor a minJumpDistance)
+                int gap = Mathf.Max(0, Mathf.Max(s.xMin, p.xMin) - Mathf.Min(s.xMax, p.xMax) - 1);
+                if (gap < c.minJumpDistance && Mathf.Abs(s.y - p.y) <= c.maxJumpHeight) return true;
+            }
+        }
+        return false;
     }
 
     private void AddAll(List<Surface> list, RoomGenConfig c, Vector3Int origin, Tilemap map,
@@ -372,84 +491,6 @@ public class RoomGenerator : MonoBehaviour
             map.SetTile(origin + new Vector3Int(x, s.y, 0), tile);
     }
 
-    // Reintenta varias veces construir una cadena de plataformas de "from" a "to". null si no lo logra.
-    private static List<Surface> TryChain(RoomGenConfig c, Random rng, Surface from, Surface to, List<Surface> obstacles)
-    {
-        for (int attempt = 0; attempt < c.placementAttempts; attempt++)
-        {
-            var chain = new List<Surface>();
-            var temp = new List<Surface>(obstacles);
-            if (BuildChain(c, rng, from, to, temp, chain)) return chain;
-        }
-        return null;
-    }
-
-    // Camino aleatorio: cada paso es un salto posible en ambos sentidos (subir y regresar), con sesgo hacia el destino.
-    private static bool BuildChain(RoomGenConfig c, Random rng, Surface from, Surface to,
-                                   List<Surface> obstacles, List<Surface> chain)
-    {
-        int floorTop = c.floorThickness - 1;
-        int yMin = floorTop + c.maxJumpHeight;
-        int yMax = c.height - c.ceilingThickness - 1 - c.playerHeight;
-        Surface cur = from;
-
-        for (int step = 0; step < c.maxPlatforms; step++)
-        {
-            if (IsLinked(c, cur, to)) return true;
-
-            bool placed = false;
-            for (int attempt = 0; attempt < c.placementAttempts && !placed; attempt++)
-            {
-                int len = rng.Next(c.platformLength.x, c.platformLength.y + 1);
-
-                float pRight = to.xMin >= cur.xMax ? 0.75f : (to.xMax <= cur.xMin ? 0.25f : 0.5f);
-                bool goRight = rng.NextDouble() < pRight;
-                int xMin = goRight
-                    ? rng.Next(cur.xMax + c.minJumpDistance, cur.xMax + c.maxJumpDistance + 1)
-                    : rng.Next(cur.xMin - c.maxJumpDistance -len + 1, cur.xMin - c.minJumpDistance - len + 2);
-
-                int toward = to.y > cur.y ? 1 : (to.y < cur.y ? -1 : 0);
-                int dy = 0;
-                
-                if (toward > 0) 
-                {
-                    dy = (rng.Next(2) == 0) ? c.maxJumpHeight : c.maxJumpHeight - 1;
-                } 
-                else if (toward < 0) 
-                {
-                    dy = -c.maxJumpHeight;
-                } 
-                else 
-                {
-                    // Si están a la misma altura, escoge uno de los tres al azar
-                    int[] allowedY = { c.maxJumpHeight, c.maxJumpHeight - 1, -c.maxJumpHeight };
-                    dy = allowedY[rng.Next(allowedY.Length)];
-                }
-
-                var s = new Surface { xMin = xMin, xMax = xMin + len - 1, y = cur.y + dy};
-
-                if (s.xMin < c.wallThickness + 1 || s.xMax > c.width - c.wallThickness - 2) continue;
-                if (s.y < yMin || s.y > yMax) continue;
-                if (Overlaps(c, s, obstacles)) continue;
-
-                chain.Add(s);
-                obstacles.Add(s);
-                cur = s;
-                placed = true;
-            }
-            if (!placed) return false;
-        }
-        return IsLinked(c, cur, to);
-    }
-
-    // Dos superficies están enlazadas si se puede saltar de una a otra (con 1 tile de margen) en cualquier sentido.
-    private static bool IsLinked(RoomGenConfig c, Surface a, Surface b)
-    {
-        if (Mathf.Abs(a.y - b.y) > c.maxJumpHeight) return false;
-        int gap = Mathf.Max(0, Mathf.Max(a.xMin, b.xMin) - Mathf.Min(a.xMax, b.xMax) - 1);
-        return gap >= c.minJumpDistance && gap <= c.maxJumpDistance;
-    }
-
     // Para plataformas extra: basta con poder llegar subiendo desde alguna superficie existente.
     private static bool IsReachable(RoomGenConfig c, Surface s, List<Surface> others)
     {
@@ -460,17 +501,6 @@ public class RoomGenerator : MonoBehaviour
 
             int gap = Mathf.Max(0, Mathf.Max(s.xMin, o.xMin) - Mathf.Min(s.xMax, o.xMax) - 1);
             if (gap <= c.maxJumpDistance - 1) return true;
-        }
-        return false;
-    }
-
-    // Evita plataformas pegadas en vertical que no dejen espacio para el jugador.
-    private static bool Overlaps(RoomGenConfig c, Surface s, List<Surface> obstacles)
-    {
-        foreach (var p in obstacles)
-        {
-            bool xOverlap = s.xMin <= p.xMax && s.xMax >= p.xMin;
-            if (xOverlap && Mathf.Abs(s.y - p.y) <= c.playerHeight + c.maxJumpHeight) return true;
         }
         return false;
     }

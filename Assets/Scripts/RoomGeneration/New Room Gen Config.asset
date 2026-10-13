@@ -24,7 +24,8 @@ MonoBehaviour:
   platformTile: {fileID: 11400000, guid: 25c7bb5385bc8614dbff711828d7c05d, type: 2}
   playerHeight: 2
   maxJumpHeight: 3
-  maxJumpDistance: 5
+  maxJumpDistance: 4
+  minJumpDistance: 3
   minPlatforms: 3
   maxPlatforms: 8
   platformLength: {x: 3, y: 6}
