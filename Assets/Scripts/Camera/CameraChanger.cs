@@ -20,6 +20,8 @@ public class CameraChanger : MonoBehaviour
         if (zoneCamera.Priority == activePriority)
             return;
 
+        PlayerScore.Instance?.RegisterRoomChange();            // <-- NEW
+
         // Activar esta cámara subiendo su prioridad
         zoneCamera.Priority = activePriority;
         previousCamera.Priority = inactivePriority;
