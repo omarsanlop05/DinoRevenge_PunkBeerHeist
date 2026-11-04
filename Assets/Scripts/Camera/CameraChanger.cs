@@ -7,6 +7,8 @@ public class CameraChanger : MonoBehaviour
     public CinemachineCamera zoneCamera;
     public CinemachineCamera previousCamera;
 
+    public bool freezePlayerOnSwitch = true;
+
     public bool awardsRoomPoints = true;
     private bool pointsAwarded;
     private int activePriority = 10;
@@ -33,7 +35,11 @@ public class CameraChanger : MonoBehaviour
         zoneCamera.Priority = activePriority;
         previousCamera.Priority = inactivePriority;
 
-        freezePlayer(other);
+        if (freezePlayerOnSwitch)
+        {
+            freezePlayer(other);
+            Invoke(nameof(unFreezePlayer), 1.0f);
+        }
 
         // Resume after 1 second
         Invoke(nameof(unFreezePlayer), 1.0f);

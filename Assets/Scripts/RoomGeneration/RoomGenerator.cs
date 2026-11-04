@@ -92,13 +92,15 @@ public class RoomGenerator : MonoBehaviour
 
     // previous = cuarto anterior (null para el primero). El origen se calcula solo para que las puertas
     // coincidan en altura, aunque un cuarto termine arriba y el siguiente empiece abajo.
-    public RoomData Generate(int index, int seed, RoomData previous, float difficulty = 1f)
+    public RoomData Generate(int index, int seed, RoomData previous, float difficulty = 1f, bool makeSecret = false)
     {
+
         var c = config;
         var rng = new Random(seed);
 
         int entryRow = previous == null ? c.floorThickness : PickDoorRow(c, rng);
         int exitRow = PickDoorRow(c, rng);
+        
 
         if (entryRow == exitRow && entryRow <= c.floorThickness + 2)
         {
@@ -107,6 +109,8 @@ public class RoomGenerator : MonoBehaviour
 
         Vector3Int origin = previous == null ? startOrigin : previous.NextOrigin(entryRow);
 
+        var mainFloors = new List<Surface>();
+        
         var data = new RoomData
         {
             index = index, originCell = origin, width = c.width, entryRow = entryRow, exitRow = exitRow,
@@ -119,20 +123,203 @@ public class RoomGenerator : MonoBehaviour
 
         // Level layout
         //PaintShell(c, origin, entryRow, exitRow);
-        PaintOrganicShell(c, origin, entryRow, exitRow, rng);
+        PaintOrganicShell(c, origin, entryRow, exitRow, rng, previous != null);
         
         // Enemies
-        List<Surface> walkable = BuildLayout(c, origin, rng, entryRow, exitRow);
+        List<Surface> walkable = BuildLayout(c, origin, rng, entryRow, exitRow, mainFloors);
         //SpawnEnemies(c, origin, walkable, rng, data.root);
 
         // Camera
         // Camera + camera changers
-    data.cam = CreateCamera(c, origin, data.root, previous == null);
-    data.entryTrigger = CreateEntryTrigger(c, origin, data, previous);   // forward changer (unchanged)
-    if (previous != null)
-        CreateBackChanger(c, data, previous);                            // <-- NEW
+        data.cam = CreateCamera(c, origin, data.root, previous == null);
+        data.entryTrigger = CreateEntryTrigger(c, origin, data, previous);   
+        if (previous != null)
+            CreateBackChanger(c, data, previous);                            
+
+        // Lógica del Cuarto Secreto insertada al final antes del return
+        if (makeSecret)
+        data.hasSecretRoom = GenerateSecretRoom(c, origin, rng, data.root, data.cam, mainFloors);
 
         return data;
+    }
+
+    private bool GenerateSecretRoom(RoomGenConfig c, Vector3Int mainOrigin, Random rng, Transform parent,
+                                CinemachineCamera mainCam, List<Surface> mainFloors)
+    {
+        const int ledgeW = 3;
+        const int shaftW = ledgeW * 2;
+        int floorTop = c.floorThickness - 1;
+        int step = Mathf.Max(1, c.maxJumpHeight);   // vertical distance between shaft ledges
+
+        // ---------- PLAN (nothing is painted until everything is valid) ----------
+
+        // 1. Entrance: a main-room floor wide enough for the shaft (not under the entry/exit ledges)
+        var options = new List<(Surface floor, int hxMin, int hxMax)>();
+        int leftLimit = c.wallThickness + c.ledgeLength + 2;
+        int rightLimit = c.width - c.wallThickness - c.ledgeLength - 2;
+        foreach (var f in mainFloors)
+        {
+            if (f.y > 10) continue;
+            int hxMin = Mathf.Max(f.xMin + 1, leftLimit);
+            int hxMax = Mathf.Min(f.xMax - shaftW, rightLimit - shaftW);
+            if (hxMin <= hxMax) options.Add((f, hxMin, hxMax));
+        }
+
+        if (options.Count == 0)
+        {
+            Debug.LogWarning("[RoomGenerator] No floor wide enough for a secret room entrance. Skipped.");
+            return false;
+        }
+
+        var pick = options[rng.Next(options.Count)];
+        int hx = rng.Next(pick.hxMin, pick.hxMax + 1);   // first shaft column (main room coordinates)
+        int fy = pick.floor.y;                            // surface row of the floor we dig through
+
+        // 2. Zig-zag ledges inside the shaft (coordinates relative to mainOrigin, y goes negative below the room)
+        int lastLedgeMainY = (c.height - c.ceilingThickness - 1 - c.playerHeight - 1) - c.height;
+        int ledgeCount = Mathf.Max(1, Mathf.CeilToInt((fy - lastLedgeMainY) / (float)step));
+        var ledges = new List<Surface>();
+        for (int i = 1; i <= ledgeCount; i++)
+        {
+            int xMin = (i % 2 == 1) ? hx : hx + ledgeW;
+            ledges.Add(new Surface { xMin = xMin, xMax = xMin + ledgeW - 1, y = fy - step * i });
+        }
+        Surface lastLedge = ledges[ledges.Count - 1];
+
+        // Same ledges in secret-room coordinates (secret origin is 'height' rows below the main origin)
+        Surface fromS = new Surface { xMin = lastLedge.xMin, xMax = lastLedge.xMax, y = lastLedge.y + c.height };
+        var obstacles = new List<Surface>();
+        var solids = new List<Surface>();
+        foreach (var l in ledges)
+        {
+            var s = new Surface { xMin = l.xMin, xMax = l.xMax, y = l.y + c.height };
+            if (s.y >= c.height) continue;   // still inside the main room
+            obstacles.Add(s);
+            solids.Add(s);
+        }
+
+        // 3. Beer first (random spot), then the stepped path from the last ledge to it
+        List<Surface> chain = null;
+        Surface beerPad = default;
+        for (int attempt = 0; attempt < 60 && chain == null; attempt++)
+        {
+            int px = rng.Next(c.wallThickness + 2, c.width - c.wallThickness - 5);
+            int py = rng.Next(floorTop, 12);
+            if (px + 2 >= hx - 2 && px <= hx + shaftW + 1) continue;   // keep the beer away from the shaft
+
+            var pad = new Surface { xMin = px, xMax = px + 2, y = py };
+            var obs = new List<Surface>(obstacles) { pad };
+            var sol = new List<Surface>(solids) { pad };
+
+            var path = TryChain(c, rng, fromS, pad, obs, sol);
+            if (path != null) { chain = path; beerPad = pad; }
+        }
+
+        if (chain == null)
+        {
+            Debug.LogWarning("[RoomGenerator] Could not plan a path to the beer. Secret room skipped.");
+            return false;
+        }
+
+        // ---------- PAINT ----------
+
+        Vector3Int secretOrigin = mainOrigin + new Vector3Int(0, -c.height, 0);
+        Tilemap platMap = platformTilemap != null ? platformTilemap : groundTilemap;
+        Vector3 cell = groundTilemap.layoutGrid.cellSize;
+
+        // 4. Secret room shell (closed side walls)
+        PaintOrganicShell(c, secretOrigin, 0, c.floorThickness, rng, false);
+        for (int y = 0; y < c.height; y++)
+        {
+            for (int x = 0; x <= c.wallThickness + 1; x++)
+                groundTilemap.SetTile(secretOrigin + new Vector3Int(x, y, 0), c.solidTile);
+            for (int x = c.width - c.wallThickness - 2; x < c.width; x++)
+                groundTilemap.SetTile(secretOrigin + new Vector3Int(x, y, 0), c.solidTile);
+        }
+
+        // 5. Shaft: dig the whole 6-wide column, open the surface only over the left half, then restore the ledges
+        for (int x = hx; x < hx + shaftW; x++)
+            for (int y = lastLedge.y; y <= fy - 1; y++)
+                ClearCell(mainOrigin + new Vector3Int(x, y, 0));
+
+        for (int x = hx; x < hx + ledgeW; x++)
+            ClearCell(mainOrigin + new Vector3Int(x, fy, 0));
+
+        foreach (var l in ledges)
+            PaintSurface(groundTilemap, c.solidTile, mainOrigin, l);
+
+        // 6. Stepped path to the beer
+        foreach (var s in chain)
+            PaintSurface(platMap, c.platformTile, secretOrigin, s);
+
+        // 7. Beer pad (solid column) and free space above it
+        for (int x = beerPad.xMin; x <= beerPad.xMax; x++)
+        {
+            for (int y = 0; y <= beerPad.y; y++)
+                groundTilemap.SetTile(secretOrigin + new Vector3Int(x, y, 0), c.solidTile);
+            for (int y = beerPad.y + 1; y <= beerPad.y + c.playerHeight + 1; y++)
+                ClearCell(secretOrigin + new Vector3Int(x, y, 0));
+        }
+
+        if (c.beerPrefab != null)
+        {
+            Vector3 beerPos = groundTilemap.GetCellCenterWorld(secretOrigin + new Vector3Int(beerPad.xMin + 1, beerPad.y + 1, 0));
+            Instantiate(c.beerPrefab, beerPos, Quaternion.identity, parent);
+        }
+        else
+            Debug.LogWarning("[RoomGenerator] RoomGenConfig.beerPrefab is not assigned: the secret room has no beer.");
+
+        // 8. Destructible door plugging the opening (bottom-center of the opening)
+        if (c.destructibleDoorPrefab != null)
+        {
+            Vector3 doorPos = groundTilemap.GetCellCenterWorld(mainOrigin + new Vector3Int(hx + 1, fy, 0))
+                            - new Vector3(0f, cell.y * 0.5f, 0f);
+            Instantiate(c.destructibleDoorPrefab, doorPos, Quaternion.identity, parent);
+        }
+        else
+            Debug.LogWarning("[RoomGenerator] RoomGenConfig.destructibleDoorPrefab is not assigned: the entrance is open.");
+
+        // 9. Cameras: secret camera while inside, main camera again when climbing back up
+        CinemachineCamera secretCam = CreateCamera(c, secretOrigin, parent, false);
+        secretCam.name = $"SecretCam_{parent.name}";
+
+        Vector3 secretCenter = groundTilemap.CellToWorld(secretOrigin)
+                            + new Vector3(c.width * cell.x * 0.5f, c.height * cell.y * 0.5f, 0f);
+        CreateSecretChanger(parent, "SecretCamEnter", secretCenter,
+                            new Vector2(c.width * cell.x, c.height * cell.y), secretCam, mainCam);
+
+        int topRows = fy + 4;
+        Vector3 shaftTopCenter = groundTilemap.CellToWorld(mainOrigin + new Vector3Int(hx, 0, 0))
+                                + new Vector3(shaftW * cell.x * 0.5f, topRows * cell.y * 0.5f, 0f);
+        CreateSecretChanger(parent, "SecretCamExit", shaftTopCenter,
+                            new Vector2(shaftW * cell.x, topRows * cell.y), mainCam, secretCam);
+
+        Debug.Log($"[RoomGenerator] Secret room built: shaft at x={hx}, floor y={fy}, {ledgeCount} ledges, beer pad at ({beerPad.xMin},{beerPad.y})");
+        return true;
+    }
+
+    private void ClearCell(Vector3Int cell)
+    {
+        groundTilemap.SetTile(cell, null);
+        if (platformTilemap != null) platformTilemap.SetTile(cell, null);
+    }
+
+    private static void CreateSecretChanger(Transform parent, string objName, Vector3 center, Vector2 size,
+                                            CinemachineCamera zone, CinemachineCamera previous)
+    {
+        var go = new GameObject(objName);
+        go.transform.SetParent(parent, false);
+        go.transform.position = center;
+
+        var box = go.AddComponent<BoxCollider2D>();
+        box.isTrigger = true;
+        box.size = size;
+
+        var changer = go.AddComponent<CameraChanger>();
+        changer.zoneCamera = zone;
+        changer.previousCamera = previous;
+        changer.awardsRoomPoints = false;       // secret rooms must not give room points
+        changer.freezePlayerOnSwitch = false;   // the player is falling or climbing, don't freeze
     }
 
     private static int PickDoorRow(RoomGenConfig c, Random rng)
@@ -163,7 +350,7 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-    private void PaintOrganicShell(RoomGenConfig c, Vector3Int origin, int entryRow, int exitRow, Random rng)
+    private void PaintOrganicShell(RoomGenConfig c, Vector3Int origin, int entryRow, int exitRow, Random rng, bool hasEntryDoor = true)
     {
         int[,] grid = new int[c.width, c.height];
 
@@ -221,11 +408,17 @@ public class RoomGenerator : MonoBehaviour
         }
 
         // Paso C: Despejar marcos de las puertas
-        for (int y = entryRow; y < entryRow + c.doorHeight; y++)
+        if (hasEntryDoor)
         {
-            for (int x = 0; x <= c.wallThickness + 1; x++) grid[x, y] = 0;
+            int entryTop = Mathf.Min(entryRow + c.doorHeight, c.height);
+            for (int y = entryRow; y < entryTop; y++)
+            {
+                for (int x = 0; x <= c.wallThickness + 1; x++) grid[x, y] = 0;
+            }
         }
-        for (int y = exitRow; y < exitRow + c.doorHeight; y++)
+        
+        int exitTop = Mathf.Min(exitRow + c.doorHeight, c.height);
+        for (int y = exitRow; y < exitTop; y++)
         {
             for (int x = c.width - c.wallThickness - 2; x < c.width; x++) grid[x, y] = 0;
         }
@@ -261,7 +454,9 @@ public class RoomGenerator : MonoBehaviour
 
     // ---------- Plataformas ----------
 
-    private List<Surface> BuildLayout(RoomGenConfig c, Vector3Int origin, Random rng, int entryRow, int exitRow)
+    private List<Surface> BuildLayout(RoomGenConfig c, Vector3Int origin, 
+    Random rng, int entryRow, int exitRow,
+    List<Surface> floorsOut = null)    
     {
         int floorTop = c.floorThickness - 1;
         var entryPad = new Surface { xMin = c.wallThickness, xMax = c.wallThickness + c.ledgeLength - 1, y = entryRow - 1 };
@@ -281,6 +476,8 @@ public class RoomGenerator : MonoBehaviour
 
         if (!found)
             Debug.LogWarning("[RoomGenerator] No se encontró un layout con camino garantizado. Revisa maxJump* en la config.");
+
+        if (floorsOut != null) floorsOut.AddRange(floors);
 
         var walkable = new List<Surface>();
 

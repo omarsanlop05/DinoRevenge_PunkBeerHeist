@@ -22,6 +22,8 @@ MonoBehaviour:
   ledgeLength: 4
   solidTile: {fileID: 11400000, guid: 708f0552cd4c654478a4d7151e09d48e, type: 2}
   platformTile: {fileID: 11400000, guid: 708f0552cd4c654478a4d7151e09d48e, type: 2}
+  destructibleDoorPrefab: {fileID: 545258153621108851, guid: c26bde0ce3e2041409f7adf95a6a7ebc, type: 3}
+  beerPrefab: {fileID: 2554792941550207924, guid: 93174652d2b54164a9685d3eede7eb45, type: 3}
   playerHeight: 2
   maxJumpHeight: 3
   maxJumpDistance: 4

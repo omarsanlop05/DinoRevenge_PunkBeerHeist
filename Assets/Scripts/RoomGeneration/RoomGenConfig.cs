@@ -26,6 +26,10 @@ public class RoomGenConfig : ScriptableObject
     public TileBase solidTile;
     public TileBase platformTile;
 
+    [Header("Cuarto Secreto")]
+    public GameObject destructibleDoorPrefab;
+    public GameObject beerPrefab;
+
     [Header("Movimiento del jugador (en tiles) - AJUSTAR")]
     public int playerHeight = 2;
     [Tooltip("Mínimo recomendado: playerHeight + 2, si no las plataformas sobre el suelo no son alcanzables")]

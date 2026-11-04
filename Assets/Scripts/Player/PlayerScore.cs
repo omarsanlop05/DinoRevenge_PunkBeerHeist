@@ -23,6 +23,7 @@ public class PlayerScore : MonoBehaviour
     [SerializeField] private float maxMultiplier = 1.25f;
 
     public float Score { get; private set; }
+    [field: SerializeField] public int HitsReceived { get; private set; } = 0;
     public float CurrentMultiplier { get; private set; } = 1f;
 
     // Fired every time the player changes room, with the freshly computed multiplier
@@ -45,8 +46,11 @@ public class PlayerScore : MonoBehaviour
 
     public void RegisterHeal() => AddScore(healPoints, "Heal");
 
-    public void RegisterDamage(float damage) =>
+    public void RegisterDamage(float damage)
+    {
+        HitsReceived++;
         AddScore(damagePointsPerHit * damage, "Damage received");
+    }
 
     public void RegisterEnemyDefeated(bool isBoss = false) =>
         AddScore(isBoss ? bossDefeatedPoints : enemyDefeatedPoints, "Enemy defeated");
@@ -76,4 +80,6 @@ public class PlayerScore : MonoBehaviour
         float t = Mathf.InverseLerp(minScore, maxScore, Score); // clamped to 0..1
         return Mathf.Lerp(minMultiplier, maxMultiplier, t);
     }
+
+    
 }

@@ -20,6 +20,7 @@ public class RoomData
     public Transform root;
     public CinemachineCamera cam;
     public RoomEntryTrigger entryTrigger;
+    public bool hasSecretRoom;
 
     // Celda mundo donde se pega el siguiente cuarto (esquina inferior izquierda = origen + (width, exitRow - nextEntryRow)).
     public Vector3Int NextOrigin(int nextEntryRow)
