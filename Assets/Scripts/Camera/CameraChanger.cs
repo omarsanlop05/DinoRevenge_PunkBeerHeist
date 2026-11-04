@@ -16,28 +16,26 @@ public class CameraChanger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-
-        // Replace the existing PlayerScore line in OnTriggerEnter2D
-        if (awardsRoomPoints && !pointsAwarded)
-        {
-            pointsAwarded = true;
-            PlayerScore.Instance?.RegisterRoomChange();
-        }
         if (!other.CompareTag("Player"))
             return;
 
         if (zoneCamera.Priority == activePriority)
             return;
 
-        PlayerScore.Instance?.RegisterRoomChange();            // <-- NEW
+        // Award room points only once per changer (and never for the "go back" changer)
+        if (awardsRoomPoints && !pointsAwarded)
+        {
+            pointsAwarded = true;
+            PlayerScore.Instance?.RegisterRoomChange();
+        }
 
-        // Activar esta cámara subiendo su prioridad
+        // Activate this camera by raising its priority
         zoneCamera.Priority = activePriority;
         previousCamera.Priority = inactivePriority;
 
         freezePlayer(other);
 
-        // Reanudar después de 1 segundo
+        // Resume after 1 second
         Invoke(nameof(unFreezePlayer), 1.0f);
     }
 
