@@ -25,8 +25,15 @@ public class GameManagerProcedural : MonoBehaviour
 
     [Header("Secret Rooms")]
     [SerializeField] private int maxSecretRooms = 2;
-    [Tooltip("Hits received so far (whole run) required for rooms 3, 4 and 5, in that order")]
-    [SerializeField] private int[] secretHitsRequired = { 3, 5, 6 };
+    [Tooltip("Minimum hits received so far to be eligible, for rooms 3, 4 and 5 (in that order)")]
+    [SerializeField] private int[] secretMinHits = { 3, 5, 6 };
+    [Range(0f, 1f)] [SerializeField] private float secretChanceAtMinHits = 0.5f;
+    [Range(0f, 1f)] [SerializeField] private float secretChancePerExtraHit = 0.15f;
+    [Range(0f, 1f)] [SerializeField] private float secretMaxChance = 0.9f;
+    [Tooltip("Chance multiplier applied once for every secret room already generated")]
+    [Range(0f, 1f)] [SerializeField] private float secretChanceAfterEach = 0.7f;
+    [Tooltip("Extra chance multiplier when the previous room already had a secret room")]
+    [Range(0f, 1f)] [SerializeField] private float secretChanceIfPreviousHad = 0.35f;
     private int secretRoomsCount;
 
     [Header("Boss")]
@@ -93,9 +100,9 @@ public class GameManagerProcedural : MonoBehaviour
         RoomData previous = index > 0 ? rooms[index - 1] : null;
 
         // Decidir si se hace un cuarto secreto (niveles 3, 4 o 5)
-       
-       int roomNumber = index + 1;   // 1-based, as in the design (rooms 3, 4, 5)
-        bool makeSecret = ShouldMakeSecretRoom(roomNumber);
+        
+        int roomNumber = index + 1;   // 1-based, as in the design (rooms 3, 4, 5)
+        bool makeSecret = ShouldMakeSecretRoom(roomNumber, previous);
 
         RoomData data = roomGenerator.Generate(index, baseSeed + index, previous, multiplier, makeSecret);
         if (data.hasSecretRoom)
@@ -108,17 +115,31 @@ public class GameManagerProcedural : MonoBehaviour
             SpawnHallway(data);
     }
 
-    private bool ShouldMakeSecretRoom(int roomNumber)
+    private bool ShouldMakeSecretRoom(int roomNumber, RoomData previous)
     {
         if (secretRoomsCount >= maxSecretRooms) return false;
 
         int slot = roomNumber - 3;   // room 3 -> 0, room 4 -> 1, room 5 -> 2
-        if (slot < 0 || slot >= secretHitsRequired.Length) return false;
+        if (slot < 0 || slot >= secretMinHits.Length) return false;
         if (PlayerScore.Instance == null) return false;
 
         int hits = PlayerScore.Instance.HitsReceived;
-        bool ok = hits >= secretHitsRequired[slot];
-        Debug.Log($"[GameManager] Secret room check for room {roomNumber}: hits {hits}/{secretHitsRequired[slot]} -> {ok}");
+        int minHits = secretMinHits[slot];
+        if (hits < minHits)
+        {
+            Debug.Log($"[GameManager] Secret room check for room {roomNumber}: hits {hits} < {minHits}, not eligible");
+            return false;
+        }
+
+        float chance = secretChanceAtMinHits + (hits - minHits) * secretChancePerExtraHit;
+        chance = Mathf.Min(chance, secretMaxChance);
+        chance *= Mathf.Pow(secretChanceAfterEach, secretRoomsCount);
+        if (previous != null && previous.hasSecretRoom)
+            chance *= secretChanceIfPreviousHad;
+
+        float roll = Random.value;
+        bool ok = roll < chance;
+        Debug.Log($"[GameManager] Secret room check for room {roomNumber}: hits {hits} (min {minHits}), chance {chance:P0}, roll {roll:F2} -> {ok}");
         return ok;
     }
 
