@@ -20,8 +20,8 @@ MonoBehaviour:
   doorHeight: 4
   doorRows: 02000000080000000d000000
   ledgeLength: 4
-  solidTile: {fileID: 11400000, guid: 25c7bb5385bc8614dbff711828d7c05d, type: 2}
-  platformTile: {fileID: 11400000, guid: 25c7bb5385bc8614dbff711828d7c05d, type: 2}
+  solidTile: {fileID: 11400000, guid: 708f0552cd4c654478a4d7151e09d48e, type: 2}
+  platformTile: {fileID: 11400000, guid: 708f0552cd4c654478a4d7151e09d48e, type: 2}
   playerHeight: 2
   maxJumpHeight: 3
   maxJumpDistance: 4

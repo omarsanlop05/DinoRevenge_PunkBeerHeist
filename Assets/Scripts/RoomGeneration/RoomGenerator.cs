@@ -30,6 +30,9 @@ public class RoomGenerator : MonoBehaviour
     [Header("Pruebas")]
     [SerializeField] private int testSeed = 1;
 
+    public Vector3 CellToWorld(Vector3Int cell) => groundTilemap.CellToWorld(cell);
+    public Vector3Int WorldToCell(Vector3 world) => groundTilemap.WorldToCell(world);
+
     [ContextMenu("Generar cuarto de prueba")]
     private void GenerateTestRoom()
     {

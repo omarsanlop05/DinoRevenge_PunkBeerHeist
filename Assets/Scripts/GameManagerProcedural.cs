@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +22,13 @@ public class GameManagerProcedural : MonoBehaviour
     [SerializeField] private bool clearBeforeGenerating = true;
     [SerializeField] private bool useRandomSeed = true;
     [SerializeField] private int baseSeed = 1;
+
+    [Header("Boss")]
+    [SerializeField] private BossRoomPrefab bossRoomPrefab;
+    private BossRoomPrefab bossRoom;
+
+    [SerializeField] private HallwayPrefab hallwayPrefab;
+    private HallwayPrefab hallway;
 
     private readonly List<RoomData> rooms = new List<RoomData>();
 
@@ -83,6 +91,8 @@ public class GameManagerProcedural : MonoBehaviour
         data.entryTrigger.PlayerEntered += OnPlayerEnteredRoom;
 
         Debug.Log($"[GameManager] Room {index} generated (multiplier {multiplier:F2})");
+        if (rooms.Count == totalRooms)
+            SpawnHallway(data);
     }
 
     // Entering room i means the player completed room i - 1
@@ -116,10 +126,58 @@ public class GameManagerProcedural : MonoBehaviour
 
     // TODO: call this from the hallway's CameraChanger once the hallway exists.
     // It should use the total score to build the boss room.
+    private void SpawnHallway(RoomData last)
+    {
+        if (hallway != null || hallwayPrefab == null) return;
+
+        // The hallway attaches to the last room's exit door
+        Vector3Int entryCell = new Vector3Int(last.originCell.x + last.width, last.originCell.y + last.exitRow, 0);
+        Vector3 entryWorld = roomGenerator.CellToWorld(entryCell);
+
+        hallway = Instantiate(hallwayPrefab, entryWorld, Quaternion.identity);
+
+        // Shift the instance so its entry anchor lands exactly on entryCell
+        Vector3 shift = entryWorld - hallway.entryAnchor.position;
+        shift.z = 0f;
+        hallway.transform.position += shift;
+
+        hallway.Initialize(last.cam);
+        hallway.entryTrigger.PlayerEntered += _ => OnHallwayEntered();
+    }
+
+    // Called when the player enters the hallway: builds the boss room with the total score
     public void OnHallwayEntered()
     {
+        StartCoroutine(SpawnBossAfterScore());
+    }
+
+    private IEnumerator SpawnBossAfterScore()
+    {
+        // Wait one frame so CameraChanger has registered the room change before we read the score
+        yield return null;
+
         float multiplier = PlayerScore.Instance != null ? PlayerScore.Instance.CurrentMultiplier : 1f;
-        Debug.Log($"[GameManager] Hallway entered. Boss multiplier: {multiplier:F2}");
+
+        // The boss room attaches where the hallway ends
+        Vector3Int bossEntry = roomGenerator.WorldToCell(hallway.exitAnchor.position);
+        SpawnBossRoom(bossEntry, hallway.hallwayCamera, multiplier);
+    }
+
+    public void SpawnBossRoom(Vector3Int entryCell, CinemachineCamera previousCamera, float multiplier)
+    {
+        if (bossRoom != null || bossRoomPrefab == null) return;
+
+        Vector3 entryWorld = roomGenerator.CellToWorld(entryCell);
+
+        bossRoom = Instantiate(bossRoomPrefab, entryWorld, Quaternion.identity);
+
+        // Shift the instance so its entry anchor lands exactly on entryCell
+        Vector3 shift = entryWorld - bossRoom.entryAnchor.position;
+        shift.z = 0f;
+        bossRoom.transform.position += shift;
+
+        bossRoom.Initialize(previousCamera, multiplier);
+        Debug.Log($"[GameManager] Boss room spawned (multiplier {multiplier:F2})");
     }
 
     // ---------- Screens and scenes ----------
