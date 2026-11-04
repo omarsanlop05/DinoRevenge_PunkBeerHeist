@@ -3,6 +3,7 @@ using Unity.Cinemachine;
 
 // Superficie donde se puede caminar. Coordenadas locales del cuarto (0,0 = esquina inferior izquierda).
 // y = fila del tile de la superficie; el jugador se para en la fila y + 1.
+
 public struct Surface
 {
     public int xMin, xMax, y;
@@ -10,6 +11,7 @@ public struct Surface
 
 public class RoomData
 {
+    public float difficulty = 1f;
     public int index;
     public Vector3Int originCell;
     public int width;

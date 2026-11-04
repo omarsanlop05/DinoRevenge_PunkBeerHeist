@@ -5,12 +5,15 @@ public class EnemyHealth : MonoBehaviour
 {
     public float vida = 100f;
 
-    public void RecibirDaño(float daño)
+    public void RecibirDano(float dano)
     {
-        vida -= daño;
-        Debug.Log(name + " recibió " + daño + " de daño. Vida restante: " + vida);
+        vida -= dano;
+        Debug.Log(name + " recibin " + dano + " de dano. Vida restante: " + vida);
         if (vida <= 0)
+        {
+            PlayerScore.Instance?.RegisterEnemyDefeated();        
             Morir();
+        }
     }
 
     void Morir()
@@ -30,10 +33,10 @@ public class EnemyHealth : MonoBehaviour
             if (rb != null)
             {
                 rb.linearVelocity = Vector2.zero;
-                rb.bodyType = RigidbodyType2D.Static; // Hacer que sea estático
+                rb.bodyType = RigidbodyType2D.Static; // Hacer que sea estntico
             }
 
-            // Reproducir animación de muerte
+            // Reproducir animacinn de muerte
             Animator animator = GetComponent<Animator>();
             if (animator != null)
             {

@@ -13,6 +13,10 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private Tilemap groundTilemap;
     [Tooltip("Opcional. Si lo dejas vacío, las plataformas se pintan en el Tilemap de suelo")]
     [SerializeField] private Tilemap platformTilemap;
+    
+    [Header("Room camera (used when no prefab is assigned)")]
+    [SerializeField] private float roomCameraOrthoSize = 10.125f;
+    [SerializeField] private bool addConfiner = true;
     [SerializeField] private CinemachineCamera roomCameraPrefab;
     [SerializeField] private Transform roomsParent;
 
@@ -85,7 +89,7 @@ public class RoomGenerator : MonoBehaviour
 
     // previous = cuarto anterior (null para el primero). El origen se calcula solo para que las puertas
     // coincidan en altura, aunque un cuarto termine arriba y el siguiente empiece abajo.
-    public RoomData Generate(int index, int seed, RoomData previous)
+    public RoomData Generate(int index, int seed, RoomData previous, float difficulty = 1f)
     {
         var c = config;
         var rng = new Random(seed);
@@ -102,7 +106,8 @@ public class RoomGenerator : MonoBehaviour
 
         var data = new RoomData
         {
-            index = index, originCell = origin, width = c.width, entryRow = entryRow, exitRow = exitRow
+            index = index, originCell = origin, width = c.width, entryRow = entryRow, exitRow = exitRow,
+            difficulty = difficulty
         };
 
         var rootGO = new GameObject($"Room_{index}");
@@ -118,8 +123,11 @@ public class RoomGenerator : MonoBehaviour
         //SpawnEnemies(c, origin, walkable, rng, data.root);
 
         // Camera
-        data.cam = CreateCamera(c, origin, data.root, previous == null);
-        data.entryTrigger = CreateEntryTrigger(c, origin, data, previous);
+        // Camera + camera changers
+    data.cam = CreateCamera(c, origin, data.root, previous == null);
+    data.entryTrigger = CreateEntryTrigger(c, origin, data, previous);   // forward changer (unchanged)
+    if (previous != null)
+        CreateBackChanger(c, data, previous);                            // <-- NEW
 
         return data;
     }
@@ -582,10 +590,54 @@ public class RoomGenerator : MonoBehaviour
         Vector3 corner = groundTilemap.CellToWorld(origin);
         Vector3 center = corner + new Vector3(c.width * cell.x * 0.5f, c.height * cell.y * 0.5f, -10f);
 
-        CinemachineCamera cam = Instantiate(roomCameraPrefab, center, Quaternion.identity, parent);
+        CinemachineCamera cam;
+        if (roomCameraPrefab != null)
+        {
+            cam = Instantiate(roomCameraPrefab, center, Quaternion.identity, parent);
+        }
+        else
+        {
+            // Static camera in the room center: no tracking target, no procedural components
+            var camGO = new GameObject();
+            camGO.transform.SetParent(parent, false);
+            camGO.transform.position = center;
+            cam = camGO.AddComponent<CinemachineCamera>();
+
+            var lens = cam.Lens;
+            lens.OrthographicSize = roomCameraOrthoSize;
+            cam.Lens = lens;
+        }
+
         cam.name = $"RoomCam_{parent.name}";
         cam.Priority = isFirst ? 10 : 0;
+
+        if (addConfiner)
+            SetupConfiner(cam, c, center, parent);
+
         return cam;
+    }
+
+    // Confiner2D needs a Collider2D bounding shape, otherwise it shows the warning from your screenshot
+    private void SetupConfiner(CinemachineCamera cam, RoomGenConfig c, Vector3 center, Transform parent)
+    {
+        Vector3 cell = groundTilemap.layoutGrid.cellSize;
+
+        var boundsGO = new GameObject($"CamBounds_{parent.name}");
+        boundsGO.transform.SetParent(parent, false);
+        boundsGO.transform.position = new Vector3(center.x, center.y, 0f);
+
+        var box = boundsGO.AddComponent<BoxCollider2D>();
+        box.isTrigger = true;
+        box.size = new Vector2(c.width * cell.x, c.height * cell.y);
+
+        var confiner = cam.GetComponent<CinemachineConfiner2D>();
+        if (confiner == null)
+            confiner = cam.gameObject.AddComponent<CinemachineConfiner2D>();
+
+        confiner.BoundingShape2D = box;
+        confiner.Damping = 0.3f;
+        confiner.SlowingDistance = 3f;
+        confiner.InvalidateBoundingShapeCache();
     }
 
     private RoomEntryTrigger CreateEntryTrigger(RoomGenConfig c, Vector3Int origin, RoomData data, RoomData previous)
@@ -611,5 +663,30 @@ public class RoomGenerator : MonoBehaviour
         var trigger = go.AddComponent<RoomEntryTrigger>();
         trigger.roomIndex = data.index;
         return trigger;
+    }
+
+    // Changer placed just inside the RIGHT door of the previous room.
+    // Walking back through the door switches the camera from this room to the previous one.
+    private CameraChanger CreateBackChanger(RoomGenConfig c, RoomData data, RoomData previous)
+    {
+        Vector3 cell = groundTilemap.layoutGrid.cellSize;
+        Vector3 prevCorner = groundTilemap.CellToWorld(previous.originCell);
+
+        var go = new GameObject($"CameraChangerBack_{data.index}");
+        go.transform.SetParent(data.root, false);
+        go.transform.position = prevCorner + new Vector3(
+            (previous.width - c.wallThickness - 0.5f) * cell.x,
+            c.height * cell.y * 0.5f,
+            0f);
+
+        var box = go.AddComponent<BoxCollider2D>();
+        box.isTrigger = true;
+        box.size = new Vector2(cell.x, c.height * cell.y);
+
+        var changer = go.AddComponent<CameraChanger>();
+        changer.zoneCamera = previous.cam;       // the camera we go TO
+        changer.previousCamera = data.cam;       // the camera we leave
+        changer.awardsRoomPoints = false;        // going back must not give room points
+        return changer;
     }
 }

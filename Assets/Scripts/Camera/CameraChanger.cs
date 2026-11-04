@@ -7,6 +7,8 @@ public class CameraChanger : MonoBehaviour
     public CinemachineCamera zoneCamera;
     public CinemachineCamera previousCamera;
 
+    public bool awardsRoomPoints = true;
+    private bool pointsAwarded;
     private int activePriority = 10;
     private int inactivePriority = 0;
 
@@ -14,6 +16,13 @@ public class CameraChanger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+
+        // Replace the existing PlayerScore line in OnTriggerEnter2D
+        if (awardsRoomPoints && !pointsAwarded)
+        {
+            pointsAwarded = true;
+            PlayerScore.Instance?.RegisterRoomChange();
+        }
         if (!other.CompareTag("Player"))
             return;
 

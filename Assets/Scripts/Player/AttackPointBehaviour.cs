@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AttackPointBehaviour : MonoBehaviour
 {
-    public float dañoGolpe = 5.0f;
+    public float danoGolpe = 5.0f;
 
     // Usamos HashSet en lugar de List para evitar duplicados
     private HashSet<Collider2D> objetivosEnRango = new HashSet<Collider2D>();
@@ -15,7 +15,7 @@ public class AttackPointBehaviour : MonoBehaviour
 
         if ((other.CompareTag("Enemy") || other.CompareTag("Boss")) && objetivosEnRango.Add(other))
         {
-            AplicarDaño(other);
+            AplicarDano(other);
         }
 
         if (other.CompareTag("Breakable") && objetivosEnRango.Add(other))
@@ -27,7 +27,7 @@ public class AttackPointBehaviour : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("No se encontró el componente WallTrigger en " + gameObject.name);
+                Debug.LogWarning("No se encontrn el componente WallTrigger en " + gameObject.name);
             }
 
             RomperObjeto(other);
@@ -39,7 +39,7 @@ public class AttackPointBehaviour : MonoBehaviour
         if (other.CompareTag("Enemy") || other.CompareTag("Breakable") || other.CompareTag("Boss"))
         {
             objetivosEnRango.Remove(other);
-            Debug.Log("Salió de rango: " + other.name);
+            Debug.Log("Salin de rango: " + other.name);
         }
     }
 
@@ -55,12 +55,12 @@ public class AttackPointBehaviour : MonoBehaviour
         objetivosEnRango.Clear();
     }
 
-    void AplicarDaño(Collider2D enemy)
+    void AplicarDano(Collider2D enemy)
     {
         EnemyHealth vida = enemy.GetComponent<EnemyHealth>();
         if (vida != null)
         {
-            vida.RecibirDaño(dañoGolpe);
+            vida.RecibirDano(danoGolpe);
         }
         Debug.Log("Golpeado: " + enemy.name);
     }
