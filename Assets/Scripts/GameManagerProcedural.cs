@@ -12,6 +12,11 @@ public class GameManagerProcedural : MonoBehaviour
     public GameObject deathScreen;
     public GameObject victoryScreen;
 
+    [Header("World")]
+    [Tooltip("Extra width (tiles) reserved to the right of the last room for the hallway and the boss room")]
+    [SerializeField] private int worldExtraWidth = 120;
+    [SerializeField] private bool placePlayerInFirstRoom = true;
+
     [Header("Room sequence")]
     [SerializeField] private RoomGenerator roomGenerator;
     [Tooltip("Rooms generated when the scene starts. Entering room i generates room i + (initialRooms - 1)")]
@@ -73,12 +78,16 @@ public class GameManagerProcedural : MonoBehaviour
         Debug.Log($"[GameManager] Run seed: {baseSeed}");
 
         if (clearBeforeGenerating)
-            roomGenerator.ClearAll();
+        roomGenerator.ClearAll();
 
-        // First rooms: no score yet, so neutral multiplier
+        roomGenerator.FillWorld(totalRooms, worldExtraWidth);   // 1) fill first
+
         int count = Mathf.Min(initialRooms, totalRooms);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)                          // 2) then carve the rooms
             GenerateNextRoom(1f);
+
+        if (placePlayerInFirstRoom && rooms.Count > 0)
+            PlacePlayer(rooms[0]);                               // 3) then place the player
     }
 
     private void OnDestroy()
@@ -172,26 +181,35 @@ public class GameManagerProcedural : MonoBehaviour
             Debug.Log("[GameManager] Last room reached. Hallway and boss room are not implemented yet.");
     }
 
-    // TODO: call this from the hallway's CameraChanger once the hallway exists.
     // It should use the total score to build the boss room.
     private void SpawnHallway(RoomData last)
+{
+    if (hallway != null || hallwayPrefab == null) return;
+
+    if (hallwayPrefab.entryAnchor == null || hallwayPrefab.exitAnchor == null ||
+        hallwayPrefab.hallwayCamera == null || hallwayPrefab.entryChanger == null ||
+        hallwayPrefab.entryTrigger == null)
     {
-        if (hallway != null || hallwayPrefab == null) return;
-
-        // The hallway attaches to the last room's exit door
-        Vector3Int entryCell = new Vector3Int(last.originCell.x + last.width, last.originCell.y + last.exitRow, 0);
-        Vector3 entryWorld = roomGenerator.CellToWorld(entryCell);
-
-        hallway = Instantiate(hallwayPrefab, entryWorld, Quaternion.identity);
-
-        // Shift the instance so its entry anchor lands exactly on entryCell
-        Vector3 shift = entryWorld - hallway.entryAnchor.position;
-        shift.z = 0f;
-        hallway.transform.position += shift;
-
-        hallway.Initialize(last.cam);
-        hallway.entryTrigger.PlayerEntered += _ => OnHallwayEntered();
+        Debug.LogError("[GameManager] HallwayPrefab has unassigned fields. Fill them in the prefab.");
+        return;
     }
+
+    // The hallway attaches to the last room's exit door
+    Vector3Int entryCell = new Vector3Int(last.originCell.x + last.width, last.originCell.y + last.exitRow, 0);
+    Vector3 entryWorld = roomGenerator.CellToWorld(entryCell);
+
+    hallway = Instantiate(hallwayPrefab, entryWorld, Quaternion.identity);
+
+    // Shift the instance so its entry anchor lands exactly on entryCell
+    Vector3 shift = entryWorld - hallway.entryAnchor.position;
+    shift.z = 0f;
+    hallway.transform.position += shift;
+
+    roomGenerator.CarveInterior(hallway.gameObject, hallway.entryAnchor.position, hallway.exitAnchor.position);
+
+    hallway.Initialize(last.cam);
+    hallway.entryTrigger.PlayerEntered += _ => OnHallwayEntered();
+}
 
     // Called when the player enters the hallway: builds the boss room with the total score
     public void OnHallwayEntered()
@@ -215,6 +233,12 @@ public class GameManagerProcedural : MonoBehaviour
     {
         if (bossRoom != null || bossRoomPrefab == null) return;
 
+if (bossRoomPrefab.entryAnchor == null || bossRoomPrefab.bossCamera == null || bossRoomPrefab.entryChanger == null)
+{
+    Debug.LogError("[GameManager] BossRoomPrefab has unassigned fields. Fill them in the prefab.");
+    return;
+}
+
         Vector3 entryWorld = roomGenerator.CellToWorld(entryCell);
 
         bossRoom = Instantiate(bossRoomPrefab, entryWorld, Quaternion.identity);
@@ -223,6 +247,8 @@ public class GameManagerProcedural : MonoBehaviour
         Vector3 shift = entryWorld - bossRoom.entryAnchor.position;
         shift.z = 0f;
         bossRoom.transform.position += shift;
+
+        roomGenerator.CarveInterior(bossRoom.gameObject, bossRoom.entryAnchor.position);
 
         bossRoom.Initialize(previousCamera, multiplier);
         Debug.Log($"[GameManager] Boss room spawned (multiplier {multiplier:F2})");
@@ -258,5 +284,17 @@ public class GameManagerProcedural : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private void PlacePlayer(RoomData first)
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player == null) return;
+
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+
+        player.transform.position = roomGenerator.GetSpawnPoint(first);
+        Physics2D.SyncTransforms();
     }
 }
