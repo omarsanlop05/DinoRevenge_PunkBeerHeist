@@ -12,6 +12,11 @@ public class GameManagerProcedural : MonoBehaviour
     public GameObject deathScreen;
     public GameObject victoryScreen;
 
+    [Header("World")]
+    [Tooltip("Extra width (tiles) reserved to the right of the last room for the hallway and the boss room")]
+    [SerializeField] private int worldExtraWidth = 120;
+    [SerializeField] private bool placePlayerInFirstRoom = true;
+
     [Header("Room sequence")]
     [SerializeField] private RoomGenerator roomGenerator;
     [Tooltip("Rooms generated when the scene starts. Entering room i generates room i + (initialRooms - 1)")]
@@ -73,12 +78,16 @@ public class GameManagerProcedural : MonoBehaviour
         Debug.Log($"[GameManager] Run seed: {baseSeed}");
 
         if (clearBeforeGenerating)
-            roomGenerator.ClearAll();
+        roomGenerator.ClearAll();
 
-        // First rooms: no score yet, so neutral multiplier
+        roomGenerator.FillWorld(totalRooms, worldExtraWidth);   // 1) fill first
+
         int count = Mathf.Min(initialRooms, totalRooms);
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < count; i++)                          // 2) then carve the rooms
             GenerateNextRoom(1f);
+
+        if (placePlayerInFirstRoom && rooms.Count > 0)
+            PlacePlayer(rooms[0]);                               // 3) then place the player
     }
 
     private void OnDestroy()
@@ -172,7 +181,6 @@ public class GameManagerProcedural : MonoBehaviour
             Debug.Log("[GameManager] Last room reached. Hallway and boss room are not implemented yet.");
     }
 
-    // TODO: call this from the hallway's CameraChanger once the hallway exists.
     // It should use the total score to build the boss room.
     private void SpawnHallway(RoomData last)
     {
@@ -188,6 +196,8 @@ public class GameManagerProcedural : MonoBehaviour
         Vector3 shift = entryWorld - hallway.entryAnchor.position;
         shift.z = 0f;
         hallway.transform.position += shift;
+
+        roomGenerator.CarveFootprint(hallway.gameObject);
 
         hallway.Initialize(last.cam);
         hallway.entryTrigger.PlayerEntered += _ => OnHallwayEntered();
@@ -224,6 +234,8 @@ public class GameManagerProcedural : MonoBehaviour
         shift.z = 0f;
         bossRoom.transform.position += shift;
 
+        roomGenerator.CarveFootprint(bossRoom.gameObject);
+
         bossRoom.Initialize(previousCamera, multiplier);
         Debug.Log($"[GameManager] Boss room spawned (multiplier {multiplier:F2})");
     }
@@ -258,5 +270,17 @@ public class GameManagerProcedural : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private void PlacePlayer(RoomData first)
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player == null) return;
+
+        Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
+        if (rb != null) rb.linearVelocity = Vector2.zero;
+
+        player.transform.position = roomGenerator.GetSpawnPoint(first);
+        Physics2D.SyncTransforms();
     }
 }
