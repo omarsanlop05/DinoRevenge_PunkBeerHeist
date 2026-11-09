@@ -58,29 +58,84 @@ public class RoomGenerator : MonoBehaviour
     private void FillWorldTest() => FillWorld(5, 120);
 
     // Clears the block where a prefab with its own Tilemaps (hallway, boss room) will sit
-    public void CarveFootprint(GameObject instance)
+    // Clears the giant block only where the INSIDE of a hand-made prefab (hallway, boss room) will be.
+// It flood-fills the cells that are empty in the prefab's own Tilemaps, starting from the given world
+// points (anchors), so the prefab's walls and the solid block around it stay untouched.
+public void CarveInterior(GameObject instance, params Vector3[] worldSeeds)
+{
+    const int maxCells = 20000;
+    Vector3 eps = new Vector3(0.01f, 0.01f, 0f);
+
+    var maps = new List<Tilemap>();
+    bool any = false;
+    Vector3Int cmin = Vector3Int.zero, cmax = Vector3Int.zero;
+
+    foreach (var tm in instance.GetComponentsInChildren<Tilemap>())
     {
-        bool any = false;
-        Vector3Int cmin = Vector3Int.zero, cmax = Vector3Int.zero;
-        Vector3 eps = new Vector3(0.01f, 0.01f, 0f);
+        tm.CompressBounds();   // cellBounds keeps stale empty space after tiles are erased
+        BoundsInt b = tm.cellBounds;
+        if (b.size.x <= 0 || b.size.y <= 0) continue;
 
-        foreach (var tm in instance.GetComponentsInChildren<Tilemap>())
-        {
-            BoundsInt b = tm.cellBounds;
-            if (b.size.x <= 0 || b.size.y <= 0) continue;
+        maps.Add(tm);
+        Vector3Int a = groundTilemap.WorldToCell(tm.CellToWorld(b.min) + eps);
+        Vector3Int z = groundTilemap.WorldToCell(tm.CellToWorld(b.max) + eps) - Vector3Int.one;   // max is exclusive
 
-            Vector3Int a = groundTilemap.WorldToCell(tm.CellToWorld(b.min) + eps);
-            Vector3Int z = groundTilemap.WorldToCell(tm.CellToWorld(b.max) + eps) - Vector3Int.one;   // max is exclusive
-
-            if (!any) { cmin = a; cmax = z; any = true; }
-            else { cmin = Vector3Int.Min(cmin, a); cmax = Vector3Int.Max(cmax, z); }
-        }
-        if (!any) return;
-
-        for (int x = cmin.x; x <= cmax.x; x++)
-            for (int y = cmin.y; y <= cmax.y; y++)
-                ClearCell(new Vector3Int(x, y, 0));
+        if (!any) { cmin = a; cmax = z; any = true; }
+        else { cmin = Vector3Int.Min(cmin, a); cmax = Vector3Int.Max(cmax, z); }
     }
+
+    if (!any)
+    {
+        Debug.LogWarning($"[RoomGenerator] {instance.name} has no tiles in its own Tilemaps. Nothing carved.");
+        return;
+    }
+
+    bool InBounds(Vector3Int c) => c.x >= cmin.x && c.x <= cmax.x && c.y >= cmin.y && c.y <= cmax.y;
+
+    bool IsPrefabTile(Vector3Int c)
+    {
+        Vector3 w = groundTilemap.GetCellCenterWorld(c);
+        foreach (var tm in maps)
+            if (tm.HasTile(tm.WorldToCell(w))) return true;
+        return false;
+    }
+
+    var visited = new HashSet<Vector3Int>();
+    var queue = new Queue<Vector3Int>();
+    foreach (var seed in worldSeeds)
+    {
+        Vector3Int s = groundTilemap.WorldToCell(seed + eps);
+        if (InBounds(s) && !IsPrefabTile(s) && visited.Add(s)) queue.Enqueue(s);
+    }
+
+    if (queue.Count == 0)
+    {
+        Debug.LogWarning($"[RoomGenerator] {instance.name}: no valid start cell. Check that the anchors sit on empty cells inside the prefab.");
+        return;
+    }
+
+    Vector3Int[] dirs = { new Vector3Int(1, 0, 0), new Vector3Int(-1, 0, 0), new Vector3Int(0, 1, 0), new Vector3Int(0, -1, 0) };
+    while (queue.Count > 0)
+    {
+        Vector3Int cur = queue.Dequeue();
+        foreach (var d in dirs)
+        {
+            Vector3Int n = cur + d;
+            if (!InBounds(n) || IsPrefabTile(n) || !visited.Add(n)) continue;
+            queue.Enqueue(n);
+        }
+
+        if (visited.Count > maxCells)
+        {
+            Debug.LogError($"[RoomGenerator] {instance.name}: the empty area leaks (more than {maxCells} cells). " +
+                           "The prefab is not closed by its walls. Nothing carved.");
+            return;
+        }
+    }
+
+    foreach (var cell in visited) ClearCell(cell);
+    Debug.Log($"[RoomGenerator] Carved {visited.Count} cells for {instance.name} (bounds {cmin} .. {cmax})");
+}
 
     public Vector3 GetSpawnPoint(RoomData room)
     {
