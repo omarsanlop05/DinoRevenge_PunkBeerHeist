@@ -202,7 +202,6 @@ public class RoomGenerator : MonoBehaviour
         return data;
     }
 
-    // ---------- Secret room (hidden until the door is broken) ----------
 
     // ---------- Secret room (hidden until the door is broken) ----------
 
