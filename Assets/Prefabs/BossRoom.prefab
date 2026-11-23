@@ -5171,7 +5171,7 @@ GameObject:
   - component: {fileID: 408138694257679726}
   - component: {fileID: 3589537268352546577}
   - component: {fileID: 6246947061250016148}
-  - component: {fileID: 1285434243915202550}
+  - component: {fileID: 2094543434375448579}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Boss
@@ -5373,7 +5373,7 @@ MonoBehaviour:
   requiereActivacion: 1
   mostrarDebugLogs: 1
   mostrarEstadoConstante: 1
---- !u!114 &1285434243915202550
+--- !u!114 &2094543434375448579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5385,7 +5385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03607550c9cc97a4fb10d9d0fe61390e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 450
+  vida: 10
 --- !u!1 &8700957794710140352
 GameObject:
   m_ObjectHideFlags: 0

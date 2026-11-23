@@ -17,5 +17,15 @@ public class HallwayPrefab : MonoBehaviour
         entryChanger.zoneCamera = hallwayCamera;
         entryChanger.previousCamera = previousCamera;
         hallwayCamera.Priority = 0;
+
+        // 1. Asignar el jugador como objetivo de seguimiento
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+            hallwayCamera.Target.TrackingTarget = player.transform;
+
+        // 2. Recalcular el confiner tras mover el prefab al final del nivel
+        var confiner = hallwayCamera.GetComponent<CinemachineConfiner2D>();
+        if (confiner != null)
+            confiner.InvalidateBoundingShapeCache();
     }
 }

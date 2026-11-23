@@ -104,10 +104,13 @@ public class PlayerHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        if (GameManager.instance != null)
+        if (GameManagerProcedural.instance != null)
         {
-            GameManager.instance.ShowDeathScreen();
+            GameManagerProcedural.instance.ShowDeathScreen();
         }
+        else if(GameManager.instance != null){
+            GameManager.instance.ShowDeathScreen();
+        } 
         else
         {
             Debug.LogWarning("⚠️ No se encontró el GameManager.");

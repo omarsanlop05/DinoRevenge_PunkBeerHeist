@@ -5,10 +5,10 @@ public class BossHealth : MonoBehaviour
 {
     public float vida = 100f;
 
-    public void RecibirDaÒo(float daÒo)
+    public void RecibirDa√±o(float da√±o)
     {
-        vida -= daÒo;
-        Debug.Log(name + " recibiÛ " + daÒo + " de daÒo. Vida restante: " + vida);
+        vida -= da√±o;
+        Debug.Log(name + " recibi√≥ " + da√±o + " de da√±o. Vida restante: " + vida);
         if (vida <= 0)
             Morir();
     }
@@ -30,10 +30,10 @@ public class BossHealth : MonoBehaviour
             if (rb != null)
             {
                 rb.linearVelocity = Vector2.zero;
-                rb.bodyType = RigidbodyType2D.Static; // Hacer que sea est·tico
+                rb.bodyType = RigidbodyType2D.Static; // Hacer que sea estÔøΩtico
             }
 
-            // Reproducir animaciÛn de muerte
+            // Reproducir animaciÔøΩn de muerte
             Animator animator = GetComponent<Animator>();
             if (animator != null)
             {
@@ -60,13 +60,16 @@ public class BossHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        if (GameManager.instance != null)
+        if (GameManagerProcedural.instance != null)
         {
-            GameManager.instance.ShowVictoryScreen();
+            GameManagerProcedural.instance.ShowVictoryScreen();
         }
+        else if(GameManager.instance != null){
+            GameManager.instance.ShowVictoryScreen();
+        } 
         else
         {
-            Debug.LogWarning("No se encontro el GameManager.");
+            Debug.LogWarning("‚ö†Ô∏è No se encontr√≥ el GameManager.");
         }
 
         Destroy(gameObject);

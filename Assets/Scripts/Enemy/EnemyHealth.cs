@@ -63,13 +63,16 @@ public class EnemyHealth : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        if (GameManager.instance != null)
+        if (GameManagerProcedural.instance != null)
         {
-            GameManager.instance.ShowVictoryScreen();
+            GameManagerProcedural.instance.ShowVictoryScreen();
         }
+        else if(GameManager.instance != null){
+            GameManager.instance.ShowVictoryScreen();
+        } 
         else
         {
-            Debug.LogWarning("No se encontro el GameManager.");
+            Debug.LogWarning("⚠️ No se encontró el GameManager.");
         }
 
         Destroy(gameObject);
