@@ -7,7 +7,14 @@ public class MenuSystem : MonoBehaviour
     {
         Debug.Log("Starting game");
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("FirstGameplayScene");
+    }
+
+    public void Arcade()
+    {
+        Debug.Log("Starting arcade");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("ProceduralScene");
     }
 
     public void Salir()
