@@ -1604,6 +1604,7 @@ MonoBehaviour:
   secretMaxChance: 0.9
   secretChanceAfterEach: 0.7
   secretChanceIfPreviousHad: 0.35
+  enemyPlacer: {fileID: 768091977}
   bossRoomPrefab: {fileID: -8138830125861539698, guid: d6c32930666dc294f9d0f2a734ea3e53, type: 3}
   hallwayPrefab: {fileID: -2006774943898877311, guid: f2f3eb3d2c3ef2e42b24d87b31a3d5a1, type: 3}
 --- !u!4 &678905089
@@ -1835,6 +1836,51 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parallaxEffect: 0.3
+--- !u!1 &735316261
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 735316263}
+  - component: {fileID: 735316262}
+  m_Layer: 0
+  m_Name: Fabrica enemigos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &735316262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735316261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09af796512e90a3ff822a63499aac4dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  catalogo: {fileID: 11400000, guid: 57158a05a33293f97968223f489aa358, type: 2}
+--- !u!4 &735316263
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735316261}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.116285, y: 15.319989, z: -0.39575005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &760856355
 GameObject:
   m_ObjectHideFlags: 0
@@ -1927,6 +1973,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMusic: {fileID: 8300000, guid: cafb088cc27257c489e084cbf0f221be, type: 3}
+--- !u!1 &768091976
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 768091978}
+  - component: {fileID: 768091977}
+  m_Layer: 0
+  m_Name: EnemyPlacer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &768091977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768091976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3af72304fb4ac0d4a9a1cce3fbcfea55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roomGenerator: {fileID: 307528302}
+  fabrica: {fileID: 735316262}
+  minEnemies: 1
+  maxEnemies: 4
+  maxPerKind: 2
+  multiplierRange: {x: 0.75, y: 1.25}
+  countNoise: 0.75
+  safeZoneFromEntry: 10
+  airChance: 0.35
+  minSpacing: 4
+  groundClearance: 2
+  airRadius: 1
+  airEmptyBelow: 3
+  attemptsPerEnemy: 40
+  flyerRange: 6
+  minFlyerSpan: 3
+  flyerBob: 2
+  flyerTriangleChance: 0.5
+  baseHealth: 30
+  gearSpread: 0.75
+  keepPlaceholders: 1
+  logPlacement: 1
+--- !u!4 &768091978
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768091976}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.116285, y: 15.319989, z: -0.39575005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &786746498
 GameObject:
   m_ObjectHideFlags: 0
@@ -4406,3 +4518,5 @@ SceneRoots:
   - {fileID: 1313211330}
   - {fileID: 307528303}
   - {fileID: 2092099219}
+  - {fileID: 768091978}
+  - {fileID: 735316263}

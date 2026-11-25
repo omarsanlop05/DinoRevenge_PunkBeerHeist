@@ -41,6 +41,10 @@ public class GameManagerProcedural : MonoBehaviour
     [Range(0f, 1f)] [SerializeField] private float secretChanceIfPreviousHad = 0.35f;
     private int secretRoomsCount;
 
+    [Header("Enemies")]
+    [Tooltip("Places 1-3 enemies in every generated room. Leave empty to generate rooms without enemies")]
+    [SerializeField] private EnemyPlacer enemyPlacer;
+
     [Header("Boss")]
     [SerializeField] private BossRoomPrefab bossRoomPrefab;
     private BossRoomPrefab bossRoom;
@@ -118,6 +122,10 @@ public class GameManagerProcedural : MonoBehaviour
             secretRoomsCount++;   // only counts if the generator actually managed to build it
         rooms.Add(data);
         data.entryTrigger.PlayerEntered += OnPlayerEnteredRoom;
+
+        // Enemies go in after the room (and its secret room) is carved, so they see the final tiles
+        if (enemyPlacer != null)
+            enemyPlacer.PopulateRoom(data, baseSeed + index * 7919 + 101);
 
         Debug.Log($"[GameManager] Room {index} generated (multiplier {multiplier:F2})");
         if (rooms.Count == totalRooms)

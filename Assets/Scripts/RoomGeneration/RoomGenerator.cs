@@ -144,6 +144,14 @@ public void CarveInterior(GameObject instance, params Vector3[] worldSeeds)
         return groundTilemap.GetCellCenterWorld(cell);
     }
 
+    public RoomGenConfig Config => config;
+
+    // True if the cell has a tile in the ground or the platform Tilemap
+    public bool IsSolid(Vector3Int cell) =>
+        groundTilemap.HasTile(cell) || (platformTilemap != null && platformTilemap.HasTile(cell));
+
+    public Vector3 CellCenterWorld(Vector3Int cell) => groundTilemap.GetCellCenterWorld(cell);
+
     public Vector3 CellToWorld(Vector3Int cell) => groundTilemap.CellToWorld(cell);
     public Vector3Int WorldToCell(Vector3 world) => groundTilemap.WorldToCell(world);
 
@@ -241,7 +249,7 @@ public void CarveInterior(GameObject instance, params Vector3[] worldSeeds)
         
         // Enemies
         List<Surface> walkable = BuildLayout(c, origin, rng, entryRow, exitRow, mainFloors);
-        //SpawnEnemies(c, origin, walkable, rng, data.root);
+        data.surfaces = walkable;   // EnemyPlacer reads these (tagged by kind and main path)
 
         // Camera
         // Camera + camera changers
@@ -650,12 +658,15 @@ private void CreateSecretZone(Transform parent, string objName, Vector3Int mainO
         if (floorsOut != null) floorsOut.AddRange(floors);
 
         var walkable = new List<Surface>();
+        bool entryAtFloor = entryRow <= c.floorThickness;
 
-        if (entryRow > c.floorThickness) { PaintSurface(groundTilemap, c.solidTile, origin, entryPad); walkable.Add(entryPad); }
-        if (exitRow > c.floorThickness) { PaintSurface(groundTilemap, c.solidTile, origin, exitPad); walkable.Add(exitPad); }
+        // High door pads are ledges in the air; the player always stands on them
+        if (entryRow > c.floorThickness) { PaintSurface(groundTilemap, c.solidTile, origin, entryPad); walkable.Add(Tag(entryPad, SurfaceKind.Ledge, true)); }
+        if (exitRow > c.floorThickness) { PaintSurface(groundTilemap, c.solidTile, origin, exitPad); walkable.Add(Tag(exitPad, SurfaceKind.Ledge, true)); }
 
-        foreach (var f in floors)
+        for (int i = 0; i < floors.Count; i++)
         {
+            Surface f = floors[i];
             for (int x = f.xMin; x <= f.xMax; x++)
             {
                 int highestY = f.y;
@@ -663,7 +674,12 @@ private void CreateSecretZone(Transform parent, string objName, Vector3Int mainO
                 for (int y = 0; y <= highestY; y++)
                     groundTilemap.SetTile(origin + new Vector3Int(x, y, 0), c.solidTile);
             }
-            walkable.Add(f);
+
+            // The route is entry -> chains -> pillars -> last floor -> exit. The floors between pillars are
+            // pits the player jumps over; the first floor is only walked when the entry door is at floor level.
+            bool isLast = i == floors.Count - 1;
+            bool onPath = isLast || (i == 0 && entryAtFloor);
+            walkable.Add(Tag(f, SurfaceKind.Floor, onPath));
         }
 
         foreach (var p in pillars)
@@ -671,16 +687,23 @@ private void CreateSecretZone(Transform parent, string objName, Vector3Int mainO
             for (int x = p.xMin; x <= p.xMax; x++)
                 for (int y = 0; y <= p.y; y++)
                     groundTilemap.SetTile(origin + new Vector3Int(x, y, 0), c.solidTile);
-            walkable.Add(p);
+            walkable.Add(Tag(p, SurfaceKind.Pillar, true));
         }
 
         foreach (var s in main)
         {
             PaintSurface(platMap, c.platformTile, origin, s);
-            walkable.Add(s);
+            walkable.Add(Tag(s, SurfaceKind.Platform, true));
         }
 
         return walkable;
+    }
+
+    private static Surface Tag(Surface s, SurfaceKind kind, bool onMainPath)
+    {
+        s.kind = kind;
+        s.onMainPath = onMainPath;
+        return s;
     }
 
     private bool TryPlanLayout(RoomGenConfig c, Random rng, int entryRow, int exitRow,

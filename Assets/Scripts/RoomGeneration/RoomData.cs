@@ -1,5 +1,15 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Unity.Cinemachine;
+
+// What a walkable surface is, so the enemy placer can apply its rules
+public enum SurfaceKind
+{
+    Floor,      // ground segment painted from the bottom of the room
+    Pillar,     // solid column that rises from the floor
+    Platform,   // floating platform of the main jump chain
+    Ledge       // solid ledge stuck to a high door (entry or exit pad)
+}
 
 // Superficie donde se puede caminar. Coordenadas locales del cuarto (0,0 = esquina inferior izquierda).
 // y = fila del tile de la superficie; el jugador se para en la fila y + 1.
@@ -7,6 +17,8 @@ using Unity.Cinemachine;
 public struct Surface
 {
     public int xMin, xMax, y;
+    public SurfaceKind kind;
+    public bool onMainPath;   // the player has to cross it to reach the exit door
 }
 
 public class RoomData
@@ -21,6 +33,7 @@ public class RoomData
     public CinemachineCamera cam;
     public RoomEntryTrigger entryTrigger;
     public bool hasSecretRoom;
+    public List<Surface> surfaces = new List<Surface>();   // every walkable surface, tagged
 
     // Celda mundo donde se pega el siguiente cuarto (esquina inferior izquierda = origen + (width, exitRow - nextEntryRow)).
     public Vector3Int NextOrigin(int nextEntryRow)
