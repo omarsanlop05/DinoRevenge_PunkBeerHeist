@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [Header("DetecciÛn del jugador")]
+    [Header("Detecci√≥n del jugador")]
     public Transform player;
     public float detectionRange = 8f;
 
@@ -20,7 +20,7 @@ public class EnemyAttack : MonoBehaviour
 
         float distance = Vector2.Distance(transform.position, player.position);
 
-        // Si el jugador est· en rango
+        // Si el jugador est√° en rango
         if (distance <= detectionRange)
         {
             // Mirar hacia el jugador
@@ -30,7 +30,7 @@ public class EnemyAttack : MonoBehaviour
             else
                 transform.localScale = new Vector3(-1, 1, 1);
 
-            // Disparar si ya pasÛ el tiempo
+            // Disparar si ya pas√≥ el tiempo
             if (Time.time >= nextFireTime)
             {
                 Shoot(dir.normalized);

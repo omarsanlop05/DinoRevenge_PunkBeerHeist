@@ -1761,7 +1761,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 8, z: 0}
-  m_LocalScale: {x: 0.1513638, y: 0.32, z: 0.1513638}
+  m_LocalScale: {x: 0.21947752, y: 0.50799996, z: 0.1513638}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1500010118}
@@ -2007,12 +2007,11 @@ MonoBehaviour:
   minEnemies: 1
   maxEnemies: 4
   maxPerKind: 2
-  multiplierRange: {x: 0.75, y: 1.25}
   countNoise: 0.75
   safeZoneFromEntry: 10
   airChance: 0.35
   minSpacing: 4
-  groundClearance: 2
+  groundClearance: 3
   airRadius: 1
   airEmptyBelow: 3
   attemptsPerEnemy: 40
@@ -2022,6 +2021,12 @@ MonoBehaviour:
   flyerTriangleChance: 0.5
   baseHealth: 30
   gearSpread: 0.75
+  fallbackSpeedRange: {x: 0.9, y: 1.15}
+  fallbackHealthRange: {x: 0.75, y: 1.25}
+  fallbackPowerRange: {x: 0.8, y: 1.2}
+  clearTimeBase: 6
+  clearTimePerEnemy: 5
+  spawnEnemies: 1
   keepPlaceholders: 1
   logPlacement: 1
 --- !u!4 &768091978
@@ -4035,16 +4040,76 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c175d40a8b70221428f202e9efd97d47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healPoints: -10
-  roomChangePoints: 20
-  enemyDefeatedPoints: 10
-  bossDefeatedPoints: 30
-  damagePointsPerHit: -1
-  deathPoints: -100
+  death:
+    speed: -50
+    health: -50
+    power: -50
+  roomChange:
+    speed: 5
+    health: 5
+    power: 5
+  bossDefeated:
+    speed: 15
+    health: 25
+    power: 15
+  enemyDefeated:
+    speed: 0
+    health: 5
+    power: 0
+  enemyDefeatedFast:
+    speed: 2
+    health: 3
+    power: 0
+  fastKillSeconds: 3
+  damagePerPoint:
+    speed: 0
+    health: 0
+    power: -1
+  heal:
+    speed: 0
+    health: -3
+    power: -10
+  maxKillPointsPerRoom: 4
+  clearVeryFast:
+    speed: 15
+    health: 5
+    power: 0
+  clearFast:
+    speed: 5
+    health: 0
+    power: 0
+  clearSlow:
+    speed: 0
+    health: 0
+    power: 0
+  clearVerySlow:
+    speed: -10
+    health: -3
+    power: 0
+  roomNoDamage:
+    speed: 0
+    health: 5
+    power: 15
+  challengeCompleted:
+    speed: 10
+    health: 10
+    power: 10
+  challengeFailed:
+    speed: -10
+    health: -10
+    power: -10
+  secretRoomFound:
+    speed: 5
+    health: 5
+    power: 5
   minScore: -100
   maxScore: 100
-  minMultiplier: 0.75
-  maxMultiplier: 1.25
+  speedMultiplierRange: {x: 0.9, y: 1.15}
+  healthMultiplierRange: {x: 0.75, y: 1.25}
+  powerMultiplierRange: {x: 0.8, y: 1.2}
+  speedScore: 0
+  healthScore: 0
+  powerScore: 0
   <HitsReceived>k__BackingField: 0
 --- !u!4 &2092099219
 Transform:

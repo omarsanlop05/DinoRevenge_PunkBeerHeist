@@ -11,7 +11,7 @@ public class BossHitboxZone : MonoBehaviour
 
         if (parentHitbox == null)
         {
-            Debug.LogError($"[{gameObject.name}] No se encontrÛ BossAttackHitbox en el padre!");
+            Debug.LogError($"[{gameObject.name}] No se encontr√≥ BossAttackHitbox en el padre!");
         }
     }
 
@@ -23,7 +23,7 @@ public class BossHitboxZone : MonoBehaviour
         }
     }
 
-    // CLAVE: Agregar OnTriggerStay2D para detectar colliders que ya est·n dentro
+    // CLAVE: Agregar OnTriggerStay2D para detectar colliders que ya est√°n dentro
     void OnTriggerStay2D(Collider2D other)
     {
         if (parentHitbox != null)

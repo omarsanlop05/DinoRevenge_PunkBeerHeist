@@ -22,13 +22,13 @@ public class CervezaUI : MonoBehaviour
     {
         if (playerHealth == null) return;
 
-        // Detectar cambio en el máximo
+        // Detectar cambio en el mÃ¡ximo
         if (playerHealth.maxCervezas != lastMaxCervezas)
         {
             ActualizarBarraSiNecesario();
         }
 
-        // Actualizar sprites según cantidad actual
+        // Actualizar sprites segÃºn cantidad actual
         for (int i = 0; i < slots.Length; i++)
         {
             slots[i].sprite = (i < playerHealth.cervezas) ? cervezaEncendida : cervezaApagada;

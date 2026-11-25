@@ -30,8 +30,15 @@ public class FabricaEnemigos : MonoBehaviour
         return Crear(catalogo, tipos, casco, zapatos, aura, out _, posicion, padre);
     }
 
-    public static GameObject Crear(CatalogoEnemigos catalogo, string[] tipos, int casco, int zapatos, int aura,
+    // Igual, pero el personaje se elige con un System.Random sembrado (misma semilla = mismos enemigos).
+    public GameObject Crear(string[] tipos, int casco, int zapatos, int aura, System.Random rng,
         out GameObject proyectil, Vector3 posicion = default, Transform padre = null)
+    {
+        return Crear(catalogo, tipos, casco, zapatos, aura, out proyectil, posicion, padre, rng);
+    }
+
+    public static GameObject Crear(CatalogoEnemigos catalogo, string[] tipos, int casco, int zapatos, int aura,
+        out GameObject proyectil, Vector3 posicion = default, Transform padre = null, System.Random rng = null)
     {
         proyectil = null;
         if (catalogo == null)
@@ -65,7 +72,8 @@ public class FabricaEnemigos : MonoBehaviour
             return null;
         }
 
-        var (tipoElegido, elegido) = candidatos[Random.Range(0, candidatos.Count)];
+        int indice = rng != null ? rng.Next(candidatos.Count) : Random.Range(0, candidatos.Count);
+        var (tipoElegido, elegido) = candidatos[indice];
         var controller = elegido.Variacion(casco, zapatos, aura);
 
         var go = tipoElegido.prefabBase != null

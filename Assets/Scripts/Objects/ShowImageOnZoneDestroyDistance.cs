@@ -5,7 +5,7 @@ public class ShowImageOnZoneDestroyDistance : MonoBehaviour
     public string controlName;   // Nombre del control que esta zona debe mostrar (ej: "ASD", "Space", "E")
     public GameObject player;    // Referencia al jugador
     public GameObject vinculo;   // Objeto que debe existir para mantener la zona activa
-    public float distanciaMaxima = 5f; // Distancia m·xima para mostrar el control
+    public float distanciaMaxima = 5f; // Distancia m√°xima para mostrar el control
 
     private Transform controlPoint;
 
@@ -21,30 +21,30 @@ public class ShowImageOnZoneDestroyDistance : MonoBehaviour
 
     private void Update()
     {
-        // Si el vÌnculo deja de existir, destruir este objeto (la zona con el cÛdigo)
+        // Si el v√≠nculo deja de existir, destruir este objeto (la zona con el c√≥digo)
         if (vinculo == null)
         {
             if (controlPoint != null)
                 controlPoint.gameObject.SetActive(false);
 
-            Debug.Log("El vÌnculo muriÛ, destruyendo la zona: " + gameObject.name);
+            Debug.Log("El v√≠nculo muri√≥, destruyendo la zona: " + gameObject.name);
             Destroy(gameObject);
             return;
         }
 
-        // Revisar distancia entre jugador y vÌnculo
+        // Revisar distancia entre jugador y v√≠nculo
         float distancia = Vector2.Distance(player.transform.position, vinculo.transform.position);
 
         if (controlPoint != null)
         {
             if (distancia <= distanciaMaxima)
             {
-                // Si est·n cerca, mostrar el control
+                // Si est√°n cerca, mostrar el control
                 controlPoint.gameObject.SetActive(true);
             }
             else
             {
-                // Si est·n lejos, apagar el control
+                // Si est√°n lejos, apagar el control
                 controlPoint.gameObject.SetActive(false);
             }
         }

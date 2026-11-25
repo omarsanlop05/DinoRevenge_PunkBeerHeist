@@ -7,7 +7,7 @@ public class ShowImageOnZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Entró al trigger con: " + other.name);
+        Debug.Log("EntrÃ³ al trigger con: " + other.name);
 
         if (other.gameObject == player)
         {
@@ -19,7 +19,7 @@ public class ShowImageOnZone : MonoBehaviour
             }
             else
             {
-                Debug.Log("No se encontró el hijo: " + controlName);
+                Debug.Log("No se encontrÃ³ el hijo: " + controlName);
             }
         }
     }

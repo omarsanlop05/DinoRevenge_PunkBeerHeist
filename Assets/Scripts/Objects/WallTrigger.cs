@@ -27,7 +27,7 @@ public class WallTrigger : MonoBehaviour
 
     private bool alreadyCleared = false;
 
-    // Llama este método cuando la pared se rompa
+    // Llama este mÃ©todo cuando la pared se rompa
     public void BreakWall()
     {
         if (alreadyCleared) return;

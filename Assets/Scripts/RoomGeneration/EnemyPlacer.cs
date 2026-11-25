@@ -6,20 +6,25 @@ using Random = System.Random;
 //   Pass 1 (PlacePlaceholders): picks random valid spots and records what is around each one
 //                               (air, air platform, off the main path, main path ground).
 //   Pass 2 (SpawnEnemies):      turns each placeholder into an enemy of the right kind through
-//                               FabricaEnemigos, builds the flyer routes and applies the multiplier.
+//                               FabricaEnemigos, builds the flyer routes and applies the player scores.
+// (In the room pipeline these are the 3rd and 4th passes, after the cellular automaton shell and the layout.)
+//
+// The three player scores (PlayerScore) pick the gear of every enemy:
+//   Helmet <- Health score   Shoes <- Speed score   Aura <- Power score
+// and each gear level (1-3) gives the stat multiplier (1 = min, 2 = middle, 3 = max of that score's range),
+// so what the player sees on the sprite is what the enemy really does.
+// Enemies are spawned as soon as the room is generated but sleep until the player walks in (RoomCombatTracker).
 public class EnemyPlacer : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private RoomGenerator roomGenerator;
     [SerializeField] private FabricaEnemigos fabrica;
 
-    [Header("Count (scaled by the room multiplier)")]
+    [Header("Count (scaled by the average of the three scores)")]
     [SerializeField] private int minEnemies = 1;
     [SerializeField] private int maxEnemies = 3;
     [Tooltip("Maximum enemies of the same kind in one room")]
     [SerializeField] private int maxPerKind = 2;
-    [Tooltip("Multiplier range coming from PlayerScore (min gives the fewest / weakest enemies)")]
-    [SerializeField] private Vector2 multiplierRange = new Vector2(0.75f, 1.25f);
     [Tooltip("Random spread (in enemies) added before rounding, so equal scores do not always give the same count")]
     [Range(0f, 1f)] [SerializeField] private float countNoise = 0.75f;
 
@@ -31,7 +36,7 @@ public class EnemyPlacer : MonoBehaviour
     [Tooltip("Minimum distance between two placeholders")]
     [SerializeField] private float minSpacing = 4f;
     [Tooltip("Empty cells needed above a ground spot")]
-    [SerializeField] private int groundClearance = 2;
+    [SerializeField] private int groundClearance = 3;
     [Tooltip("Half size of the empty box needed around an air spot (1 = 3x3)")]
     [SerializeField] private int airRadius = 1;
     [Tooltip("Cells under an air spot that must be empty for it to count as 'in the air'")]
@@ -52,6 +57,14 @@ public class EnemyPlacer : MonoBehaviour
     [SerializeField] private float baseHealth = 30f;
     [Tooltip("Random spread applied to helmet / shoes / aura levels")]
     [Range(0f, 1f)] [SerializeField] private float gearSpread = 0.75f;
+    [Tooltip("Multiplier ranges used when there is no PlayerScore in the scene (x = level 1, y = level 3)")]
+    [SerializeField] private Vector2 fallbackSpeedRange = new Vector2(0.9f, 1.15f);
+    [SerializeField] private Vector2 fallbackHealthRange = new Vector2(0.75f, 1.25f);
+    [SerializeField] private Vector2 fallbackPowerRange = new Vector2(0.8f, 1.2f);
+
+    [Header("Room clear target time = base + per enemy (seconds)")]
+    [SerializeField] private float clearTimeBase = 6f;
+    [SerializeField] private float clearTimePerEnemy = 5f;
 
     [Header("Debug")]
     [Tooltip("Off = only pass 1 runs: placeholders (with kind and flyer route) are left in the room, no enemies are created")]
@@ -73,7 +86,7 @@ public class EnemyPlacer : MonoBehaviour
     }
 
     // Entry point, called by GameManagerProcedural right after a room is generated.
-    // Uses room.difficulty, which already holds the score multiplier the room was built with.
+    // Uses room.enemyDifficulty, the snapshot of the three player scores taken when the room was built.
     public List<GameObject> PopulateRoom(RoomData room, int seed)
     {
         if (roomGenerator == null || roomGenerator.Config == null)
@@ -83,25 +96,29 @@ public class EnemyPlacer : MonoBehaviour
         }
 
         var rng = new Random(seed);
-        int count = PickCount(room.difficulty, rng);
+        int count = PickCount(room.enemyDifficulty.Average01, rng);
 
         List<EnemyPlaceholder> placeholders = PlacePlaceholders(room, count, rng);   // pass 1
         if (!spawnEnemies) return new List<GameObject>();
-        return SpawnEnemies(room, placeholders, rng);                                 // pass 2
+
+        var tracker = room.root.gameObject.AddComponent<RoomCombatTracker>();
+        tracker.Init(room, clearTimeBase, clearTimePerEnemy);
+
+        List<GameObject> spawned = SpawnEnemies(room, placeholders, rng, tracker);   // pass 2
+
+        if (room.index == 0) tracker.StartNow();   // the player spawns inside the first room
+        return spawned;
     }
 
     // Placeholders of a room, for whoever spawns the real enemies
     public static EnemyPlaceholder[] GetPlaceholders(RoomData room) =>
         room.root != null ? room.root.GetComponentsInChildren<EnemyPlaceholder>() : new EnemyPlaceholder[0];
 
-    // ---------- Count and levels from the multiplier ----------
+    // ---------- Count and levels from the player scores ----------
 
-    private float Difficulty01(float multiplier) =>
-        Mathf.InverseLerp(multiplierRange.x, multiplierRange.y, multiplier);
-
-    private int PickCount(float multiplier, Random rng)
+    private int PickCount(float average01, Random rng)
     {
-        float raw = Mathf.Lerp(minEnemies, maxEnemies, Difficulty01(multiplier)) + Spread(rng, countNoise);
+        float raw = Mathf.Lerp(minEnemies, maxEnemies, average01) + Spread(rng, countNoise);
         int count = Mathf.Clamp(Mathf.RoundToInt(raw), minEnemies, maxEnemies);
         return Mathf.Min(count, 3 * maxPerKind);   // the per-kind cap can never fit more than this
     }
@@ -110,6 +127,16 @@ public class EnemyPlacer : MonoBehaviour
     {
         int max = CatalogoEnemigos.Niveles;
         return Mathf.Clamp(Mathf.RoundToInt(Mathf.Lerp(1, max, t) + Spread(rng, gearSpread)), 1, max);
+    }
+
+    // Level 1 -> bottom of the score's multiplier range, 3 -> top
+    private float LevelMultiplier(StatAxis axis, int level)
+    {
+        Vector2 range = PlayerScore.Instance != null
+            ? PlayerScore.Instance.GetMultiplierRange(axis)
+            : axis == StatAxis.Speed ? fallbackSpeedRange : axis == StatAxis.Health ? fallbackHealthRange : fallbackPowerRange;
+        float t = (level - 1) / (float)(CatalogoEnemigos.Niveles - 1);
+        return Mathf.Lerp(range.x, range.y, t);
     }
 
     private static float Spread(Random rng, float amount) => (float)(rng.NextDouble() * 2.0 - 1.0) * amount;
@@ -242,7 +269,8 @@ public class EnemyPlacer : MonoBehaviour
 
     // ---------- Pass 2: enemies ----------
 
-    private List<GameObject> SpawnEnemies(RoomData room, List<EnemyPlaceholder> placeholders, Random rng)
+    private List<GameObject> SpawnEnemies(RoomData room, List<EnemyPlaceholder> placeholders, Random rng,
+                                          RoomCombatTracker tracker)
     {
         var spawned = new List<GameObject>();
         if (fabrica == null)
@@ -251,26 +279,29 @@ public class EnemyPlacer : MonoBehaviour
             return spawned;
         }
 
-        float multiplier = room.difficulty;
-        float t = Difficulty01(multiplier);
+        EnemyDifficulty d = room.enemyDifficulty;
 
         foreach (var ph in placeholders)
         {
             EnemyKind kind = ph.kind;
-            int helmet = GearLevel(t, rng);
-            int shoes = GearLevel(t, rng);
-            int aura = GearLevel(t, rng);
+            int helmet = GearLevel(d.health01, rng);   // helmet = health
+            int shoes = GearLevel(d.speed01, rng);     // shoes  = speed
+            int aura = GearLevel(d.power01, rng);      // aura   = power
 
-            GameObject enemy = fabrica.Crear(new[] { EnemyPlaceholder.CatalogName(kind) }, helmet, shoes, aura,
+            GameObject enemy = fabrica.Crear(new[] { EnemyPlaceholder.CatalogName(kind) }, helmet, shoes, aura, rng,
                                              out GameObject projectile, ph.transform.position, room.root);
             if (enemy == null) continue;
 
-            ConfigureEnemy(enemy, room, ph, kind, multiplier, helmet, shoes, aura, projectile);
+            if (!ph.inAir) SnapToFloor(enemy, ph);
+            ProceduralEnemyInfo info = ConfigureEnemy(enemy, room, ph, kind, helmet, shoes, aura, projectile);
+            tracker.Register(enemy);
             ph.spawnedEnemy = enemy;
             spawned.Add(enemy);
 
             if (logPlacement)
-                Debug.Log($"[EnemyPlacer] Room {room.index}: spawned '{enemy.name}' on placeholder {ph.name} (x{multiplier:F2})");
+                Debug.Log($"[EnemyPlacer] Room {room.index}: spawned '{enemy.name}' on {ph.name} | scores {d} | " +
+                          $"helmet {helmet} (vida x{info.healthMultiplier:F2}), shoes {shoes} (vel x{info.speedMultiplier:F2}), " +
+                          $"aura {aura} (poder x{info.powerMultiplier:F2})");
         }
 
         if (!keepPlaceholders)
@@ -279,17 +310,20 @@ public class EnemyPlacer : MonoBehaviour
         return spawned;
     }
 
-    private void ConfigureEnemy(GameObject enemy, RoomData room, EnemyPlaceholder ph, EnemyKind kind, float multiplier,
-                                int helmet, int shoes, int aura, GameObject projectile)
+    private ProceduralEnemyInfo ConfigureEnemy(GameObject enemy, RoomData room, EnemyPlaceholder ph, EnemyKind kind,
+                                               int helmet, int shoes, int aura, GameObject projectile)
     {
         var info = enemy.GetComponent<ProceduralEnemyInfo>();
         if (info == null) info = enemy.AddComponent<ProceduralEnemyInfo>();
         info.roomIndex = room.index;
         info.kind = kind;
-        info.multiplier = multiplier;
+        info.multiplier = room.difficulty;
         info.helmet = helmet;
         info.shoes = shoes;
         info.aura = aura;
+        info.healthMultiplier = LevelMultiplier(StatAxis.Health, helmet);
+        info.speedMultiplier = LevelMultiplier(StatAxis.Speed, shoes);
+        info.powerMultiplier = LevelMultiplier(StatAxis.Power, aura);
         info.waypoints = ph.waypoints;
         info.projectilePrefab = projectile;
 
@@ -298,14 +332,35 @@ public class EnemyPlacer : MonoBehaviour
         var health = enemy.GetComponent<EnemyHealth>();
         float startHealth = health != null ? health.vida : baseHealth;
         if (health == null) health = enemy.AddComponent<EnemyHealth>();
-        health.vida = startHealth * multiplier;
+        health.vida = startHealth * info.healthMultiplier;
 
-        // Hook up the scripts that exist today; the final behaviours can read ProceduralEnemyInfo instead
+        // Test script of the factory prefabs: it would fight with the real behaviour
         var demo = enemy.GetComponent<ComportamientoDemo>();
-        if (demo != null) demo.proyectilPrefab = projectile;
+        if (demo != null) Destroy(demo);
 
-        var bat = enemy.GetComponent<BatEnemy>();
-        if (bat != null && ph.waypoints != null) bat.patrolPoints = ph.waypoints;
+        if (enemy.GetComponent<EnemyVariantBase>() == null)
+            Debug.LogWarning($"[EnemyPlacer] '{enemy.name}' has no behaviour. Run Herramientas > Configurar prefabs de enemigos.");
+
+        return info;
+    }
+
+    // Ground enemies sleep (no physics) until the player enters, so put their feet exactly on the floor
+    // instead of at the cell center. Uses the collider shape, which does not need the physics to run.
+    private void SnapToFloor(GameObject enemy, EnemyPlaceholder ph)
+    {
+        float bottomLocal;
+        switch (enemy.GetComponent<Collider2D>())
+        {
+            case CapsuleCollider2D cap: bottomLocal = cap.offset.y - cap.size.y * 0.5f; break;
+            case BoxCollider2D box: bottomLocal = box.offset.y - box.size.y * 0.5f; break;
+            case CircleCollider2D circle: bottomLocal = circle.offset.y - circle.radius; break;
+            default: return;
+        }
+
+        float floorTop = roomGenerator.CellToWorld(ph.cell).y;   // bottom edge of the cell = top of the floor tile
+        Vector3 pos = enemy.transform.position;
+        pos.y = floorTop - bottomLocal * enemy.transform.lossyScale.y + 0.02f;
+        enemy.transform.position = pos;
     }
 
     // ---------- Flyer route ----------

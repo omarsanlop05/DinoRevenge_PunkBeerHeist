@@ -118,6 +118,9 @@ public class GameManagerProcedural : MonoBehaviour
         bool makeSecret = ShouldMakeSecretRoom(roomNumber, previous);
 
         RoomData data = roomGenerator.Generate(index, baseSeed + index, previous, multiplier, makeSecret);
+
+        // Snapshot of the three scores: the enemies of this room are built with them
+        data.enemyDifficulty = PlayerScore.Instance != null ? PlayerScore.Instance.GetDifficulty() : EnemyDifficulty.Neutral;
         if (data.hasSecretRoom)
             secretRoomsCount++;   // only counts if the generator actually managed to build it
         rooms.Add(data);

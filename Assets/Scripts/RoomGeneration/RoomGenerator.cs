@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = System.Random;
@@ -426,6 +425,7 @@ private bool GenerateSecretRoom(RoomGenConfig c, Vector3Int mainOrigin, Random r
 private void RevealSecretRoom(List<Vector3Int> cells, Vector3Int beerCell, Transform parent)
 {
     foreach (var cellPos in cells) ClearCell(cellPos);
+    PlayerScore.Instance?.RegisterSecretRoomFound();
 
     if (config.beerPrefab != null)
         Instantiate(config.beerPrefab, groundTilemap.GetCellCenterWorld(beerCell), Quaternion.identity, parent);
@@ -951,29 +951,7 @@ private void CreateSecretZone(Transform parent, string objName, Vector3Int mainO
         return false;
     }
 
-    // ---------- Enemigos ----------
-
-    private void SpawnEnemies(RoomGenConfig c, Vector3Int origin, List<Surface> surfaces, Random rng, Transform parent)
-    {
-        if (c.enemyPrefabs == null || c.enemyPrefabs.Length == 0) return;
-
-        int count = rng.Next(c.enemyCount.x, c.enemyCount.y + 1);
-        var used = new HashSet<Vector2Int>();
-
-        for (int tries = 0; tries < count * 10 && used.Count < count; tries++)
-        {
-            Surface s = surfaces[rng.Next(surfaces.Count)];
-            int x = rng.Next(s.xMin, s.xMax + 1);
-            if (x - c.wallThickness < c.safeZoneFromEntry) continue;
-
-            var cell = new Vector2Int(x, s.y + 1);
-            if (!used.Add(cell)) continue;
-
-            Vector3 world = groundTilemap.GetCellCenterWorld(origin + new Vector3Int(cell.x, cell.y, 0));
-            GameObject prefab = c.enemyPrefabs[rng.Next(c.enemyPrefabs.Length)];
-            Instantiate(prefab, world, Quaternion.identity, parent);
-        }
-    }
+    // Enemies are placed by EnemyPlacer (pass 3: placeholders, pass 4: spawn) after the room is generated.
 
     // ---------- Cámara y trigger ----------
 

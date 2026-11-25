@@ -9,7 +9,7 @@ public class ShowImageOnZoneDestroy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Entró al trigger con: " + other.name);
+        Debug.Log("EntrÃ³ al trigger con: " + other.name);
 
         if (other.gameObject == player)
         {
@@ -32,11 +32,11 @@ public class ShowImageOnZoneDestroy : MonoBehaviour
 
     private void Update()
     {
-        // Si el vinculo deja de existir, destruir este objeto (la zona con el código)
+        // Si el vinculo deja de existir, destruir este objeto (la zona con el cÃ³digo)
         if (vinculo == null)
         {
             controlPoint.gameObject.SetActive(false);
-            Debug.Log("El vínculo murió, destruyendo la zona: " + gameObject.name);
+            Debug.Log("El vÃ­nculo muriÃ³, destruyendo la zona: " + gameObject.name);
             Destroy(gameObject);
         }
     }

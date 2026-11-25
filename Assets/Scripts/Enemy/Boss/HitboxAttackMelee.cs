@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HitboxAttackMelee : MonoBehaviour
 {
-    [Header("Configuración")]
+    [Header("ConfiguraciÃ³n")]
     public float danio = 20f;
     public LayerMask capaJugador;
 
@@ -24,7 +24,7 @@ public class HitboxAttackMelee : MonoBehaviour
 
     void OnDisable()
     {
-        // Resetear también al desactivarse para el próximo ataque
+        // Resetear tambiÃ©n al desactivarse para el prÃ³ximo ataque
         yaGolpeo = false;
         Debug.Log("[HITBOX MELEE] Hitbox desactivada - yaGolpeo reseteado");
     }
@@ -38,15 +38,15 @@ public class HitboxAttackMelee : MonoBehaviour
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             if (playerHealth != null && jefePosicion != null)
             {
-                // Pasar el daño y la posición X del jefe
-                playerHealth.RecibirDaño(danio, jefePosicion.position.x);
+                // Pasar el daÃ±o y la posiciÃ³n X del jefe
+                playerHealth.RecibirDaÃ±o(danio, jefePosicion.position.x);
                 yaGolpeo = true;
-                Debug.Log($"[HITBOX MELEE] ¡Golpe conectado! Daño: {danio}");
+                Debug.Log($"[HITBOX MELEE] Â¡Golpe conectado! DaÃ±o: {danio}");
             }
         }
     }
 
-    // SOLUCIÓN: Agregar OnTriggerStay2D para detectar jugadores que ya están dentro
+    // SOLUCIÃ“N: Agregar OnTriggerStay2D para detectar jugadores que ya estÃ¡n dentro
     void OnTriggerStay2D(Collider2D collision)
     {
         if (yaGolpeo) return;
@@ -56,10 +56,10 @@ public class HitboxAttackMelee : MonoBehaviour
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             if (playerHealth != null && jefePosicion != null)
             {
-                // Pasar el daño y la posición X del jefe
-                playerHealth.RecibirDaño(danio, jefePosicion.position.x);
+                // Pasar el daÃ±o y la posiciÃ³n X del jefe
+                playerHealth.RecibirDaÃ±o(danio, jefePosicion.position.x);
                 yaGolpeo = true;
-                Debug.Log($"[HITBOX MELEE] ¡Golpe conectado (Stay)! Daño: {danio}");
+                Debug.Log($"[HITBOX MELEE] Â¡Golpe conectado (Stay)! DaÃ±o: {danio}");
             }
         }
     }

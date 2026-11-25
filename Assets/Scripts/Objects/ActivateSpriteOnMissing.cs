@@ -6,13 +6,13 @@ public class ActivateSpriteOnMissing : MonoBehaviour
     public GameObject targetObject; // El GameObject que estamos vigilando
 
     [Header("Sprite to Activate")]
-    public SpriteRenderer spriteToActivate; // El SpriteRenderer que se activará
+    public SpriteRenderer spriteToActivate; // El SpriteRenderer que se activarÃ¡
 
     private bool hasActivated = false;
 
     void Update()
     {
-        // Si el objeto objetivo ya no existe y aún no hemos activado el sprite
+        // Si el objeto objetivo ya no existe y aÃºn no hemos activado el sprite
         if (!hasActivated && (targetObject == null || !targetObject.activeInHierarchy))
         {
             spriteToActivate.enabled = true;

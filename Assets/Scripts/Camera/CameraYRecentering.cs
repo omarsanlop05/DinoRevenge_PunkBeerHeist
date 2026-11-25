@@ -7,7 +7,7 @@ public class CameraYRecentering : MonoBehaviour
     public CinemachineCamera cineCam;
     public Transform player;
     public float reCenterSpeed = 1f;
-    public float targetHeight = 0f; // altura base de c·mara
+    public float targetHeight = 0f; // altura base de c√°mara
 
     private CinemachinePositionComposer composer;
     private float startY;

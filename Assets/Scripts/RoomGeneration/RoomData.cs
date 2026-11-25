@@ -23,7 +23,8 @@ public struct Surface
 
 public class RoomData
 {
-    public float difficulty = 1f;
+    public float difficulty = 1f;                                        // average multiplier (kept for older code)
+    public EnemyDifficulty enemyDifficulty = EnemyDifficulty.Neutral;   // the three player scores (0..1) when the room was built
     public int index;
     public Vector3Int originCell;
     public int width;

@@ -23,14 +23,14 @@ public class CameraFollowObject : MonoBehaviour
 
     private void Update()
     {
-        // Actualiza dirección si cambió
+        // Actualiza direcciÃ³n si cambiÃ³
         if (_isFacingRight != _player.IsFacingRight)
         {
             _isFacingRight = _player.IsFacingRight;
             CallTurn();
         }
 
-        // Offset dinámico según dirección
+        // Offset dinÃ¡mico segÃºn direcciÃ³n
         Vector3 offset = _isFacingRight ? offsetRight : offsetLeft;
         transform.position = _playerTransform.position + offset;
     }

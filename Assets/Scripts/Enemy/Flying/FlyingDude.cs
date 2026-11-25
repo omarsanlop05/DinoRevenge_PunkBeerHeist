@@ -8,34 +8,34 @@ public class BatEnemy : MonoBehaviour
     public Transform player;
     public Animator animator;
 
-    [Header("Patrulla AÈrea")]
-    [Tooltip("Puntos de patrulla. El murciÈlago volar· entre estos puntos")]
+    [Header("Patrulla A√©rea")]
+    [Tooltip("Puntos de patrulla. El murci√©lago volar√° entre estos puntos")]
     public Transform[] patrolPoints;
     [Tooltip("Velocidad durante la patrulla")]
     public float patrolSpeed = 2f;
-    [Tooltip("Distancia mÌnima para considerar que llegÛ a un punto")]
+    [Tooltip("Distancia m√≠nima para considerar que lleg√≥ a un punto")]
     public float waypointReachDistance = 0.3f;
     [Tooltip("Tiempo de espera al llegar a un punto")]
     public float waitTimeAtPoint = 1f;
 
-    [Header("DetecciÛn y PersecuciÛn")]
+    [Header("Detecci√≥n y Persecuci√≥n")]
     [Tooltip("Distancia para detectar al jugador")]
     public float detectionRange = 8f;
-    [Tooltip("Distancia m·xima de persecuciÛn (si se aleja m·s, vuelve a patrullar)")]
+    [Tooltip("Distancia m√°xima de persecuci√≥n (si se aleja m√°s, vuelve a patrullar)")]
     public float maxChaseDistance = 12f;
-    [Tooltip("Velocidad durante la persecuciÛn")]
+    [Tooltip("Velocidad durante la persecuci√≥n")]
     public float chaseSpeed = 4f;
     [Tooltip("Distancia a la que se mantiene del jugador al perseguir")]
     public float keepDistanceFromPlayer = 2f;
 
     [Header("Ataque de Contacto")]
-    [Tooltip("DaÒo que hace al tocar al jugador")]
+    [Tooltip("Da√±o que hace al tocar al jugador")]
     public int contactDamage = 10;
     [Tooltip("Cooldown entre ataques de contacto")]
     public float attackCooldown = 1.5f;
 
-    [Header("ConfiguraciÛn de Volteo")]
-    [Tooltip("Umbral mÌnimo de movimiento en X para voltear (evita flipping infinito)")]
+    [Header("Configuraci√≥n de Volteo")]
+    [Tooltip("Umbral m√≠nimo de movimiento en X para voltear (evita flipping infinito)")]
     public float flipThreshold = 0.1f;
 
     [Header("Debug")]
@@ -67,28 +67,28 @@ public class BatEnemy : MonoBehaviour
         rb.gravityScale = 0f; // Sin gravedad para volar
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
-        // Buscar jugador si no est· asignado
+        // Buscar jugador si no est√° asignado
         if (player == null)
         {
             GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
             if (playerObj != null)
             {
                 player = playerObj.transform;
-                DebugLog("Jugador encontrado autom·ticamente");
+                DebugLog("Jugador encontrado autom√°ticamente");
             }
             else
             {
-                Debug.LogWarning("[BAT] No se encontrÛ el jugador!");
+                Debug.LogWarning("[BAT] No se encontr√≥ el jugador!");
             }
         }
 
         // Validar puntos de patrulla
         if (patrolPoints == null || patrolPoints.Length == 0)
         {
-            Debug.LogError("[BAT] °No hay puntos de patrulla asignados!");
+            Debug.LogError("[BAT] ¬°No hay puntos de patrulla asignados!");
         }
 
-        DebugLog("MurciÈlago inicializado en modo patrulla");
+        DebugLog("Murci√©lago inicializado en modo patrulla");
     }
 
     void Update()
@@ -97,7 +97,7 @@ public class BatEnemy : MonoBehaviour
 
         float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        // M·quina de estados
+        // M√°quina de estados
         switch (currentState)
         {
             case BatState.Patrolling:
@@ -116,7 +116,7 @@ public class BatEnemy : MonoBehaviour
         // Actualizar animaciones si hay animator
         if (animator != null)
         {
-            // Verificar si los par·metros existen antes de establecerlos
+            // Verificar si los par√°metros existen antes de establecerlos
             if (HasParameter(animator, "IsChasing"))
                 animator.SetBool("IsChasing", currentState == BatState.Chasing);
 
@@ -127,10 +127,10 @@ public class BatEnemy : MonoBehaviour
 
     void UpdatePatrolling(float distanceToPlayer)
     {
-        // Si detecta al jugador, cambiar a persecuciÛn
+        // Si detecta al jugador, cambiar a persecuci√≥n
         if (distanceToPlayer <= detectionRange)
         {
-            DebugLog($"°Jugador detectado a {distanceToPlayer:F2}m! Iniciando persecuciÛn");
+            DebugLog($"¬°Jugador detectado a {distanceToPlayer:F2}m! Iniciando persecuci√≥n");
             currentState = BatState.Chasing;
             isWaiting = false;
             return;
@@ -143,7 +143,7 @@ public class BatEnemy : MonoBehaviour
             return;
         }
 
-        // Si est· esperando en un punto
+        // Si est√° esperando en un punto
         if (isWaiting)
         {
             rb.linearVelocity = Vector2.zero;
@@ -173,7 +173,7 @@ public class BatEnemy : MonoBehaviour
         float distanceToPoint = directionToPoint.magnitude;
         directionToPoint.Normalize();
 
-        // SOLUCI”N: Solo voltear si hay movimiento significativo en X
+        // SOLUCI√ìN: Solo voltear si hay movimiento significativo en X
         if (Mathf.Abs(directionToPoint.x) > flipThreshold)
         {
             FlipTowardsDirection(directionToPoint.x);
@@ -182,10 +182,10 @@ public class BatEnemy : MonoBehaviour
         // Moverse hacia el punto
         rb.linearVelocity = directionToPoint * patrolSpeed;
 
-        // Si llegÛ al punto
+        // Si lleg√≥ al punto
         if (distanceToPoint <= waypointReachDistance)
         {
-            DebugLog($"LlegÛ al punto {currentPatrolIndex}, esperando...");
+            DebugLog($"Lleg√≥ al punto {currentPatrolIndex}, esperando...");
             isWaiting = true;
             waitTimer = waitTimeAtPoint;
             rb.linearVelocity = Vector2.zero;
@@ -194,7 +194,7 @@ public class BatEnemy : MonoBehaviour
 
     void UpdateChasing(float distanceToPlayer)
     {
-        // Si el jugador se alejÛ mucho, volver a patrullar
+        // Si el jugador se alej√≥ mucho, volver a patrullar
         if (distanceToPlayer > maxChaseDistance)
         {
             DebugLog($"Jugador muy lejos ({distanceToPlayer:F2}m), volviendo a patrulla");
@@ -202,11 +202,11 @@ public class BatEnemy : MonoBehaviour
             return;
         }
 
-        // Calcular direcciÛn hacia el jugador
+        // Calcular direcci√≥n hacia el jugador
         Vector2 directionToPlayer = (player.position - transform.position);
         directionToPlayer.Normalize();
 
-        // SOLUCI”N: Solo voltear si hay movimiento significativo en X
+        // SOLUCI√ìN: Solo voltear si hay movimiento significativo en X
         if (Mathf.Abs(directionToPlayer.x) > flipThreshold)
         {
             FlipTowardsDirection(directionToPlayer.x);
@@ -220,7 +220,7 @@ public class BatEnemy : MonoBehaviour
         }
         else
         {
-            // Mantener distancia (moverse m·s lento o detenerse)
+            // Mantener distancia (moverse m√°s lento o detenerse)
             rb.linearVelocity = directionToPlayer * (chaseSpeed * 0.3f);
         }
 
@@ -232,7 +232,7 @@ public class BatEnemy : MonoBehaviour
         // Si detecta al jugador de nuevo, volver a perseguir
         if (distanceToPlayer <= detectionRange)
         {
-            DebugLog("°Jugador detectado nuevamente! Volviendo a persecuciÛn");
+            DebugLog("¬°Jugador detectado nuevamente! Volviendo a persecuci√≥n");
             currentState = BatState.Chasing;
             return;
         }
@@ -245,7 +245,7 @@ public class BatEnemy : MonoBehaviour
             return;
         }
 
-        // Volver al punto de patrulla m·s cercano
+        // Volver al punto de patrulla m√°s cercano
         Transform closestPoint = GetClosestPatrolPoint();
 
         if (closestPoint == null)
@@ -258,7 +258,7 @@ public class BatEnemy : MonoBehaviour
         float distanceToPoint = directionToPoint.magnitude;
         directionToPoint.Normalize();
 
-        // SOLUCI”N: Solo voltear si hay movimiento significativo en X
+        // SOLUCI√ìN: Solo voltear si hay movimiento significativo en X
         if (Mathf.Abs(directionToPoint.x) > flipThreshold)
         {
             FlipTowardsDirection(directionToPoint.x);
@@ -267,10 +267,10 @@ public class BatEnemy : MonoBehaviour
         // Moverse hacia el punto
         rb.linearVelocity = directionToPoint * patrolSpeed;
 
-        // Si llegÛ al punto, volver a patrullar
+        // Si lleg√≥ al punto, volver a patrullar
         if (distanceToPoint <= waypointReachDistance)
         {
-            DebugLog("RegresÛ al punto de patrulla, reanudando patrulla");
+            DebugLog("Regres√≥ al punto de patrulla, reanudando patrulla");
             currentState = BatState.Patrolling;
             isWaiting = false;
             rb.linearVelocity = Vector2.zero;
@@ -303,7 +303,7 @@ public class BatEnemy : MonoBehaviour
 
     void FlipTowardsDirection(float directionX)
     {
-        // Solo voltear si la direcciÛn es significativamente diferente a la actual
+        // Solo voltear si la direcci√≥n es significativamente diferente a la actual
         bool shouldFaceRight = directionX > 0;
 
         if (shouldFaceRight != isFacingRight)
@@ -322,7 +322,7 @@ public class BatEnemy : MonoBehaviour
         DebugLog($"Volteado - Mirando derecha: {isFacingRight}");
     }
 
-    // DaÒo por contacto
+    // Da√±o por contacto
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -333,9 +333,9 @@ public class BatEnemy : MonoBehaviour
                 PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
-                    playerHealth.RecibirDaÒo(contactDamage, transform.position.x);
+                    playerHealth.RecibirDa√±o(contactDamage, transform.position.x);
                     lastAttackTime = Time.time;
-                    DebugLog($"°GolpeÛ al jugador! DaÒo: {contactDamage}");
+                    DebugLog($"¬°Golpe√≥ al jugador! Da√±o: {contactDamage}");
                 }
             }
         }
@@ -351,9 +351,9 @@ public class BatEnemy : MonoBehaviour
                 PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
-                    playerHealth.RecibirDaÒo(contactDamage, transform.position.x);
+                    playerHealth.RecibirDa√±o(contactDamage, transform.position.x);
                     lastAttackTime = Time.time;
-                    DebugLog($"°GolpeÛ al jugador! DaÒo: {contactDamage}");
+                    DebugLog($"¬°Golpe√≥ al jugador! Da√±o: {contactDamage}");
                 }
             }
         }
@@ -369,9 +369,9 @@ public class BatEnemy : MonoBehaviour
                 PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
                 if (playerHealth != null)
                 {
-                    playerHealth.RecibirDaÒo(contactDamage, transform.position.x);
+                    playerHealth.RecibirDa√±o(contactDamage, transform.position.x);
                     lastAttackTime = Time.time;
-                    DebugLog($"°GolpeÛ al jugador! DaÒo: {contactDamage}");
+                    DebugLog($"¬°Golpe√≥ al jugador! Da√±o: {contactDamage}");
                 }
             }
         }
@@ -389,11 +389,11 @@ public class BatEnemy : MonoBehaviour
     {
         if (!showDebugGizmos) return;
 
-        // Rango de detecciÛn (amarillo)
+        // Rango de detecci√≥n (amarillo)
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
 
-        // Rango m·ximo de persecuciÛn (rojo)
+        // Rango m√°ximo de persecuci√≥n (rojo)
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, maxChaseDistance);
 
@@ -401,7 +401,7 @@ public class BatEnemy : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, keepDistanceFromPlayer);
 
-        // LÌneas entre puntos de patrulla
+        // L√≠neas entre puntos de patrulla
         if (patrolPoints != null && patrolPoints.Length > 1)
         {
             Gizmos.color = Color.cyan;
@@ -412,7 +412,7 @@ public class BatEnemy : MonoBehaviour
                 // Dibujar esfera en cada punto
                 Gizmos.DrawWireSphere(patrolPoints[i].position, 0.3f);
 
-                // Dibujar lÌnea al siguiente punto
+                // Dibujar l√≠nea al siguiente punto
                 int nextIndex = (i + 1) % patrolPoints.Length;
                 if (patrolPoints[nextIndex] != null)
                 {
@@ -428,7 +428,7 @@ public class BatEnemy : MonoBehaviour
             }
         }
 
-        // LÌnea hacia el objetivo actual
+        // L√≠nea hacia el objetivo actual
         if (Application.isPlaying)
         {
             if (currentState == BatState.Chasing && player != null)
@@ -447,7 +447,7 @@ public class BatEnemy : MonoBehaviour
         }
     }
 
-    // MÈtodo auxiliar para verificar si un par·metro existe
+    // M√©todo auxiliar para verificar si un par√°metro existe
     bool HasParameter(Animator animator, string paramName)
     {
         foreach (AnimatorControllerParameter param in animator.parameters)

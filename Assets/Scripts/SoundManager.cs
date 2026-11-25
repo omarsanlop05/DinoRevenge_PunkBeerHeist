@@ -22,7 +22,7 @@ public class SoundManager : MonoBehaviour
             return;
         }
 
-        // Si no se asignaron en el Inspector, los crea autom·ticamente
+        // Si no se asignaron en el Inspector, los crea autom√°ticamente
         if (loopSource == null)
             loopSource = gameObject.AddComponent<AudioSource>();
         if (sfxSource == null)

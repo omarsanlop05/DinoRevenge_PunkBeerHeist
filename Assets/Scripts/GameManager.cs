@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        // Patrón Singleton simple
+        // PatrÃ³n Singleton simple
         if (instance == null)
             instance = this;
         else

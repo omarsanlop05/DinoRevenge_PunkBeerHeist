@@ -16,10 +16,10 @@ public class Projectile : MonoBehaviour
         // Si toca al jugador
         if (collision.CompareTag("Player"))
         {
-            // Aquí podrías hacer daño al jugador
-            Debug.Log("Golpeó al jugador");
+            // AquÃ­ podrÃ­as hacer daÃ±o al jugador
+            Debug.Log("GolpeÃ³ al jugador");
             PlayerHealth health = collision.GetComponent<PlayerHealth>();
-            health.RecibirDaño(damage, transform.position.x);
+            health.RecibirDaÃ±o(damage, transform.position.x);
         }
 
         // Efecto opcional al impactar

@@ -166,3 +166,19 @@ Normalmente NO hace falta usarlos; todo ya viene generado.
   - Preparar demo de enemigos      : pone los scripts de demo y arma la
                                      escena de prueba (OJO: vuelve a poner
                                      ComportamientoDemo en los prefabs base)
+
+
+---------------------------------------------------------------------
+9. EN EL JUEGO (ProceduralScene)
+---------------------------------------------------------------------
+Corran UNA VEZ: Herramientas > Configurar prefabs de enemigos
+  Quita los scripts demo y pone en los prefabs base su comportamiento real
+  (Assets/Scripts/Enemy/Variants): ContactVariant, FlyerVariant,
+  VariantEnemyPatrol + VariantEnemyAttack, y VariantProjectile en los
+  proyectiles. Si después usan "Preparar demo de enemigos", vuelvan a
+  correr este menú (el demo vuelve a poner ComportamientoDemo).
+
+Las variaciones salen de los 3 scores del jugador (PlayerScore):
+  casco   = Vida      (multiplica la vida del enemigo)
+  zapatos = Velocidad (velocidad de movimiento, cadencia, cooldowns)
+  aura    = Poder     (daño; aura 3 en los de proyectil dispara ráfaga de 2)
