@@ -41,6 +41,11 @@ public class GameManagerProcedural : MonoBehaviour
     [Range(0f, 1f)] [SerializeField] private float secretChanceIfPreviousHad = 0.35f;
     private int secretRoomsCount;
 
+    [Header("Music")]
+    [Tooltip("Level music. SoundManager survives scene reloads, so without this the boss music keeps playing after Retry. " +
+             "Empty = uses the clip of the MusicStart object in the scene")]
+    [SerializeField] private AudioClip levelMusic;
+
     [Header("Enemies")]
     [Tooltip("Places 1-3 enemies in every generated room. Leave empty to generate rooms without enemies")]
     [SerializeField] private EnemyPlacer enemyPlacer;
@@ -71,6 +76,8 @@ public class GameManagerProcedural : MonoBehaviour
 
     private void Start()
     {
+        StartLevelMusic();
+
         if (roomGenerator == null)
         {
             Debug.LogError("[GameManager] RoomGenerator reference is missing.");
@@ -263,6 +270,23 @@ if (bossRoomPrefab.entryAnchor == null || bossRoomPrefab.bossCamera == null || b
 
         bossRoom.Initialize(previousCamera, multiplier);
         Debug.Log($"[GameManager] Boss room spawned (multiplier {multiplier:F2})");
+    }
+
+    // ---------- Music ----------
+
+    // Runs every time the scene loads (first play and Retry), replacing whatever was playing (boss music)
+    private void StartLevelMusic()
+    {
+        AudioClip clip = levelMusic;
+        if (clip == null)
+        {
+            MusicStart musicStart = FindFirstObjectByType<MusicStart>();
+            if (musicStart != null) clip = musicStart.startMusic;
+        }
+
+        if (clip == null || SoundManager.instance == null) return;
+        SoundManager.instance.gameMusicSource.loop = true;
+        SoundManager.instance.playMusic(clip);
     }
 
     // ---------- Screens and scenes ----------
