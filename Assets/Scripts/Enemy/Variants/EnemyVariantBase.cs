@@ -36,6 +36,9 @@ public abstract class EnemyVariantBase : MonoBehaviour
     protected int Aura => info != null ? info.aura : 1;
     protected bool FacingRight => (transform.localScale.x >= 0f) == spriteFacesRight;
 
+    protected bool HasRoom => info != null && info.hasRoomBounds;
+    protected Rect Room => info.roomBounds;
+
     // True when the enemy dies less than PlayerScore.FastKillSeconds after it woke up (the player saw it)
     public bool KilledFast
     {
@@ -136,6 +139,52 @@ public abstract class EnemyVariantBase : MonoBehaviour
         Vector2 from = transform.position;
         Vector2 to = player.position;
         return Physics2D.Linecast(from, to, groundMask).collider == null;
+    }
+
+    // ---- Room limits: enemies never leave the room they were spawned in ----
+
+    // The player is inside this enemy's room (always true if the enemy has no room)
+    protected bool PlayerInRoom => player != null && (!HasRoom || Room.Contains(player.position));
+
+    // The front of the body would cross the room's left / right limit within 'distance'
+    protected bool AtRoomEdge(float dir, float distance = 0.15f)
+    {
+        if (!HasRoom) return false;
+        Bounds b = BodyBounds;
+        float front = b.center.x + dir * (b.extents.x + distance);
+        return front < Room.xMin || front > Room.xMax;
+    }
+
+    // Moves a target point inside the room, leaving room for the body
+    protected Vector2 ClampToRoom(Vector2 p)
+    {
+        if (!HasRoom) return p;
+        Vector3 e = BodyBounds.extents;
+        float x = Room.width > 2f * e.x ? Mathf.Clamp(p.x, Room.xMin + e.x, Room.xMax - e.x) : Room.center.x;
+        float y = Room.height > 2f * e.y ? Mathf.Clamp(p.y, Room.yMin + e.y, Room.yMax - e.y) : Room.center.y;
+        return new Vector2(x, y);
+    }
+
+    // Safety net, called every physics step: if something pushed the enemy out (player, knockback, a charge),
+    // put it back and cancel the velocity that points outside
+    protected void ConfineToRoom()
+    {
+        if (!HasRoom) return;
+        Bounds b = BodyBounds;
+        Vector2 center = b.center;
+        Vector2 clamped = ClampToRoom(center);
+        if (clamped == center) return;
+
+        Vector2 delta = clamped - center;
+        // Only fix the sides and the ceiling: the floor is solid tiles and gravity already handles it
+        if (delta.y > 0f && rb.gravityScale > 0f) delta.y = 0f;
+        if (delta == Vector2.zero) return;
+
+        rb.position += delta;
+        Vector2 v = rb.linearVelocity;
+        if (delta.x != 0f && Mathf.Sign(v.x) != Mathf.Sign(delta.x)) v.x = 0f;
+        if (delta.y != 0f && Mathf.Sign(v.y) != Mathf.Sign(delta.y)) v.y = 0f;
+        rb.linearVelocity = v;
     }
 
     protected Bounds BodyBounds => body != null ? body.bounds : new Bounds(transform.position, Vector3.one * 0.5f);

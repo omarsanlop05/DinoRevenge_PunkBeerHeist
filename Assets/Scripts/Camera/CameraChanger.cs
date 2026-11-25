@@ -8,13 +8,13 @@ public class CameraChanger : MonoBehaviour
     public CinemachineCamera previousCamera;
 
     public bool freezePlayerOnSwitch = true;
+    [Tooltip("Seconds the player stays frozen while the camera moves to the new zone")]
+    public float freezeDuration = 1.0f;
 
     public bool awardsRoomPoints = true;
     private bool pointsAwarded;
     private int activePriority = 10;
     private int inactivePriority = 0;
-
-    private GameObject currentPlayer;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -36,61 +36,20 @@ public class CameraChanger : MonoBehaviour
         previousCamera.Priority = inactivePriority;
 
         if (freezePlayerOnSwitch)
-        {
-            freezePlayer(other);
-            Invoke(nameof(unFreezePlayer), 1.0f);
-        }
-
-        // Resume after 1 second
-        Invoke(nameof(unFreezePlayer), 1.0f);
+            FreezePlayer(other);
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    // The collider that touched the trigger can be a child of the player, so look up the controller in the parents.
+    // PlayerController.Freeze stops input, physics and animation and unfreezes by itself after freezeDuration.
+    private void FreezePlayer(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        PlayerController controller = other.GetComponentInParent<PlayerController>();
+        if (controller != null)
         {
-            // zoneCamera.Priority = inactivePriority;
-        }
-    }
-
-    void freezePlayer(Collider2D other)
-    {
-        if (!other.CompareTag("Player")) return;
-
-        currentPlayer = other.gameObject;
-
-        Rigidbody2D rb = currentPlayer.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector2.zero;
-            rb.constraints = RigidbodyConstraints2D.FreezePosition | RigidbodyConstraints2D.FreezeRotation;
+            controller.Freeze(freezeDuration);
+            return;
         }
 
-        Animator animator = currentPlayer.GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.speed = 0f; // Pausa en el frame actual
-        }
-    }
-
-    void unFreezePlayer()
-    {
-        if (currentPlayer == null) return;
-
-
-        Rigidbody2D rb = currentPlayer.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
-
-        
-        Animator animator = currentPlayer.GetComponent<Animator>();
-        if (animator != null)
-        {
-            animator.speed = 1f; // Reanuda animación
-        }
-
-        currentPlayer = null;
+        Debug.LogWarning($"[CameraChanger] {name}: no PlayerController found on '{other.name}' or its parents; the player is not frozen.");
     }
 }

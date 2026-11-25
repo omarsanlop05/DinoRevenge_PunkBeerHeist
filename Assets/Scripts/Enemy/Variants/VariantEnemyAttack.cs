@@ -40,7 +40,8 @@ public class VariantEnemyAttack : EnemyVariantBase
     {
         if (!IsAwake) { PlayerInRange = false; return; }
 
-        PlayerInRange = player != null && ToPlayer.magnitude <= detectionRange && HasLineOfSight();
+        // Only shoots at a player standing in its own room (not through the door into the next one)
+        PlayerInRange = PlayerInRoom && ToPlayer.magnitude <= detectionRange && HasLineOfSight();
 
         if (PlayerInRange)
         {

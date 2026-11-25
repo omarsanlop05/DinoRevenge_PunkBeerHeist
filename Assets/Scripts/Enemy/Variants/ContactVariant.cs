@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // "contacto" enemy with gear variations. Based on RollingSkull (walks and hurts on touch), plus a real attack:
-//   Patrol  -> walks its platform, turns at walls and ledges (never falls off)
+//   Patrol  -> walks its platform, turns at walls, ledges and the room limits (never leaves its room)
 //   Windup  -> sees the player at its height: stops and plays "atacar" (telegraph)
 //   Charge  -> dashes toward the player until a wall, a ledge or chargeDuration
 //   Recover -> short pause, then back to patrol (attack on cooldown)
@@ -50,6 +50,8 @@ public class ContactVariant : EnemyVariantBase
             case State.Charge: Charge(); break;
             case State.Recover: Recover(); break;
         }
+
+        ConfineToRoom();
     }
 
     private void Patrol()
@@ -63,7 +65,7 @@ public class ContactVariant : EnemyVariantBase
         }
 
         float dir = FacingSign;
-        if (IsGrounded() && (WallAhead(dir) || !GroundAhead(dir)))
+        if (AtRoomEdge(dir) || (IsGrounded() && (WallAhead(dir) || !GroundAhead(dir))))
         {
             Face(-dir);
             dir = -dir;
@@ -91,7 +93,8 @@ public class ContactVariant : EnemyVariantBase
         SetRunning(true);
         stateTimer -= Time.fixedDeltaTime;
 
-        bool blocked = WallAhead(chargeDir, 0.1f) || (IsGrounded() && !GroundAhead(chargeDir, 0.05f));
+        bool blocked = WallAhead(chargeDir, 0.1f) || AtRoomEdge(chargeDir, 0.1f) ||
+                       (IsGrounded() && !GroundAhead(chargeDir, 0.05f));
         if (stateTimer <= 0f || blocked)
         {
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -119,7 +122,7 @@ public class ContactVariant : EnemyVariantBase
 
     private bool CanStartAttack()
     {
-        if (Time.time < nextAttackTime || player == null || !IsGrounded()) return false;
+        if (Time.time < nextAttackTime || !PlayerInRoom || !IsGrounded()) return false;
 
         Vector2 d = ToPlayer;
         if (Mathf.Abs(d.x) > detectionRange || Mathf.Abs(d.y) > verticalTolerance) return false;

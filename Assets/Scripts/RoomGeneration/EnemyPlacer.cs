@@ -326,6 +326,8 @@ public class EnemyPlacer : MonoBehaviour
         info.powerMultiplier = LevelMultiplier(StatAxis.Power, aura);
         info.waypoints = ph.waypoints;
         info.projectilePrefab = projectile;
+        info.roomBounds = RoomInterior(room);
+        info.hasRoomBounds = true;
 
         // The player's attack only hits objects tagged "Enemy" that have EnemyHealth
         enemy.tag = "Enemy";
@@ -342,6 +344,17 @@ public class EnemyPlacer : MonoBehaviour
             Debug.LogWarning($"[EnemyPlacer] '{enemy.name}' has no behaviour. Run Herramientas > Configurar prefabs de enemigos.");
 
         return info;
+    }
+
+    // Inside of the room in world units: from the inner face of the side walls (so the door openings are closed)
+    // and from the floor shell to the ceiling shell
+    private Rect RoomInterior(RoomData room)
+    {
+        RoomGenConfig c = roomGenerator.Config;
+        Vector3 min = roomGenerator.CellToWorld(room.originCell + new Vector3Int(c.wallThickness, c.floorThickness, 0));
+        Vector3 max = roomGenerator.CellToWorld(room.originCell + new Vector3Int(room.width - c.wallThickness,
+                                                                                c.height - c.ceilingThickness, 0));
+        return Rect.MinMaxRect(min.x, min.y, max.x, max.y);
     }
 
     // Ground enemies sleep (no physics) until the player enters, so put their feet exactly on the floor

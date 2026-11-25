@@ -25,6 +25,7 @@ public class VariantEnemyPatrol : EnemyVariantBase
     private void FixedUpdate()
     {
         if (!IsAwake) return;
+        ConfineToRoom();
 
         // Shooting: stand still (VariantEnemyAttack already faces the player)
         if (attack != null && attack.PlayerInRange)
@@ -43,7 +44,7 @@ public class VariantEnemyPatrol : EnemyVariantBase
         }
 
         float dir = FacingSign;
-        if (IsGrounded() && (WallAhead(dir) || !GroundAhead(dir)))
+        if (AtRoomEdge(dir) || (IsGrounded() && (WallAhead(dir) || !GroundAhead(dir))))
         {
             Face(-dir);
             pauseTimer = turnPause;

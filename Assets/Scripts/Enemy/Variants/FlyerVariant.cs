@@ -1,12 +1,14 @@
 using UnityEngine;
 
-// "volador" enemy with gear variations. Based on BatEnemy (FlyingDude.cs), plus a real attack:
-//   Patrol -> flies along the waypoints EnemyPlacer built for it (no gravity)
-//   Hover  -> player detected: moves to a spot above and to the side of the player
-//   Windup -> stops and plays "atacar" (telegraph), remembers where the player is
-//   Dive   -> swoops to that spot fast
-//   Return -> climbs back up, then hovers again (or goes home if the player left)
-// It never chases further than leashDistance from where it spawned, so it stays in its room.
+// "volador" enemy with gear variations. Based on BatEnemy (FlyingDude.cs), plus a real attack that reads as
+// anticipation -> action -> impact (the factory controller has: idle, correr (loop) and ataque (0.45 s, Any State)):
+//   Patrol -> flies along the waypoints EnemyPlacer built for it          anim: correr moving / idle waiting
+//   Hover  -> player detected in its room: moves above and beside them    anim: correr
+//   Windup -> stops and pulls back / up a little, eyes on the player      anim: idle   (the telegraph)
+//   Dive   -> swoops to where the player was, tilted toward the dive      anim: correr, and "atacar" right before
+//             arriving, so the hit frames land on the contact               arriving (or on contact)
+//   Return -> climbs back up and straightens, then hovers again           anim: correr
+// It never leaves its room (ProceduralEnemyInfo.roomBounds) and ignores the player outside it.
 // Shoes (speed) scale speeds and cooldowns; aura (power) scales damage.
 public class FlyerVariant : EnemyVariantBase
 {
@@ -17,16 +19,27 @@ public class FlyerVariant : EnemyVariantBase
 
     [Header("Detection")]
     [SerializeField] private float detectionRange = 7f;
-    [Tooltip("Max distance from its spawn point while chasing")]
-    [SerializeField] private float leashDistance = 10f;
 
-    [Header("Dive attack")]
+    [Header("Hover")]
     [SerializeField] private Vector2 hoverOffset = new Vector2(2.5f, 3f);
     [SerializeField] private float hoverSpeed = 3.5f;
     [SerializeField] private float hoverTimeBeforeDive = 0.6f;
+
+    [Header("Windup (telegraph)")]
     [SerializeField] private float windupTime = 0.5f;
+    [Tooltip("How far it pulls back and up before diving")]
+    [SerializeField] private float windupPullBack = 0.8f;
+
+    [Header("Dive")]
     [SerializeField] private float diveSpeed = 8f;
     [SerializeField] private float maxDiveTime = 1f;
+    [Tooltip("Seconds before reaching the target when the 'atacar' animation starts (the clip lasts 0.45 s)")]
+    [SerializeField] private float attackAnimLead = 0.2f;
+    [Tooltip("Max tilt of the body toward the dive, in degrees (0 = no tilt)")]
+    [SerializeField] private float diveTilt = 25f;
+    [SerializeField] private float tiltSpeed = 360f;
+
+    [Header("Return")]
     [SerializeField] private float returnTime = 0.8f;
     [SerializeField] private float attackCooldown = 1.2f;
 
@@ -39,7 +52,10 @@ public class FlyerVariant : EnemyVariantBase
     private float stateTimer;
     private float nextAttackTime;
     private Vector2 diveTarget;
+    private Vector2 windupDir;
+    private bool attackAnimPlayed;
     private Vector2 home;
+    private float targetTilt;
 
     private Transform[] route;
     private int routeIndex;
@@ -49,12 +65,12 @@ public class FlyerVariant : EnemyVariantBase
     {
         base.Awake();
         rb.gravityScale = 0f;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;   // physics never spins it; the tilt is set by code
     }
 
     protected override void OnActivated()
     {
-        home = transform.position;
+        home = ClampToRoom(transform.position);
         route = info != null ? info.waypoints : null;
         state = State.Patrol;
         nextAttackTime = Time.time + 0.5f;
@@ -64,6 +80,7 @@ public class FlyerVariant : EnemyVariantBase
     {
         if (!IsAwake) return;
 
+        targetTilt = 0f;
         switch (state)
         {
             case State.Patrol: Patrol(); break;
@@ -72,18 +89,20 @@ public class FlyerVariant : EnemyVariantBase
             case State.Dive: Dive(); break;
             case State.Return: Return(); break;
         }
+
+        rb.rotation = Mathf.MoveTowardsAngle(rb.rotation, targetTilt, tiltSpeed * Time.fixedDeltaTime);
+        ConfineToRoom();
     }
 
     // ---- States ----
 
     private void Patrol()
     {
-        SetRunning(false);
         if (PlayerDetected()) { Enter(State.Hover, hoverTimeBeforeDive); return; }
 
         if (route == null || route.Length == 0)
         {
-            MoveTowards(home, patrolSpeed);
+            SetRunning(MoveTowards(home, patrolSpeed) > waypointReachDistance);
             return;
         }
 
@@ -91,12 +110,14 @@ public class FlyerVariant : EnemyVariantBase
         {
             waitTimer -= Time.fixedDeltaTime;
             rb.linearVelocity = Vector2.zero;
+            SetRunning(false);
             return;
         }
 
         Transform target = route[routeIndex];
         if (target == null) { routeIndex = (routeIndex + 1) % route.Length; return; }
 
+        SetRunning(true);
         if (MoveTowards(target.position, patrolSpeed) <= waypointReachDistance)
         {
             routeIndex = (routeIndex + 1) % route.Length;
@@ -106,8 +127,8 @@ public class FlyerVariant : EnemyVariantBase
 
     private void Hover()
     {
+        if (!PlayerInRoom) { state = State.Patrol; return; }
         SetRunning(true);
-        if (LostPlayer()) { state = State.Patrol; return; }
 
         // Stay above the player, on the side we are already on
         float side = Mathf.Sign(transform.position.x - player.position.x);
@@ -119,19 +140,33 @@ public class FlyerVariant : EnemyVariantBase
         stateTimer -= Time.fixedDeltaTime;
         if (stateTimer <= 0f && Time.time >= nextAttackTime && HasLineOfSight())
         {
+            // Anticipation: idle pose while it pulls back, away from the player and a bit up
+            Vector2 away = -ToPlayer.normalized;
+            windupDir = (away + Vector2.up * 0.6f).normalized;
+            if (animator != null) animator.ResetTrigger(AnimAttack);
             Enter(State.Windup, windupTime / SpeedMult);
-            TriggerAttack();
         }
     }
 
     private void Windup()
     {
-        rb.linearVelocity = Vector2.zero;
+        SetRunning(false);
         Face(ToPlayer.x);
-        diveTarget = player != null ? (Vector2)player.position : (Vector2)transform.position;
+
+        // Pull back fast at the start and slow down (ease out), like gathering strength
+        float total = windupTime / SpeedMult;
+        float t = 1f - Mathf.Clamp01(stateTimer / total);
+        float speed = windupPullBack / total * 2f * (1f - t);
+        rb.linearVelocity = windupDir * speed;
+
+        // Keep aiming during the windup; the target is locked when the dive starts
+        if (player != null) diveTarget = ClampToRoom(player.position);
 
         stateTimer -= Time.fixedDeltaTime;
-        if (stateTimer <= 0f) Enter(State.Dive, maxDiveTime);
+        if (stateTimer > 0f) return;
+
+        attackAnimPlayed = false;
+        Enter(State.Dive, maxDiveTime);
     }
 
     private void Dive()
@@ -139,7 +174,14 @@ public class FlyerVariant : EnemyVariantBase
         SetRunning(true);
         stateTimer -= Time.fixedDeltaTime;
 
+        Vector2 d = diveTarget - (Vector2)transform.position;
         float dist = MoveTowards(diveTarget, diveSpeed);
+        targetTilt = TiltToward(d);
+
+        // Start the strike animation just before arriving, so the hit lands on the contact
+        float timeLeft = dist / Mathf.Max(0.01f, diveSpeed * SpeedMult);
+        if (!attackAnimPlayed && timeLeft <= attackAnimLead) PlayStrike();
+
         if (dist < 0.2f || stateTimer <= 0f) EndDive();
     }
 
@@ -151,12 +193,19 @@ public class FlyerVariant : EnemyVariantBase
         stateTimer -= Time.fixedDeltaTime;
         if (stateTimer > 0f) return;
 
-        if (LostPlayer()) state = State.Patrol;
-        else Enter(State.Hover, hoverTimeBeforeDive);
+        if (PlayerInRoom) Enter(State.Hover, hoverTimeBeforeDive);
+        else state = State.Patrol;
+    }
+
+    private void PlayStrike()
+    {
+        attackAnimPlayed = true;
+        TriggerAttack();
     }
 
     private void EndDive()
     {
+        if (!attackAnimPlayed) PlayStrike();   // reached the spot or crashed: still show the strike
         nextAttackTime = Time.time + attackCooldown / SpeedMult;
         Enter(State.Return, returnTime);
     }
@@ -169,9 +218,10 @@ public class FlyerVariant : EnemyVariantBase
 
     // ---- Helpers ----
 
-    // Returns the distance left to the target
+    // Returns the distance left to the target (clamped inside the room)
     private float MoveTowards(Vector2 target, float speed)
     {
+        target = ClampToRoom(target);
         Vector2 d = target - (Vector2)transform.position;
         float dist = d.magnitude;
         rb.linearVelocity = dist > 0.01f ? d / dist * speed * SpeedMult : Vector2.zero;
@@ -179,16 +229,20 @@ public class FlyerVariant : EnemyVariantBase
         return dist;
     }
 
-    private bool PlayerDetected()
+    // Nose down toward the dive: clockwise when going right, counterclockwise when going left
+    private float TiltToward(Vector2 dir)
     {
-        if (player == null || Time.time < nextAttackTime) return false;
-        if (Vector2.Distance(player.position, home) > leashDistance) return false;
-        return ToPlayer.magnitude <= detectionRange && HasLineOfSight();
+        if (diveTilt <= 0f || dir.sqrMagnitude < 0.0001f) return 0f;
+        float angle = Mathf.Atan2(dir.y, Mathf.Abs(dir.x)) * Mathf.Rad2Deg;   // negative when going down
+        angle = Mathf.Clamp(angle, -diveTilt, diveTilt);
+        return dir.x >= 0f ? angle : -angle;
     }
 
-    private bool LostPlayer() =>
-        player == null || Vector2.Distance(player.position, home) > leashDistance ||
-        Vector2.Distance(transform.position, home) > leashDistance;
+    private bool PlayerDetected()
+    {
+        if (!PlayerInRoom || Time.time < nextAttackTime) return false;
+        return ToPlayer.magnitude <= detectionRange && HasLineOfSight();
+    }
 
     // ---- Damage on touch ----
 
@@ -208,7 +262,10 @@ public class FlyerVariant : EnemyVariantBase
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(Application.isPlaying ? (Vector3)home : transform.position, leashDistance);
+        if (HasRoom)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireCube(Room.center, Room.size);
+        }
     }
 }

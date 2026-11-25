@@ -3,7 +3,18 @@ using UnityEngine;
 
 public class AttackPointBehaviour : MonoBehaviour
 {
+    [Tooltip("Optional. Damage comes from PlayerController.attackDamage; this value is used only if there is no PlayerController")]
     public float danoGolpe = 5.0f;
+
+    private PlayerController controller;
+
+    void Awake()
+    {
+        controller = GetComponentInParent<PlayerController>();
+    }
+
+    // Damage of one hit: PlayerController.attackDamage (separate from attackForce, which only moves the player)
+    float Dano => controller != null ? controller.attackDamage : danoGolpe;
 
     // Usamos HashSet en lugar de List para evitar duplicados
     private HashSet<Collider2D> objetivosEnRango = new HashSet<Collider2D>();
@@ -60,7 +71,7 @@ public class AttackPointBehaviour : MonoBehaviour
         EnemyHealth vida = enemy.GetComponent<EnemyHealth>();
         if (vida != null)
         {
-            vida.RecibirDano(danoGolpe);
+            vida.RecibirDano(Dano);
         }
         Debug.Log("Golpeado: " + enemy.name);
     }

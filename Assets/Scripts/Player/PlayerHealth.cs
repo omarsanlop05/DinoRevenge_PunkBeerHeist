@@ -16,7 +16,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void RecibirDaño(float daño, float atacanteX)
     {
-        if (controller.isAttacking || controller.isInvulnerable)
+        // No damage while attacking, invulnerable or frozen in a camera transition
+        if (controller.isAttacking || controller.isInvulnerable || controller.isFrozen)
             return;
 
         if (controller.isAttacking != true)

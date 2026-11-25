@@ -22,6 +22,11 @@ public class ProceduralEnemyInfo : MonoBehaviour
     public float healthMultiplier = 1f;
     public float powerMultiplier = 1f;
 
+    [Header("Room limits (world units, between walls, floor and ceiling)")]
+    [Tooltip("The enemy never leaves this box and only reacts to the player inside it")]
+    public Rect roomBounds;
+    public bool hasRoomBounds;
+
     [Header("Kind specific")]
     public Transform[] waypoints;        // flyers only
     public GameObject projectilePrefab;  // launchers only (prefab, not an instance)

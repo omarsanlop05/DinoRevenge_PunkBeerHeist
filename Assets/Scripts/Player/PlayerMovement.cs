@@ -40,7 +40,10 @@ public class PlayerController : MonoBehaviour
     public AttackPointBehaviour attackBehaviour;
 
     [Header("Attack")]
+    [Tooltip("How far the attack pushes the player forward (movement only, not damage)")]
     public float attackForce = 5f;
+    [Tooltip("Damage each hit deals to enemies and the boss")]
+    public float attackDamage = 5f;
     public float attackCooldown = 0.8f;
     public bool isAttacking = false;
     private float nextAttackTime = 0f;
@@ -60,6 +63,11 @@ public class PlayerController : MonoBehaviour
     public float invulnerabilityDuration = 1f;
     public bool isHurt = false;
     public bool isDead = false;
+
+    [Header("Frozen (camera transitions)")]
+    [Tooltip("True while a room / boss transition holds the player still. Nothing moves or animates the player meanwhile")]
+    public bool isFrozen = false;
+    private float frozenAnimatorSpeed = 1f;
 
     [Header("Knockback")]
     public float knockbackForceX = 4f;
@@ -110,8 +118,73 @@ public class PlayerController : MonoBehaviour
         animator.Update(0f);
     }
 
+    // ---- Freeze during camera transitions ----
+
+    // Stops the player in place: cancels the current action, ignores input, freezes the body and pauses the animation.
+    // Unfreezes by itself after 'seconds'. Calling it again while frozen just extends the time.
+    public void Freeze(float seconds)
+    {
+        if (isDead) return;
+
+        CancelInvoke(nameof(Unfreeze));
+        if (!isFrozen)
+        {
+            isFrozen = true;
+
+            // Cancel whatever was happening so its own timers don't move or unfreeze the player
+            CancelInvoke(nameof(Activatehitbox));
+            CancelInvoke(nameof(ExitHurtState));
+            CancelInvoke(nameof(FreezeAfterKnockback));
+            CancelInvoke(nameof(EndBeerDrinking));
+            if (isAttacking) CloseAttack();
+            isHurt = false;
+            isDrinking = false;
+            isJumping = false;
+            jumpQueued = false;
+            jumpInputTimer = 0f;
+            attackQueued = false;
+            moveInput = 0f;
+
+            if (isWalking && SoundManager.instance != null)
+            {
+                SoundManager.instance.stopSound(walkSFX);
+                SoundManager.instance.loopSource.loop = false;
+                isWalking = false;
+            }
+
+            rb.linearVelocity = Vector2.zero;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+            if (animator != null)
+            {
+                frozenAnimatorSpeed = animator.speed > 0f ? animator.speed : 1f;
+                animator.speed = 0f;   // pause on the current frame
+            }
+        }
+
+        Invoke(nameof(Unfreeze), seconds);
+    }
+
+    public void Unfreeze()
+    {
+        if (!isFrozen) return;
+        isFrozen = false;
+
+        if (!isDead) rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        rb.linearVelocity = Vector2.zero;
+        if (animator != null) animator.speed = frozenAnimatorSpeed;
+    }
+
     void Update()
     {
+        if (isFrozen)
+        {
+            jumpQueued = false;
+            jumpInputTimer = 0f;
+            attackQueued = false;
+            return;
+        }
+
         // Block on special states
         if (isDrinking || isHurt || isDead || isAttacking)
         {
@@ -212,6 +285,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isFrozen)
+        {
+            rb.linearVelocity = Vector2.zero;
+            return;
+        }
+
         if (isDrinking)
         {
             rb.linearVelocity = Vector2.zero;
@@ -366,7 +445,7 @@ public class PlayerController : MonoBehaviour
         attackPoint.enabled = false;
         attackBehaviour.EndAttack();
         EndInvulnerability();
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        if (!isFrozen) rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public void SetHurtState(float duration, float hitSource)
@@ -389,7 +468,7 @@ public class PlayerController : MonoBehaviour
     void ExitHurtState()
     {
         isHurt = false;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        if (!isFrozen) rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     void StartInvulnerability()
@@ -459,7 +538,7 @@ public class PlayerController : MonoBehaviour
     void EndBeerDrinking()
     {
         isDrinking = false;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        if (!isFrozen) rb.constraints = RigidbodyConstraints2D.FreezeRotation;
     }
 
     public bool IsGrounded()
