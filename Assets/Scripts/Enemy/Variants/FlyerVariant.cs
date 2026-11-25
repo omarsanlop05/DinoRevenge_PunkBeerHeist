@@ -56,6 +56,7 @@ public class FlyerVariant : EnemyVariantBase
     private bool attackAnimPlayed;
     private Vector2 home;
     private float targetTilt;
+    private float hoverSide;   // -1 = left of the player, 1 = right, 0 = not chosen yet
 
     private Transform[] route;
     private int routeIndex;
@@ -118,24 +119,33 @@ public class FlyerVariant : EnemyVariantBase
         if (target == null) { routeIndex = (routeIndex + 1) % route.Length; return; }
 
         SetRunning(true);
-        if (MoveTowards(target.position, patrolSpeed) <= waypointReachDistance)
+        float left = MoveTowards(target.position, patrolSpeed);
+        // Reached it, or a platform is in the way: go for the next one
+        if (left <= waypointReachDistance || CheckStuck(true))
         {
             routeIndex = (routeIndex + 1) % route.Length;
             waitTimer = waitAtPoint;
+            ResetStuck();
         }
     }
 
     private void Hover()
     {
-        if (!PlayerInRoom) { state = State.Patrol; return; }
+        if (!PlayerInRoom) { state = State.Patrol; hoverSide = 0f; return; }
         SetRunning(true);
 
         // Stay above the player, on the side we are already on
-        float side = Mathf.Sign(transform.position.x - player.position.x);
-        if (side == 0f) side = 1f;
-        Vector2 spot = (Vector2)player.position + new Vector2(side * hoverOffset.x, hoverOffset.y);
-        MoveTowards(spot, hoverSpeed);
+        if (hoverSide == 0f) hoverSide = transform.position.x >= player.position.x ? 1f : -1f;
+        Vector2 spot = (Vector2)player.position + new Vector2(hoverSide * hoverOffset.x, hoverOffset.y);
+        float left = MoveTowards(spot, hoverSpeed);
         Face(ToPlayer.x);
+
+        // Something blocks the way to that spot: try the other side of the player
+        if (left > waypointReachDistance && CheckStuck(true))
+        {
+            hoverSide = -hoverSide;
+            ResetStuck();
+        }
 
         stateTimer -= Time.fixedDeltaTime;
         if (stateTimer <= 0f && Time.time >= nextAttackTime && HasLineOfSight())
@@ -182,7 +192,7 @@ public class FlyerVariant : EnemyVariantBase
         float timeLeft = dist / Mathf.Max(0.01f, diveSpeed * SpeedMult);
         if (!attackAnimPlayed && timeLeft <= attackAnimLead) PlayStrike();
 
-        if (dist < 0.2f || stateTimer <= 0f) EndDive();
+        if (dist < 0.2f || stateTimer <= 0f || CheckStuck(true)) EndDive();   // stuck = hit a platform corner
     }
 
     private void Return()
@@ -194,7 +204,7 @@ public class FlyerVariant : EnemyVariantBase
         if (stateTimer > 0f) return;
 
         if (PlayerInRoom) Enter(State.Hover, hoverTimeBeforeDive);
-        else state = State.Patrol;
+        else { state = State.Patrol; hoverSide = 0f; }
     }
 
     private void PlayStrike()
@@ -246,7 +256,35 @@ public class FlyerVariant : EnemyVariantBase
 
     // ---- Damage on touch ----
 
-    private void OnCollisionEnter2D(Collision2D collision) => HandleTouch(collision.gameObject);
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        HandleTouch(collision.gameObject);
+        HandleEnemyBump(collision);
+    }
+
+    // Bumped into another enemy: change where it is going
+    private void HandleEnemyBump(Collision2D collision)
+    {
+        if (!BumpedEnemyAhead(collision, rb.linearVelocity, out _)) return;
+
+        switch (state)
+        {
+            case State.Patrol:
+                if (route != null && route.Length > 0)
+                {
+                    routeIndex = (routeIndex + 1) % route.Length;   // head to the next waypoint instead
+                    waitTimer = 0f;
+                }
+                break;
+            case State.Hover:
+                hoverSide = -hoverSide;   // go around to the other side of the player
+                break;
+            case State.Dive:
+                EndDive();                // abort the swoop and climb back
+                break;
+        }
+        ResetStuck();
+    }
     private void OnCollisionStay2D(Collision2D collision) => HandleTouch(collision.gameObject);
 
     private void HandleTouch(GameObject other)

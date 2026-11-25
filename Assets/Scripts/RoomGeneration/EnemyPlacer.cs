@@ -42,6 +42,8 @@ public class EnemyPlacer : MonoBehaviour
     [Tooltip("Cells under an air spot that must be empty for it to count as 'in the air'")]
     [SerializeField] private int airEmptyBelow = 3;
     [SerializeField] private int attemptsPerEnemy = 40;
+    [Tooltip("Ground enemies only go on surfaces at least this long (tiles). Shorter platforms get no enemies")]
+    [SerializeField] private int minSurfaceLength = 4;
 
     [Header("Pass 2 - flyer route (tiles)")]
     [Tooltip("How far a flyer may patrol to each side of its placeholder")]
@@ -150,7 +152,8 @@ public class EnemyPlacer : MonoBehaviour
 
         var result = new List<EnemyPlaceholder>();
         var perKind = new int[3];
-        List<Surface> surfaces = room.surfaces.FindAll(s => s.xMax >= safeX);
+        // Surfaces that can hold a ground enemy: past the safe zone and long enough to stand and walk on
+        List<Surface> surfaces = room.surfaces.FindAll(s => s.xMax >= safeX && s.xMax - s.xMin + 1 >= minSurfaceLength);
 
         int attempts = Mathf.Max(1, count) * attemptsPerEnemy;
         for (int a = 0; a < attempts && result.Count < count; a++)

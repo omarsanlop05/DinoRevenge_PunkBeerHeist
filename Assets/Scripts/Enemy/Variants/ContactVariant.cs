@@ -65,10 +65,12 @@ public class ContactVariant : EnemyVariantBase
         }
 
         float dir = FacingSign;
-        if (AtRoomEdge(dir) || (IsGrounded() && (WallAhead(dir) || !GroundAhead(dir))))
+        bool stuck = CheckStuck(true);   // wedged on a step or a corner the rays did not catch
+        if (stuck || AtRoomEdge(dir) || (IsGrounded() && (WallAhead(dir) || !GroundAhead(dir))))
         {
             Face(-dir);
             dir = -dir;
+            ResetStuck();
         }
 
         rb.linearVelocity = new Vector2(dir * patrolSpeed * SpeedMult, rb.linearVelocity.y);
@@ -85,6 +87,7 @@ public class ContactVariant : EnemyVariantBase
         if (stateTimer > 0f) return;
 
         chargeDir = FacingSign;
+        ResetStuck();
         Enter(State.Charge, chargeDuration);
     }
 
@@ -94,7 +97,7 @@ public class ContactVariant : EnemyVariantBase
         stateTimer -= Time.fixedDeltaTime;
 
         bool blocked = WallAhead(chargeDir, 0.1f) || AtRoomEdge(chargeDir, 0.1f) ||
-                       (IsGrounded() && !GroundAhead(chargeDir, 0.05f));
+                       (IsGrounded() && !GroundAhead(chargeDir, 0.05f)) || CheckStuck(true);
         if (stateTimer <= 0f || blocked)
         {
             rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -131,7 +134,28 @@ public class ContactVariant : EnemyVariantBase
 
     // ---- Damage on touch: strong while charging, weak otherwise ----
 
-    private void OnCollisionEnter2D(Collision2D collision) => HandleTouch(collision.gameObject);
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        HandleTouch(collision.gameObject);
+        HandleEnemyBump(collision);
+    }
+
+    // Bumped into another enemy: turn around (and stop the charge if it was charging)
+    private void HandleEnemyBump(Collision2D collision)
+    {
+        if (state == State.Windup || state == State.Recover) return;   // standing still: nothing to turn from
+        float dir = state == State.Charge ? chargeDir : FacingSign;
+        if (!BumpedEnemyAhead(collision, new Vector2(dir, 0f), out _)) return;
+
+        if (state == State.Charge)
+        {
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            nextAttackTime = Time.time + attackCooldown / SpeedMult;
+            Enter(State.Recover, recoverTime);
+        }
+        Face(-dir);
+        ResetStuck();
+    }
     private void OnCollisionStay2D(Collision2D collision) => HandleTouch(collision.gameObject);
 
     private void HandleTouch(GameObject other)

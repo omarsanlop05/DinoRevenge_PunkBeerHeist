@@ -31,6 +31,19 @@ public abstract class EnemyVariantBase : MonoBehaviour
 
     private float lastContactHit = -100f;
 
+    [Header("Stuck detection")]
+    [Tooltip("If it tries to move but advances less than this (units) during stuckTime, it counts as stuck")]
+    [SerializeField] protected float stuckDistance = 0.15f;
+    [SerializeField] protected float stuckTime = 0.5f;
+    private Vector2 stuckCheckPos;
+    private float stuckTimer;
+    private float lastStuckCheck = -100f;
+
+    [Header("Bumping into other enemies")]
+    [Tooltip("Minimum time between two direction changes caused by bumping into an enemy (avoids flip-flopping)")]
+    [SerializeField] protected float bumpCooldown = 0.4f;
+    private float lastBumpTime = -100f;
+
     protected float SpeedMult => info != null ? info.speedMultiplier : 1f;
     protected float PowerMult => info != null ? info.powerMultiplier : 1f;
     protected int Aura => info != null ? info.aura : 1;
@@ -57,6 +70,58 @@ public abstract class EnemyVariantBase : MonoBehaviour
         info = GetComponent<ProceduralEnemyInfo>();
         if (groundMask.value == 0) groundMask = LayerMask.GetMask("Ground");
         ApplySortingLayer(GetComponent<SpriteRenderer>(), sortingLayer);
+    }
+
+    // ---- Bumping into other enemies ----
+
+    // True when this collision is with another enemy that is in front of us (in the direction we move / face).
+    // 'away' is the direction that leads away from the other enemy. Respects bumpCooldown.
+    protected bool BumpedEnemyAhead(Collision2D collision, Vector2 moveDir, out Vector2 away)
+    {
+        away = Vector2.zero;
+        if (!IsAwake || collision.contactCount == 0 || Time.time < lastBumpTime + bumpCooldown) return false;
+        if (!collision.gameObject.CompareTag("Enemy") || collision.gameObject == gameObject) return false;
+
+        // The contact normal points from the other enemy toward us
+        Vector2 normal = collision.GetContact(0).normal;
+        if (moveDir.sqrMagnitude > 0.0001f && Vector2.Dot(normal, moveDir.normalized) > -0.3f)
+            return false;   // it touched us from behind or the side we are leaving: not in our way
+
+        away = normal;
+        lastBumpTime = Time.time;
+        return true;
+    }
+
+    // ---- Stuck detection ----
+
+    // Call every physics step while the enemy is trying to move. Returns true once it has been stuck for stuckTime,
+    // then starts measuring again (so the caller reacts once per stuck period).
+    protected bool CheckStuck(bool tryingToMove)
+    {
+        Vector2 pos = transform.position;
+        // A pause between calls (shooting, windup, waiting) starts a fresh measurement instead of counting as stuck
+        bool resumed = Time.time - lastStuckCheck > Time.fixedDeltaTime * 2.5f;
+        lastStuckCheck = Time.time;
+
+        if (resumed || !tryingToMove || (pos - stuckCheckPos).sqrMagnitude > stuckDistance * stuckDistance)
+        {
+            stuckCheckPos = pos;
+            stuckTimer = 0f;
+            return false;
+        }
+
+        stuckTimer += Time.fixedDeltaTime;
+        if (stuckTimer < stuckTime) return false;
+
+        stuckTimer = 0f;
+        stuckCheckPos = pos;
+        return true;
+    }
+
+    protected void ResetStuck()
+    {
+        stuckCheckPos = transform.position;
+        stuckTimer = 0f;
     }
 
     // Puts the sprite on a visible sorting layer (only if that layer exists in the project)

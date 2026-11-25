@@ -44,10 +44,12 @@ public class VariantEnemyPatrol : EnemyVariantBase
         }
 
         float dir = FacingSign;
-        if (AtRoomEdge(dir) || (IsGrounded() && (WallAhead(dir) || !GroundAhead(dir))))
+        bool stuck = CheckStuck(true);   // wedged on a step or a corner the rays did not catch
+        if (stuck || AtRoomEdge(dir) || (IsGrounded() && (WallAhead(dir) || !GroundAhead(dir))))
         {
             Face(-dir);
             pauseTimer = turnPause;
+            ResetStuck();
             return;
         }
 
@@ -55,10 +57,14 @@ public class VariantEnemyPatrol : EnemyVariantBase
         SetRunning(true);
     }
 
-    // Like EnemyPatrol: turn around when bumping into another enemy from the side
+    // Like EnemyPatrol: bumping into another enemy in front makes it turn around
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!IsAwake || !collision.gameObject.CompareTag("Enemy") || collision.contactCount == 0) return;
-        if (Mathf.Abs(collision.GetContact(0).normal.x) > 0.5f) Face(-FacingSign);
+        if (attack != null && attack.PlayerInRange) return;   // standing and shooting: does not walk anywhere
+        if (!BumpedEnemyAhead(collision, new Vector2(FacingSign, 0f), out _)) return;
+
+        Face(-FacingSign);
+        pauseTimer = turnPause;
+        ResetStuck();
     }
 }
