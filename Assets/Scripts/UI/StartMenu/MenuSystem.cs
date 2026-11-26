@@ -27,8 +27,12 @@ public class MenuSystem : MonoBehaviour
     public void Salir()
     {
         Debug.Log("Exiting");
+#if UNITY_EDITOR
+        // UnityEditor only exists inside the editor: without the #if the player build does not compile
         UnityEditor.EditorApplication.isPlaying = false;
-        //Application.Quit();
+#else
+        Application.Quit();
+#endif
     }
 
     public void Retry()
