@@ -22,7 +22,7 @@ public class EnemyPlacer : MonoBehaviour
 
     [Header("Count (scaled by the average of the three scores)")]
     [SerializeField] private int minEnemies = 1;
-    [SerializeField] private int maxEnemies = 3;
+    [SerializeField] private int maxEnemies = 4;
     [Tooltip("Maximum enemies of the same kind in one room")]
     [SerializeField] private int maxPerKind = 2;
     [Tooltip("Random spread (in enemies) added before rounding, so equal scores do not always give the same count")]

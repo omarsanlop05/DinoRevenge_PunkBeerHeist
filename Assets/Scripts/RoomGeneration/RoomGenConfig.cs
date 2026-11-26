@@ -34,11 +34,11 @@ public class RoomGenConfig : ScriptableObject
     public int playerHeight = 2;
     [Tooltip("Mínimo recomendado: playerHeight + 2, si no las plataformas sobre el suelo no son alcanzables")]
     public int maxJumpHeight = 3;
-    public int maxJumpDistance = 5;
+    public int maxJumpDistance = 4;
     public int minJumpDistance = 3;
 
     [Header("Plataformas extra (además del camino obligatorio)")]
-    public int minPlatforms = 2;
+    public int minPlatforms = 3;
     public int maxPlatforms = 8;
     public Vector2Int platformLength = new Vector2Int(3, 6);
     public int placementAttempts = 32;

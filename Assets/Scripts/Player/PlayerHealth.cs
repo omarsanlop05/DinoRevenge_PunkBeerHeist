@@ -5,14 +5,21 @@ public class PlayerHealth : MonoBehaviour
 {
 
     [Header("Vida")]
-    public float vidaMaxima = 100f;
-    public float vidaActual = 100f;
-    
+    public float vidaMaxima = 150f;
+    [Tooltip("Se llena a vidaMaxima al empezar (y en cada Retry, que recarga la escena)")]
+    public float vidaActual = 150f;
+
     [Header("Cervezas")]
     public int cervezas = 0;
     public int maxCervezas = 2;
 
-    public PlayerController controller; 
+    public PlayerController controller;
+
+    private void Awake()
+    {
+        // El jugador siempre empieza con la vida llena, sin importar el valor guardado en el inspector
+        vidaActual = vidaMaxima;
+    }
 
     public void RecibirDaño(float daño, float atacanteX)
     {

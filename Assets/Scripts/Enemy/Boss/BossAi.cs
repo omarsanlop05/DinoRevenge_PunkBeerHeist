@@ -11,19 +11,19 @@ public class BossIA : MonoBehaviour
     public BossAttackHitbox attackHitbox;
 
     [Header("Configuración de Movimiento")]
-    public float velocidadMovimiento = 3f;
+    public float velocidadMovimiento = 4f;
 
     [Header("Configuración de Rangos (3 Zonas)")]
-    public float distanciaAtaqueMelee = 2.5f;      // ZONA 1: Rango de ataque melee
-    public float distanciaPersecucion = 8f;        // ZONA 2: Rango de persecución (se acerca)
-    public float distanciaTiroHacha = 12f;         // ZONA 3: Lanza hacha si está más lejos
+    public float distanciaAtaqueMelee = 5f;        // ZONA 1: Rango de ataque melee
+    public float distanciaPersecucion = 10f;        // ZONA 2: Rango de persecución (se acerca)
+    public float distanciaTiroHacha = 16f;         // ZONA 3: Lanza hacha si está más lejos
 
     [Header("Configuración de Cooldowns")]
-    public float cooldownAtaqueMelee = 2f;
+    public float cooldownAtaqueMelee = 1.6f;
     public float cooldownAtaqueRango = 3f;
 
     [Header("Estado")]
-    public bool mirandoDerecha = true;
+    public bool mirandoDerecha = false;
 
     [Header("Activación")]
     [Tooltip("Si es true, el jefe comienza desactivado y espera ser activado por trigger")]

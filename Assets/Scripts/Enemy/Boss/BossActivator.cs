@@ -9,7 +9,7 @@ public class BossActivator : MonoBehaviour
     public GameObject jefe;
 
     [Tooltip("Tiempo antes de destruir el trigger después de activar")]
-    public float tiempoAntesDeDestruir = 0.5f;
+    public float tiempoAntesDeDestruir = 0.1f;
 
     [Header("Música del Boss")]
     [Tooltip("Clip de audio para la música del boss")]
@@ -30,7 +30,7 @@ public class BossActivator : MonoBehaviour
     public GameObject particulasActivacion;
 
     [Tooltip("Duración del destello (segundos)")]
-    public float duracionDestello = 0.5f;
+    public float duracionDestello = 0.01f;
 
     private bool yaActivado = false;
 

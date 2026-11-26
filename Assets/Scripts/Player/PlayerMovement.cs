@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Jump")]
     public bool isJumping = false;
-    public float jumpForce = 12f;
-    public LayerMask groundLayer;
+    public float jumpForce = 18f;
+    public LayerMask groundLayer = 1 << 3;   // layer 3 = "Ground"
     public float groundCheckDistance = 0.45f;
     public bool jumpQueued = false;
     private float jumpInputBuffer = 0.15f;
@@ -28,8 +28,8 @@ public class PlayerController : MonoBehaviour
     private float minTimeBetweenJumps = 0.2f; // NUEVO: Tiempo mínimo entre saltos
 
     [Header("Custom Gravity")]
-    public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplier = 2f;
+    public float fallMultiplier = 14f;
+    public float lowJumpMultiplier = 5f;
 
     [Header("Coyote Time")]
     public float coyoteTime = 0.1f;
@@ -43,15 +43,17 @@ public class PlayerController : MonoBehaviour
     [Tooltip("How far the attack pushes the player forward (movement only, not damage)")]
     public float attackForce = 5f;
     [Tooltip("Damage each hit deals to enemies and the boss")]
-    public float attackDamage = 5f;
-    public float attackCooldown = 0.8f;
+    public float attackDamage = 15f;
+    public float attackCooldown = 1.1f;
     public bool isAttacking = false;
     private float nextAttackTime = 0f;
     private bool attackQueued = false;
 
     [Header("Dynamic Attack")]
     public float attackDuration = 0.75f;
-    public AnimationCurve attackCurve;
+    public AnimationCurve attackCurve = new AnimationCurve(
+        new Keyframe(0f, 0f, -4.3460627f, -4.3460627f, 0f, 0.04000001f),
+        new Keyframe(1f, 1f, -4.5489125f, -4.5489125f, 0.043333292f, 0f));
     private float attackTimer = 0f;
     private Vector2 attackDirection;
 
@@ -70,7 +72,7 @@ public class PlayerController : MonoBehaviour
     private float frozenAnimatorSpeed = 1f;
 
     [Header("Knockback")]
-    public float knockbackForceX = 4f;
+    public float knockbackForceX = 8f;
     public float knockbackForceY = 8f;
 
     [Header("SFX")]

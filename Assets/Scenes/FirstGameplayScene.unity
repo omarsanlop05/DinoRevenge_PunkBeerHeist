@@ -9367,7 +9367,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -149.29413, y: -52.875004, z: -9.589274}
+  m_LocalPosition: {x: -149.29321, y: -52.875004, z: -9.589274}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13187,6 +13187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoneCamera: {fileID: 2026947846}
   previousCamera: {fileID: 1986747362}
+  freezePlayerOnSwitch: 1
+  freezeDuration: 1
   awardsRoomPoints: 1
 --- !u!61 &709116384
 BoxCollider2D:
@@ -96270,7 +96272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03607550c9cc97a4fb10d9d0fe61390e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 450
+  vida: 105
 --- !u!1 &1065514504
 GameObject:
   m_ObjectHideFlags: 0
@@ -101181,6 +101183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoneCamera: {fileID: 883149481}
   previousCamera: {fileID: 1986747362}
+  freezePlayerOnSwitch: 1
+  freezeDuration: 1
   awardsRoomPoints: 1
 --- !u!61 &1359208208
 BoxCollider2D:
@@ -102783,6 +102787,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoneCamera: {fileID: 1986747362}
   previousCamera: {fileID: 883149481}
+  freezePlayerOnSwitch: 1
+  freezeDuration: 1
   awardsRoomPoints: 1
 --- !u!61 &1438195037
 BoxCollider2D:
@@ -108468,6 +108474,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoneCamera: {fileID: 1986747362}
   previousCamera: {fileID: 2026947846}
+  freezePlayerOnSwitch: 1
+  freezeDuration: 1
   awardsRoomPoints: 1
 --- !u!61 &1750246272
 BoxCollider2D:
@@ -109279,7 +109287,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1071599188}
         m_TargetAssemblyTypeName: MenuSystem, Assembly-CSharp
-        m_MethodName: Jugar
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -114832,6 +114840,7 @@ MonoBehaviour:
   attackPoint: {fileID: 88161812}
   attackBehaviour: {fileID: 88161811}
   attackForce: 5
+  attackDamage: 15
   attackCooldown: 1.1
   isAttacking: 0
   attackDuration: 0.75
@@ -114864,6 +114873,7 @@ MonoBehaviour:
   invulnerabilityDuration: 1
   isHurt: 0
   isDead: 0
+  isFrozen: 0
   knockbackForceX: 8
   knockbackForceY: 8
   jumpSFX: {fileID: 8300000, guid: a1689b09426117940ac8b17aff86324b, type: 3}

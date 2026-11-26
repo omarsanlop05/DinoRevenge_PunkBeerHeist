@@ -22,27 +22,40 @@ public class GameManagerProcedural : MonoBehaviour
     [Tooltip("Rooms generated when the scene starts. Entering room i generates room i + (initialRooms - 1)")]
     [SerializeField] private int initialRooms = 2;
     [Tooltip("Total procedural rooms before the hallway / boss")]
-    [SerializeField] private int totalRooms = 5;
+    [SerializeField] private int totalRooms = 7;
     [Tooltip("Clears Tilemaps and generated rooms before starting (removes leftovers from the context menu tests)")]
     [SerializeField] private bool clearBeforeGenerating = true;
     [SerializeField] private bool useRandomSeed = true;
     [SerializeField] private int baseSeed = 1;
 
-    [Header("Secret Rooms")]
-    [SerializeField] private int maxSecretRooms = 2;
-    [Tooltip("Minimum hits received so far to be eligible, for rooms 3, 4 and 5 (in that order). " +
-             "Rooms are generated one room ahead, so room 3 is decided when entering room 2 (only room 1 was played)")]
-    [SerializeField] private int[] secretMinHits = { 0, 1, 2 };
-    [Tooltip("Testing only: every room 3-5 tries to get a secret room, ignoring hits and chance (maxSecretRooms still applies)")]
+    // Rooms 1 and 2 are built when the scene starts, before the player has done anything,
+    // so secret rooms can only go in rooms 3..totalRooms. That gives at most totalRooms - 2.
+    private const int FirstSecretRoom = 3;
+
+    [Header("Secret Rooms (rooms 3 to totalRooms; at most totalRooms - 2 per run)")]
+    [Tooltip("Secret rooms every run gets at least. When the rooms left are just enough, the next ones are forced")]
+    [SerializeField] private int minSecretRooms = 2;
+    [Tooltip("Minimum hits received so far to be eligible, for rooms 3, 4, 5, 6 and 7 (in that order; the last " +
+             "value is used for any later room). Rooms are generated one room ahead, so room 3 is decided when " +
+             "entering room 2 (only room 1 was played)")]
+    [SerializeField] private int[] secretMinHits = { 0, 0, 1, 1, 2 };
+    [Tooltip("A room is also eligible when ANY of the three scores (speed, health, power) is at or below this, " +
+             "even without enough hits")]
+    [SerializeField] private float secretScoreThreshold = -25f;
+    [Tooltip("Testing only: every room 3+ tries to get a secret room, ignoring hits and chance (the maximum still applies)")]
     [SerializeField] private bool forceSecretRooms = false;
-    [Range(0f, 1f)] [SerializeField] private float secretChanceAtMinHits = 0.7f;
+    [Range(0f, 1f)] [SerializeField] private float secretChanceAtMinHits = 0.85f;
     [Range(0f, 1f)] [SerializeField] private float secretChancePerExtraHit = 0.1f;
-    [Range(0f, 1f)] [SerializeField] private float secretMaxChance = 0.95f;
+    [Tooltip("Chance when the room is eligible only because of a low score")]
+    [Range(0f, 1f)] [SerializeField] private float secretChanceLowScore = 0.9f;
+    [Range(0f, 1f)] [SerializeField] private float secretMaxChance = 1f;
     [Tooltip("Chance multiplier applied once for every secret room already generated")]
-    [Range(0f, 1f)] [SerializeField] private float secretChanceAfterEach = 0.85f;
+    [Range(0f, 1f)] [SerializeField] private float secretChanceAfterEach = 0.95f;
     [Tooltip("Extra chance multiplier when the previous room already had a secret room")]
-    [Range(0f, 1f)] [SerializeField] private float secretChanceIfPreviousHad = 0.6f;
+    [Range(0f, 1f)] [SerializeField] private float secretChanceIfPreviousHad = 0.85f;
     private int secretRoomsCount;
+
+    private int MaxSecretRooms => Mathf.Max(0, totalRooms - (FirstSecretRoom - 1));
 
     [Header("Music")]
     [Tooltip("Level music. SoundManager survives scene reloads, so without this the boss music keeps playing after Retry. " +
@@ -50,7 +63,7 @@ public class GameManagerProcedural : MonoBehaviour
     [SerializeField] private AudioClip levelMusic;
 
     [Header("Enemies")]
-    [Tooltip("Places 1-3 enemies in every generated room. Leave empty to generate rooms without enemies")]
+    [Tooltip("Places minEnemies-maxEnemies (1-4) enemies in every generated room. Leave empty to generate rooms without enemies")]
     [SerializeField] private EnemyPlacer enemyPlacer;
 
     [Header("Boss")]
@@ -100,6 +113,9 @@ public class GameManagerProcedural : MonoBehaviour
         for (int i = 0; i < count; i++)                          // 2) then carve the rooms
             GenerateNextRoom(1f);
 
+        // Build the tile colliders now, before the first physics step (enemies and player stand on them)
+        roomGenerator.RefreshColliders();
+
         if (placePlayerInFirstRoom && rooms.Count > 0)
             PlacePlayer(rooms[0]);                               // 3) then place the player
     }
@@ -147,27 +163,47 @@ public class GameManagerProcedural : MonoBehaviour
 
     private bool ShouldMakeSecretRoom(int roomNumber, RoomData previous)
     {
-        if (secretRoomsCount >= maxSecretRooms) return false;
-
-        int slot = roomNumber - 3;   // room 3 -> 0, room 4 -> 1, room 5 -> 2
-        if (slot < 0 || slot >= secretMinHits.Length) return false;
+        if (roomNumber < FirstSecretRoom || roomNumber > totalRooms) return false;
+        if (secretRoomsCount >= MaxSecretRooms) return false;
 
         if (forceSecretRooms)
         {
             Debug.Log($"[GameManager] Secret room check for room {roomNumber}: forced (testing)");
             return true;
         }
+
+        // Guarantee: if the rooms left (this one included) are just enough to reach the minimum, it has to be this one.
+        // A room whose layout can't fit one doesn't count, so the next room is forced instead.
+        int roomsLeft = totalRooms - roomNumber + 1;
+        int missing = Mathf.Min(minSecretRooms, MaxSecretRooms) - secretRoomsCount;
+        if (missing >= roomsLeft)
+        {
+            Debug.Log($"[GameManager] Secret room check for room {roomNumber}: forced ({secretRoomsCount} so far, " +
+                      $"minimum {minSecretRooms}, {roomsLeft} rooms left)");
+            return true;
+        }
+
         if (PlayerScore.Instance == null) return false;
 
+        int slot = roomNumber - FirstSecretRoom;   // room 3 -> 0, room 4 -> 1, ...
         int hits = PlayerScore.Instance.HitsReceived;
-        int minHits = secretMinHits[slot];
-        if (hits < minHits)
+        int minHits = secretMinHits != null && secretMinHits.Length > 0
+            ? secretMinHits[Mathf.Min(slot, secretMinHits.Length - 1)] : 0;
+
+        float lowest = Mathf.Min(PlayerScore.Instance.GetScore(StatAxis.Speed),
+                                 PlayerScore.Instance.GetScore(StatAxis.Health),
+                                 PlayerScore.Instance.GetScore(StatAxis.Power));
+        bool byHits = hits >= minHits;
+        bool byScore = lowest <= secretScoreThreshold;
+        if (!byHits && !byScore)
         {
-            Debug.Log($"[GameManager] Secret room check for room {roomNumber}: hits {hits} < {minHits}, not eligible");
+            Debug.Log($"[GameManager] Secret room check for room {roomNumber}: hits {hits} < {minHits} and lowest score " +
+                      $"{lowest:0.#} > {secretScoreThreshold:0.#}, not eligible");
             return false;
         }
 
-        float chance = secretChanceAtMinHits + (hits - minHits) * secretChancePerExtraHit;
+        float chance = byHits ? secretChanceAtMinHits + (hits - minHits) * secretChancePerExtraHit : 0f;
+        if (byScore) chance = Mathf.Max(chance, secretChanceLowScore);
         chance = Mathf.Min(chance, secretMaxChance);
         chance *= Mathf.Pow(secretChanceAfterEach, secretRoomsCount);
         if (previous != null && previous.hasSecretRoom)
@@ -175,7 +211,8 @@ public class GameManagerProcedural : MonoBehaviour
 
         float roll = Random.value;
         bool ok = roll < chance;
-        Debug.Log($"[GameManager] Secret room check for room {roomNumber}: hits {hits} (min {minHits}), chance {chance:P0}, roll {roll:F2} -> {ok}");
+        Debug.Log($"[GameManager] Secret room check for room {roomNumber}: hits {hits} (min {minHits}), lowest score " +
+                  $"{lowest:0.#} (threshold {secretScoreThreshold:0.#}), chance {chance:P0}, roll {roll:F2} -> {ok}");
         return ok;
     }
 
@@ -338,7 +375,68 @@ if (bossRoomPrefab.entryAnchor == null || bossRoomPrefab.bossCamera == null || b
         Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
         if (rb != null) rb.linearVelocity = Vector2.zero;
 
-        player.transform.position = roomGenerator.GetSpawnPoint(first);
+        // The spawn spot is found for the real body size, and the body is put with its feet on the floor
+        // (the pivot does not have to be the collider's center).
+        Vector3 spawn;
+        Collider2D body = player.GetComponent<Collider2D>();
+        if (body != null)
+        {
+            Physics2D.SyncTransforms();
+            Bounds b = body.bounds;
+            Vector3 pivotFromFeet = player.transform.position - new Vector3(b.center.x, b.min.y, player.transform.position.z);
+            spawn = roomGenerator.GetSpawnFeet(first, b.size) + pivotFromFeet;
+        }
+        else
+        {
+            spawn = roomGenerator.GetSpawnPoint(first);
+        }
+        SetPlayerPosition(player, rb, spawn);
+
+        // Coming from another scene, the first frame is as long as the loading (seconds) and Unity runs many
+        // physics steps in it. The player is kept out of the physics during those first frames and put back on
+        // the spawn afterwards, so it can't fall through anything while the level settles.
+        if (rb != null) StartCoroutine(HoldPlayerWhileLoading(player, rb, spawn));
+    }
+
+    private static void SetPlayerPosition(GameObject player, Rigidbody2D rb, Vector3 position)
+    {
+        player.transform.position = position;
+        if (rb != null)
+        {
+            rb.position = position;
+            rb.linearVelocity = Vector2.zero;
+        }
         Physics2D.SyncTransforms();
+    }
+
+    private IEnumerator HoldPlayerWhileLoading(GameObject player, Rigidbody2D rb, Vector3 spawn)
+    {
+        bool wasSimulated = rb.simulated;
+        rb.simulated = false;
+
+        yield return null;   // the long loading frame
+        yield return null;
+        yield return new WaitForFixedUpdate();
+
+        if (player == null || rb == null) yield break;
+        roomGenerator.RefreshColliders();
+        SetPlayerPosition(player, rb, spawn);
+        rb.simulated = wasSimulated;
+
+        // Safety net for the first moments: the spawn stands on the floor, so if the player ends up well below it
+        // something let it fall through (the floor collider was not there yet). Rebuild and put it back.
+        const float fallLimit = 3f;
+        float until = Time.time + 1.5f;
+        while (Time.time < until && player != null && rb != null)
+        {
+            yield return new WaitForFixedUpdate();
+            if (player != null && player.transform.position.y < spawn.y - fallLimit)
+            {
+                Debug.LogWarning($"[GameManager] Player fell from the spawn {spawn} to {player.transform.position} " +
+                                 "while the level was loading; colliders rebuilt and player put back.");
+                roomGenerator.RefreshColliders();
+                SetPlayerPosition(player, rb, spawn);
+            }
+        }
     }
 }

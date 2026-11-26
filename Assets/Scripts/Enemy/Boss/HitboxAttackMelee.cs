@@ -3,7 +3,7 @@ using UnityEngine;
 public class HitboxAttackMelee : MonoBehaviour
 {
     [Header("Configuración")]
-    public float danio = 20f;
+    public float danio = 40f;
     public LayerMask capaJugador;
 
     private bool yaGolpeo;

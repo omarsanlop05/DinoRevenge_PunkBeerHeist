@@ -680,6 +680,7 @@ MonoBehaviour:
   attackPoint: {fileID: 1113726698437121004}
   attackBehaviour: {fileID: 2330662734014515250}
   attackForce: 5
+  attackDamage: 15
   attackCooldown: 1.1
   isAttacking: 0
   attackDuration: 0.75
@@ -712,6 +713,7 @@ MonoBehaviour:
   invulnerabilityDuration: 1
   isHurt: 0
   isDead: 0
+  isFrozen: 0
   knockbackForceX: 8
   knockbackForceY: 8
   jumpSFX: {fileID: 8300000, guid: a1689b09426117940ac8b17aff86324b, type: 3}
@@ -731,7 +733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vidaMaxima: 150
-  vidaActual: 125
+  vidaActual: 150
   cervezas: 0
   maxCervezas: 2
   controller: {fileID: 0}

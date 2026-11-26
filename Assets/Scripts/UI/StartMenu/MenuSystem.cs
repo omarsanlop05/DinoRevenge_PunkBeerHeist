@@ -10,6 +10,13 @@ public class MenuSystem : MonoBehaviour
         SceneManager.LoadScene("FirstGameplayScene");
     }
 
+    public void NextLevel()
+    {
+        Debug.Log("Starting game");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("ProceduralScene");
+    }
+
     public void Arcade()
     {
         Debug.Log("Starting arcade");

@@ -3,10 +3,10 @@ using UnityEngine;
 public class ProyectilHacha : MonoBehaviour
 {
     [Header("Configuración")]
-    public float velocidad = 8f;
+    public float velocidad = 12f;
     public float velocidadRotacion = 360f;
-    public float danio = 15f;
-    public float tiempoDeVida = 5f;
+    public float danio = 25f;
+    public float tiempoDeVida = 8f;
 
     private Rigidbody2D rb;
     private float direccion;
