@@ -30,15 +30,18 @@ public class GameManagerProcedural : MonoBehaviour
 
     [Header("Secret Rooms")]
     [SerializeField] private int maxSecretRooms = 2;
-    [Tooltip("Minimum hits received so far to be eligible, for rooms 3, 4 and 5 (in that order)")]
-    [SerializeField] private int[] secretMinHits = { 3, 5, 6 };
-    [Range(0f, 1f)] [SerializeField] private float secretChanceAtMinHits = 0.5f;
-    [Range(0f, 1f)] [SerializeField] private float secretChancePerExtraHit = 0.15f;
-    [Range(0f, 1f)] [SerializeField] private float secretMaxChance = 0.9f;
+    [Tooltip("Minimum hits received so far to be eligible, for rooms 3, 4 and 5 (in that order). " +
+             "Rooms are generated one room ahead, so room 3 is decided when entering room 2 (only room 1 was played)")]
+    [SerializeField] private int[] secretMinHits = { 0, 1, 2 };
+    [Tooltip("Testing only: every room 3-5 tries to get a secret room, ignoring hits and chance (maxSecretRooms still applies)")]
+    [SerializeField] private bool forceSecretRooms = false;
+    [Range(0f, 1f)] [SerializeField] private float secretChanceAtMinHits = 0.7f;
+    [Range(0f, 1f)] [SerializeField] private float secretChancePerExtraHit = 0.1f;
+    [Range(0f, 1f)] [SerializeField] private float secretMaxChance = 0.95f;
     [Tooltip("Chance multiplier applied once for every secret room already generated")]
-    [Range(0f, 1f)] [SerializeField] private float secretChanceAfterEach = 0.7f;
+    [Range(0f, 1f)] [SerializeField] private float secretChanceAfterEach = 0.85f;
     [Tooltip("Extra chance multiplier when the previous room already had a secret room")]
-    [Range(0f, 1f)] [SerializeField] private float secretChanceIfPreviousHad = 0.35f;
+    [Range(0f, 1f)] [SerializeField] private float secretChanceIfPreviousHad = 0.6f;
     private int secretRoomsCount;
 
     [Header("Music")]
@@ -148,6 +151,12 @@ public class GameManagerProcedural : MonoBehaviour
 
         int slot = roomNumber - 3;   // room 3 -> 0, room 4 -> 1, room 5 -> 2
         if (slot < 0 || slot >= secretMinHits.Length) return false;
+
+        if (forceSecretRooms)
+        {
+            Debug.Log($"[GameManager] Secret room check for room {roomNumber}: forced (testing)");
+            return true;
+        }
         if (PlayerScore.Instance == null) return false;
 
         int hits = PlayerScore.Instance.HitsReceived;

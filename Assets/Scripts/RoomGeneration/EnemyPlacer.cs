@@ -164,6 +164,7 @@ public class EnemyPlacer : MonoBehaviour
                 ? TrySampleAir(room, c, safeX, rng, out cand)
                 : TrySampleGround(room, surfaces, safeX, rng, out cand);
             if (!ok || TooClose(cand.local, result)) continue;
+            if (room.hasSecretRoom && room.secretEntrance.Contains(cand.local)) continue;   // keep the secret door clear
 
             EnemyKind kind = EnemyPlaceholder.Classify(cand.inAir, cand.surfaceKind, cand.onMainPath);
             if (perKind[(int)kind] >= maxPerKind) continue;   // max 2 of the same kind

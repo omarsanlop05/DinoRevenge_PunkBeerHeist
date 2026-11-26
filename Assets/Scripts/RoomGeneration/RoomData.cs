@@ -34,6 +34,7 @@ public class RoomData
     public CinemachineCamera cam;
     public RoomEntryTrigger entryTrigger;
     public bool hasSecretRoom;
+    public RectInt secretEntrance;   // local cells around the secret door (only valid when hasSecretRoom)
     public List<Surface> surfaces = new List<Surface>();   // every walkable surface, tagged
 
     // Celda mundo donde se pega el siguiente cuarto (esquina inferior izquierda = origen + (width, exitRow - nextEntryRow)).

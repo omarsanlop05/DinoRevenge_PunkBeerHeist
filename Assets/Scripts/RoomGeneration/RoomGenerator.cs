@@ -259,218 +259,463 @@ public void CarveInterior(GameObject instance, params Vector3[] worldSeeds)
 
         // Lógica del Cuarto Secreto insertada al final antes del return
         if (makeSecret)
-        data.hasSecretRoom = GenerateSecretRoom(c, origin, rng, data.root, data.cam, mainFloors);
+            data.hasSecretRoom = GenerateSecretRoom(c, data, rng);
 
         return data;
     }
 
 
-    // ---------- Secret room (hidden until the door is broken) ----------
+    // ---------- Secret room: a full-size room under the main one, hidden until the door is broken ----------
+    //
+    //  Entrance : one side wall of the main room is widened into a block of rock on the floor, and the breakable
+    //             door (destructibleDoorPrefab) is embedded in its face, always inside the room camera's frame.
+    //  Tunnel   : behind the door a short hall, a well with a 2-row step, and a tunnel sloping down in steps of
+    //             1 row (1-3 columns wide) that comes out on a ledge in the top of the secret room.
+    //  Room     : same size as a normal room (config.width x config.height), right under the main room, with the
+    //             organic shell of the cellular automaton. Platforms 2 rows apart go from the ledge down to the
+    //             floor (the last one is a rock step), and the beer is on a small pad on the floor. Every fall ends
+    //             on the floor, and the floor always leads back up.
+    //  Everything is planned and validated now, and carved only when the door breaks.
 
-private bool IsSolidRel(Vector3Int mainOrigin, Vector2Int rel)
-{
-    Vector3Int cell = mainOrigin + new Vector3Int(rel.x, rel.y, 0);
-    return groundTilemap.HasTile(cell) || (platformTilemap != null && platformTilemap.HasTile(cell));
-}
-
-private bool GenerateSecretRoom(RoomGenConfig c, Vector3Int mainOrigin, Random rng, Transform parent,
-                                CinemachineCamera mainCam, List<Surface> mainFloors)
-{
-    Vector3 cell = groundTilemap.layoutGrid.cellSize;
-    int minX = c.wallThickness + 3;                                   // keep the cave away from the side walls
-    int maxPit = c.width - c.wallThickness - c.ledgeLength - 2;       // keep the pit away from the exit door
-
-    for (int attempt = 0; attempt < 150; attempt++)
+    // Tiles to change when the secret room is revealed. null = empty cell.
+    private class SecretPlan
     {
-        if (mainFloors.Count == 0) return false;
+        public readonly Dictionary<Vector3Int, TileBase> ground = new Dictionary<Vector3Int, TileBase>();
+        public readonly Dictionary<Vector3Int, TileBase> platforms = new Dictionary<Vector3Int, TileBase>();
+        public Vector3Int beerCell;
+    }
 
-        Surface f = mainFloors[rng.Next(mainFloors.Count)];
-        if (f.y > 10) continue;
+    private void PlanSolid(SecretPlan plan, Vector3Int cell, TileBase tile)
+    {
+        plan.ground[cell] = tile;
+        if (platformTilemap != null) plan.platforms[cell] = null;
+    }
 
-        int lo = f.xMin + 3;
-        int hi = Mathf.Min(f.xMax - 1, maxPit);
-        if (lo > hi) continue;
+    private void PlanClear(SecretPlan plan, Vector3Int cell)
+    {
+        plan.ground[cell] = null;
+        if (platformTilemap != null) plan.platforms[cell] = null;
+    }
 
-        int pr = rng.Next(lo, hi + 1);   // right-most pit column; pr + 1 is the floor tile the player walks from
-        int fy = f.y;                    // floor surface row
+    private void PlanPlatform(SecretPlan plan, Vector3Int cell, TileBase tile)
+    {
+        if (platformTilemap != null) { plan.platforms[cell] = tile; plan.ground[cell] = null; }
+        else plan.ground[cell] = tile;
+    }
 
-        // Visible entrance: 3 one-tile steps going left, door in the left wall at the bottom
-        var entrance = new List<Vector2Int>();
-        for (int k = 0; k < 3; k++)
-            for (int y = fy - k; y <= fy; y++)
-                entrance.Add(new Vector2Int(pr - k, y));
-
-        int doorCol = pr - 3;
-        var doorCells = new List<Vector2Int> { new Vector2Int(doorCol, fy - 2), new Vector2Int(doorCol, fy - 1) };
-
-        // Hidden route: always heading left, going down 1-2 tiles per box. Rectangles are (x, y, width, height).
-        var segments = new List<RectInt>();
-        int x = doorCol;
-        int feet = fy - 2;                                    // row the player stands on
-
-        const int tunnelLen = 3;
-        segments.Add(new RectInt(x - tunnelLen, feet, tunnelLen, 2));   // tunnel, 2 tall under a 1-tile roof
-        x -= tunnelLen;
-
-        int count = rng.Next(4, 8);                           // random route length = random beer spot
-        for (int i = 0; i < count; i++)
-        {
-            bool last = i == count - 1;
-            int w = last ? rng.Next(4, 6) : rng.Next(2, 5);
-            if (x - w < minX) break;
-
-            feet -= rng.Next(1, 3);                           // drop of 1 or 2: always climbable on the way back
-            segments.Add(new RectInt(x - w, feet, w, last ? 5 : 4));
-            x -= w;
-        }
-        if (segments.Count < 3) continue;
-
-        RectInt lastSeg = segments[segments.Count - 1];
-        Vector2Int beerRel = new Vector2Int(lastSeg.x + lastSeg.width / 2, lastSeg.y);
-
-        var hidden = new HashSet<Vector2Int>();
-        foreach (var s in segments)
-            for (int sx = s.xMin; sx < s.xMax; sx++)
-                for (int sy = s.yMin; sy < s.yMax; sy++)
-                    hidden.Add(new Vector2Int(sx, sy));
-
-        // ---- Validation: everything we carve must be solid now, with a solid margin around the hidden part ----
-        bool valid = true;
-        foreach (var e in entrance) if (!IsSolidRel(mainOrigin, e)) { valid = false; break; }
-        if (!valid) continue;
-        foreach (var d in doorCells) if (!IsSolidRel(mainOrigin, d)) { valid = false; break; }
-        if (!valid) continue;
-        foreach (var hc in hidden) if (!IsSolidRel(mainOrigin, hc)) { valid = false; break; }
-        if (!valid) continue;
-
-        // The player must be able to walk in: a floor tile at pr + 1 and free air above the whole pit
-        if (!IsSolidRel(mainOrigin, new Vector2Int(pr + 1, fy))) continue;
-        for (int k = -1; k < 3 && valid; k++)
-            for (int y = fy + 1; y <= fy + 3; y++)
-                if (IsSolidRel(mainOrigin, new Vector2Int(pr - k, y))) { valid = false; break; }
-        if (!valid) continue;
-
-        var allowed = new HashSet<Vector2Int>(entrance);
-        allowed.UnionWith(doorCells);
-        allowed.UnionWith(hidden);
-
-        foreach (var hc in hidden)
-        {
-            for (int dx = -1; dx <= 1 && valid; dx++)
-            {
-                for (int dy = -1; dy <= 1 && valid; dy++)
-                {
-                    var n = new Vector2Int(hc.x + dx, hc.y + dy);
-                    if (allowed.Contains(n)) continue;
-                    if (!IsSolidRel(mainOrigin, n)) valid = false;   // would break into another cavity
-                }
-            }
-            if (!valid) break;
-        }
-        if (!valid) continue;
-
-        // ---- Paint the visible part now ----
-        foreach (var e in entrance) ClearCell(mainOrigin + new Vector3Int(e.x, e.y, 0));
-        foreach (var d in doorCells) ClearCell(mainOrigin + new Vector3Int(d.x, d.y, 0));
-
-        var revealCells = new List<Vector3Int>();
-        int bx0 = int.MaxValue, bx1 = int.MinValue, by0 = int.MaxValue, by1 = int.MinValue;
-        foreach (var hc in hidden)
-        {
-            revealCells.Add(mainOrigin + new Vector3Int(hc.x, hc.y, 0));
-            bx0 = Mathf.Min(bx0, hc.x); bx1 = Mathf.Max(bx1, hc.x);
-            by0 = Mathf.Min(by0, hc.y); by1 = Mathf.Max(by1, hc.y);
-        }
-        Vector3Int beerCell = mainOrigin + new Vector3Int(beerRel.x, beerRel.y, 0);
-
-        // Cameras: a static camera framing the whole cave, and triggers that switch to it and back
-        float cw = (bx1 - bx0 + 1) * cell.x;
-        float ch = (by1 - by0 + 1) * cell.y;
-        Vector3 center = groundTilemap.CellToWorld(mainOrigin + new Vector3Int(bx0, by0, 0))
-                         + new Vector3(cw * 0.5f, ch * 0.5f, 0f);
+    // Part of a room (local cell coordinates) that its static camera shows, shrunk by 'margin' tiles.
+    // The room camera sits in the room center; with orthographic size 10.125 at 16:9 it shows 20.25 of the 24 rows,
+    // so the lowest ~1.9 rows (where most floors are) are out of frame.
+    public Rect VisibleLocalRect(RoomGenConfig c, float margin = 0.5f)
+    {
+        Vector3 cell = groundTilemap.layoutGrid.cellSize;
+        float ortho = roomCameraOrthoSize;   // CreateCamera applies this same size to every room camera
         float aspect = Camera.main != null ? Camera.main.aspect : 16f / 9f;
-        float ortho = Mathf.Max(ch * 0.5f, cw * 0.5f / aspect) + 1.5f;
+        float halfH = ortho / cell.y;
+        float halfW = ortho * aspect / cell.x;
+        float cx = c.width * 0.5f, cy = c.height * 0.5f;
+        return Rect.MinMaxRect(Mathf.Max(0f, cx - halfW) + margin, Mathf.Max(0f, cy - halfH) + margin,
+                               Mathf.Min(c.width, cx + halfW) - margin, Mathf.Min(c.height, cy + halfH) - margin);
+    }
 
-        CinemachineCamera secretCam = CreateSecretCamera(center, ortho, parent, $"SecretCam_{parent.name}");
-        CreateSecretZone(parent, "SecretCamEnter", mainOrigin, segments, secretCam, mainCam);
-        CreateSecretZone(parent, "SecretCamExit", mainOrigin,
-                         new List<RectInt> { new RectInt(pr - 2, fy - 2, 3, 6) }, mainCam, secretCam);
+    // Entrance block: the side wall is widened into a block of rock on the floor, u = 0..6 from the wall into the
+    // room, rows fy+1..fy+4. The door is embedded in its face (u = 6, 3 rows), with 1 row of rock over it.
+    private const int SecretBlockWidth = 7;
+    private const int SecretBlockHeight = 4;
+    private const int SecretDoorRows = 3;
+    // Feet row where the tunnel comes out into the secret room, in main-room coordinates (secret room row 18)
+    private const int SecretTunnelExitFeet = -6;
+    // Platforms of the secret room: 2 rows apart (the player jumps ~3.3) with 2 empty columns between them
+    private const int SecretStep = 2;
+    private const int SecretGap = 2;
 
-        // Door: the cave stays solid until it is broken
+    private bool GenerateSecretRoom(RoomGenConfig c, RoomData data, Random rng)
+    {
+        Vector3Int secretOrigin = data.originCell + new Vector3Int(0, -c.height, 0);   // right under the main room
+
+        // The space under the room must still be untouched world block
+        for (int x = 0; x < c.width; x++)
+            for (int y = 0; y < c.height; y++)
+                if (!IsSolid(secretOrigin + new Vector3Int(x, y, 0)))
+                {
+                    Debug.LogWarning("[RoomGenerator] Secret room skipped: the space under the room is already carved.");
+                    return false;
+                }
+
+        Rect vis = VisibleLocalRect(c, 0.1f);
+        bool firstLeft = rng.Next(2) == 0;
+        for (int k = 0; k < 2; k++)
+        {
+            bool left = k == 0 ? firstLeft : !firstLeft;
+            if (!CanUseSecretSide(c, data, left, vis, out int fy)) continue;
+            for (int attempt = 0; attempt < 8; attempt++)
+                if (TryBuildSecretRoom(c, data, rng, left, fy, vis)) return true;
+        }
+
+        Debug.LogWarning("[RoomGenerator] Secret room skipped: neither side wall has room for the entrance.");
+        return false;
+    }
+
+    // Local x of column u (u = 0 touches the side wall, grows into the room)
+    private static int SecretX(RoomGenConfig c, bool left, int u) =>
+        left ? c.wallThickness + u : c.width - 1 - c.wallThickness - u;
+
+    // Can the side wall be widened into the entrance block without getting in the way of the room?
+    private bool CanUseSecretSide(RoomGenConfig c, RoomData data, bool left, Rect vis, out int fy)
+    {
+        fy = -1;
+        const int T = SecretBlockWidth, H = SecretBlockHeight;
+        int xa = Mathf.Min(SecretX(c, left, 0), SecretX(c, left, T + 2));
+        int xb = Mathf.Max(SecretX(c, left, 0), SecretX(c, left, T + 2));
+
+        // One flat floor from the wall to 3 columns past the block (room to stand in front of the door)
+        bool found = false;
+        foreach (Surface s in data.surfaces)
+            if (s.kind == SurfaceKind.Floor && s.xMin <= xa && s.xMax >= xb) { fy = s.y; found = true; break; }
+        if (!found) return false;
+
+        // The door of the room on that side must stay clear (block + 3 rows over it)
+        int doorRow = left ? data.entryRow : data.exitRow;
+        if (doorRow <= fy + H + 3 && doorRow + c.doorHeight - 1 >= fy + 1) return false;
+
+        // Nothing else (pads, platforms, pillars) over the block, so no route needs that space
+        int bxa = Mathf.Min(SecretX(c, left, 0), SecretX(c, left, T)), bxb = Mathf.Max(SecretX(c, left, 0), SecretX(c, left, T));
+        foreach (Surface s in data.surfaces)
+        {
+            if (s.kind == SurfaceKind.Floor) continue;
+            if (s.y >= fy + 1 && s.y <= fy + H + 3 && s.xMin <= bxb && s.xMax >= bxa) return false;
+        }
+
+        // Free space in front of the door for the player
+        Vector3Int o = data.originCell;
+        for (int u = T; u <= T + 2; u++)
+            for (int y = fy + 1; y <= fy + SecretDoorRows; y++)
+                if (IsSolid(o + new Vector3Int(SecretX(c, left, u), y, 0))) return false;
+
+        // The whole door inside the camera frame
+        int doorX = SecretX(c, left, T - 1);
+        return doorX >= vis.xMin && doorX + 1 <= vis.xMax && fy + 1 >= vis.yMin && fy + 1 + SecretDoorRows <= vis.yMax;
+    }
+
+    private bool TryBuildSecretRoom(RoomGenConfig c, RoomData data, Random rng, bool left, int fy, Rect vis)
+    {
+        const int T = SecretBlockWidth, H = SecretBlockHeight, E = SecretTunnelExitFeet;
+        Vector3Int mo = data.originCell;
+        Vector3Int so = mo + new Vector3Int(0, -c.height, 0);
+        Transform parent = data.root;
+        int dir = left ? 1 : -1;                     // +u in x
+        int floorTop = c.floorThickness - 1;         // secret room floor surface (its own coordinates)
+
+        int X(int u) => SecretX(c, left, u);
+        bool InBlock(int x, int y)
+        {
+            int u = left ? x - c.wallThickness : c.width - 1 - c.wallThickness - x;
+            return u >= 0 && u < T && y >= fy + 1 && y <= fy + H;
+        }
+
+        // ---------- 1. Tunnel, in main-room cells (y < 0 is the secret room) ----------
+        var carved = new HashSet<Vector2Int>();
+        void Carve(int u, int y) => carved.Add(new Vector2Int(X(u), y));
+
+        // Door hole and hall inside the block, at floor level
+        for (int u = 4; u <= T - 1; u++)
+            for (int y = fy + 1; y <= fy + SecretDoorRows; y++) Carve(u, y);
+        // Well against the wall: a 2-wide step 2 rows down (u 0-1) and a 2-wide drop to the tunnel (u 2-3)
+        for (int u = 0; u <= 1; u++)
+            for (int y = fy - 1; y <= fy + SecretDoorRows; y++) Carve(u, y);
+        for (int u = 2; u <= 3; u++)
+            for (int y = fy - 3; y <= fy + SecretDoorRows; y++) Carve(u, y);
+
+        // Sloped tunnel going back under the hall and the room floor: steps of 1 row, 1-3 columns wide (random,
+        // narrower when the floor is high so the tunnel still leaves room for the platforms), 3 rows high with a
+        // random extra row here and there so the ceiling is not a perfect stair
+        int levels = fy - 3 - E + 1;
+        int maxCols = c.width - 2 * c.wallThickness - 13 - SecretGap;   // the ledge and one platform must fit after it
+        if (levels > maxCols) return false;
+        var widths = new int[levels];
+        int total = 0;
+        for (int i = 0; i < levels; i++) { widths[i] = rng.Next(2, 4); total += widths[i]; }
+        for (int w = 3; w > 1 && total > maxCols; w--)
+            for (int i = 0; i < levels && total > maxCols; i++)
+                if (widths[i] == w) { widths[i]--; total--; }
+
+        var tunnelFloors = new List<Surface>();      // secret-room coordinates, used to keep platforms away
+        int uu = 4;
+        for (int i = 0; i < levels; i++)
+        {
+            int feet = fy - 3 - i;
+            for (int k = 0; k < widths[i]; k++, uu++)
+            {
+                int top = feet + 2;
+                if (feet + 3 <= fy - 1 && rng.NextDouble() < 0.35) top++;
+                for (int y = feet; y <= top; y++) Carve(uu, y);
+                tunnelFloors.Add(new Surface { xMin = X(uu), xMax = X(uu), y = feet - 1 + c.height });
+            }
+        }
+        int uEnd = uu - 1;                            // last tunnel column (its feet are at E)
+
+        // Ledge where the tunnel comes out, and the cells in front of the opening (not walled in)
+        var opening = new HashSet<Vector2Int>();
+        for (int u = uEnd + 1; u <= uEnd + 3; u++)
+            for (int y = E; y <= E + 3; y++) opening.Add(new Vector2Int(X(u), y));
+
+        // ---------- 2. Validate the main room part and find the rock that walls the tunnel in ----------
+        var forced = new HashSet<Vector2Int>();
+        foreach (Vector2Int cell in carved)
+        {
+            if (cell.y >= 0 && !InBlock(cell.x, cell.y) && !IsSolid(mo + new Vector3Int(cell.x, cell.y, 0)))
+                return false;                         // would open a hole into the main room
+            if (cell.x < 1 || cell.x > c.width - 2) return false;
+
+            for (int dx = -1; dx <= 1; dx++)
+                for (int dy = -1; dy <= 1; dy++)
+                {
+                    var n = new Vector2Int(cell.x + dx, cell.y + dy);
+                    if (carved.Contains(n) || opening.Contains(n)) continue;
+                    if (n.x == X(T)) continue;        // in front of the door: the room itself
+                    if (n.y >= 0)
+                    {
+                        if (!InBlock(n.x, n.y) && !IsSolid(mo + new Vector3Int(n.x, n.y, 0))) return false;
+                    }
+                    else forced.Add(n);               // inside the secret room: walled in with rock
+                }
+        }
+
+        // ---------- 3. Platforms from the tunnel ledge down to the floor ----------
+        var ledge = new Surface
+        {
+            xMin = Mathf.Min(X(uEnd + 1), X(uEnd + 3)), xMax = Mathf.Max(X(uEnd + 1), X(uEnd + 3)),
+            y = E - 1 + c.height
+        };
+        List<Surface> ladder = PlanSecretLadder(c, rng, ledge, dir, tunnelFloors);
+        if (ladder == null) return false;
+        Surface block = ladder[ladder.Count - 1];    // the last one stands on the floor as a rock step
+
+        // Beer on a small pad on the floor, inside the camera frame, away from the step
+        int pxLo = Mathf.Max(c.wallThickness + 3, Mathf.CeilToInt(vis.xMin));
+        int pxHi = Mathf.Min(c.width - c.wallThickness - 4, Mathf.FloorToInt(vis.xMax) - 1) - 2;
+        Surface pad = default;
+        bool padOk = false;
+        for (int attempt = 0; attempt < 50 && !padOk && pxLo <= pxHi; attempt++)
+        {
+            int px = rng.Next(pxLo, pxHi + 1);
+            pad = new Surface { xMin = px, xMax = px + 2, y = floorTop + SecretStep };
+            if (pad.xMin <= block.xMax + 2 && pad.xMax >= block.xMin - 2) continue;
+            padOk = true;
+            foreach (var s in ladder)
+                if (s.xMin - 1 <= pad.xMax && pad.xMin <= s.xMax + 1 && s.y - pad.y < c.playerHeight + 2) padOk = false;
+            foreach (var s in tunnelFloors)
+                if (s.xMin - 1 <= pad.xMax && pad.xMin <= s.xMax + 1 && s.y - pad.y < c.playerHeight + 2) padOk = false;
+        }
+        if (!padOk) return false;
+
+        // ---------- 4. Everything is valid: paint the entrance block now, plan the rest ----------
+        for (int u = 0; u < T; u++)
+            for (int y = fy + 1; y <= fy + H; y++)
+            {
+                bool doorHole = u == T - 1 && y <= fy + SecretDoorRows;
+                Vector3Int cell = mo + new Vector3Int(X(u), y, 0);
+                groundTilemap.SetTile(cell, doorHole ? null : c.solidTile);
+                if (platformTilemap != null) platformTilemap.SetTile(cell, null);
+            }
+
+        var plan = new SecretPlan();
+        Vector3Int S(int x, int y) => so + new Vector3Int(x, y, 0);
+
+        // Room shell: organic edges from the cellular automaton, closed, solid floor
+        int[,] grid = BuildOrganicShellGrid(c, 0, 0, rng, false, false);
+        for (int x = 0; x < c.width; x++)
+            for (int y = 0; y < c.height; y++)
+            {
+                if (grid[x, y] == 1 || y <= floorTop) PlanSolid(plan, S(x, y), c.solidTile);
+                else PlanClear(plan, S(x, y));
+            }
+
+        foreach (Vector2Int n in forced) PlanSolid(plan, mo + new Vector3Int(n.x, n.y, 0), c.solidTile);
+        foreach (Vector2Int cell in carved)
+        {
+            if (cell.x == X(T - 1) && cell.y >= fy + 1 && cell.y <= fy + SecretDoorRows) continue;   // door hole: already empty
+            PlanClear(plan, mo + new Vector3Int(cell.x, cell.y, 0));
+        }
+        foreach (Vector2Int cell in opening) PlanClear(plan, mo + new Vector3Int(cell.x, cell.y, 0));
+        for (int x = ledge.xMin; x <= ledge.xMax; x++) PlanSolid(plan, S(x, ledge.y), c.solidTile);
+
+        foreach (Surface s in ladder)
+        {
+            bool isBlock = s.Equals(block);
+            for (int x = s.xMin; x <= s.xMax; x++)
+            {
+                for (int y = s.y + 1; y <= s.y + c.playerHeight + 1; y++) PlanClear(plan, S(x, y));
+                if (isBlock)
+                    for (int y = floorTop + 1; y <= s.y; y++) PlanSolid(plan, S(x, y), c.solidTile);
+                else
+                    PlanPlatform(plan, S(x, s.y), c.platformTile);
+            }
+        }
+
+        for (int x = pad.xMin; x <= pad.xMax; x++)
+        {
+            for (int y = 0; y <= pad.y; y++) PlanSolid(plan, S(x, y), c.solidTile);
+            for (int y = pad.y + 1; y <= pad.y + c.playerHeight + 1; y++) PlanClear(plan, S(x, y));
+        }
+        plan.beerCell = S(pad.xMin + 1, pad.y + 1);
+
+        // ---------- 5. Cameras: the secret camera inside, the main one again back in the entrance ----------
+        Vector3 cellSize = groundTilemap.layoutGrid.cellSize;
+        CinemachineCamera secretCam = CreateCamera(c, so, parent, false);
+        secretCam.name = $"SecretCam_{parent.name}";
+
+        Vector3 secretCenter = groundTilemap.CellToWorld(so)
+                             + new Vector3(c.width * cellSize.x * 0.5f, c.height * cellSize.y * 0.5f, 0f);
+        CreateSecretChanger(parent, "SecretCamEnter", secretCenter,
+                            new Vector2(c.width * cellSize.x, c.height * cellSize.y), secretCam, data.cam);
+
+        // Exit zone: the well and the hall behind the door
+        int zx = Mathf.Min(X(0), X(T - 1)), zy = fy - 3, zw = T, zh = SecretDoorRows + 4;
+        Vector3 exitCenter = groundTilemap.CellToWorld(mo + new Vector3Int(zx, zy, 0))
+                           + new Vector3(zw * cellSize.x * 0.5f, zh * cellSize.y * 0.5f, 0f);
+        CreateSecretChanger(parent, "SecretCamExit", exitCenter,
+                            new Vector2(zw * cellSize.x, zh * cellSize.y), data.cam, secretCam);
+
+        // Enemies must not be placed on the block or in front of the door
+        data.secretEntrance = new RectInt(Mathf.Min(X(0), X(T + 2)), fy + 1, T + 3, H + 3);
+
+        // ---------- 6. Door, filling its hole in the block ----------
         if (c.destructibleDoorPrefab != null)
         {
-            Vector3 doorPos = groundTilemap.GetCellCenterWorld(mainOrigin + new Vector3Int(doorCol, fy - 2, 0))
-                              - new Vector3(0f, cell.y * 0.5f, 0f);
-            GameObject door = Instantiate(c.destructibleDoorPrefab, doorPos, Quaternion.identity, parent);
+            float holeX = groundTilemap.CellToWorld(mo + new Vector3Int(X(T - 1), 0, 0)).x + cellSize.x * 0.5f;
+            float floorTopY = groundTilemap.CellToWorld(mo + new Vector3Int(0, fy + 1, 0)).y;
+
+            GameObject doorGO = Instantiate(c.destructibleDoorPrefab, new Vector3(holeX, floorTopY, 0f),
+                                            Quaternion.identity, parent);
+            FitToSize(doorGO, cellSize.x, SecretDoorRows * cellSize.y);
+            PlaceOnFloor(doorGO, holeX, floorTopY);
 
             var revealGO = new GameObject("SecretReveal");
             revealGO.transform.SetParent(parent, false);
-            revealGO.AddComponent<SecretRoomReveal>().Init(door, () => RevealSecretRoom(revealCells, beerCell, parent));
+            revealGO.AddComponent<SecretRoomReveal>().Init(doorGO, () => RevealSecretRoom(plan, parent));
         }
         else
         {
             Debug.LogWarning("[RoomGenerator] destructibleDoorPrefab is not assigned: the secret room is revealed immediately.");
-            RevealSecretRoom(revealCells, beerCell, parent);
+            RevealSecretRoom(plan, parent);
         }
 
-        Debug.Log($"[RoomGenerator] Secret room planned: pit x={pr}, floor y={fy}, {segments.Count - 1} boxes, beer at {beerRel}");
+        Debug.Log($"[RoomGenerator] Secret room planned under {parent.name}: door in the {(left ? "left" : "right")} " +
+                  $"wall block at x={X(T - 1)}, floor y={fy}, tunnel to x={X(uEnd)}, {ladder.Count} platforms, beer at {plan.beerCell}");
         return true;
     }
 
-    Debug.LogWarning("[RoomGenerator] Secret room skipped: no valid place to hide it in this room.");
-    return false;
-}
-
-// Called when the door is broken: carve the tunnel and cave, then drop the beer at the end
-private void RevealSecretRoom(List<Vector3Int> cells, Vector3Int beerCell, Transform parent)
-{
-    foreach (var cellPos in cells) ClearCell(cellPos);
-    PlayerScore.Instance?.RegisterSecretRoomFound();
-
-    if (config.beerPrefab != null)
-        Instantiate(config.beerPrefab, groundTilemap.GetCellCenterWorld(beerCell), Quaternion.identity, parent);
-    else
-        Debug.LogWarning("[RoomGenerator] RoomGenConfig.beerPrefab is not assigned: the secret room has no beer.");
-}
-
-private CinemachineCamera CreateSecretCamera(Vector3 center, float orthoSize, Transform parent, string camName)
-{
-    var go = new GameObject(camName);
-    go.transform.SetParent(parent, false);
-    go.transform.position = new Vector3(center.x, center.y, -10f);
-
-    var cam = go.AddComponent<CinemachineCamera>();
-    var lens = cam.Lens;
-    lens.OrthographicSize = orthoSize;
-    cam.Lens = lens;
-    cam.Priority = 0;
-    return cam;
-}
-
-// One trigger object made of several boxes (each rect is relative to mainOrigin, in tiles)
-private void CreateSecretZone(Transform parent, string objName, Vector3Int mainOrigin, List<RectInt> rects,
-                              CinemachineCamera zone, CinemachineCamera previous)
-{
-    Vector3 cell = groundTilemap.layoutGrid.cellSize;
-
-    var go = new GameObject(objName);
-    go.transform.SetParent(parent, false);
-    go.transform.position = groundTilemap.CellToWorld(mainOrigin);
-
-    foreach (var r in rects)
+    // Platforms from the tunnel ledge down to the secret room floor, built top-down so the top one always links
+    // to the ledge. Each one is 2 rows under the previous with 2 empty columns between them; at the room edge
+    // the chain turns around right next to the previous one, under the free columns before it, so the jump up
+    // never hits a platform. The last one becomes a rock step on the floor. Returns null if it does not fit.
+    private List<Surface> PlanSecretLadder(RoomGenConfig c, Random rng, Surface ledge, int dir, List<Surface> fixedSurfaces)
     {
-        var box = go.AddComponent<BoxCollider2D>();
-        box.isTrigger = true;
-        box.size = new Vector2(r.width * cell.x, r.height * cell.y);
-        box.offset = new Vector2((r.x + r.width * 0.5f) * cell.x, (r.y + r.height * 0.5f) * cell.y);
+        int floorTop = c.floorThickness - 1;
+        int xLo = c.wallThickness + 3, xHi = c.width - c.wallThickness - 4;
+        int minSep = c.playerHeight + 2;             // rows between two platforms one over the other
+
+        for (int attempt = 0; attempt < 40; attempt++)
+        {
+            var list = new List<Surface>();
+            Surface prev = ledge;
+            int d = dir;
+            bool ok = true;
+
+            for (int y = ledge.y - SecretStep; ok; y -= SecretStep)
+            {
+                bool isBlock = y <= floorTop + SecretStep;
+                if (isBlock) y = Mathf.Max(y, floorTop + 1);
+                int len = rng.Next(3, 6);
+
+                Surface s = d > 0
+                    ? new Surface { xMin = prev.xMax + 1 + SecretGap, xMax = prev.xMax + SecretGap + len, y = y }
+                    : new Surface { xMin = prev.xMin - SecretGap - len, xMax = prev.xMin - 1 - SecretGap, y = y };
+                if (s.xMin < xLo || s.xMax > xHi)
+                {
+                    if (list.Count == 0) { ok = false; break; }   // the first one has to move away from the tunnel
+                    d = -d;
+                    s = d > 0
+                        ? new Surface { xMin = prev.xMax + 1, xMax = prev.xMax + len, y = y }
+                        : new Surface { xMin = prev.xMin - len, xMax = prev.xMin - 1, y = y };
+                    if (s.xMin < xLo || s.xMax > xHi) { ok = false; break; }
+                }
+
+                list.Add(s);
+                prev = s;
+                if (isBlock) break;
+            }
+            if (!ok) continue;
+
+            // Validation: platforms over each other need head room, and every jump up needs a free window
+            var all = new List<Surface>(fixedSurfaces) { ledge };
+            all.AddRange(list);
+            int fixedCount = fixedSurfaces.Count + 1;  // indices < fixedCount are the tunnel floors and the ledge
+
+            for (int i = fixedCount; i < all.Count && ok; i++)
+            {
+                for (int j = 0; j < all.Count && ok; j++)
+                {
+                    if (j == i || (j >= fixedCount && j < i)) continue;   // each pair of platforms once
+                    bool consecutive = j == i - 1 || j == i + 1;          // ledge -> first, and each next one
+                    if (consecutive) continue;
+                    Surface a = all[i], b = all[j];
+                    bool overlap = a.xMin - 1 <= b.xMax && b.xMin - 1 <= a.xMax;
+                    if (overlap && Mathf.Abs(a.y - b.y) < minSep) ok = false;
+                }
+
+                // Jump window from this platform up to the previous one (or the ledge)
+                Surface lower = all[i], upper = all[i - 1];
+                int wxa = upper.xMin > lower.xMax ? lower.xMax - 1 : upper.xMax;
+                int wxb = upper.xMin > lower.xMax ? upper.xMin : lower.xMin + 1;
+                for (int j = 0; j < all.Count && ok; j++)
+                {
+                    if (j == i || j == i - 1) continue;
+                    Surface o = all[j];
+                    if (o.y > lower.y && o.y <= upper.y + c.playerHeight + 1 && o.xMin <= wxb && o.xMax >= wxa) ok = false;
+                }
+            }
+
+            if (ok) return list;
+        }
+        return null;
     }
 
-    var changer = go.AddComponent<CameraChanger>();
-    changer.zoneCamera = zone;
-    changer.previousCamera = previous;
-    changer.awardsRoomPoints = false;
-    changer.freezePlayerOnSwitch = false;
-}
+    // Scales an instance so its sprite measures width x height (world units)
+    private static void FitToSize(GameObject go, float width, float height)
+    {
+        var r = go.GetComponentInChildren<Renderer>();
+        if (r == null) return;
+        Vector3 size = r.bounds.size;
+        if (size.x <= 0f || size.y <= 0f) return;
+        Vector3 s = go.transform.localScale;
+        go.transform.localScale = new Vector3(s.x * width / size.x, s.y * height / size.y, s.z);
+    }
+
+    // Moves the door so its sprite is centered on x and its bottom sits on the floor surface
+    private static void PlaceOnFloor(GameObject go, float centerX, float floorY)
+    {
+        var r = go.GetComponentInChildren<Renderer>();
+        if (r == null) return;
+        Bounds b = r.bounds;
+        go.transform.position += new Vector3(centerX - b.center.x, floorY - b.min.y, 0f);
+    }
+
+    // Called when the door is broken: carve the shaft and the room, then drop the beer
+    private void RevealSecretRoom(SecretPlan plan, Transform parent)
+    {
+        foreach (var kv in plan.ground) groundTilemap.SetTile(kv.Key, kv.Value);
+        if (platformTilemap != null)
+            foreach (var kv in plan.platforms) platformTilemap.SetTile(kv.Key, kv.Value);
+
+        PlayerScore.Instance?.RegisterSecretRoomFound();
+
+        if (config.beerPrefab != null)
+            Instantiate(config.beerPrefab, groundTilemap.GetCellCenterWorld(plan.beerCell), Quaternion.identity, parent);
+        else
+            Debug.LogWarning("[RoomGenerator] RoomGenConfig.beerPrefab is not assigned: the secret room has no beer.");
+    }
 
     private void ClearCell(Vector3Int cell)
     {
@@ -525,6 +770,29 @@ private void CreateSecretZone(Transform parent, string objName, Vector3Int mainO
     }
 
     private void PaintOrganicShell(RoomGenConfig c, Vector3Int origin, int entryRow, int exitRow, Random rng, bool hasEntryDoor = true)
+    {
+        int[,] grid = BuildOrganicShellGrid(c, entryRow, exitRow, rng, hasEntryDoor, true);
+
+        // Paso D: Renderizar en el Tilemap
+        int carved = 0;
+        for (int x = 0; x < c.width; x++)
+        {
+            for (int y = 0; y < c.height; y++)
+            {
+                 Vector3Int cell = origin + new Vector3Int(x, y, 0);
+                bool solid = grid[x, y] == 1;
+                groundTilemap.SetTile(cell, solid ? c.solidTile : null);
+                if (!solid) carved++;
+            }
+        }
+
+        Debug.Log($"[RoomGenerator] Room shell at {origin}: {carved} cells carved");
+    }
+
+    // Steps A-C of the shell (noise + cellular automaton + door openings), without painting.
+    // 1 = solid, 0 = empty. The secret room uses it with both doors closed.
+    private int[,] BuildOrganicShellGrid(RoomGenConfig c, int entryRow, int exitRow, Random rng,
+                                         bool hasEntryDoor, bool hasExitDoor)
     {
         int[,] grid = new int[c.width, c.height];
 
@@ -591,27 +859,16 @@ private void CreateSecretZone(Transform parent, string objName, Vector3Int mainO
             }
         }
         
-        int exitTop = Mathf.Min(exitRow + c.doorHeight, c.height);
-        for (int y = exitRow; y < exitTop; y++)
+        if (hasExitDoor)
         {
-            for (int x = c.width - c.wallThickness - 2; x < c.width; x++) grid[x, y] = 0;
-        }
-
-
-        // Paso D: Renderizar en el Tilemap
-        int carved = 0;
-        for (int x = 0; x < c.width; x++)
-        {
-            for (int y = 0; y < c.height; y++)
+            int exitTop = Mathf.Min(exitRow + c.doorHeight, c.height);
+            for (int y = exitRow; y < exitTop; y++)
             {
-                 Vector3Int cell = origin + new Vector3Int(x, y, 0);
-                bool solid = grid[x, y] == 1;
-                groundTilemap.SetTile(cell, solid ? c.solidTile : null);
-                if (!solid) carved++;
+                for (int x = c.width - c.wallThickness - 2; x < c.width; x++) grid[x, y] = 0;
             }
         }
 
-        Debug.Log($"[RoomGenerator] Room shell at {origin}: {carved} cells carved");
+        return grid;
     }
 
     // Método auxiliar de Autómata Celular (Vecindario de Moore)
@@ -973,11 +1230,13 @@ private void CreateSecretZone(Transform parent, string objName, Vector3Int mainO
             camGO.transform.SetParent(parent, false);
             camGO.transform.position = center;
             cam = camGO.AddComponent<CinemachineCamera>();
-
-            var lens = cam.Lens;
-            lens.OrthographicSize = roomCameraOrthoSize;
-            cam.Lens = lens;
         }
+
+        // Always use the RoomGenerator value, also with the prefab (its own lens size is ignored),
+        // so the camera size is set in one place only
+        var lens = cam.Lens;
+        lens.OrthographicSize = roomCameraOrthoSize;
+        cam.Lens = lens;
 
         cam.name = $"RoomCam_{parent.name}";
         cam.Priority = isFirst ? 10 : 0;
