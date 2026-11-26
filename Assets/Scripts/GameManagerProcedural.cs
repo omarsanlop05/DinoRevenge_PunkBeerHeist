@@ -176,12 +176,9 @@ public class GameManagerProcedural : MonoBehaviour
         if (enemyPlacer != null)
             enemyPlacer.PopulateRoom(data, baseSeed + index * 7919 + 101);
 
-        // Art pass: from plants (first room) to neon (last room before the hallway)
+        // Art pass: from plants (first room) to only neon (last rooms before the hallway, see RoomDecorationSet)
         if (decorator != null)
-        {
-            float neonRatio = totalRooms > 1 ? index / (float)(totalRooms - 1) : 1f;
-            decorator.DecorateRoom(data, neonRatio, baseSeed + index * 104729 + 17);
-        }
+            decorator.DecorateRoom(data, totalRooms, baseSeed + index * 104729 + 17);
 
         Debug.Log($"[GameManager] Room {index} generated (multiplier {multiplier:F2})");
         if (rooms.Count == totalRooms)

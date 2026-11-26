@@ -4,14 +4,18 @@ using Random = System.Random;
 
 // Art pass of the procedural rooms: plants stuck to the floor, ceilings and walls, and neon signs in the open areas.
 // The run goes from a cave full of plants to a neon city: neonRatio 0 (first room) = only plants,
-// 1 (last room before the hallway) = only neon, and the rooms in between mix both in that proportion.
-// Secret rooms always get neon. Everything is only visual: no colliders, nothing the player touches.
+// 1 (the last RoomDecorationSet.neonOnlyRoomsAtEnd rooms) = only neon, and the rooms in between mix both in that
+// proportion. Secret rooms always get neon. Neon signs are spread over the whole run so they repeat as little as
+// possible. Everything is only visual: no colliders, nothing the player touches.
 public class RoomDecorator
 {
     private readonly RoomGenerator gen;
     private readonly RoomDecorationSet set;
 
     private struct Placed { public Rect rect; }
+
+    // How many times each neon sign has been used in this run (one decorator per run)
+    private readonly Dictionary<DecorationPiece, int> neonUses = new Dictionary<DecorationPiece, int>();
 
     public RoomDecorator(RoomGenerator generator, RoomDecorationSet decorationSet)
     {
@@ -22,6 +26,13 @@ public class RoomDecorator
     public static RoomDecorationSet LoadDefaultSet() => Resources.Load<RoomDecorationSet>(RoomDecorationSet.ResourcePath);
 
     public bool IsReady => gen != null && set != null;
+
+    // Room 'index' of a run of 'totalRooms': the plants -> neon mix comes from the set
+    public void DecorateRoom(RoomData room, int totalRooms, int seed)
+    {
+        if (!IsReady || room == null) return;
+        DecorateRoom(room, set.NeonRatio(room.index, totalRooms), seed);
+    }
 
     // neonRatio: 0 = plants only, 1 = neon only
     public void DecorateRoom(RoomData room, float neonRatio, int seed)
@@ -66,17 +77,17 @@ public class RoomDecorator
         int neonCount = Mathf.Max(minNeons, RoundRandom(rng, Roll(rng, neonRange) * neonRatio));
         if (neonRatio <= 0f) neonCount = 0;
         if (neonRatio >= 1f) plantCount = 0;
+        neonCount = Mathf.Min(neonCount, set.maxNeonsPerRoom);
 
         // Local cells that the room camera shows (decoration out of frame is wasted)
         Rect visible = gen.VisibleLocalRect(gen.Config, 0.5f);
 
         var placed = new List<Placed>();
-        var usedNeons = new HashSet<DecorationPiece>();
         int plantsDone = 0, neonsDone = 0;
 
         // Neon first: signs need big free areas, plants fit almost anywhere
         for (int i = 0; i < neonCount; i++)
-            if (PlaceNeon(root, area, visible, keepOut, rng, placed, usedNeons)) neonsDone++;
+            if (PlaceNeon(root, area, visible, keepOut, rng, placed)) neonsDone++;
 
         var spots = FindPlantSpots(area, visible, keepOut);
         for (int i = 0; i < plantCount; i++)
@@ -198,14 +209,12 @@ public class RoomDecorator
 
     // ---------- neon ----------
 
-    private bool PlaceNeon(Transform root, RectInt area, Rect visible, RectInt? keepOut, Random rng, List<Placed> placed,
-                           HashSet<DecorationPiece> used)
+    private bool PlaceNeon(Transform root, RectInt area, Rect visible, RectInt? keepOut, Random rng, List<Placed> placed)
     {
-        // No sign twice in the same room until every sign has been used
-        DecorationPiece piece = PickWeighted(set.neons, rng, used);
-        if (piece == null) { used.Clear(); piece = PickWeighted(set.neons, rng, used); }
+        // Least used sign of the run so far: a sign only comes back once every other one has been used as often
+        DecorationPiece piece = PickLeastUsedNeon(rng);
         if (piece == null) return false;
-        used.Add(piece);
+        neonUses[piece] = UsesOf(piece) + 1;   // counted even if it doesn't fit, so the next pick tries another one
 
         var c = gen.Config;
         int m = set.neonMargin;
@@ -232,7 +241,7 @@ public class RoomDecorator
                 go.transform.SetParent(root, false);
                 Vector3 corner = gen.CellToWorld(new Vector3Int(area.x, area.y, 0));
                 go.transform.position = corner + new Vector3(center.x, center.y, 0f);
-                if (set.neonFlicker) go.AddComponent<NeonSignFlicker>();
+                if (set.neonFlicker && piece.prefab == null) go.AddComponent<NeonSignFlicker>();
                 placed.Add(new Placed { rect = rect });
                 return true;
             }
@@ -252,8 +261,20 @@ public class RoomDecorator
     // ---------- building the sprites ----------
 
     // One GameObject per piece, its sprites put back where they are in their texture, scaled to the height.
+    // A prefab piece is instantiated as it is (its own sorting layer, material and animation) and only scaled.
     private GameObject BuildPiece(DecorationPiece p, float height, string layer, int order, Random rng)
     {
+        if (p.prefab != null && PrefabSize(p.prefab, out Vector2 size))
+        {
+            GameObject inst = Object.Instantiate(p.prefab);
+            if (!string.IsNullOrEmpty(p.name)) inst.name = p.name;
+            float k = height / size.y;
+            Vector3 s0 = p.prefab.transform.localScale;
+            bool fx = p.randomFlipX && rng.NextDouble() < 0.5;
+            inst.transform.localScale = new Vector3((fx ? -1f : 1f) * s0.x * k, (p.flipY ? -1f : 1f) * s0.y * k, s0.z);
+            return inst;
+        }
+
         var go = new GameObject(string.IsNullOrEmpty(p.name) ? "Decoration" : p.name);
         if (!Bounds(p, out Rect u, out float ppu)) return go;
 
@@ -282,7 +303,15 @@ public class RoomDecorator
         union = default;
         ppu = 100f;
         bool any = false;
-        if (p?.sprites == null) return false;
+        if (p == null) return false;
+        if (p.prefab != null)
+        {
+            if (!PrefabSize(p.prefab, out Vector2 size)) return false;
+            union = new Rect(0f, 0f, size.x, size.y);
+            ppu = 1f;
+            return true;
+        }
+        if (p.sprites == null) return false;
         foreach (Sprite s in p.sprites)
         {
             if (s == null) continue;
@@ -293,6 +322,28 @@ public class RoomDecorator
             any = true;
         }
         return any && union.height > 0f;
+    }
+
+    // Size of a prefab as it is saved: the box around its sprites, times the root's scale
+    private static bool PrefabSize(GameObject prefab, out Vector2 size)
+    {
+        size = Vector2.zero;
+        bool any = false;
+        Bounds total = default;
+        Transform root = prefab.transform;
+        foreach (SpriteRenderer sr in prefab.GetComponentsInChildren<SpriteRenderer>(true))
+        {
+            if (sr.sprite == null) continue;
+            Matrix4x4 m = Matrix4x4.Scale(root.localScale) * root.worldToLocalMatrix * sr.transform.localToWorldMatrix;
+            Bounds b = sr.sprite.bounds;
+            Vector3 a = m.MultiplyPoint3x4(b.min), c = m.MultiplyPoint3x4(b.max);
+            var bb = new Bounds((a + c) / 2f, new Vector3(Mathf.Abs(c.x - a.x), Mathf.Abs(c.y - a.y), 0f));
+            if (any) total.Encapsulate(bb); else total = bb;
+            any = true;
+        }
+        if (!any || total.size.y <= 0f) return false;
+        size = total.size;
+        return true;
     }
 
     private static float Aspect(DecorationPiece p) => Bounds(p, out Rect u, out _) ? u.width / u.height : 1f;
@@ -336,6 +387,21 @@ public class RoomDecorator
             if (pick <= 0) return p;
         }
         return null;
+    }
+
+    private int UsesOf(DecorationPiece p) => neonUses.TryGetValue(p, out int n) ? n : 0;
+
+    private DecorationPiece PickLeastUsedNeon(Random rng)
+    {
+        int fewest = int.MaxValue;
+        foreach (DecorationPiece p in set.neons)
+            if (p != null && p.weight > 0f && Bounds(p, out _, out _)) fewest = Mathf.Min(fewest, UsesOf(p));
+        if (fewest == int.MaxValue) return null;
+
+        var usedMore = new HashSet<DecorationPiece>();
+        foreach (DecorationPiece p in set.neons)
+            if (p != null && UsesOf(p) != fewest) usedMore.Add(p);
+        return PickWeighted(set.neons, rng, usedMore);
     }
 
     private static int Roll(Random rng, Vector2Int range) =>

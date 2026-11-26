@@ -115,20 +115,20 @@ Cada cuarto se genera con `baseSeed + índice`, así que **con la misma semilla 
 
 `RoomDecorator` pone plantas y letreros neón en cada cuarto procedural, sobre los tiles ya tallados. Solo es visual: no tiene colliders.
 
-- **Transición**: el primer cuarto solo tiene plantas, el último antes del pasillo solo tiene neón y los de en medio mezclan en proporción (`índice / (totalRooms − 1)`): el cuarto 4 de 7 lleva mitad y mitad. El pasillo y el cuarto del jefe no se decoran.
+- **Transición**: el primer cuarto solo tiene plantas y los últimos 2 (`neonOnlyRoomsAtEnd`: el penúltimo y el último antes del pasillo) solo tienen neón. Los de en medio pasan poco a poco de uno a otro (`índice / (totalRooms − 2)`). Con 7 cuartos, la proporción de neón es 0 %, 20 %, 40 %, 60 %, 80 %, 100 % y 100 %. El pasillo y el cuarto del jefe no se decoran.
 - **Plantas pegadas a la roca**:
   - arbustos sobre el suelo;
   - lianas colgando del techo o de debajo de las plataformas (se acortan si no hay espacio);
   - enredaderas en paredes, techo o suelo.
 
   Una parte de cada planta (`plantSink` = 20 %) queda metida en la roca. Van en la capa `EasterEggs`, detrás del tilemap, como en el nivel 1, así que esa parte no se ve.
-- **Letreros neón en zonas abiertas**:
-  - buscan un hueco libre con 1 tile de margen, lejos de las puertas laterales y dentro del encuadre de la cámara; si no caben, se encogen hasta un 64 % o no se ponen;
-  - no se repiten en un mismo cuarto;
-  - los que vienen cortados en piezas ("No Dinosaurs", "No Biting", "Bite") se arman con todas sus piezas en la posición que tienen en la imagen;
-  - parpadean como tubo de neón (`NeonSignFlicker`) y van en la capa `Decoraciones`.
-- **Cuartos secretos**: siempre llevan de 2 a 4 letreros neón. Se decoran cuando rompes la puerta (evento `RoomGenerator.SecretRoomRevealed`), porque antes no están tallados.
-- **Configuración**: los sprites, tamaños y cantidades están en `Assets/Resources/RoomDecorationSet.asset` (`RoomDecorationSet`). Se puede cambiar desde el inspector: 12–18 plantas y 3–5 letreros en un cuarto puro. `GameManagerProcedural` tiene `decorateRooms` para apagarla, y un campo para usar otro set.
+- **Letreros neón en zonas abiertas**: son 21.
+  - Los 10 carteles LED animados de `Assets/Carteles/Prefabs`. Se usan los prefabs tal cual (su animación, material y capa) y solo se escalan. El cartel del título del juego no se usa.
+  - 11 letreros hechos de sprites. Los que vienen cortados en piezas ("No Dinosaurs", "No Biting", "Bite") se arman con todas sus piezas en la posición que tienen en la imagen. Estos parpadean como tubo de neón (`NeonSignFlicker`) y van en la capa `Decoraciones`.
+- **Dónde y cuántos letreros**: cada letrero busca un hueco libre con 1 tile de margen, lejos de las puertas laterales y dentro del encuadre de la cámara. Si no cabe, se encoge hasta un 64 % o no se pone. Hay como máximo 3 por cuarto (`maxNeonsPerRoom`), también en los cuartos secretos.
+- **Repetición mínima**: el decorador lleva la cuenta de toda la partida y siempre elige uno de los letreros menos usados. Ninguno se repite hasta que se hayan usado todos. En una prueba de 20 partidas (con 3 cuartos secretos cada una) no se repitió ninguno.
+- **Cuartos secretos**: siempre llevan de 2 a 3 letreros neón. Se decoran cuando rompes la puerta (evento `RoomGenerator.SecretRoomRevealed`), porque antes no están tallados.
+- **Configuración**: los sprites, prefabs, tamaños y cantidades están en `Assets/Resources/RoomDecorationSet.asset` (`RoomDecorationSet`) y se pueden cambiar desde el inspector. Un cuarto que es puras plantas lleva de 12 a 18; uno que es puro neón, de 2 a 3 letreros. Para agregar un cartel animado nuevo, crea un elemento en `neons` y arrastra su prefab al campo `prefab`. `GameManagerProcedural` tiene `decorateRooms` para apagar la decoración, y un campo para usar otro set.
 - Si un cuarto tiene cuarto secreto, no se pone decoración encima de su puerta rompible, para que se siga viendo como un muro que se puede romper.
 
 ### Cuartos secretos

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plants:
   - name: Bush
+    prefab: {fileID: 0}
     sprites:
     - {fileID: 6545382614753218560, guid: 5420bc50bf1b8934f81c1279a6cad773, type: 3}
     spots: 1
@@ -23,6 +24,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 3
   - name: HangingVine
+    prefab: {fileID: 0}
     sprites:
     - {fileID: 5262720429942186479, guid: 524b4472aeff8f24180af0818968d65b, type: 3}
     spots: 2
@@ -32,6 +34,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 3
   - name: VinePatch
+    prefab: {fileID: 0}
     sprites:
     - {fileID: 7721182230665906758, guid: e7dc4eaad2ff6e941b17399e3ad2c593, type: 3}
     spots: 7
@@ -42,6 +45,7 @@ MonoBehaviour:
     weight: 5
   neons:
   - name: NeonLightningDino1
+    prefab: {fileID: 0}
     sprites:
     - {fileID: 3220780321082329, guid: 35f521762f5954547a499d6c9c0b17e3, type: 3}
     spots: 8
@@ -51,6 +55,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
   - name: NeonLightningDino2
+    prefab: {fileID: 0}
     sprites:
     - {fileID: 2859940935722606858, guid: 798f478496d7c9d46b09e39638d05320, type: 3}
     spots: 8
@@ -60,6 +65,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
   - name: NeonLightningDino3
+    prefab: {fileID: 0}
     sprites:
     - {fileID: -8953427263000162441, guid: 789cd506d0b471f4084e3b876bba0c3a, type: 3}
     spots: 8
@@ -69,6 +75,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
   - name: NeonLightningDino4
+    prefab: {fileID: 0}
     sprites:
     - {fileID: -2830510116853326482, guid: ebf51987d2612d349813d5d2028e0982, type: 3}
     spots: 8
@@ -78,6 +85,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
   - name: NeonSkullsRock
+    prefab: {fileID: 0}
     sprites:
     - {fileID: -3584162888435117081, guid: 3c19939387a73cb438b81f653fa13f1b, type: 3}
     spots: 8
@@ -87,6 +95,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
   - name: NeonBeerFree
+    prefab: {fileID: 0}
     sprites:
     - {fileID: -6072045936431822709, guid: 085033efdd32ddc419c91328f73b4a97, type: 3}
     spots: 8
@@ -96,6 +105,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
   - name: NeonNoDinosaurs
+    prefab: {fileID: 0}
     sprites:
     - {fileID: -5713112761228586801, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
     - {fileID: 5662292222104158457, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
@@ -116,6 +126,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
   - name: NeonNoBiting
+    prefab: {fileID: 0}
     sprites:
     - {fileID: -4890035274970556193, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
     - {fileID: 5925800956097818044, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
@@ -133,6 +144,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
   - name: NeonBite
+    prefab: {fileID: 0}
     sprites:
     - {fileID: -944733640324914451, guid: 1a1490e6c95c9e8468fd4744c447d1e7, type: 3}
     - {fileID: 5919717043649151369, guid: 1a1490e6c95c9e8468fd4744c447d1e7, type: 3}
@@ -148,6 +160,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
   - name: NeonCyberBeer
+    prefab: {fileID: 0}
     sprites:
     - {fileID: 2516215672345454891, guid: 2bad47e879444a743a66b878f4a3b624, type: 3}
     spots: 8
@@ -157,6 +170,7 @@ MonoBehaviour:
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
   - name: NeonSkeletonAxe
+    prefab: {fileID: 0}
     sprites:
     - {fileID: -8794574494054307749, guid: f7e4a801b215ca54693a795d8b53d495, type: 3}
     spots: 8
@@ -165,9 +179,101 @@ MonoBehaviour:
     randomFlipX: 1
     color: {r: 1, g: 1, b: 1, a: 1}
     weight: 1
+  - name: Cartel_contraste_botella
+    prefab: {fileID: 5831409541598653591, guid: f714b2f6ce22a4a229654adb92068626, type: 3}
+    sprites: []
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 0
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: Cartel_contraste_calaca
+    prefab: {fileID: 2465561047081725391, guid: 9beae538aa662fdd2874d8767fa5103e, type: 3}
+    sprites: []
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: Cartel_contraste_cerveza
+    prefab: {fileID: 5154784835930363568, guid: 7c2bd8bbf760caea2bb6a520957a2b18, type: 3}
+    sprites: []
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: Cartel_contraste_estrella
+    prefab: {fileID: 7714299414919135886, guid: 10bff5d9886116909b5731d6249f08ee, type: 3}
+    sprites: []
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: Cartel_contraste_gato
+    prefab: {fileID: 47842568080888894, guid: 30fd9f5ff5fa0b3079642b6931fb0d37, type: 3}
+    sprites: []
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: Cartel_contraste_racoon
+    prefab: {fileID: 296760847833962389, guid: 913738980072c97f0b0ff497c1c8f676, type: 3}
+    sprites: []
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: Cartel_contraste_serpiente
+    prefab: {fileID: 2129634504206689638, guid: 9175cdbcb78379740a71de7d6584fd4b, type: 3}
+    sprites: []
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: Cartel_general_botella
+    prefab: {fileID: 1601917051543987646, guid: bd04048f4397630578490a2a8b11f360, type: 3}
+    sprites: []
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 0
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: Cartel_general_mano
+    prefab: {fileID: 2108212300168903840, guid: 3add20c982dbb25beaacc6f603e1c71d, type: 3}
+    sprites: []
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: Cartel_general_punk
+    prefab: {fileID: 8053761015773389166, guid: e8c918c0346e1260ab593f0d029647be, type: 3}
+    sprites: []
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  neonOnlyRoomsAtEnd: 2
   plantsPerRoom: {x: 12, y: 18}
-  neonsPerRoom: {x: 3, y: 5}
-  neonsPerSecretRoom: {x: 2, y: 4}
+  neonsPerRoom: {x: 2, y: 3}
+  neonsPerSecretRoom: {x: 2, y: 3}
+  maxNeonsPerRoom: 3
   plantSortingLayer: EasterEggs
   neonSortingLayer: Decoraciones
   plantSink: 0.2
