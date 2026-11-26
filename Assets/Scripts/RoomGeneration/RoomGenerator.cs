@@ -403,7 +403,11 @@ public void CarveInterior(GameObject instance, params Vector3[] worldSeeds)
         public readonly Dictionary<Vector3Int, TileBase> ground = new Dictionary<Vector3Int, TileBase>();
         public readonly Dictionary<Vector3Int, TileBase> platforms = new Dictionary<Vector3Int, TileBase>();
         public Vector3Int beerCell;
+        public RectInt room;   // the secret room's cells (world), for the decoration
     }
+
+    // Raised once a secret room is carved (its door broken): the room's cells (world) and the main room's root
+    public event System.Action<RectInt, Transform> SecretRoomRevealed;
 
     private void PlanSolid(SecretPlan plan, Vector3Int cell, TileBase tile)
     {
@@ -707,7 +711,7 @@ public void CarveInterior(GameObject instance, params Vector3[] worldSeeds)
                 blockCells[mo + new Vector3Int(X(u), y, 0)] = doorHole ? null : c.solidTile;
             }
 
-        var plan = new SecretPlan();
+        var plan = new SecretPlan { room = new RectInt(so.x, so.y, c.width, c.height) };
         Vector3Int S(int x, int y) => so + new Vector3Int(x, y, 0);
 
         // Room shell: organic edges from the cellular automaton (this room's own noise), closed, solid floor
@@ -1205,6 +1209,8 @@ public void CarveInterior(GameObject instance, params Vector3[] worldSeeds)
             Instantiate(config.beerPrefab, groundTilemap.GetCellCenterWorld(plan.beerCell), Quaternion.identity, parent);
         else
             Debug.LogWarning("[RoomGenerator] RoomGenConfig.beerPrefab is not assigned: the secret room has no beer.");
+
+        SecretRoomRevealed?.Invoke(plan.room, parent);
     }
 
     private void ClearCell(Vector3Int cell)

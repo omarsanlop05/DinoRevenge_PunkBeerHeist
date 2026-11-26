@@ -66,6 +66,13 @@ public class GameManagerProcedural : MonoBehaviour
     [Tooltip("Places minEnemies-maxEnemies (1-4) enemies in every generated room. Leave empty to generate rooms without enemies")]
     [SerializeField] private EnemyPlacer enemyPlacer;
 
+    [Header("Decoration")]
+    [Tooltip("Plants and neon signs in the procedural rooms (first room only plants, last one only neon, secret rooms neon)")]
+    [SerializeField] private bool decorateRooms = true;
+    [Tooltip("Sprites and amounts. Empty = Resources/RoomDecorationSet")]
+    [SerializeField] private RoomDecorationSet decorationSet;
+    private RoomDecorator decorator;
+
     [Header("Boss")]
     [SerializeField] private BossRoomPrefab bossRoomPrefab;
     private BossRoomPrefab bossRoom;
@@ -107,6 +114,18 @@ public class GameManagerProcedural : MonoBehaviour
         if (clearBeforeGenerating)
         roomGenerator.ClearAll();
 
+        if (decorateRooms)
+        {
+            if (decorationSet == null) decorationSet = RoomDecorator.LoadDefaultSet();
+            if (decorationSet != null)
+            {
+                decorator = new RoomDecorator(roomGenerator, decorationSet);
+                roomGenerator.SecretRoomRevealed += OnSecretRoomRevealed;
+            }
+            else
+                Debug.LogWarning("[GameManager] No RoomDecorationSet found (Resources/RoomDecorationSet): rooms are not decorated.");
+        }
+
         roomGenerator.FillWorld(totalRooms, worldExtraWidth);   // 1) fill first
 
         int count = Mathf.Min(initialRooms, totalRooms);
@@ -128,6 +147,7 @@ public class GameManagerProcedural : MonoBehaviour
                 r.entryTrigger.PlayerEntered -= OnPlayerEnteredRoom;
         }
 
+        if (roomGenerator != null) roomGenerator.SecretRoomRevealed -= OnSecretRoomRevealed;
         if (instance == this) instance = null;
     }
 
@@ -155,6 +175,13 @@ public class GameManagerProcedural : MonoBehaviour
         // Enemies go in after the room (and its secret room) is carved, so they see the final tiles
         if (enemyPlacer != null)
             enemyPlacer.PopulateRoom(data, baseSeed + index * 7919 + 101);
+
+        // Art pass: from plants (first room) to neon (last room before the hallway)
+        if (decorator != null)
+        {
+            float neonRatio = totalRooms > 1 ? index / (float)(totalRooms - 1) : 1f;
+            decorator.DecorateRoom(data, neonRatio, baseSeed + index * 104729 + 17);
+        }
 
         Debug.Log($"[GameManager] Room {index} generated (multiplier {multiplier:F2})");
         if (rooms.Count == totalRooms)
@@ -365,6 +392,12 @@ if (bossRoomPrefab.entryAnchor == null || bossRoomPrefab.bossCamera == null || b
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    // Secret rooms are carved when their door breaks, so they are decorated then (always neon)
+    private void OnSecretRoomRevealed(RectInt area, Transform parent)
+    {
+        decorator?.DecorateSecretRoom(area, parent, baseSeed + area.x * 7919 + area.y * 31 + 5);
     }
 
     private void PlacePlayer(RoomData first)

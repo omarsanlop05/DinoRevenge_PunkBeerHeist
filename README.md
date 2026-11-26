@@ -109,6 +109,27 @@ Cada cuarto se genera con `baseSeed + índice`, así que **con la misma semilla 
 6. **Cámara y triggers**: una cámara estática por cuarto (con `CinemachineConfiner2D`), un `RoomEntryTrigger` y un `CameraChanger` de regreso al cuarto anterior.
 7. **Cuarto secreto** (opcional, ver abajo).
 8. **Enemigos** (`EnemyPlacer`, en dos pasadas, ver [Enemigos](#enemigos)).
+9. **Decoración** (`RoomDecorator`, ver abajo).
+
+### Decoración (de cueva a ciudad neón)
+
+`RoomDecorator` pone plantas y letreros neón en cada cuarto procedural, sobre los tiles ya tallados. Solo es visual: no tiene colliders.
+
+- **Transición**: el primer cuarto solo tiene plantas, el último antes del pasillo solo tiene neón y los de en medio mezclan en proporción (`índice / (totalRooms − 1)`): el cuarto 4 de 7 lleva mitad y mitad. El pasillo y el cuarto del jefe no se decoran.
+- **Plantas pegadas a la roca**:
+  - arbustos sobre el suelo;
+  - lianas colgando del techo o de debajo de las plataformas (se acortan si no hay espacio);
+  - enredaderas en paredes, techo o suelo.
+
+  Una parte de cada planta (`plantSink` = 20 %) queda metida en la roca. Van en la capa `EasterEggs`, detrás del tilemap, como en el nivel 1, así que esa parte no se ve.
+- **Letreros neón en zonas abiertas**:
+  - buscan un hueco libre con 1 tile de margen, lejos de las puertas laterales y dentro del encuadre de la cámara; si no caben, se encogen hasta un 64 % o no se ponen;
+  - no se repiten en un mismo cuarto;
+  - los que vienen cortados en piezas ("No Dinosaurs", "No Biting", "Bite") se arman con todas sus piezas en la posición que tienen en la imagen;
+  - parpadean como tubo de neón (`NeonSignFlicker`) y van en la capa `Decoraciones`.
+- **Cuartos secretos**: siempre llevan de 2 a 4 letreros neón. Se decoran cuando rompes la puerta (evento `RoomGenerator.SecretRoomRevealed`), porque antes no están tallados.
+- **Configuración**: los sprites, tamaños y cantidades están en `Assets/Resources/RoomDecorationSet.asset` (`RoomDecorationSet`). Se puede cambiar desde el inspector: 12–18 plantas y 3–5 letreros en un cuarto puro. `GameManagerProcedural` tiene `decorateRooms` para apagarla, y un campo para usar otro set.
+- Si un cuarto tiene cuarto secreto, no se pone decoración encima de su puerta rompible, para que se siga viendo como un muro que se puede romper.
 
 ### Cuartos secretos
 

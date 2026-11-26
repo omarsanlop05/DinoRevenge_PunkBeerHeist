@@ -1,0 +1,175 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e30eb4c51a4e779439210bf4c4f4a0, type: 3}
+  m_Name: RoomDecorationSet
+  m_EditorClassIdentifier: 
+  plants:
+  - name: Bush
+    sprites:
+    - {fileID: 6545382614753218560, guid: 5420bc50bf1b8934f81c1279a6cad773, type: 3}
+    spots: 1
+    height: {x: 1.6, y: 2.6}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 3
+  - name: HangingVine
+    sprites:
+    - {fileID: 5262720429942186479, guid: 524b4472aeff8f24180af0818968d65b, type: 3}
+    spots: 2
+    height: {x: 3, y: 5}
+    flipY: 1
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 3
+  - name: VinePatch
+    sprites:
+    - {fileID: 7721182230665906758, guid: e7dc4eaad2ff6e941b17399e3ad2c593, type: 3}
+    spots: 7
+    height: {x: 1.6, y: 2.6}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 5
+  neons:
+  - name: NeonLightningDino1
+    sprites:
+    - {fileID: 3220780321082329, guid: 35f521762f5954547a499d6c9c0b17e3, type: 3}
+    spots: 8
+    height: {x: 5.5, y: 7.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: NeonLightningDino2
+    sprites:
+    - {fileID: 2859940935722606858, guid: 798f478496d7c9d46b09e39638d05320, type: 3}
+    spots: 8
+    height: {x: 5.5, y: 7.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: NeonLightningDino3
+    sprites:
+    - {fileID: -8953427263000162441, guid: 789cd506d0b471f4084e3b876bba0c3a, type: 3}
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: NeonLightningDino4
+    sprites:
+    - {fileID: -2830510116853326482, guid: ebf51987d2612d349813d5d2028e0982, type: 3}
+    spots: 8
+    height: {x: 5.5, y: 7.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: NeonSkullsRock
+    sprites:
+    - {fileID: -3584162888435117081, guid: 3c19939387a73cb438b81f653fa13f1b, type: 3}
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 0
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: NeonBeerFree
+    sprites:
+    - {fileID: -6072045936431822709, guid: 085033efdd32ddc419c91328f73b4a97, type: 3}
+    spots: 8
+    height: {x: 5.5, y: 7.5}
+    flipY: 0
+    randomFlipX: 0
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: NeonNoDinosaurs
+    sprites:
+    - {fileID: -5713112761228586801, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: 5662292222104158457, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: 3824327994988355109, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: 2383308329990629910, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: -8825308120914179227, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: 6215555208190987812, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: 3477208619062004840, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: -6227633910895367948, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: -4916449670236946108, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: -3169850639843713311, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: -5930654503896457158, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    - {fileID: 169020909376683382, guid: dc2d2e072cd4751478c6d4ad5e8ae7fb, type: 3}
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 0
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: NeonNoBiting
+    sprites:
+    - {fileID: -4890035274970556193, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
+    - {fileID: 5925800956097818044, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
+    - {fileID: 2156909582467094917, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
+    - {fileID: 5745989170242314466, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
+    - {fileID: 3043907955251232476, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
+    - {fileID: 2020366744748609929, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
+    - {fileID: 4328025424399606581, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
+    - {fileID: 3414851824038114333, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
+    - {fileID: -7586567101391827952, guid: 374da0cdf4c07514091910e89a81edd6, type: 3}
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 0
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: NeonBite
+    sprites:
+    - {fileID: -944733640324914451, guid: 1a1490e6c95c9e8468fd4744c447d1e7, type: 3}
+    - {fileID: 5919717043649151369, guid: 1a1490e6c95c9e8468fd4744c447d1e7, type: 3}
+    - {fileID: 1122745865686843135, guid: 1a1490e6c95c9e8468fd4744c447d1e7, type: 3}
+    - {fileID: -1530566520069893905, guid: 1a1490e6c95c9e8468fd4744c447d1e7, type: 3}
+    - {fileID: 2668475409016208869, guid: 1a1490e6c95c9e8468fd4744c447d1e7, type: 3}
+    - {fileID: 7015741516087268765, guid: 1a1490e6c95c9e8468fd4744c447d1e7, type: 3}
+    - {fileID: -6389632373924630210, guid: 1a1490e6c95c9e8468fd4744c447d1e7, type: 3}
+    spots: 8
+    height: {x: 4.5, y: 5.5}
+    flipY: 0
+    randomFlipX: 0
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: NeonCyberBeer
+    sprites:
+    - {fileID: 2516215672345454891, guid: 2bad47e879444a743a66b878f4a3b624, type: 3}
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  - name: NeonSkeletonAxe
+    sprites:
+    - {fileID: -8794574494054307749, guid: f7e4a801b215ca54693a795d8b53d495, type: 3}
+    spots: 8
+    height: {x: 5, y: 6.5}
+    flipY: 0
+    randomFlipX: 1
+    color: {r: 1, g: 1, b: 1, a: 1}
+    weight: 1
+  plantsPerRoom: {x: 12, y: 18}
+  neonsPerRoom: {x: 3, y: 5}
+  neonsPerSecretRoom: {x: 2, y: 4}
+  plantSortingLayer: EasterEggs
+  neonSortingLayer: Decoraciones
+  plantSink: 0.2
+  neonMargin: 1
+  neonFlicker: 1
