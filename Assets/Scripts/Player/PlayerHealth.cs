@@ -72,7 +72,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         controller.isDrinking = true;
-        vidaActual = Mathf.Min(vidaActual + 25f, vidaMaxima);
+        vidaActual = Mathf.Min(vidaActual + 40f, vidaMaxima);
         cervezas--;
         PlayerScore.Instance?.RegisterHeal();     
         controller.animator.SetTrigger("Beer");
